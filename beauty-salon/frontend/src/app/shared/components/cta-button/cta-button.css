@@ -1,19 +1,36 @@
 button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.75rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-surface);
+  background-color: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-sm);
   cursor: pointer;
+  white-space: nowrap;
   transition:
+    background-color 250ms ease,
     transform var(--anim-duration-fast) var(--anim-easing-spring),
     opacity var(--anim-duration-fast) ease;
 }
 
 button:hover {
-  transform: scale(1.05);
+  background-color: var(--color-primary-dark);
+  transform: scale(1.04);
 }
 
 button:active {
+  background-color: var(--color-primary-dark);
   transform: scale(0.97);
 }
 
 button:focus-visible {
-  outline: 2px solid currentColor;
+  outline: 2px solid var(--color-primary);
   outline-offset: 3px;
 }

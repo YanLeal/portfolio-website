@@ -7,6 +7,7 @@ import { SERVICES } from '../../core/data/content';
   standalone: true,
   imports: [SectionHeader],
   templateUrl: './pricing.html',
+  styleUrl: './pricing.css',
 })
 export class PricingComponent {
   readonly services = SERVICES;

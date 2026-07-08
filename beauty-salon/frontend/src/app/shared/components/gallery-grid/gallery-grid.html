@@ -1,7 +1,8 @@
 <div>
-  @for (image of images(); track image.src) {
-    <figure>
-      <img [src]="image.src" [alt]="image.alt" loading="lazy" />
+  @for (image of images(); track image.src; let i = $index) {
+    <figure style="--item-index: {{ i }}">
+      <img [src]="image.src" [alt]="image.alt" loading="lazy" width="800" />
+      <figcaption>{{ image.alt }}</figcaption>
     </figure>
   }
 </div>

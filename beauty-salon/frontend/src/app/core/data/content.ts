@@ -12,6 +12,8 @@ export const SERVICES: Service[] = [
     price: 1500,
     duration: '45 min',
     category: 'cabello',
+    /* Imagen recomendada: 800×600px, primer plano de corte o styling */
+    image: '/images/corte-de-cabello.webp',
   },
   {
     id: 'color',
@@ -20,6 +22,8 @@ export const SERVICES: Service[] = [
     price: 3500,
     duration: '2 hs',
     category: 'cabello',
+    /* Imagen recomendada: 800×600px, aplicación de color o resultado final */
+    image: '/images/coloracion.webp',
   },
   {
     id: 'manicuria',
@@ -28,6 +32,8 @@ export const SERVICES: Service[] = [
     price: 1200,
     duration: '40 min',
     category: 'uñas',
+    /* Imagen recomendada: 800×600px, manos con esmaltado */
+    image: '/images/manicuria.webp',
   },
   {
     id: 'pedicuria',
@@ -36,6 +42,8 @@ export const SERVICES: Service[] = [
     price: 1400,
     duration: '45 min',
     category: 'uñas',
+    /* Imagen recomendada: 800×600px, pedicuría en tratamiento */
+    image: '/images/pedicuria.webp',
   },
   {
     id: 'maquillaje',
@@ -44,6 +52,8 @@ export const SERVICES: Service[] = [
     price: 2500,
     duration: '1 hs',
     category: 'maquillaje',
+    /* Imagen recomendada: 800×600px, aplicación de maquillaje o look final */
+    image: '/images/maquillaje-profesional.webp',
   },
   {
     id: 'tratamiento-facial',
@@ -52,6 +62,8 @@ export const SERVICES: Service[] = [
     price: 2800,
     duration: '1 hs',
     category: 'tratamientos',
+    /* Imagen recomendada: 800×600px, sesión de tratamiento facial */
+    image: '/images/tratamiento-facial.webp',
   },
 ];
 

@@ -1,4 +1,48 @@
 :host {
   display: block;
+  text-align: center;
+  padding: 0 1rem 2.5rem;
   animation: fadeInUp var(--anim-duration-slow) var(--anim-easing-out) both;
+}
+
+header {
+  max-width: var(--container-content);
+  margin-inline: auto;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.01em;
+
+  @media (width >= 768px) {
+    font-size: 2.5rem;
+  }
+}
+
+/* ─── Subtle decorative separator ───────────────────────── */
+
+h2::after {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 2px;
+  margin: 0.75rem auto 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-accent-light),
+    transparent
+  );
+}
+
+p {
+  font-size: 1rem;
+  color: var(--color-neutral-400);
+  margin: 0;
+  max-width: 32rem;
+  margin-inline: auto;
 }

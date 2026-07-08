@@ -6,6 +6,7 @@ import { SectionHeader } from '../../shared/components/section-header/section-he
   standalone: true,
   imports: [SectionHeader],
   templateUrl: './contact.html',
+  styleUrl: './contact.css',
 })
 export class ContactComponent {
   readonly address = 'Av. Siempre Viva 123, Córdoba';

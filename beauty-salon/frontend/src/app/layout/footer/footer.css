@@ -1,0 +1,228 @@
+:host {
+  display: block;
+}
+
+/* ─── Footer base ───────────────────────────────────────── */
+
+footer {
+  background-color: var(--color-neutral-900);
+  color: color-mix(in srgb, var(--color-surface) 70%, transparent);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* ─── Grid ──────────────────────────────────────────────── */
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding: 3rem 1rem 2rem;
+
+  @media (width >= 640px) {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2rem;
+    padding: 4rem 1.5rem 2.5rem;
+  }
+
+  @media (width >= 1024px) {
+    gap: 3rem;
+    padding: 5rem 2rem 3rem;
+  }
+}
+
+/* ─── Brand column ──────────────────────────────────────── */
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-logo {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--color-surface);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  transition: opacity 250ms ease;
+}
+
+.footer-logo:hover {
+  opacity: 0.8;
+}
+
+.footer-desc {
+  margin: 0;
+  max-width: 22rem;
+  font-size: 0.8125rem;
+  color: color-mix(in srgb, var(--color-surface) 50%, transparent);
+}
+
+/* ─── Social icons ──────────────────────────────────────── */
+
+.footer-social {
+  display: flex;
+  gap: 0.75rem;
+  padding-top: 0.25rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  color: color-mix(in srgb, var(--color-surface) 50%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-surface) 15%, transparent);
+  transition:
+    color 250ms ease,
+    background-color 250ms ease,
+    border-color 250ms ease,
+    transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.social-link svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.social-link:hover {
+  color: var(--color-surface);
+  background-color: color-mix(in srgb, var(--color-surface) 8%, transparent);
+  border-color: color-mix(in srgb, var(--color-surface) 30%, transparent);
+  transform: translateY(-2px);
+}
+
+.social-link:active {
+  transform: scale(0.95);
+}
+
+/* ─── Column heading ────────────────────────────────────── */
+
+.footer-heading {
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-surface);
+  margin: 0 0 0.75rem;
+
+  @media (width < 640px) {
+    padding-top: 0.5rem;
+    border-top: 1px solid color-mix(in srgb, var(--color-surface) 10%, transparent);
+  }
+}
+
+/* ─── Link list ─────────────────────────────────────────── */
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-link {
+  color: color-mix(in srgb, var(--color-surface) 55%, transparent);
+  text-decoration: none;
+  font-size: 0.8125rem;
+  transition:
+    color 250ms ease,
+    padding-left 250ms ease;
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  color: var(--color-accent-light);
+  padding-left: 0.25rem;
+}
+
+/* ─── Schedule ──────────────────────────────────────────── */
+
+.footer-schedule {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-schedule li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.8125rem;
+}
+
+.sched-label {
+  color: color-mix(in srgb, var(--color-surface) 40%, transparent);
+}
+
+.sched-hours {
+  color: var(--color-surface);
+  font-weight: 500;
+}
+
+/* ─── Contact ───────────────────────────────────────────── */
+
+.footer-contact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-contact li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  font-size: 0.8125rem;
+}
+
+.contact-label {
+  color: color-mix(in srgb, var(--color-surface) 40%, transparent);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.contact-value {
+  color: color-mix(in srgb, var(--color-surface) 65%, transparent);
+  transition: color 250ms ease;
+}
+
+.footer-contact li:hover .contact-value {
+  color: var(--color-surface);
+}
+
+/* ─── Bottom bar ────────────────────────────────────────── */
+
+.footer-bottom {
+  border-top: 1px solid color-mix(in srgb, var(--color-surface) 8%, transparent);
+  padding: 1.25rem 1rem;
+  text-align: center;
+
+  @media (width >= 640px) {
+    padding: 1.5rem 1.5rem;
+  }
+
+  @media (width >= 1024px) {
+    padding: 1.5rem 2rem;
+  }
+}
+
+.footer-bottom p {
+  max-width: var(--container-content);
+  margin: 0 auto;
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--color-surface) 30%, transparent);
+}

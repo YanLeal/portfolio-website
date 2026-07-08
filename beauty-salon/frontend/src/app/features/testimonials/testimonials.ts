@@ -8,6 +8,7 @@ import { TESTIMONIALS } from '../../core/data/content';
   standalone: true,
   imports: [SectionHeader, TestimonialCard],
   templateUrl: './testimonials.html',
+  styleUrl: './testimonials.css',
 })
 export class TestimonialsComponent {
   readonly testimonials = TESTIMONIALS;

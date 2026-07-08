@@ -6,6 +6,7 @@ import { CtaButton } from '../../shared/components/cta-button/cta-button';
   standalone: true,
   imports: [CtaButton],
   templateUrl: './booking-cta.html',
+  styleUrl: './booking-cta.css',
 })
 export class BookingCtaComponent {
   onBook(): void {

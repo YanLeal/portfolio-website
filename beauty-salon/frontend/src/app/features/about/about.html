@@ -1,8 +1,50 @@
-<section>
-  <app-section-header title="Sobre nosotros" subtitle="Conocé nuestra historia" />
-  <p>
-    En Belleza & Estilo nos apasiona realzar tu belleza natural. Con más de 10 años
-    en el rubro, nuestro equipo de profesionales está dedicado a brindarte la mejor
-    experiencia en cuidado personal.
-  </p>
+<section class="about-section">
+  <div class="about-grid">
+    <!-- ─── Imagen ─────────────────────────────────────── -->
+    <div class="about-media">
+      <img
+        src="/images/beauty-salon-hero.webp"
+        alt="Interior del salón Belleza & Estilo"
+        loading="lazy"
+        width="800"
+        height="900"
+      />
+      <div class="about-media-accent" aria-hidden="true"></div>
+    </div>
+
+    <!-- ─── Contenido ──────────────────────────────────── -->
+    <div class="about-content">
+      <h2 class="about-title">Sobre nosotros</h2>
+      <p class="about-subtitle">Conocé nuestra historia</p>
+
+      <p class="about-text">
+        En <strong>Belleza &amp; Estilo</strong> nos apasiona realzar tu belleza natural.
+        Con más de 10 años en el rubro, nuestro equipo de profesionales está dedicado
+        a brindarte la mejor experiencia en cuidado personal.
+      </p>
+      <p class="about-text">
+        Cada visita es única: desde la atención personalizada hasta el ambiente cálido
+        y exclusivo. Creemos que la belleza no es solo apariencia, es bienestar.
+      </p>
+
+      <!-- ─── Stats ────────────────────────────────────── -->
+      <div class="about-stats">
+        @for (stat of stats; track stat.label) {
+          <div class="stat-card">
+            <span class="stat-value">{{ stat.value }}</span>
+            <span class="stat-label">{{ stat.label }}</span>
+          </div>
+        }
+      </div>
+
+      <!-- ─── CTA ──────────────────────────────────────── -->
+      <a class="about-cta" routerLink="/" fragment="contacto">
+        Reservá tu turno
+        <svg class="cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/>
+          <polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
 </section>

@@ -1,7 +1,92 @@
-<article>
-  <h3>{{ service().name }}</h3>
-  <p>{{ service().description }}</p>
-  <span>{{ service().duration }}</span>
-  <span>${{ service().price }}</span>
-  <button (click)="book.emit(service().id)">Reservar</button>
+<article class="service-card">
+  <!-- ─── Imagen ─────────────────────────────────────────── -->
+  <div class="card-media">
+    <img
+      [src]="service().image"
+      [alt]="service().name"
+      loading="lazy"
+      width="800"
+      height="600"
+    />
+    <div class="card-overlay"></div>
+
+    <!-- Icono decorativo sobre la imagen -->
+    <span class="card-icon" aria-hidden="true">
+      @switch (service().id) {
+        @case ('corte') {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 6a3 3 0 1 0-6 0 3 3 0 0 0 6 0z"/>
+            <path d="M8 18a3 3 0 1 0-6 0 3 3 0 0 0 6 0z"/>
+            <line x1="9" y1="7" x2="22" y2="17"/>
+            <line x1="9" y1="17" x2="22" y2="7"/>
+          </svg>
+        }
+        @case ('color') {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v4M22 12h-4M12 22v-4M2 12h4"/>
+          </svg>
+        }
+        @case ('manicuria') {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2a2 2 0 0 0-4 0v6a2 2 0 0 0 4 0V2z"/>
+            <path d="M8 8v2.5a4 4 0 0 0 8 0V8"/>
+            <path d="M12 12v8"/>
+            <path d="M8 20h8"/>
+          </svg>
+        }
+        @case ('pedicuria') {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 14c0 3 2 6 5 6h6c3 0 5-3 5-6"/>
+            <path d="M7 8c0-1.5 1-2 2-2s2 .5 2 2"/>
+            <path d="M11 8c0-1.5 1-2 2-2s2 .5 2 2"/>
+            <path d="M15 8c0-1.5 1-2 2-2s2 .5 2 2"/>
+            <path d="M7 14c3 0 5 1 5 2s2-2 5-2"/>
+          </svg>
+        }
+        @case ('maquillaje') {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 2 9 11l2 2 9-9-2-2z"/>
+            <path d="M7 13a3 3 0 0 0 0 6h2a3 3 0 0 0 0-6H7z"/>
+            <path d="M4 19c1.5-1 3-1.5 5-1.5"/>
+          </svg>
+        }
+        @case ('tratamiento-facial') {
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="10" r="8"/>
+            <path d="M6 15c1.5 1 3.5 1.5 6 1.5s4.5-.5 6-1.5"/>
+            <path d="M9 10h.01"/>
+            <path d="M15 10h.01"/>
+            <path d="M12 14c-1 0-2-.5-2-1.5"/>
+          </svg>
+        }
+      }
+    </span>
+  </div>
+
+  <!-- ─── Contenido ──────────────────────────────────────── -->
+  <div class="card-body">
+    <h3 class="card-title">{{ service().name }}</h3>
+    <p class="card-desc">{{ service().description }}</p>
+
+    <div class="card-meta">
+      <span class="meta-duration">
+        <svg class="meta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        {{ service().duration }}
+      </span>
+      <span class="meta-price">${{ service().price.toLocaleString('es-AR') }}</span>
+    </div>
+
+    <button class="card-btn" (click)="book.emit(service().id)">
+      Reservar
+      <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </button>
+  </div>
 </article>

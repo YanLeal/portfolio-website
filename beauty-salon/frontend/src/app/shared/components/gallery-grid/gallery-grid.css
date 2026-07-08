@@ -1,12 +1,140 @@
-figure {
-  overflow: hidden;
+/* ─── Masonry columns ──────────────────────────────────────
+   CSS columns crean el efecto masonry real: cada imagen
+   conserva su altura natural, las columnas se rellenan
+   de arriba a abajo y el siguiente item continúa en la
+   columna de al lado.
+*/
+
+:host div {
+  column-count: 2;
+  column-gap: 0.75rem;
+  max-width: var(--container-content);
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @media (width >= 640px) {
+    column-count: 3;
+    column-gap: 1rem;
+    padding-inline: 1.5rem;
+  }
+
+  @media (width >= 1024px) {
+    column-count: 4;
+    column-gap: 1.25rem;
+    padding-inline: 2rem;
+  }
 }
+
+/* ─── Figure ────────────────────────────────────────────── */
+
+figure {
+  position: relative;
+  margin: 0 0 0.75rem;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background-color: var(--color-neutral-100);
+  cursor: pointer;
+  break-inside: avoid;
+  /* Sutil fadeIn al entrar en vista */
+  animation: masonryIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--item-index, 0) * 60ms);
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease,
+    border-radius 0.4s ease;
+
+  @media (width >= 640px) {
+    margin-block-end: 1rem;
+  }
+
+  @media (width >= 1024px) {
+    margin-block-end: 1.25rem;
+  }
+}
+
+figure:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-lg);
+}
+
+/* ─── Image — altura natural para masonry ───────────────── */
 
 img {
-  transition:
-    transform var(--anim-duration-base) var(--anim-easing-out);
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-img:hover {
-  transform: scale(1.08);
+figure:hover img {
+  transform: scale(1.06);
+}
+
+/* ─── Overlay — más sutil en masonry ────────────────────── */
+
+figure::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(36, 31, 26, 0.55) 0%,
+    transparent 45%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+figure:hover::after {
+  opacity: 1;
+}
+
+/* ─── Caption — sale desde abajo ────────────────────────── */
+
+figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-surface);
+  opacity: 0;
+  transform: translateY(0.75rem);
+  transition:
+    opacity 0.35s ease,
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+  pointer-events: none;
+
+  @media (width < 480px) {
+    /* Siempre visible en mobile para que no pase
+       desapercibido sin hover */
+    opacity: 1;
+    transform: translateY(0);
+    background: linear-gradient(to top, rgba(36,31,26,0.7) 0%, transparent 100%);
+    padding-top: 2rem;
+  }
+}
+
+figure:hover figcaption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Entrance ──────────────────────────────────────────── */
+
+@keyframes masonryIn {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

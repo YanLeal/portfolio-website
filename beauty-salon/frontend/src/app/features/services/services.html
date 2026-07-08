@@ -1,6 +1,6 @@
-<section>
+<section class="services-section">
   <app-section-header title="Servicios" subtitle="Todo lo que necesitás para mimarte" />
-  <div>
+  <div class="services-grid">
     @for (service of services; track service.id) {
       <app-service-card [service]="service" (book)="onBook($event)" />
     }
