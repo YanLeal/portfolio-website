@@ -21,7 +21,7 @@ export class ContactComponent {
   readonly services = SERVICES;
   readonly pasoLabels = ['Servicio', 'Fecha', 'Datos', 'Confirmar'];
   readonly address = 'Av. Siempre Viva 123, Córdoba';
-  readonly phone = '+54 351 555-0123';
+  readonly phone = '+52 442 301 8772';
   readonly email = 'info@bellezaestilo.com';
   readonly schedule = 'Lun a Sáb: 9:00 – 20:00';
 

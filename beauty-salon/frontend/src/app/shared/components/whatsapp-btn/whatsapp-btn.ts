@@ -14,6 +14,7 @@ export type WaVariant = 'hero' | 'footer' | 'services' | 'floating';
       [class.wa-hero]="variant === 'hero'"
       [class.wa-footer]="variant === 'footer'"
       [class.wa-services]="variant === 'services'"
+      [class.wa-floating]="variant === 'floating'"
       [attr.aria-label]="ariaLabel || label || 'Contactanos por WhatsApp'"
     >
       <svg class="wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
@@ -190,7 +191,7 @@ export type WaVariant = 'hero' | 'footer' | 'services' | 'floating';
   `],
 })
 export class WhatsappButtonComponent {
-  readonly waLink = 'https://wa.me/543515550123';
+  readonly waLink = 'https://wa.me/5214423018772';
 
   /** Hero, footer, or services styling variant */
   @Input() variant: WaVariant = 'services';

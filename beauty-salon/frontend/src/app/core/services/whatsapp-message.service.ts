@@ -8,7 +8,7 @@ export interface WaMessageParams {
   notes?: string;
 }
 
-const PHONE = '543515550123';
+const PHONE = '5214423018772';
 
 @Injectable({ providedIn: 'root' })
 export class WhatsappMessageService {

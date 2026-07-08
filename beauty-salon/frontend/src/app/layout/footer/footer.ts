@@ -20,7 +20,7 @@ export class FooterComponent {
 
   readonly contact = [
     { label: 'Dirección', value: 'Av. Siempre Viva 123, Córdoba' },
-    { label: 'Teléfono', value: '+54 351 555-0123' },
+    { label: 'Teléfono', value: '+52 442 301 8772' },
     { label: 'Email', value: 'info@bellezaestilo.com' },
   ];
 
