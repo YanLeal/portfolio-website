@@ -1,0 +1,7 @@
+<div>
+  @for (image of images(); track image.src) {
+    <figure>
+      <img [src]="image.src" [alt]="image.alt" loading="lazy" />
+    </figure>
+  }
+</div>

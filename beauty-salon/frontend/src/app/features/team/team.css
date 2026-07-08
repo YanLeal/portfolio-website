@@ -1,0 +1,15 @@
+article {
+  animation: fadeInUp var(--anim-duration-slow) var(--anim-easing-out) both;
+}
+
+article:nth-child(1) { animation-delay: 100ms; }
+article:nth-child(2) { animation-delay: 200ms; }
+article:nth-child(3) { animation-delay: 300ms; }
+
+article {
+  transition: transform var(--anim-duration-fast) ease;
+}
+
+article:hover {
+  transform: translateY(-3px);
+}

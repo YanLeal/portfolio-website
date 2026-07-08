@@ -1,0 +1,224 @@
+/* ─── Desktop nav ──────────────────────────────────────── */
+
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+
+  @media (width >= 1024px) {
+    display: flex;
+  }
+}
+
+.desktop-nav ul {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Desktop link ─────────────────────────────────────── */
+
+.nav-link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 250ms ease;
+  position: relative;
+  padding-block: 0.25rem;
+}
+
+/* Active indicator on hover */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ─── Desktop CTA ──────────────────────────────────────── */
+
+.cta-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid transparent;
+  transition:
+    background-color 250ms ease,
+    color 250ms ease,
+    border-color 250ms ease,
+    transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+}
+
+/* When NOT scrolled (transparent nav) */
+.cta-nav:not(.is-scrolled) {
+  border-color: currentColor;
+  color: inherit;
+}
+
+.cta-nav:not(.is-scrolled):hover {
+  background-color: color-mix(in srgb, currentColor 10%, transparent);
+  transform: scale(1.03);
+}
+
+.cta-nav:not(.is-scrolled):active {
+  transform: scale(0.97);
+}
+
+/* When scrolled (solid nav) */
+.cta-nav.is-scrolled {
+  background-color: var(--color-primary);
+  color: var(--color-surface);
+  border-color: var(--color-primary);
+}
+
+.cta-nav.is-scrolled:hover {
+  background-color: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  transform: scale(1.03);
+}
+
+.cta-nav.is-scrolled:active {
+  transform: scale(0.97);
+}
+
+/* ─── Mobile overlay ───────────────────────────────────── */
+
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    visibility 0.4s ease,
+    opacity 0.4s ease;
+
+  @media (width >= 1024px) {
+    display: none;
+  }
+}
+
+.mobile-overlay.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ─── Backdrop ─────────────────────────────────────────── */
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: color-mix(in srgb, var(--color-neutral-900) 50%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.is-open .backdrop {
+  opacity: 1;
+}
+
+/* ─── Panel ────────────────────────────────────────────── */
+
+.panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 18rem;
+  max-width: 85vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 6rem 2rem 2rem;
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-xl);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.is-open .panel {
+  transform: translateX(0);
+}
+
+/* ─── Mobile links ─────────────────────────────────────── */
+
+.panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobile-link {
+  display: block;
+  padding: 0.875rem 0;
+  font-family: var(--font-heading);
+  font-size: 1.625rem;
+  font-weight: 600;
+  color: var(--color-neutral-900);
+  text-decoration: none;
+  transition: color 200ms ease, opacity 200ms ease;
+}
+
+.mobile-link:hover,
+.mobile-link:focus-visible {
+  color: var(--color-primary);
+}
+
+/* ─── Mobile CTA ───────────────────────────────────────── */
+
+.cta-mobile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-surface);
+  background-color: var(--color-primary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  border: none;
+  transition:
+    background-color 200ms ease,
+    transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.cta-mobile:hover {
+  background-color: var(--color-primary-dark);
+  transform: scale(1.02);
+}
+
+.cta-mobile:active {
+  transform: scale(0.98);
+}

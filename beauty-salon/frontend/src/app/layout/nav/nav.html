@@ -1,0 +1,66 @@
+<!-- ─── Desktop: horizontal nav ─────────────────────────── -->
+<nav
+  class="desktop-nav"
+  aria-label="Navegación principal"
+>
+  <ul>
+    @for (item of items; track item.fragment) {
+      <li>
+        <a
+          class="nav-link"
+          [routerLink]="['/']"
+          [fragment]="item.fragment"
+          (click)="close()"
+        >
+          {{ item.label }}
+        </a>
+      </li>
+    }
+  </ul>
+
+  <a
+    class="cta-nav"
+    [class.is-scrolled]="isScrolled()"
+    routerLink="/"
+    fragment="contacto"
+    (click)="close()"
+  >
+    Reservá tu turno
+  </a>
+</nav>
+
+<!-- ─── Mobile: overlay panel ──────────────────────────── -->
+<div
+  class="mobile-overlay"
+  [class.is-open]="isOpen()"
+  (click)="close()"
+  aria-hidden="true"
+>
+  <div class="backdrop"></div>
+
+  <div class="panel" (click)="$event.stopPropagation()" role="dialog" aria-label="Menú de navegación">
+    <ul>
+      @for (item of items; track item.fragment) {
+        <li>
+          <a
+            class="mobile-link"
+            [routerLink]="['/']"
+            [fragment]="item.fragment"
+            (click)="close()"
+          >
+            {{ item.label }}
+          </a>
+        </li>
+      }
+    </ul>
+
+    <a
+      class="cta-mobile"
+      routerLink="/"
+      fragment="contacto"
+      (click)="close()"
+    >
+      Reservá tu turno
+    </a>
+  </div>
+</div>

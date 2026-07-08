@@ -1,0 +1,12 @@
+figure {
+  overflow: hidden;
+}
+
+img {
+  transition:
+    transform var(--anim-duration-base) var(--anim-easing-out);
+}
+
+img:hover {
+  transform: scale(1.08);
+}

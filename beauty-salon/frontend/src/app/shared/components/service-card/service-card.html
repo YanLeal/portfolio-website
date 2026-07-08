@@ -1,0 +1,7 @@
+<article>
+  <h3>{{ service().name }}</h3>
+  <p>{{ service().description }}</p>
+  <span>{{ service().duration }}</span>
+  <span>${{ service().price }}</span>
+  <button (click)="book.emit(service().id)">Reservar</button>
+</article>

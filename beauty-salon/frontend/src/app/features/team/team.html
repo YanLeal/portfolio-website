@@ -1,0 +1,12 @@
+<section>
+  <app-section-header title="Equipo" subtitle="Los profesionales que te van a atender" />
+  <div>
+    @for (member of team; track member.id) {
+      <article>
+        <h3>{{ member.name }}</h3>
+        <p><strong>{{ member.role }}</strong></p>
+        <p>{{ member.bio }}</p>
+      </article>
+    }
+  </div>
+</section>

@@ -1,0 +1,9 @@
+export interface Service {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  duration: string;
+  image?: string;
+  category: string;
+}

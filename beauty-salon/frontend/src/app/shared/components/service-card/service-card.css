@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  animation: fadeInUp var(--anim-duration-slow) var(--anim-easing-out) both;
+  animation-delay: var(--card-delay, 0ms);
+}
+
+article {
+  transition:
+    transform var(--anim-duration-base) var(--anim-easing-out),
+    box-shadow var(--anim-duration-base) ease;
+}
+
+article:hover {
+  transform: translateY(-4px);
+}

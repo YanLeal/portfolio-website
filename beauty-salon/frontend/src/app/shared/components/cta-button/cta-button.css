@@ -1,0 +1,19 @@
+button {
+  cursor: pointer;
+  transition:
+    transform var(--anim-duration-fast) var(--anim-easing-spring),
+    opacity var(--anim-duration-fast) ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}

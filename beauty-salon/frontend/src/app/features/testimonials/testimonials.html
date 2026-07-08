@@ -1,0 +1,8 @@
+<section>
+  <app-section-header title="Testimonios" subtitle="Lo que dicen nuestras clientas" />
+  <div>
+    @for (item of testimonials; track item.id) {
+      <app-testimonial-card [testimonial]="item" />
+    }
+  </div>
+</section>

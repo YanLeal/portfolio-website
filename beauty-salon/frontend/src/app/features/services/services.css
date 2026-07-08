@@ -1,0 +1,6 @@
+app-service-card:nth-child(1) { --card-delay: 100ms; }
+app-service-card:nth-child(2) { --card-delay: 200ms; }
+app-service-card:nth-child(3) { --card-delay: 300ms; }
+app-service-card:nth-child(4) { --card-delay: 400ms; }
+app-service-card:nth-child(5) { --card-delay: 500ms; }
+app-service-card:nth-child(6) { --card-delay: 600ms; }

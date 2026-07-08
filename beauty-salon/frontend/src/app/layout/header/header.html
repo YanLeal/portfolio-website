@@ -1,0 +1,23 @@
+<header>
+  <div class="header-inner">
+    <a routerLink="/" class="logo" aria-label="Ir al inicio">Belleza &amp; Estilo</a>
+
+    <app-nav
+      [isOpen]="isMenuOpen()"
+      [isScrolled]="isScrolled()"
+      (navigated)="closeMenu()"
+    />
+
+    <button
+      class="hamburger lg:hidden"
+      [class.is-open]="isMenuOpen()"
+      (click)="toggleMenu()"
+      aria-label="Abrir menú de navegación"
+      [attr.aria-expanded]="isMenuOpen()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>

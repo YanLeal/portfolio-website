@@ -1,0 +1,134 @@
+@import 'tailwindcss';
+@import './styles/animation.css';
+
+/* ─── Design Tokens ──────────────────────────────────────
+   Cada variable genera utilidades Tailwind (bg-primary,
+   text-neutral-800, font-heading, shadow-card, etc.)
+   y también está disponible como var(--color-primary),
+   var(--font-heading), etc. en cualquier CSS.
+*/
+
+@theme {
+  /* ── Palette ──────────────────────────────────────── */
+  --color-primary: #b76e79;
+  --color-primary-light: #d4a0a8;
+  --color-primary-dark: #8b4d56;
+
+  --color-secondary: #6b2d3e;
+  --color-secondary-light: #8e4d5e;
+
+  --color-accent: #d4af37;
+  --color-accent-light: #e8d48b;
+
+  --color-success: #7fb069;
+  --color-warning: #e8b84b;
+  --color-error: #c44a5c;
+
+  /* ── Neutral scale (warm) ─────────────────────────── */
+  --color-neutral-50: #faf8f6;
+  --color-neutral-100: #f5f0ec;
+  --color-neutral-200: #ede6df;
+  --color-neutral-300: #d5cbc2;
+  --color-neutral-400: #b8a99c;
+  --color-neutral-500: #9c8b7c;
+  --color-neutral-600: #7a6b5e;
+  --color-neutral-700: #5c4f44;
+  --color-neutral-800: #3d342c;
+  --color-neutral-900: #241f1a;
+
+  /* ── Surfaces ─────────────────────────────────────── */
+  --color-surface: #ffffff;
+  --color-surface-subtle: #faf8f6;
+  --color-surface-contrast: #241f1a;
+
+  /* ── Typography ───────────────────────────────────── */
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-heading: 'Playfair Display', serif;
+
+  /* ── Border radius ────────────────────────────────── */
+  --radius-sm: 4px;
+  --radius-card: 8px;
+  --radius-input: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* ── Shadows (espresso base, nunca negro puro) ────── */
+  --shadow-sm: 0 1px 3px rgba(36, 31, 26, 0.06);
+  --shadow-card: 0 4px 12px rgba(36, 31, 26, 0.08);
+  --shadow-lg: 0 8px 24px rgba(36, 31, 26, 0.1);
+  --shadow-xl: 0 16px 40px rgba(36, 31, 26, 0.12);
+  --shadow-2xl: 0 24px 56px rgba(36, 31, 26, 0.14);
+
+  /* ── Spacing extras ───────────────────────────────── */
+  --spacing-18: 4.5rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+
+  /* ── Container widths ──────────────────────────────── */
+  --container-content: 1200px;
+}
+
+/* ─── Global defaults ────────────────────────────────── */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-neutral-800);
+    background-color: var(--color-surface);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+    color: var(--color-neutral-900);
+    line-height: 1.15;
+    font-weight: 600;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    color: var(--color-neutral-900);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-input);
+  }
+
+  /* ── Focus ring solo en navegación por teclado ──── */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+/* ─── Skip link — visible only on focus ──────────────── */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 1000;
+  padding: 0.5rem 1rem;
+  background: var(--color-neutral-900);
+  color: var(--color-surface);
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}

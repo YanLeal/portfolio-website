@@ -1,0 +1,21 @@
+<section>
+  <app-section-header title="Precios" subtitle="Transparencia desde el inicio" />
+  <table>
+    <thead>
+      <tr>
+        <th>Servicio</th>
+        <th>Duración</th>
+        <th>Precio</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (service of services; track service.id) {
+        <tr>
+          <td>{{ service.name }}</td>
+          <td>{{ service.duration }}</td>
+          <td>${{ service.price }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>

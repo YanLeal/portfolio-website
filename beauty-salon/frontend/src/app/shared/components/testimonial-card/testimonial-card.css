@@ -1,0 +1,15 @@
+:host {
+  display: block;
+  animation: fadeInUp var(--anim-duration-slow) var(--anim-easing-out) both;
+  animation-delay: var(--card-delay, 0ms);
+}
+
+figure {
+  transition:
+    transform var(--anim-duration-fast) ease,
+    opacity var(--anim-duration-fast) ease;
+}
+
+figure:hover {
+  opacity: 0.9;
+}
