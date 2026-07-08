@@ -6,3 +6,11 @@ app-service-card:nth-child(3) { --card-delay: 240ms; }
 app-service-card:nth-child(4) { --card-delay: 320ms; }
 app-service-card:nth-child(5) { --card-delay: 400ms; }
 app-service-card:nth-child(6) { --card-delay: 480ms; }
+
+/* ─── WhatsApp CTA ─────────────────────────────── */
+
+.services-wa-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}

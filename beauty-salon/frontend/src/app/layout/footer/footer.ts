@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { WhatsappButtonComponent } from '../../shared/components/whatsapp-btn/whatsapp-btn';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, WhatsappButtonComponent],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })

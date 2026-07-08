@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { WhatsappButtonComponent } from '../../shared/components/whatsapp-btn/whatsapp-btn';
 
 export interface HeroContent {
   businessName: string;
@@ -13,7 +14,7 @@ export interface HeroContent {
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [RouterLink, NgOptimizedImage],
+  imports: [RouterLink, NgOptimizedImage, WhatsappButtonComponent],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })

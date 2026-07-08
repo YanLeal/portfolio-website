@@ -1,137 +1,297 @@
 <section class="section-container">
-  <app-section-header title="Contacto" subtitle="Estamos para ayudarte" />
+  <app-section-header title="Reservá tu cita" subtitle="Elegí el servicio, el día y el horario" />
 
-  <div class="contact-grid">
-    <!-- ─── Formulario ──────────────────────────────────────── -->
-    <div class="contact-form-wrap">
+  <div class="booking-grid">
+    <!-- ════════════════════════════════════════════════
+         WIZARD
+         ════════════════════════════════════════════════ -->
+    <div class="wizard">
+
       @if (!submitted) {
-        <form #appointmentForm="ngForm" (ngSubmit)="onSubmit()" class="contact-form" autocomplete="off">
-          <div class="form-row">
+        <!-- ─── Progress indicator ──────────────────── -->
+        <div class="wizard-progress">
+          @for (label of pasoLabels; track $index) {
+            <div
+              class="progress-step"
+              [class.is-active]="step === $index + 1"
+              [class.is-done]="step > $index + 1"
+            >
+              <span class="progress-circle">{{ step > $index + 1 ? '✓' : $index + 1 }}</span>
+              <span class="progress-label">{{ label }}</span>
+            </div>
+          }
+        </div>
+
+        <!-- ─── Step 1: Servicio ───────────────────── -->
+        @if (step === 1) {
+          <div class="wizard-body">
+            <h3 class="wizard-title">¿Qué te gustaría hacerte?</h3>
+            <div class="service-grid">
+              @for (s of services; track s.id) {
+                <button
+                  type="button"
+                  class="service-option"
+                  [class.is-selected]="selectedServiceId === s.id"
+                  (click)="selectService(s.id)"
+                >
+                  <span class="option-name">{{ s.name }}</span>
+                  <span class="option-meta">
+                    <span class="option-duration">{{ s.duration }}</span>
+                    <span class="option-price">${{ s.price.toLocaleString('es-AR') }}</span>
+                  </span>
+                </button>
+              }
+            </div>
+          </div>
+        }
+
+        <!-- ─── Step 2: Fecha y horario ────────────── -->
+        @if (step === 2) {
+          <div class="wizard-body">
+            <h3 class="wizard-title">¿Cuándo te gustaría venir?</h3>
+
             <div class="form-group">
-              <label for="name">Nombre <span class="required">*</span></label>
+              <label for="booking-date">Fecha <span class="optional">(opcional)</span></label>
               <input
-                id="name"
-                name="name"
-                type="text"
-                [(ngModel)]="model.name"
-                #nameCtrl="ngModel"
-                required
-                placeholder="Tu nombre"
-                autocomplete="name"
-                inputmode="text"
+                id="booking-date"
+                type="date"
+                [(ngModel)]="selectedDate"
+                name="booking-date"
+                [min]="minDate"
               />
             </div>
 
             <div class="form-group">
-              <label for="phone">Celular <span class="required">*</span></label>
+              <label>Horario <span class="optional">(opcional)</span></label>
+              <div class="time-grid">
+                @for (slot of timeSlots; track slot) {
+                  <button
+                    type="button"
+                    class="time-slot"
+                    [class.is-selected]="selectedTime === slot"
+                    (click)="selectTime(slot)"
+                  >
+                    {{ slot }}
+                  </button>
+                }
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- ─── Step 3: Tus datos ──────────────────── -->
+        @if (step === 3) {
+          <div class="wizard-body">
+            <h3 class="wizard-title">Casi listo — dejanos tus datos</h3>
+
+            <div class="form-group">
+              <label for="booking-name">Nombre <span class="required">*</span></label>
               <input
-                id="phone"
-                name="phone"
-                type="tel"
-                [(ngModel)]="model.phone"
-                #phoneCtrl="ngModel"
+                id="booking-name"
+                type="text"
+                [(ngModel)]="name"
+                #nameCtrl="ngModel"
+                name="booking-name"
+                placeholder="Ej: María González"
+                autocomplete="name"
                 required
-                placeholder="351 555-0123"
+                [class.is-invalid]="nameCtrl.invalid && (nameCtrl.touched || attemptedSubmit)"
+              />
+              @if (nameCtrl.invalid && (nameCtrl.touched || attemptedSubmit)) {
+                <span class="form-error">Decinos tu nombre para poder contactarte</span>
+              }
+            </div>
+
+            <div class="form-group">
+              <label for="booking-phone">WhatsApp <span class="required">*</span></label>
+              <input
+                id="booking-phone"
+                type="tel"
+                [(ngModel)]="clientPhone"
+                #phoneCtrl="ngModel"
+                name="booking-phone"
+                placeholder="Ej: 351 555-0123"
                 autocomplete="tel"
                 inputmode="numeric"
-              />
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                [(ngModel)]="model.email"
-                #emailCtrl="ngModel"
-                placeholder="tucorreo@ejemplo.com"
-                autocomplete="email"
-                inputmode="email"
-              />
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="service">Servicio de interés <span class="required">*</span></label>
-              <select
-                id="service"
-                name="service"
-                [(ngModel)]="model.service"
-                #serviceCtrl="ngModel"
                 required
-              >
-                <option value="" disabled selected>Seleccioná un servicio</option>
-                @for (s of services; track s.id) {
-                  <option [value]="s.name">{{ s.name }}</option>
-                }
-              </select>
+                [class.is-invalid]="phoneCtrl.invalid && (phoneCtrl.touched || attemptedSubmit)"
+              />
+              @if (phoneCtrl.invalid && (phoneCtrl.touched || attemptedSubmit)) {
+                <span class="form-error">Necesitamos tu WhatsApp para confirmar el turno</span>
+              }
+              <span class="form-hint">Te confirmamos por WhatsApp. Sin spam, prometemos 🙌</span>
             </div>
 
             <div class="form-group">
-              <label for="date">Fecha propuesta <span class="required">*</span></label>
-              <input
-                id="date"
-                name="date"
-                type="date"
-                [(ngModel)]="model.date"
-                #dateCtrl="ngModel"
-                [min]="minDate"
-                required
-              />
+              <label for="booking-notes">Mensaje <span class="optional">(opcional)</span></label>
+              <textarea
+                id="booking-notes"
+                [(ngModel)]="notes"
+                name="booking-notes"
+                rows="3"
+                placeholder="Contanos preferencias: color, largo, diseño… o cualquier duda"
+              ></textarea>
             </div>
           </div>
+        }
 
-          <button type="submit" class="submit-btn" [disabled]="appointmentForm.invalid">
-            Solicitar turno
-          </button>
-        </form>
+        <!-- ─── Step 4: Revisar y confirmar ────────── -->
+        @if (step === 4 && selectedService) {
+          <div class="wizard-body">
+            <h3 class="wizard-title">Revisá tu turno</h3>
+
+            <div class="review-card">
+              <div class="review-row">
+                <span class="review-label">Servicio</span>
+                <span class="review-value">{{ selectedService.name }}</span>
+              </div>
+              <div class="review-row">
+                <span class="review-label">Duración</span>
+                <span class="review-value">{{ selectedService.duration }}</span>
+              </div>
+              <div class="review-row">
+                <span class="review-label">Precio</span>
+                <span class="review-value review-price">${{ selectedService.price.toLocaleString('es-AR') }}</span>
+              </div>
+              <div class="review-row">
+                <span class="review-label">Fecha</span>
+                <span class="review-value">{{ selectedDate || '—' }}</span>
+              </div>
+              <div class="review-row">
+                <span class="review-label">Horario</span>
+                <span class="review-value">{{ selectedTime ? selectedTime + ' hs' : '—' }}</span>
+              </div>
+              <div class="review-row">
+                <span class="review-label">Nombre</span>
+                <span class="review-value">{{ name }}</span>
+              </div>
+              <div class="review-row">
+                <span class="review-label">Celular</span>
+                <span class="review-value">{{ clientPhone }}</span>
+              </div>
+              @if (notes) {
+                <div class="review-row">
+                  <span class="review-label">Comentarios</span>
+                  <span class="review-value">{{ notes }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        <!-- ─── Navegación ─────────────────────────── -->
+        <div class="wizard-nav">
+          @if (step > 1) {
+            <button type="button" class="btn-nav btn-nav--back" (click)="prevStep()">
+              <svg-icon name="arrow-right" size="16" />
+              Atrás
+            </button>
+          } @else {
+            <span></span>
+          }
+
+          @if (!isLastStep) {
+            <button
+              type="button"
+              class="btn-nav btn-nav--next"
+              [class.is-disabled]="!canGoNext"
+              [attr.aria-disabled]="!canGoNext || null"
+              (click)="nextStep()"
+            >
+              Continuar
+              <svg-icon name="arrow-right" size="16" />
+            </button>
+          } @else {
+            <button
+              type="button"
+              class="btn-nav btn-nav--submit"
+              (click)="onSubmit()"
+            >
+              Pedir turno
+            </button>
+          }
+        </div>
       }
 
-      <!-- ─── Éxito ────────────────────────────────────────── -->
-      @if (submitted) {
-        <div class="form-success">
+      <!-- ─── Éxito ───────────────────────────────── -->
+      @if (submitted && selectedService) {
+        <div class="booking-success">
           <svg-icon name="check" size="48" />
-          <h3>¡Solicitud enviada!</h3>
-          <p>Te vamos a contactar pronto para confirmar el turno.</p>
-          <button type="button" class="submit-btn submit-btn--outline" (click)="resetForm()">
-            Nueva solicitud
-          </button>
+          <h3>¡Turno listo para enviar!</h3>
+          <div class="success-details">
+            <p><strong>{{ selectedService.name }}</strong></p>
+            @if (selectedDate && selectedTime) {
+              <p>{{ selectedDate }} a las {{ selectedTime }} hs</p>
+            } @else if (selectedDate) {
+              <p>{{ selectedDate }}</p>
+            } @else if (selectedTime) {
+              <p>A las {{ selectedTime }} hs</p>
+            }
+            <p class="success-contact">
+              Abrimos WhatsApp para que nos envíes el mensaje.
+            </p>
+          </div>
+          <div class="success-actions">
+            <button type="button" class="btn-nav btn-nav--submit" (click)="onSubmit()">
+              Reabrir WhatsApp
+            </button>
+            <button type="button" class="btn-nav btn-nav--back" (click)="resetForm()">
+              Reservar otro turno
+            </button>
+          </div>
+          @if (clientPhone) {
+            <p class="success-phone">Te vamos a responder al <strong>{{ clientPhone }}</strong></p>
+          }
         </div>
       }
     </div>
 
-    <!-- ─── Info de contacto ────────────────────────────────── -->
-    <address class="contact-info">
-      <div class="info-item">
-        <svg-icon name="map-pin" size="20" />
-        <div>
-          <span class="info-label">Dirección</span>
-          <span class="info-value">{{ address }}</span>
+    <!-- ════════════════════════════════════════════════
+         SIDEBAR — Información del salón
+         ════════════════════════════════════════════════ -->
+    <aside class="booking-sidebar">
+      <div class="sidebar-card">
+        <h4 class="sidebar-heading">Visitános</h4>
+        <div class="sidebar-item">
+          <svg-icon name="map-pin" size="18" />
+          <span>{{ address }}</span>
+        </div>
+        <div class="sidebar-item">
+          <svg-icon name="phone" size="18" />
+          <a href="tel:+543515550123" class="sidebar-link">{{ phone }}</a>
+        </div>
+        <div class="sidebar-item">
+          <svg-icon name="mail" size="18" />
+          <a href="mailto:info@bellezaestilo.com" class="sidebar-link">{{ email }}</a>
+        </div>
+        <div class="sidebar-item">
+          <svg-icon name="clock" size="18" />
+          <span>{{ schedule }}</span>
         </div>
       </div>
-      <div class="info-item">
-        <svg-icon name="phone" size="20" />
-        <div>
-          <span class="info-label">Teléfono</span>
-          <a href="tel:+543515550123" class="info-value info-link">{{ phone }}</a>
+
+      <div class="sidebar-card sidebar-card--social">
+        <h4 class="sidebar-heading">Seguinos</h4>
+        <div class="sidebar-social">
+          <a href="#" class="social-icon" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z"/></svg>
+          </a>
+          <a href="#" class="social-icon" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
         </div>
       </div>
-      <div class="info-item">
-        <svg-icon name="mail" size="20" />
-        <div>
-          <span class="info-label">Email</span>
-          <a href="mailto:info@bellezaestilo.com" class="info-value info-link">{{ email }}</a>
-        </div>
+
+      <div class="sidebar-card sidebar-card--cta">
+        <p>¿Preferís hablar directo?</p>
+        <a href="https://wa.me/543515550123" class="whatsapp-cta" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Escribinos por WhatsApp
+        </a>
       </div>
-      <div class="info-item">
-        <svg-icon name="clock" size="20" />
-        <div>
-          <span class="info-label">Horarios</span>
-          <span class="info-value">{{ schedule }}</span>
-        </div>
-      </div>
-    </address>
+    </aside>
   </div>
 </section>
