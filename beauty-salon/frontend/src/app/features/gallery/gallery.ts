@@ -6,6 +6,7 @@ import { GalleryGrid, GalleryImage } from '../../shared/components/gallery-grid/
   selector: 'app-gallery',
   standalone: true,
   imports: [SectionHeader, GalleryGrid],
+  host: { class: 'section-padding' },
   templateUrl: './gallery.html',
   styleUrl: './gallery.css',
 })

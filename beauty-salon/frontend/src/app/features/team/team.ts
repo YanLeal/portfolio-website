@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
+import { SvgIcon } from '../../shared/components/svg-icon/svg-icon';
 import { TEAM } from '../../core/data/content';
 
 @Component({
   selector: 'app-team',
   standalone: true,
-  imports: [SectionHeader],
+  imports: [SectionHeader, SvgIcon],
   templateUrl: './team.html',
   styleUrl: './team.css',
 })

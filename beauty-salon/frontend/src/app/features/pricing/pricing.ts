@@ -6,6 +6,7 @@ import { SERVICES } from '../../core/data/content';
   selector: 'app-pricing',
   standalone: true,
   imports: [SectionHeader],
+  host: { class: 'section-padding' },
   templateUrl: './pricing.html',
   styleUrl: './pricing.css',
 })

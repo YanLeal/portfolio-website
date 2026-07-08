@@ -1,4 +1,5 @@
 import { Component, input, output } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 export interface HeroContent {
@@ -12,7 +13,7 @@ export interface HeroContent {
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NgOptimizedImage],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })

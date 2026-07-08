@@ -1,9 +1,9 @@
-<section>
+<section class="section-padding" style="scroll-margin-top: 5rem">
   <app-section-header title="Equipo" subtitle="Los profesionales que te van a atender" />
-  <div class="team-grid">
+  <div class="section-grid">
     @for (member of team; track member.id) {
-      <article class="team-card">
-        <div class="card-photo">
+      <article class="card-lift team-card">
+        <div class="card-photo card-media-zoom">
           <img [src]="member.photo" [alt]="member.name" width="400" height="400" loading="lazy" />
           <div class="card-overlay">
             <div class="card-social">
@@ -29,7 +29,7 @@
           <h3>{{ member.name }}</h3>
           <p class="card-role">{{ member.role }}</p>
           <p class="card-experience">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+            <svg-icon name="clock" size="14" />
             {{ member.experience }} de experiencia
           </p>
           <p class="card-bio">{{ member.bio }}</p>

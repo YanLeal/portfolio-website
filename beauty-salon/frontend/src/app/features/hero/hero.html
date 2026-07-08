@@ -2,9 +2,11 @@
   <!-- Imagen de fondo -->
   <div class="hero-bg" aria-hidden="true">
     <img
-      src="/images/hero.webp"
+      ngSrc="/images/hero.webp"
       alt=""
-      fetchpriority="high"
+      width="1920"
+      height="1080"
+      priority
     />
   </div>
 
@@ -28,6 +30,7 @@
 
     <div class="hero-actions">
       <button
+        type="button"
         class="btn-primary"
         (click)="onCtaClick()"
       >

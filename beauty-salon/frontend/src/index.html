@@ -1,27 +1,36 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-AR">
 <head>
   <meta charset="utf-8" />
-  <title>Belleza & Estilo — Estética y cuidado personal en Córdoba</title>
+  <title>Belleza & Estilo — Salón de belleza y estética en Córdoba</title>
   <base href="/" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Cortes, color, manicuría, maquillaje y tratamientos faciales. Profesionales con más de 10 años de experiencia. Reservá tu turno." />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="Cortes, color, manicuría, pedicuría, maquillaje profesional y tratamientos faciales en Córdoba. Más de 10 años de experiencia. Reservá tu turno online." />
+  <meta name="theme-color" content="#241f1a" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Belleza & Estilo" />
 
   <!-- Canonical -->
   <link rel="canonical" href="https://bellezaestilo.com/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Belleza & Estilo — Estética y cuidado personal en Córdoba" />
-  <meta property="og:description" content="Cortes, color, manicuría, maquillaje y tratamientos faciales. Profesionales con más de 10 años de experiencia." />
+  <meta property="og:site_name" content="Belleza & Estilo" />
+  <meta property="og:title" content="Belleza & Estilo — Salón de belleza y estética en Córdoba" />
+  <meta property="og:description" content="Cortes, color, manicuría, pedicuría, maquillaje profesional y tratamientos faciales en Córdoba. Más de 10 años de experiencia. Reservá tu turno online." />
   <meta property="og:url" content="https://bellezaestilo.com/" />
   <meta property="og:locale" content="es_AR" />
+  <meta property="og:image" content="https://bellezaestilo.com/images/hero.webp" />
+  <meta property="og:image:width" content="1920" />
+  <meta property="og:image:height" content="1080" />
+  <meta property="og:image:alt" content="Salón Belleza & Estilo — ambiente cálido y profesional" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Belleza & Estilo — Estética y cuidado personal en Córdoba" />
-  <meta name="twitter:description" content="Cortes, color, manicuría, maquillaje y tratamientos faciales. Profesionales con más de 10 años de experiencia." />
+  <meta name="twitter:title" content="Belleza & Estilo — Salón de belleza y estética en Córdoba" />
+  <meta name="twitter:description" content="Cortes, color, manicuría, pedicuría, maquillaje profesional y tratamientos faciales en Córdoba. Reservá tu turno online." />
+  <meta name="twitter:image" content="https://bellezaestilo.com/images/hero.webp" />
+  <meta name="twitter:image:alt" content="Salón Belleza & Estilo — ambiente cálido y profesional" />
 
   <!-- Google Fonts: Playfair Display + Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -29,20 +38,35 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
     rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
   />
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+  </noscript>
+
+  <!-- Preload LCP image -->
+  <link rel="preload" as="image" href="/images/hero.webp" fetchpriority="high" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
 
   <!-- Structured Data: BeautySalon -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BeautySalon",
+    "@id": "https://bellezaestilo.com/",
     "name": "Belleza & Estilo",
-    "description": "Cuidado personal profesional. Cortes, color, manicuría, maquillaje y tratamientos faciales.",
+    "description": "Salón de belleza y estética en Córdoba. Cortes, color, manicuría, pedicuría, maquillaje profesional y tratamientos faciales.",
     "url": "https://bellezaestilo.com/",
     "telephone": "+54 351 555-0123",
+    "image": "https://bellezaestilo.com/images/hero.webp",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Av. Siempre Viva 123",
@@ -53,12 +77,25 @@
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
         "opens": "09:00",
         "closes": "20:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "18:00"
       }
     ],
-    "priceRange": "$$"
+    "priceRange": "$$",
+    "currenciesAccepted": "ARS",
+    "paymentAccepted": ["Efectivo", "Transferencia", "Tarjeta de crédito", "Tarjeta de débito"],
+    "sameAs": [
+      "https://instagram.com/bellezaestilo",
+      "https://facebook.com/bellezaestilo",
+      "https://wa.me/543515550123"
+    ]
   }
   </script>
 </head>

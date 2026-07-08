@@ -3,7 +3,7 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    title: 'Belleza & Estilo — Estética y cuidado personal en Córdoba',
+    title: 'Belleza & Estilo — Salón de belleza y estética en Córdoba',
     loadComponent: () => import('./pages/home/home').then((c) => c.HomePage),
   },
   {

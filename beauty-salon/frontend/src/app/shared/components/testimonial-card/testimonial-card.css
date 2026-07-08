@@ -1,30 +1,4 @@
-/* ─── Card wrapper ────────────────────────────────────────── */
-
-:host {
-  display: block;
-  animation: cardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-  animation-delay: var(--card-delay, 0ms);
-}
-
-/* ─── Card ────────────────────────────────────────────────── */
-
-article {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--color-surface);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-  transition:
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.4s ease;
-}
-
-article:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-}
+/* ─── Testimonial-card specifics (card-base + card-entrance from shared) ── */
 
 /* ─── Media ────────────────────────────────────────────────── */
 
@@ -38,11 +12,6 @@ article:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-article:hover .card-media img {
-  transform: scale(1.06);
 }
 
 .card-overlay {
@@ -87,7 +56,7 @@ article:hover .card-media img {
   color: #f4b740;
 }
 
-article:hover .star--filled {
+.card-base:hover .star--filled {
   transform: scale(1.1);
 }
 
@@ -147,7 +116,7 @@ hr {
   transition: border-color 0.3s ease;
 }
 
-article:hover .author-avatar {
+.card-base:hover .author-avatar {
   border-color: var(--color-primary);
 }
 
@@ -181,19 +150,6 @@ article:hover .author-avatar {
   letter-spacing: 0.04em;
 }
 
-.service-label svg {
+.service-label svg-icon {
   flex-shrink: 0;
-}
-
-/* ─── Entrance ────────────────────────────────────────────── */
-
-@keyframes cardIn {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }

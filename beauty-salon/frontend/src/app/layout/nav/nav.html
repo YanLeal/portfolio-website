@@ -34,7 +34,7 @@
   class="mobile-overlay"
   [class.is-open]="isOpen()"
   (click)="close()"
-  aria-hidden="true"
+  [attr.aria-hidden]="!isOpen()"
 >
   <div class="backdrop"></div>
 
