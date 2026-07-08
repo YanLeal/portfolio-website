@@ -1,34 +1,97 @@
-/* ─── Card wrapper ──────────────────────────────────────── */
+/* ─── Card wrapper ────────────────────────────────────────── */
 
 :host {
   display: block;
-  animation: cardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: cardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: var(--card-delay, 0ms);
 }
 
-/* ─── Card ──────────────────────────────────────────────── */
+/* ─── Card ────────────────────────────────────────────────── */
 
-figure {
+article {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1.5rem;
-  margin: 0;
   background-color: var(--color-surface);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-sm);
+  overflow: hidden;
   transition:
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.4s ease;
 }
 
-figure:hover {
-  transform: translateY(-4px) scale(1.01);
+article:hover {
+  transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
 }
 
-/* ─── Quote ─────────────────────────────────────────────── */
+/* ─── Media ────────────────────────────────────────────────── */
+
+.card-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+article:hover .card-media img {
+  transform: scale(1.06);
+}
+
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(36, 31, 26, 0.1) 0%,
+    rgba(36, 31, 26, 0.03) 50%,
+    var(--color-surface) 100%
+  );
+}
+
+/* ─── Content ──────────────────────────────────────────────── */
+
+.card-content {
+  position: relative;
+  z-index: 1;
+  padding: 0 1.5rem 1.5rem;
+  margin-top: -1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ─── Stars ────────────────────────────────────────────────── */
+
+.card-stars {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.star {
+  fill: var(--color-neutral-200);
+  stroke: none;
+  color: var(--color-neutral-200);
+  transition: fill 0.3s ease, transform 0.3s ease;
+}
+
+.star--filled {
+  fill: #f4b740;
+  color: #f4b740;
+}
+
+article:hover .star--filled {
+  transform: scale(1.1);
+}
+
+/* ─── Quote ────────────────────────────────────────────────── */
 
 blockquote {
   margin: 0;
@@ -46,42 +109,83 @@ blockquote p {
 blockquote p::before {
   content: '\201C';
   position: absolute;
-  top: -0.5rem;
-  left: -0.25rem;
+  top: -0.6rem;
+  left: -0.35rem;
   font-family: var(--font-heading);
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-primary-light);
   line-height: 1;
-  opacity: 0.4;
+  opacity: 0.35;
   pointer-events: none;
 }
 
-/* ─── Author ────────────────────────────────────────────── */
+/* ─── Separator ────────────────────────────────────────────── */
 
-figcaption {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--color-neutral-100);
+hr {
+  margin: 0;
+  border: 0;
+  height: 1px;
+  background: var(--color-neutral-200);
 }
 
-figcaption strong {
+/* ─── Author ───────────────────────────────────────────────── */
+
+.card-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.author-avatar {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--color-primary-light);
+  transition: border-color 0.3s ease;
+}
+
+article:hover .author-avatar {
+  border-color: var(--color-primary);
+}
+
+.author-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.author-info strong {
   font-family: var(--font-heading);
   font-size: 0.9375rem;
   font-weight: 600;
   color: var(--color-neutral-900);
 }
 
-figcaption span {
-  font-size: 0.8125rem;
+.service-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  color: var(--color-accent);
-  letter-spacing: 0.02em;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-/* ─── Entrance ──────────────────────────────────────────── */
+.service-label svg {
+  flex-shrink: 0;
+}
+
+/* ─── Entrance ────────────────────────────────────────────── */
 
 @keyframes cardIn {
   from {

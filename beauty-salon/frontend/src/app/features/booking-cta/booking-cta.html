@@ -1,5 +1,17 @@
-<section>
-  <h2>Reservá tu turno</h2>
-  <p>Elegí el día y horario que más te convenga.</p>
-  <app-cta-button label="Pedir turno" (clicked)="onBook()" />
+<section class="cta-section">
+  <div class="cta-bg">
+    <img
+      src="/images/calendario-turnos.webp"
+      alt=""
+      width="1400"
+      height="600"
+      loading="lazy"
+    />
+  </div>
+  <div class="cta-overlay"></div>
+  <div class="cta-content">
+    <h2>Reservá tu turno</h2>
+    <p>Elegí el día y horario que más te convenga y vení a mimarte.</p>
+    <app-cta-button label="Pedir turno" (clicked)="onBook()" />
+  </div>
 </section>
