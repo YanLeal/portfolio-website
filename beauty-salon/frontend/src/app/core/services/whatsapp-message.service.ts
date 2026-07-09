@@ -17,22 +17,21 @@ export class WhatsappMessageService {
     const lines: string[] = [
       '¡Hola! Quiero reservar un turno en Belleza & Estilo.',
       '',
+      `Nombre: ${params.name}`,
+      `Servicio: ${params.service}`,
     ];
 
-    lines.push(`👤 Nombre: ${params.name}`);
-    lines.push(`💇 Servicio: ${params.service}`);
-
     if (params.date) {
-      lines.push(`📅 Fecha: ${params.date}`);
+      lines.push(`Fecha: ${params.date}`);
     }
 
     if (params.time) {
-      lines.push(`⏰ Horario: ${params.time} hs`);
+      lines.push(`Horario: ${params.time} hs`);
     }
 
     if (params.notes?.trim()) {
       lines.push('');
-      lines.push(`📝 ${params.notes.trim()}`);
+      lines.push(`Notas: ${params.notes.trim()}`);
     }
 
     lines.push('');
