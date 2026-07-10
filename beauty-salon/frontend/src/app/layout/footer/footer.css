@@ -110,14 +110,16 @@ footer {
   font-weight: var(--font-weight-semibold);
   color: var(--color-surface);
   margin: 0 0 var(--space-3);
+  padding-top: var(--space-2);
+  border-top: 1px solid color-mix(in srgb, var(--color-surface) 10%, transparent);
+
+  @media (width >= 640px) {
+    padding-top: 0;
+    border-top: none;
+  }
 
   @media (width >= 768px) {
     font-size: var(--font-size-lg);
-  }
-
-  @media (width < 640px) {
-    padding-top: var(--space-2);
-    border-top: 1px solid color-mix(in srgb, var(--color-surface) 10%, transparent);
   }
 }
 
