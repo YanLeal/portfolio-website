@@ -91,6 +91,7 @@ section {
 .progress-step.is-done .progress-circle {
   background: var(--color-primary);
   color: var(--color-surface);
+  animation: popIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .progress-label {
@@ -576,6 +577,7 @@ section {
   background: var(--color-surface);
   border: 1px solid var(--color-neutral-200);
   border-radius: var(--radius-card);
+  animation: successCardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
 
   @media (width >= 375px) {
     padding: 3rem 1.5rem;
@@ -584,7 +586,8 @@ section {
 
 .booking-success svg-icon {
   color: var(--color-primary);
-  animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both,
+             successPulse 2.5s ease 0.8s infinite;
 }
 
 .booking-success h3 {
@@ -593,6 +596,8 @@ section {
   font-weight: var(--font-weight-semibold);
   color: var(--color-neutral-900);
   margin: 0;
+  animation: fadeInUp 0.4s ease both;
+  animation-delay: 0.2s;
 }
 
 .success-details {
@@ -603,6 +608,8 @@ section {
   color: var(--color-neutral-600);
   line-height: var(--leading-normal);
   margin-bottom: 0.5rem;
+  animation: fadeInUp 0.4s ease both;
+  animation-delay: 0.3s;
 }
 
 .success-details strong {
@@ -621,6 +628,8 @@ section {
   gap: 0.75rem;
   width: 100%;
   max-width: 16rem;
+  animation: fadeInUp 0.4s ease both;
+  animation-delay: 0.45s;
 }
 
 .success-actions .btn-nav {
@@ -632,6 +641,8 @@ section {
   font-size: var(--font-size-xs);
   color: var(--color-neutral-400);
   margin: 0;
+  animation: fadeInUp 0.4s ease both;
+  animation-delay: 0.55s;
 }
 
 .success-phone strong {
@@ -784,6 +795,21 @@ section {
   0% { transform: scale(0); opacity: 0; }
   60% { transform: scale(1.15); }
   100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(0.75rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes successCardIn {
+  from { opacity: 0; transform: translateY(1rem) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes successPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.08); opacity: 0.85; }
 }
 
 @keyframes shakeIn {
