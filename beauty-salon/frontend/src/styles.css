@@ -335,19 +335,8 @@
 
   /* Entrance animation with stagger delay */
   .card-entrance {
-    animation: cardFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
     animation-delay: var(--card-delay, 0ms);
-  }
-
-  @keyframes cardFadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(1.5rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
   }
 
   /* ── Shared buttons ──────────────────────────────────────── */
@@ -457,14 +446,5 @@
     }
   }
 
-  @keyframes cardFadeInSmall {
-    from {
-      opacity: 0;
-      transform: translateY(1rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+
 }

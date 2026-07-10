@@ -1,6 +1,6 @@
 :host {
   display: block;
-  animation: fadeInUp var(--anim-duration-slow) var(--anim-easing-out) both;
+  animation: slideUp var(--anim-duration-slow) var(--anim-easing-out) both;
 }
 
 /* ─── Imagen ────────────────────────────────────────────── */

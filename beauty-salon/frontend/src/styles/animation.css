@@ -66,17 +66,6 @@
 
 /* ─── Keyframes ────────────────────────────────────────── */
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(1.5rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -93,11 +82,6 @@
   }
 }
 
-@keyframes pulse-slow {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-}
-
 /*
  * ── SALIDAS ────────────────────────────────────────────────
  * Opacity de 1 → 0. Siempre más rápido que la entrada (ease-in).
@@ -110,7 +94,7 @@
 /*
  * ── SLIDE DIRECCIONAL ────────────────────────────────────
  * Siempre combinados con fade. Distancia sutil (1.5rem).
- * slideUp es semánticamente igual a fadeInUp.
+ * slideUp es el keyframe estándar para entrada desde abajo.
  * slideLeft/slideRight son para navegación direccional (wizard, paneles).
  */
 @keyframes slideUp {

@@ -2,7 +2,7 @@
   display: block;
   text-align: center;
   padding: 0 var(--space-4) var(--space-10);
-  animation: fadeInUp var(--anim-duration-slow) var(--anim-easing-out) both;
+  animation: slideUp var(--anim-duration-slow) var(--anim-easing-out) both;
 }
 
 header {
