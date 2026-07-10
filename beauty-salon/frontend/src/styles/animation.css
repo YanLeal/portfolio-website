@@ -1,15 +1,47 @@
-/* ─── Animation system ─────────────────────────────────── */
+/* ─── Animation system ───────────────────────────────────
+
+   Usá estos tokens en lugar de valores hardcodeados.
+   Ver motion-guidelines.md para la documentación completa.
+   ──────────────────────────────────────────────────────── */
 
 :root {
-  --anim-duration-instant: 100ms;
-  --anim-duration-fast: 200ms;
-  --anim-duration-base: 400ms;
-  --anim-duration-slow: 700ms;
-  --anim-duration-entrance: 900ms;
+  /*
+   * ── Duration scale ──────────────────────────────────────
+   * 7 niveles que cubren desde feedback táctil hasta coreografía de entrada.
+   * Todos los componentes deben referenciar estos tokens.
+   */
+  --anim-duration-instant:   100ms;  /* active, toggle, micro-interacción */
+  --anim-duration-fast:      200ms;  /* hover, focus, color transitions */
+  --anim-duration-subtle:    300ms;  /* underlines, hover effects con presencia */
+  --anim-duration-base:      400ms;  /* default — card lift, state changes */
+  --anim-duration-zoom:      600ms;  /* image zoom, transiciones expansivas */
+  --anim-duration-slow:      700ms;  /* section entrances, list staggers */
+  --anim-duration-entrance:  900ms;  /* hero, primeras impresiones */
 
-  --anim-easing-in: cubic-bezier(0.4, 0, 0.68, 0.06);
-  --anim-easing-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /*
+   * ── Stagger ──────────────────────────────────────────────
+   * Intervalo base entre items en animaciones secuenciales.
+   * Cada item = --anim-duration-stagger × índice.
+   * Ej: item 5 → animation-delay: calc(5 * var(--anim-stagger-base));
+   */
+  --anim-stagger-base: 100ms;
+
+  /*
+   * ── Easing curves ────────────────────────────────────────
+   */
+  --anim-easing-in:    cubic-bezier(0.4,   0,   0.68, 0.06);
+  --anim-easing-out:   cubic-bezier(0.16,  1,   0.3,  1);
   --anim-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /*
+   * ── Interaction (buttons, clickables) ──────────────────────
+   * Tokens compartidos para hover/active/focus en botones.
+   * Componentes referencian estas variables en vez de hardcodear.
+   */
+  --btn-transition:         250ms ease;
+  --btn-transition-transform: 200ms var(--anim-easing-spring);
+  --btn-scale-hover:        1.03;
+  --btn-scale-active:       0.97;
 }
 
 /* ─── Keyframes ────────────────────────────────────────── */
@@ -46,14 +78,156 @@
   50% { transform: scale(1.03); }
 }
 
-/* ─── Reduced motion ───────────────────────────────────── */
+/*
+ * ── SALIDAS ────────────────────────────────────────────────
+ * Opacity de 1 → 0. Siempre más rápido que la entrada (ease-in).
+ */
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/*
+ * ── SLIDE DIRECCIONAL ────────────────────────────────────
+ * Siempre combinados con fade. Distancia sutil (1.5rem).
+ * slideUp es semánticamente igual a fadeInUp.
+ * slideLeft/slideRight son para navegación direccional (wizard, paneles).
+ */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(1.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(1.5rem); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-1.5rem); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/*
+ * ── ZOOM ───────────────────────────────────────────────────
+ * Scale + fade combinados. Para imágenes y elementos visuales.
+ * Distancia sutil (0.95 → 1) para evitar efecto "lupa".
+ */
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes zoomOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.95); }
+}
+
+/*
+ * ── SCALE ─────────────────────────────────────────────────
+ * Para énfasis sin slide. scaleIn entra con resorte (spring).
+ * scaleUp es una ampliación sutil tipo "respiración".
+ */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scaleUp {
+  from { transform: scale(1); }
+  to { transform: scale(1.03); }
+}
+
+/* ═════════════════════════════════════════════════════════
+   UTILITY CLASSES
+   Aplicar como className en el template HTML.
+   Combinables con .anim-delay-N para stagger.
+
+   Ejemplos:
+     <img class="anim-zoom-in">                → imagen que aparece con zoom
+     <div class="anim-slide-up anim-delay-3">  → 3er elemento con slide + stagger
+     <section class="anim-fade-in-slow">       → sección que aparece suavemente
+   ═════════════════════════════════════════════════════════ */
+
+/* ── FADE ──────────────────────────────────────────────── */
+.anim-fade-in        { animation: fadeIn var(--anim-duration-base) var(--anim-easing-out) both; }
+.anim-fade-in-fast   { animation: fadeIn var(--anim-duration-fast) var(--anim-easing-out) both; }
+.anim-fade-in-slow   { animation: fadeIn var(--anim-duration-slow) var(--anim-easing-out) both; }
+.anim-fade-out       { animation: fadeOut var(--anim-duration-fast) var(--anim-easing-in) both; }
+
+/* ── SLIDE (siempre con fade incorporado) ──────────────── */
+.anim-slide-up       { animation: slideUp var(--anim-duration-slow) var(--anim-easing-out) both; }
+.anim-slide-down     { animation: slideDown var(--anim-duration-slow) var(--anim-easing-out) both; }
+.anim-slide-left     { animation: slideLeft var(--anim-duration-base) var(--anim-easing-out) both; }
+.anim-slide-right    { animation: slideRight var(--anim-duration-base) var(--anim-easing-out) both; }
+
+/* ── ZOOM (imágenes) ───────────────────────────────────── */
+.anim-zoom-in        { animation: zoomIn var(--anim-duration-zoom) var(--anim-easing-out) both; }
+.anim-zoom-out       { animation: zoomOut var(--anim-duration-zoom) var(--anim-easing-out) both; }
+
+/* ── SCALE (énfasis) ───────────────────────────────────── */
+.anim-scale-in       { animation: scaleIn var(--anim-duration-base) var(--anim-easing-spring) both; }
+.anim-scale-up       { animation: scaleUp var(--anim-duration-subtle) var(--anim-easing-out) both; }
+
+/* ── HIDDEN ───────────────────────────────────────────────
+   Estado inicial invisible para elementos con appReveal.
+   La directiva appReveal remueve esta clase y agrega la de
+   animación cuando el elemento entra en el viewport.
+   Combinación típica:
+     <div appReveal class="anim-hidden">...</div>
+   ──────────────────────────────────────────────────────── */
+.anim-hidden {
+  opacity: 0;
+}
+
+/* ── STAGGER DELAYS ──────────────────────────────────────
+   Se combinan con cualquier .anim-* class.
+   Ej: <div class="anim-slide-up anim-delay-3"> → 3er item
+   Base: cada unidad = 100ms (--anim-stagger-base).
+   ──────────────────────────────────────────────────────── */
+.anim-delay-1 { animation-delay: calc(1 * var(--anim-stagger-base)); }
+.anim-delay-2 { animation-delay: calc(2 * var(--anim-stagger-base)); }
+.anim-delay-3 { animation-delay: calc(3 * var(--anim-stagger-base)); }
+.anim-delay-4 { animation-delay: calc(4 * var(--anim-stagger-base)); }
+.anim-delay-5 { animation-delay: calc(5 * var(--anim-stagger-base)); }
+.anim-delay-6 { animation-delay: calc(6 * var(--anim-stagger-base)); }
+.anim-delay-7 { animation-delay: calc(7 * var(--anim-stagger-base)); }
+.anim-delay-8 { animation-delay: calc(8 * var(--anim-stagger-base)); }
+
+/* ═════════════════════════════════════════════════════════
+   REDUCED MOTION
+   Se activa cuando el sistema operativo del usuario tiene
+   "Reducir movimiento" / "Reduce motion" activado.
+
+   iOS:       Configuración → Accesibilidad → Reducir movimiento
+   Android:   Configuración → Accesibilidad → Eliminar animaciones
+   macOS:     Preferencias → Accesibilidad → Reducir movimiento
+   Windows:   Configuración → Accesibilidad → Efectos de animación
+
+   También se activa automáticamente en modo ahorro de batería
+   y en algunos lectores de pantalla.
+   ═════════════════════════════════════════════════════════ */
 
 @media (prefers-reduced-motion: reduce) {
+  /*
+   * Colapsa TODAS las animaciones y transiciones a prácticamente cero
+   * (0.01ms en vez de 0 porque algunos browsers ignoran 0).
+   * El fill-mode:both de las utility classes muestra el estado final
+   * inmediatamente, sin animación visible.
+   */
   *,
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  /*
+   * Desactiva el smooth scrolling — el scroll animado también es
+   * movimiento que puede desorientar.
+   */
+  html {
+    scroll-behavior: auto !important;
   }
 }

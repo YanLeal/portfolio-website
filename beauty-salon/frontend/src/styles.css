@@ -311,6 +311,113 @@
     }
   }
 
+  /* ── Shared buttons ──────────────────────────────────────── */
+
+  /* Base — reset + layout + transition */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    min-height: 2.75rem;
+    transition:
+      background-color var(--btn-transition),
+      color var(--btn-transition),
+      border-color var(--btn-transition),
+      transform var(--btn-transition-transform),
+      box-shadow var(--btn-transition),
+      gap var(--btn-transition),
+      opacity var(--btn-transition);
+    line-height: 1;
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  .btn:active {
+    transform: scale(var(--btn-scale-active));
+  }
+
+  /* Disabled — HTML attribute + ARIA */
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+    transform: none !important;
+  }
+
+  /* Primary variant — rosa elegante */
+  .btn-primary {
+    color: var(--color-surface);
+    background-color: var(--color-primary);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-dark);
+    transform: scale(var(--btn-scale-hover));
+  }
+
+  .btn-primary:active {
+    background-color: var(--color-primary-dark);
+    transform: scale(var(--btn-scale-active));
+  }
+
+  /* Secondary variant — outline sutil */
+  .btn-secondary {
+    color: var(--color-neutral-700);
+    background-color: transparent;
+    border: 1.5px solid var(--color-neutral-300);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-neutral-400);
+    background-color: color-mix(in srgb, var(--color-neutral-900) 4%, transparent);
+    transform: scale(var(--btn-scale-hover));
+  }
+
+  .btn-secondary:active {
+    border-color: var(--color-neutral-500);
+    background-color: color-mix(in srgb, var(--color-neutral-900) 8%, transparent);
+    transform: scale(var(--btn-scale-active));
+  }
+
+  /* ── High Contrast Mode (Windows) ─────────────────────── */
+  @media (forced-colors: active) {
+    .btn:focus-visible {
+      outline: 3px solid ButtonText;
+    }
+
+    .btn-secondary {
+      border-color: ButtonText;
+    }
+  }
+
+  /* ── Prefers contrast: more ───────────────────────────── */
+  @media (prefers-contrast: more) {
+    .btn:focus-visible {
+      outline-width: 3px;
+    }
+
+    .btn-secondary {
+      border-width: 2px;
+      border-color: var(--color-neutral-500);
+    }
+  }
+
   @keyframes cardFadeInSmall {
     from {
       opacity: 0;

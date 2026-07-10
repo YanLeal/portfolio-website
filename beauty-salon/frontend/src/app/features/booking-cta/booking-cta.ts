@@ -10,6 +10,6 @@ import { CtaButton } from '../../shared/components/cta-button/cta-button';
 })
 export class BookingCtaComponent {
   onBook(): void {
-    // TODO: open booking modal or navigate to booking page
+    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   }
 }

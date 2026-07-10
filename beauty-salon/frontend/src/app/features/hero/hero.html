@@ -1,8 +1,8 @@
-<section class="hero" aria-label="Presentación">
+<section appReveal animationClass="anim-fade-in" class="hero" aria-label="Presentación">
   <!-- Imagen de fondo -->
   <div class="hero-bg" aria-hidden="true">
     <img
-      src="images/hero.webp"
+      ngSrc="images/hero.webp"
       alt=""
       width="1920"
       height="1080"
@@ -29,13 +29,13 @@
     <p class="hero-description">{{ content().description }}</p>
 
     <div class="hero-actions">
-      <button
-        type="button"
+      <a
         class="btn-primary"
-        (click)="onCtaClick()"
+        routerLink="/"
+        fragment="contacto"
       >
         {{ content().ctaLabel }}
-      </button>
+      </a>
 
       <a
         class="btn-secondary"

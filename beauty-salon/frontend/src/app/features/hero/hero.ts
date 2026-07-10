@@ -1,6 +1,7 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { RevealDirective } from '../../shared/directives/reveal.directive';
 import { WhatsappButtonComponent } from '../../shared/components/whatsapp-btn/whatsapp-btn';
 
 export interface HeroContent {
@@ -14,7 +15,7 @@ export interface HeroContent {
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [RouterLink, NgOptimizedImage, WhatsappButtonComponent],
+  imports: [RouterLink, NgOptimizedImage, RevealDirective, WhatsappButtonComponent],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })
@@ -27,10 +28,4 @@ export class HeroComponent {
     ctaLabel: 'Reservá tu turno',
     ctaSecondaryLabel: 'Ver servicios',
   });
-
-  readonly ctaClicked = output<void>();
-
-  onCtaClick(): void {
-    this.ctaClicked.emit();
-  }
 }

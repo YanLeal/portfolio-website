@@ -15,6 +15,6 @@ export class ServicesComponent {
   readonly services = SERVICES;
 
   onBook(serviceId: string): void {
-    // TODO: scroll to booking section or open modal
+    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   }
 }

@@ -338,6 +338,44 @@
   }
 }
 
+/* ─── Mobile optimizations ───────────────────────────────── */
+
+@media (width < 768px) {
+  /* Reduce zoom en mobile — evita jank y el efecto es imperceptible
+     en pantallas chicas donde la imagen de fondo se ve parcialmente */
+  .hero-bg img {
+    animation: none;
+  }
+
+  /* Comprimir entrance: mobile users ven el contenido más rápido.
+     Total: 0.1 + 0.2 + 0.35 + 0.5 + 1.0 = ~1s (vs 1.8s en desktop) */
+  .hero-title {
+    animation-delay: 0.1s;
+  }
+
+  .hero-subtitle {
+    animation-delay: 0.2s;
+  }
+
+  .hero-description {
+    animation-delay: 0.35s;
+  }
+
+  .hero-actions {
+    animation-delay: 0.5s;
+  }
+
+  .scroll-indicator {
+    animation-delay: 1s;
+  }
+}
+
+@media (width < 375px) {
+  .hero-content {
+    padding: 4rem 0.75rem 5rem;
+  }
+}
+
 @keyframes heroSlideUp {
   from {
     opacity: 0;
