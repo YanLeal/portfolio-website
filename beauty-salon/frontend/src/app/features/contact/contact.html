@@ -1,4 +1,4 @@
-<section id="contacto" class="section-container">
+<section id="contacto" class="section-container" aria-label="Formulario de reserva de turnos">
   <app-section-header title="Reservá tu cita" subtitle="Elegí el servicio, el día y el horario" />
 
   <div class="booking-grid">
@@ -34,6 +34,7 @@
                   class="service-option"
                   [class.is-selected]="selectedServiceId === s.id"
                   (click)="selectService(s.id)"
+                  [attr.aria-label]="'Seleccionar servicio: ' + s.name"
                 >
                   <span class="option-name">{{ s.name }}</span>
                   <span class="option-meta">
@@ -50,6 +51,7 @@
                 class="service-option service-option--other"
                 [class.is-selected]="selectedServiceId === 'other'"
                 (click)="selectService('other')"
+                aria-label="Seleccionar consulta general"
               >
                 <span class="option-name">Otro / No estoy segura</span>
                 <span class="option-meta">
@@ -95,6 +97,7 @@
                         class="time-slot"
                         [class.is-selected]="selectedTime === slot"
                         (click)="selectTime(slot)"
+                        [attr.aria-label]="'Horario de las ' + slot"
                       >
                         {{ slot }}
                       </button>
@@ -111,6 +114,7 @@
                         class="time-slot"
                         [class.is-selected]="selectedTime === slot"
                         (click)="selectTime(slot)"
+                        [attr.aria-label]="'Horario de las ' + slot"
                       >
                         {{ slot }}
                       </button>
