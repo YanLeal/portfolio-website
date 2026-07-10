@@ -54,14 +54,14 @@
 
 .about-title {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: var(--font-size-3xl);
   font-weight: 600;
   color: var(--color-neutral-900);
   margin: 0;
   letter-spacing: -0.01em;
 
   @media (width >= 768px) {
-    font-size: 2.5rem;
+    font-size: var(--font-size-4xl);
   }
 }
 
@@ -79,7 +79,7 @@
 }
 
 .about-subtitle {
-  font-size: 0.9375rem;
+  font-size: var(--font-size-base);
   font-weight: 500;
   color: var(--color-neutral-400);
   letter-spacing: 0.05em;
@@ -90,7 +90,7 @@
 /* ─── Texto ─────────────────────────────────────────────── */
 
 .about-text {
-  font-size: 0.9375rem;
+  font-size: var(--font-size-body);
   line-height: 1.7;
   color: var(--color-neutral-500);
   margin: 0;
@@ -138,18 +138,18 @@
 
 .stat-value {
   font-family: var(--font-heading);
-  font-size: 1.75rem;
+  font-size: var(--font-size-3xl);
   font-weight: 700;
   color: var(--color-primary);
   line-height: 1.1;
 
   @media (width >= 768px) {
-    font-size: 2rem;
+    font-size: var(--font-size-4xl);
   }
 }
 
 .stat-label {
-  font-size: 0.75rem;
+  font-size: var(--font-size-xs);
   font-weight: 500;
   color: var(--color-neutral-500);
   text-align: center;

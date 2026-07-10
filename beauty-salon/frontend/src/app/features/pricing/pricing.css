@@ -15,12 +15,12 @@ table {
   width: 100%;
   min-width: 22rem;
   border-collapse: collapse;
-  font-size: 0.9375rem;
+  font-size: var(--font-size-body);
 }
 
 thead th {
   font-family: var(--font-heading);
-  font-size: 0.8125rem;
+  font-size: var(--font-size-sm);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;

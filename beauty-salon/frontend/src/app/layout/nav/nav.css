@@ -22,7 +22,7 @@
 /* ─── Desktop link ─────────────────────────────────────── */
 
 .nav-link {
-  font-size: 0.8125rem;
+  font-size: var(--font-size-sm);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -60,7 +60,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1.25rem;
-  font-size: 0.8125rem;
+  font-size: var(--font-size-sm);
   font-weight: 600;
   text-decoration: none;
   border-radius: var(--radius-sm);
@@ -202,7 +202,7 @@
   justify-content: center;
   width: 100%;
   padding: 0.875rem 1.5rem;
-  font-size: 1rem;
+  font-size: var(--font-size-body);
   font-weight: 600;
   color: var(--color-surface);
   background-color: var(--color-primary);

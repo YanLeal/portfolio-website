@@ -96,7 +96,7 @@ figcaption {
   right: 0;
   padding: 1rem 1.25rem;
   font-family: var(--font-heading);
-  font-size: 0.9375rem;
+  font-size: var(--font-size-body);
   font-weight: 600;
   color: var(--color-surface);
   opacity: 0;

@@ -46,6 +46,17 @@
   --font-serif: 'Playfair Display', serif;
   --font-heading: 'Playfair Display', serif;
 
+  /* ── Font-size scale ──────────────────────────────── */
+  --font-size-xs:   0.75rem;   /* labels, captions, footer-bottom */
+  --font-size-sm:   0.8125rem; /* nav, metadata, small print */
+  --font-size-base: 0.875rem;  /* card desc, footer body, form text */
+  --font-size-body: 1rem;      /* paragraphs, body text (global default) */
+  --font-size-lg:   1.125rem;  /* card titles, h3 */
+  --font-size-xl:   1.25rem;   /* wizard titles, stat values */
+  --font-size-2xl:  1.5rem;    /* intermediate heading */
+  --font-size-3xl:  2rem;      /* section headers mobile */
+  --font-size-4xl:  2.5rem;    /* section headers desktop */
+
   /* ── Border radius ────────────────────────────────── */
   --radius-sm: 4px;
   --radius-card: 8px;
@@ -78,7 +89,7 @@
 
   body {
     font-family: var(--font-sans);
-    font-size: 1rem;
+    font-size: var(--font-size-body);
     line-height: 1.7;
     color: var(--color-neutral-800);
     background-color: var(--color-surface);
