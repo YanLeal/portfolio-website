@@ -25,10 +25,8 @@ export class ContactComponent {
   readonly email = 'info@bellezaestilo.com';
   readonly schedule = 'Lun a Sáb: 9:00 – 20:00';
 
-  readonly timeSlots = [
-    '09:00', '10:00', '11:00',
-    '14:00', '15:00', '16:00', '17:00',
-  ];
+  readonly morningSlots = ['09:00', '10:00', '11:00'];
+  readonly afternoonSlots = ['14:00', '15:00', '16:00', '17:00'];
 
   // ─── Wizard state ───────────────────────────────
 
@@ -49,7 +47,7 @@ export class ContactComponent {
     switch (this.step) {
       case 1: return this.selectedServiceId !== null;
       case 2: return true; // ambos opcionales
-      case 3: return this.name.trim() !== '' && this.clientPhone.trim() !== '';
+      case 3: return this.name.trim() !== '' && this.clientPhone.trim().length >= 8;
       default: return false;
     }
   }
@@ -94,6 +92,11 @@ export class ContactComponent {
     return today.toISOString().split('T')[0];
   }
 
+  get isClosedDay(): boolean {
+    if (!this.selectedDate) return false;
+    return new Date(this.selectedDate).getDay() === 0; // 0 = Sunday
+  }
+
   // ─── WhatsApp service ────────────────────────────────
 
   private readonly wa = inject(WhatsappMessageService);
@@ -101,8 +104,16 @@ export class ContactComponent {
   // ─── Confirm (UI only — no backend) ─────────────
 
   onSubmit(): void {
+    // Guard: on step 4, canGoNext is false (default case).
+    // Validamos manualmente los datos requeridos.
     const service = this.selectedService;
-    if (!service || !this.name.trim()) return;
+    if (!service || !this.name.trim() || this.clientPhone.trim().length < 8) return;
+    this.submitted = true;
+  }
+
+  openWhatsApp(): void {
+    const service = this.selectedService;
+    if (!service) return;
 
     const url = this.wa.buildUrl({
       name: this.name.trim(),
@@ -113,7 +124,6 @@ export class ContactComponent {
     });
 
     window.open(url, '_blank');
-    this.submitted = true;
   }
 
   get waMessageText(): string {

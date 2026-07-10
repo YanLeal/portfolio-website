@@ -63,18 +63,42 @@
 
             <div class="form-group">
               <label>Horario <span class="optional">(opcional)</span></label>
-              <div class="time-grid">
-                @for (slot of timeSlots; track slot) {
-                  <button
-                    type="button"
-                    class="time-slot"
-                    [class.is-selected]="selectedTime === slot"
-                    (click)="selectTime(slot)"
-                  >
-                    {{ slot }}
-                  </button>
-                }
-              </div>
+
+              @if (isClosedDay) {
+                <p class="closed-day">El salón está cerrado los domingos 😔 — elegí otro día</p>
+              } @else {
+                <div class="time-band">
+                  <span class="time-band-label">Mañana</span>
+                  <div class="time-grid">
+                    @for (slot of morningSlots; track slot) {
+                      <button
+                        type="button"
+                        class="time-slot"
+                        [class.is-selected]="selectedTime === slot"
+                        (click)="selectTime(slot)"
+                      >
+                        {{ slot }}
+                      </button>
+                    }
+                  </div>
+                </div>
+
+                <div class="time-band">
+                  <span class="time-band-label">Tarde</span>
+                  <div class="time-grid">
+                    @for (slot of afternoonSlots; track slot) {
+                      <button
+                        type="button"
+                        class="time-slot"
+                        [class.is-selected]="selectedTime === slot"
+                        (click)="selectTime(slot)"
+                      >
+                        {{ slot }}
+                      </button>
+                    }
+                  </div>
+                </div>
+              }
             </div>
           </div>
         }
@@ -112,12 +136,17 @@
                 name="booking-phone"
                 placeholder="Ej: 442 301 8772"
                 autocomplete="tel"
-                inputmode="numeric"
+                inputmode="tel"
+                minlength="8"
                 required
                 [class.is-invalid]="phoneCtrl.invalid && (phoneCtrl.touched || attemptedSubmit)"
               />
               @if (phoneCtrl.invalid && (phoneCtrl.touched || attemptedSubmit)) {
-                <span class="form-error">Necesitamos tu WhatsApp para confirmar el turno</span>
+                @if (phoneCtrl.errors?.['required']) {
+                  <span class="form-error">Necesitamos tu WhatsApp para confirmar el turno</span>
+                } @else if (phoneCtrl.errors?.['minlength']) {
+                  <span class="form-error">Parece muy corto — ¿el número está completo?</span>
+                }
               }
               <span class="form-hint">Te confirmamos por WhatsApp. Sin spam, prometemos 🙌</span>
             </div>
@@ -217,7 +246,7 @@
       @if (submitted && selectedService) {
         <div class="booking-success">
           <svg-icon name="check" size="48" />
-          <h3>¡Turno listo para enviar!</h3>
+          <h3>¡Turno listo!</h3>
           <div class="success-details">
             <p><strong>{{ selectedService.name }}</strong></p>
             @if (selectedDate && selectedTime) {
@@ -228,12 +257,12 @@
               <p>A las {{ selectedTime }} hs</p>
             }
             <p class="success-contact">
-              Abrimos WhatsApp para que nos envíes el mensaje.
+              Tocá el botón para enviarnos el mensaje por WhatsApp.
             </p>
           </div>
           <div class="success-actions">
-            <button type="button" class="btn-nav btn-nav--submit" (click)="onSubmit()">
-              Reabrir WhatsApp
+            <button type="button" class="btn-nav btn-nav--submit" (click)="openWhatsApp()">
+              Enviar por WhatsApp
             </button>
             <button type="button" class="btn-nav btn-nav--back" (click)="resetForm()">
               Reservar otro turno

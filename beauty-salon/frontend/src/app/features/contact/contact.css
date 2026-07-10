@@ -253,6 +253,34 @@ section {
   color: var(--color-surface);
 }
 
+/* ─── Time bands (Mañana / Tarde) ──────────────────────── */
+
+.time-band + .time-band {
+  margin-top: var(--space-3);
+}
+
+.time-band-label {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-400);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-1\.5);
+}
+
+/* ─── Closed day message ───────────────────────────────── */
+
+.closed-day {
+  font-size: var(--font-size-base);
+  color: var(--color-neutral-500);
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--color-neutral-100) 60%, transparent);
+  border-radius: var(--radius-card);
+  text-align: center;
+  margin: 0;
+}
+
 /* ─── Form fields (steps 2 & 3) ──────────────────────────── */
 
 .form-group {
