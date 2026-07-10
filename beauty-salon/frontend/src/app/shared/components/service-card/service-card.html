@@ -1,4 +1,4 @@
-<article class="card-lift service-card">
+<app-card variant="lift" [tiltEnabled]="true">
   <!-- ─── Imagen ─────────────────────────────────────────── -->
   <div class="card-media card-media-zoom">
     <img
@@ -78,9 +78,9 @@
       <span class="meta-price">${{ service().price.toLocaleString('es-AR') }}</span>
     </div>
 
-    <button type="button" class="card-btn" (click)="book.emit(service().id)">
+    <button type="button" class="btn btn-primary card-btn" (click)="book.emit(service().id)">
       Reservar
       <svg-icon name="arrow-right" size="16" />
     </button>
   </div>
-</article>
+</app-card>

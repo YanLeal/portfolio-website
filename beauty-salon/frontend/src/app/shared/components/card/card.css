@@ -1,0 +1,72 @@
+/* ═══════════════════════════════════════════════════════════
+   Card base — contenedor reutilizable
+   ═══════════════════════════════════════════════════════════
+   El comportamiento visual (hover lift, sombras, zoom de
+   imagen) se delega a las utility classes globales:
+     card-lift, card-base, card-media-zoom, card-entrance
+   definidas en styles.css.
+
+   Este componente aporta:
+   1. Layout flex column para que el body llene el espacio
+   2. Body padding estandarizado (1.25rem)
+   3. Host display block + height 100% para grids
+   ═══════════════════════════════════════════════════════════ */
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+/* ─── Tilt wrapper ─────────────────────────────────────────
+   Provee el contexto de perspectiva 3D para la directiva
+   appCardTilt. La card interna (app-card-inner) mantiene
+   su propio hover lift sin conflicto.
+   ──────────────────────────────────────────────────────── */
+
+.card-tilt-wrapper {
+  height: 100%;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* Forzar aceleración GPU en el wrapper */
+.card-tilt-wrapper {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* El inner article necesita preserve-3d para que el tilt
+   se aplique correctamente sobre los hijos */
+.card-tilt-wrapper .app-card-inner {
+  transform-style: preserve-3d;
+}
+
+/* El inner article siempre es flex column para que el body
+   (con flex: 1) llene el espacio restante y el contenido
+   quede al fondo (meta, acciones). */
+.app-card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ─── Body ──────────────────────────────────────────────────
+   Padding único para que todas las cards tengan el mismo
+   espaciado interno, eliminando la inconsistencia actual
+   (1.25rem en service-card vs 1.5rem en team-card).
+   flex: 1 estira el body para llenar el espacio disponible.
+   ──────────────────────────────────────────────────────── */
+
+.app-card-body {
+  flex: 1;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Si el consumidor no usa [cardBody], ocultamos el wrapper
+   vacío para no generar markup innecesario */
+.app-card-body:empty {
+  display: none;
+}

@@ -268,7 +268,7 @@
   }
   .card-base:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--elevation-hover-base);
   }
 
   /* Card con lift pronunciado (service-card, team-card) */
@@ -283,7 +283,7 @@
   }
   .card-lift:hover {
     transform: translateY(-6px);
-    box-shadow: var(--shadow-xl);
+    box-shadow: var(--elevation-hover-strong);
   }
 
   /* Image zoom on parent hover */

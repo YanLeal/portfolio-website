@@ -128,8 +128,8 @@
 }
 
 .stat-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-card);
+  transform: translateY(-4px);
+  box-shadow: var(--elevation-hover-subtle);
 
   @media (width < 768px) {
     transform: none;

@@ -1,3 +1,33 @@
+/* ─── Stagger delays for team cards ───────────────────────
+   Los delay se setean en el wrapper para que el inner article
+   (card-entrance) los herede via CSS custom properties.
+*/
+
+.card-tilt-wrapper:nth-child(1) { --card-delay: 80ms; }
+.card-tilt-wrapper:nth-child(2) { --card-delay: 160ms; }
+.card-tilt-wrapper:nth-child(3) { --card-delay: 240ms; }
+.card-tilt-wrapper:nth-child(4) { --card-delay: 320ms; }
+.card-tilt-wrapper:nth-child(5) { --card-delay: 400ms; }
+.card-tilt-wrapper:nth-child(6) { --card-delay: 480ms; }
+
+/* ─── Tilt wrapper ─────────────────────────────────────────
+   Rellena la celda del grid y provee contexto de perspectiva.
+   La directiva appCardTilt maneja la rotación 3D.
+*/
+
+.card-tilt-wrapper {
+  height: 100%;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card-tilt-wrapper .team-card {
+  transform-style: preserve-3d;
+  height: 100%;
+}
+
 /* ─── Team card specifics (lift + grid from shared) ──────── */
 
 .team-card {
@@ -21,11 +51,7 @@
 .card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(36, 31, 26, 0.75) 0%,
-    rgba(36, 31, 26, 0) 50%
-  );
+  background: var(--gradient-overlay);
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -79,7 +105,7 @@
 /* ─── Card body ────────────────────────────────────────────── */
 
 .card-body {
-  padding: 1.5rem;
+  padding: 1.25rem;
 }
 
 .card-body h3 {

@@ -34,6 +34,26 @@
   --anim-easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /*
+   * ── Overlay gradient ───────────────────────────────────────
+   * Gradiente oscuro desde abajo sobre imágenes de cards.
+   * Unifica los 3 valores distintos que había (0.5, 0.55, 0.75).
+   */
+  --gradient-overlay: linear-gradient(
+    to top,
+    rgba(36, 31, 26, 0.55) 0%,
+    transparent 50%
+  );
+
+  /*
+   * ── Hover elevation ─────────────────────────────────────────
+   * 3 niveles de sombra para hover de cards y figuras.
+   * strong: card-lift, base: card-base/gallery, subtle: stats
+   */
+  --elevation-hover-strong:  var(--shadow-xl);
+  --elevation-hover-base:    var(--shadow-lg);
+  --elevation-hover-subtle:  var(--shadow-card);
+
+  /*
    * ── Interaction (buttons, clickables) ──────────────────────
    * Tokens compartidos para hover/active/focus en botones.
    * Componentes referencian estas variables en vez de hardcodear.
