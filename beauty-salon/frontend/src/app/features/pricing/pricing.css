@@ -21,7 +21,7 @@ table {
 thead th {
   font-family: var(--font-heading);
   font-size: var(--font-size-sm);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--color-neutral-400);
@@ -54,7 +54,7 @@ tbody td {
 tbody td:last-child {
   text-align: right;
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-primary);
 }
 

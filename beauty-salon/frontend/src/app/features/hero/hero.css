@@ -107,7 +107,7 @@
 .hero-title {
   font-family: var(--font-heading);
   font-size: 2.125rem;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   letter-spacing: -0.02em;
   color: var(--color-surface);
   margin: 0 0 0.75rem;
@@ -133,7 +133,7 @@
 
 .hero-subtitle {
   font-size: 1rem;
-  font-weight: 300;
+  font-weight: var(--font-weight-light);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--color-surface) 80%, transparent);
@@ -152,7 +152,7 @@
   margin-inline: auto;
   margin-bottom: 2.5rem;
   font-size: var(--font-size-body);
-  line-height: 1.7;
+  line-height: var(--leading-relaxed);
   color: color-mix(in srgb, var(--color-surface) 65%, transparent);
 
   @media (width >= 768px) {
@@ -209,7 +209,7 @@
   background-color: transparent;
   border: 1.5px solid color-mix(in srgb, var(--color-surface) 40%, transparent);
   border-radius: 2px;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   width: 100%;
 
   @media (width >= 480px) {
@@ -249,7 +249,7 @@
 
 .scroll-text {
   font-size: 0.625rem;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--color-surface) 50%, transparent);

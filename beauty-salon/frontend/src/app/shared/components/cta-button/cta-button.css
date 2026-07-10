@@ -6,7 +6,7 @@ button {
   padding: 0.75rem 2rem;
   font-family: var(--font-sans);
   font-size: var(--font-size-body);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   letter-spacing: 0.02em;
   color: var(--color-surface);
   background-color: var(--color-primary);

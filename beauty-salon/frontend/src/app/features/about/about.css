@@ -55,7 +55,7 @@
 .about-title {
   font-family: var(--font-heading);
   font-size: var(--font-size-3xl);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--color-neutral-900);
   margin: 0;
   letter-spacing: -0.01em;
@@ -80,7 +80,7 @@
 
 .about-subtitle {
   font-size: var(--font-size-base);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   color: var(--color-neutral-400);
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -91,14 +91,14 @@
 
 .about-text {
   font-size: var(--font-size-body);
-  line-height: 1.7;
+  line-height: var(--leading-relaxed);
   color: var(--color-neutral-500);
   margin: 0;
 }
 
 .about-text strong {
   color: var(--color-neutral-900);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 /* ─── Stats ─────────────────────────────────────────────── */
@@ -139,9 +139,9 @@
 .stat-value {
   font-family: var(--font-heading);
   font-size: var(--font-size-3xl);
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   color: var(--color-primary);
-  line-height: 1.1;
+  line-height: 1.1; /* más apretado que leading-tight — intencional para display grande */
 
   @media (width >= 768px) {
     font-size: var(--font-size-4xl);
@@ -150,7 +150,7 @@
 
 .stat-label {
   font-size: var(--font-size-xs);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   color: var(--color-neutral-500);
   text-align: center;
   text-transform: uppercase;
@@ -168,7 +168,7 @@
   margin-top: 0.5rem;
   font-family: var(--font-sans);
   font-size: 0.9375rem;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   letter-spacing: 0.02em;
   color: var(--color-surface);
   background-color: var(--color-neutral-900);
