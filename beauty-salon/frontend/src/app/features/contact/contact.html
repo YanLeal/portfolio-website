@@ -15,7 +15,7 @@
               class="progress-step"
               [class.is-active]="step === $index + 1"
               [class.is-done]="step > $index + 1"
-              [class.is-error]="$index + 1 === step && attemptedSubmit && step === 3"
+              [class.is-error]="$index + 1 === step && attemptedSubmit && !canGoNext"
             >
               <span class="progress-circle">{{ step > $index + 1 ? '✓' : $index + 1 }}</span>
               <span class="progress-label">{{ label }}</span>
@@ -43,6 +43,9 @@
                 </button>
               }
             </div>
+            @if (attemptedSubmit && !selectedServiceId) {
+              <p class="step-error">Elegí un servicio para continuar</p>
+            }
           </div>
         }
 
@@ -66,7 +69,7 @@
               <label>Horario <span class="optional">(opcional)</span></label>
 
               @if (isClosedDay) {
-                <p class="closed-day">El salón está cerrado los domingos 😔 — elegí otro día</p>
+                <p class="closed-day" [class.is-error]="attemptedSubmit">El salón está cerrado los domingos 😔 — elegí otro día</p>
               } @else {
                 <div class="time-band">
                   <span class="time-band-label">Mañana</span>
@@ -271,6 +274,12 @@
               Reservar otro turno
             </button>
           </div>
+          @if (popupBlocked) {
+            <p class="popup-blocked">
+              El navegador bloqueó la ventana.
+              <a [href]="waUrl" target="_blank" rel="noopener noreferrer" class="popup-link">Abrí WhatsApp manualmente</a>
+            </p>
+          }
           @if (clientPhone) {
             <p class="success-phone">Te vamos a responder al <strong>{{ clientPhone }}</strong></p>
           }

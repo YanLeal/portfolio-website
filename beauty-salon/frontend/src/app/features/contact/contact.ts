@@ -33,6 +33,7 @@ export class ContactComponent {
   step: WizardStep = 1;
   submitted = false;
   attemptedSubmit = false;
+  popupBlocked = false;
 
   selectedServiceId: string | null = null;
   selectedDate = '';
@@ -46,7 +47,7 @@ export class ContactComponent {
   get canGoNext(): boolean {
     switch (this.step) {
       case 1: return this.selectedServiceId !== null;
-      case 2: return true; // ambos opcionales
+      case 2: return !this.isClosedDay;
       case 3: return this.name.trim() !== '' && this.clientPhone.trim().length >= 8;
       default: return false;
     }
@@ -65,14 +66,13 @@ export class ContactComponent {
   }
 
   nextStep(): void {
-    if (this.step === 3) {
+    if (!this.canGoNext || this.step >= 4) {
       this.attemptedSubmit = true;
+      return;
     }
-    if (this.canGoNext && this.step < 4) {
-      this.attemptedSubmit = false;
-      this.step = (this.step + 1) as WizardStep;
-      this.focusStepHeading();
-    }
+    this.attemptedSubmit = false;
+    this.step = (this.step + 1) as WizardStep;
+    this.focusStepHeading();
   }
 
   prevStep(): void {
@@ -127,6 +127,19 @@ export class ContactComponent {
     }
   }
 
+  /** Construye la URL de WhatsApp para usarla en el template (fallback popup bloqueado) */
+  get waUrl(): string {
+    const service = this.selectedService;
+    if (!service) return '';
+    return this.wa.buildUrl({
+      name: this.name.trim(),
+      service: service.name,
+      date: this.selectedDate,
+      time: this.selectedTime,
+      notes: this.notes.trim() || undefined,
+    });
+  }
+
   openWhatsApp(): void {
     const service = this.selectedService;
     if (!service) return;
@@ -139,7 +152,10 @@ export class ContactComponent {
       notes: this.notes.trim() || undefined,
     });
 
-    window.open(url, '_blank');
+    const win = window.open(url, '_blank');
+    if (!win || win.closed || typeof win.closed === 'undefined') {
+      this.popupBlocked = true;
+    }
   }
 
   get waMessageText(): string {
@@ -158,6 +174,7 @@ export class ContactComponent {
     this.step = 1;
     this.submitted = false;
     this.attemptedSubmit = false;
+    this.popupBlocked = false;
     this.selectedServiceId = null;
     this.selectedDate = '';
     this.selectedTime = '';
