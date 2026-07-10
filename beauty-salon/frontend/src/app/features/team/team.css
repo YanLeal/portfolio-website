@@ -111,6 +111,10 @@
   font-weight: 600;
   color: var(--color-neutral-900);
   margin: 0 0 0.25rem;
+
+  @media (width >= 768px) {
+    font-size: var(--font-size-xl);
+  }
 }
 
 .card-role {

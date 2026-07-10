@@ -609,6 +609,10 @@ section {
   font-weight: 600;
   color: var(--color-neutral-900);
   margin: 0 0 1rem;
+
+  @media (width >= 768px) {
+    font-size: var(--font-size-lg);
+  }
 }
 
 .sidebar-item {

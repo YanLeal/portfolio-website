@@ -173,27 +173,19 @@
   }
 }
 
-/* Primary CTA — crema/champagne, elegante */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 0.875rem 2.5rem;
-  font-family: var(--font-sans);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+/* ─── Shared button overrides for hero context ─────────────
+   Los botones del hero usan .btn .btn-primary / .btn-secondary
+   del sistema compartido (styles.css). Acá solo se overritean
+   colores, padding y border-radius para adaptarse al fondo
+   oscuro.
+   ──────────────────────────────────────────────────────── */
+
+.hero .btn-primary {
   color: var(--color-neutral-900);
   background-color: color-mix(in srgb, var(--color-accent-light) 85%, white);
   border: none;
   border-radius: 2px;
-  cursor: pointer;
-  text-decoration: none;
-  transition:
-    background-color 350ms ease,
-    transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1),
-    box-shadow 350ms ease;
+  width: 100%;
 
   @media (width >= 480px) {
     width: auto;
@@ -201,38 +193,24 @@
   }
 }
 
-.btn-primary:hover {
+.hero .btn-primary:hover {
   background-color: var(--color-accent-light);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(36, 31, 26, 0.2);
 }
 
-.btn-primary:active {
+.hero .btn-primary:active {
   transform: translateY(0);
   box-shadow: none;
 }
 
-/* Secondary CTA — borde sutil */
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 0.875rem 2.5rem;
-  font-family: var(--font-sans);
-  font-size: 0.9375rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
+.hero .btn-secondary {
   color: var(--color-surface);
   background-color: transparent;
-  border: 1px solid color-mix(in srgb, var(--color-surface) 40%, transparent);
+  border: 1.5px solid color-mix(in srgb, var(--color-surface) 40%, transparent);
   border-radius: 2px;
-  cursor: pointer;
-  text-decoration: none;
-  transition:
-    background-color 350ms ease,
-    border-color 350ms ease,
-    transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-weight: 500;
+  width: 100%;
 
   @media (width >= 480px) {
     width: auto;
@@ -240,13 +218,13 @@
   }
 }
 
-.btn-secondary:hover {
+.hero .btn-secondary:hover {
   background-color: color-mix(in srgb, var(--color-surface) 8%, transparent);
   border-color: var(--color-surface);
   transform: translateY(-2px);
 }
 
-.btn-secondary:active {
+.hero .btn-secondary:active {
   transform: translateY(0);
 }
 

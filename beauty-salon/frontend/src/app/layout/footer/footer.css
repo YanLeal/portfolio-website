@@ -111,6 +111,10 @@ footer {
   color: var(--color-surface);
   margin: 0 0 0.75rem;
 
+  @media (width >= 768px) {
+    font-size: var(--font-size-lg);
+  }
+
   @media (width < 640px) {
     padding-top: 0.5rem;
     border-top: 1px solid color-mix(in srgb, var(--color-surface) 10%, transparent);
