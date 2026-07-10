@@ -5,7 +5,7 @@
       <div class="card-tilt-wrapper" appCardTilt>
         <article class="card-lift team-card card-entrance">
           <div class="card-photo card-media-zoom">
-            <img [src]="member.photo" [alt]="member.name" width="400" height="400" loading="lazy" />
+            <img [src]="member.photo" [alt]="member.name" width="400" height="400" loading="lazy" decoding="async" />
             <div class="card-overlay">
               <div class="card-social">
                 @if (member.social.instagram) {
