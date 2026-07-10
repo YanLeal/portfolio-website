@@ -37,7 +37,7 @@
       <ul class="footer-list">
         @for (link of quickLinks; track link.fragment) {
           <li>
-            <a [routerLink]="['/']" [fragment]="link.fragment" class="footer-link">
+            <a [href]="'#' + link.fragment" (click)="scrollTo($event, link.fragment)" class="footer-link">
               {{ link.label }}
             </a>
           </li>

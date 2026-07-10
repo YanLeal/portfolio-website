@@ -8,9 +8,8 @@
       <li>
         <a
           class="nav-link"
-          [routerLink]="['/']"
-          [fragment]="item.fragment"
-          (click)="close()"
+          [href]="'#' + item.fragment"
+          (click)="scrollTo($event, item.fragment)"
         >
           {{ item.label }}
         </a>
@@ -21,9 +20,8 @@
   <a
     class="cta-nav"
     [class.is-scrolled]="isScrolled()"
-    routerLink="/"
-    fragment="contacto"
-    (click)="close()"
+    [href]="'#' + 'contacto'"
+    (click)="scrollTo($event, 'contacto')"
   >
     Reservá tu turno
   </a>
@@ -44,9 +42,8 @@
         <li>
           <a
             class="mobile-link"
-            [routerLink]="['/']"
-            [fragment]="item.fragment"
-            (click)="close()"
+            [href]="'#' + item.fragment"
+            (click)="scrollTo($event, item.fragment)"
           >
             {{ item.label }}
           </a>
@@ -56,9 +53,8 @@
 
     <a
       class="cta-mobile"
-      routerLink="/"
-      fragment="contacto"
-      (click)="close()"
+      [href]="'#' + 'contacto'"
+      (click)="scrollTo($event, 'contacto')"
     >
       Reservá tu turno
     </a>

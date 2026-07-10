@@ -1,15 +1,28 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { WhatsappButtonComponent } from '../../shared/components/whatsapp-btn/whatsapp-btn';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
   imports: [RouterLink, WhatsappButtonComponent],
+  host: { class: 'block' },
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })
 export class FooterComponent {
+  private readonly router = inject(Router);
+
+  scrollTo(event: Event, fragment: string): void {
+    event.preventDefault();
+    const el = document.getElementById(fragment);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      this.router.navigate(['/'], { fragment });
+    }
+  }
+
   readonly year = new Date().getFullYear();
 
   readonly schedule = [

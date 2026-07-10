@@ -1,5 +1,5 @@
-import { Component, input, output } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject, input, output } from '@angular/core';
+import { Router } from '@angular/router';
 
 export interface NavItem {
   label: string;
@@ -9,11 +9,13 @@ export interface NavItem {
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './nav.html',
   styleUrl: './nav.css',
 })
 export class NavComponent {
+  private readonly router = inject(Router);
+
   readonly isOpen = input(false);
   readonly isScrolled = input(false);
   readonly navigated = output<void>();
@@ -24,6 +26,19 @@ export class NavComponent {
     { label: 'Galería', fragment: 'galeria' },
     { label: 'Contacto', fragment: 'contacto' },
   ];
+
+  scrollTo(event: Event, fragment: string): void {
+    event.preventDefault();
+    this.close();
+
+    const el = document.getElementById(fragment);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      // Si no está en el DOM (ej: desde 404), navegá al home con fragment
+      this.router.navigate(['/'], { fragment });
+    }
+  }
 
   close(): void {
     this.navigated.emit();

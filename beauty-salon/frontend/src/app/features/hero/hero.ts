@@ -1,6 +1,5 @@
 import { Component, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { RevealDirective } from '../../shared/directives/reveal.directive';
 import { WhatsappButtonComponent } from '../../shared/components/whatsapp-btn/whatsapp-btn';
 
@@ -15,7 +14,7 @@ export interface HeroContent {
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [RouterLink, NgOptimizedImage, RevealDirective, WhatsappButtonComponent],
+  imports: [NgOptimizedImage, RevealDirective, WhatsappButtonComponent],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })
@@ -28,4 +27,10 @@ export class HeroComponent {
     ctaLabel: 'Reservá tu turno',
     ctaSecondaryLabel: 'Ver servicios',
   });
+
+  scrollTo(event: Event, fragment: string): void {
+    event.preventDefault();
+    const el = document.getElementById(fragment);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
 }

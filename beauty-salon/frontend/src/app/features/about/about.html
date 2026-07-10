@@ -38,7 +38,7 @@
       </div>
 
       <!-- ─── CTA ──────────────────────────────────────── -->
-      <a class="about-cta" routerLink="/" fragment="contacto">
+      <a class="about-cta" href="#contacto" (click)="scrollTo($event, 'contacto')">
         Reservá tu turno
         <svg-icon name="arrow-right" size="16" />
       </a>

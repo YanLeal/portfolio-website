@@ -31,16 +31,16 @@
     <div class="hero-actions">
       <a
         class="btn btn-primary"
-        routerLink="/"
-        fragment="contacto"
+        href="#contacto"
+        (click)="scrollTo($event, 'contacto')"
       >
         {{ content().ctaLabel }}
       </a>
 
       <a
         class="btn btn-secondary"
-        routerLink="/"
-        fragment="servicios"
+        href="#servicios"
+        (click)="scrollTo($event, 'servicios')"
       >
         {{ content().ctaSecondaryLabel }}
       </a>
