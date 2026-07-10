@@ -114,6 +114,16 @@ section {
   color: var(--color-primary);
 }
 
+.progress-step.is-error .progress-circle {
+  background: #dc3545;
+  color: var(--color-surface);
+  animation: shakeIn 0.3s ease both;
+}
+
+.progress-step.is-error .progress-label {
+  color: #dc3545;
+}
+
 /* ─── Wizard body (step content) ─────────────────────────── */
 
 .wizard-body {
@@ -361,6 +371,20 @@ section {
 .form-group :where(input, textarea).is-invalid {
   border-color: #dc3545;
   box-shadow: 0 0 0 3px color-mix(in srgb, #dc3545 12%, transparent);
+}
+
+.form-group :where(input, textarea).is-valid {
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #28a745 12%, transparent);
+}
+
+.form-group :where(input, textarea).is-valid:hover {
+  border-color: #28a745;
+}
+
+.form-group :where(input, textarea).is-valid:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #28a745 22%, transparent);
 }
 
 .form-group :where(input, textarea).is-invalid:hover {

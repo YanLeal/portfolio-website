@@ -15,6 +15,7 @@
               class="progress-step"
               [class.is-active]="step === $index + 1"
               [class.is-done]="step > $index + 1"
+              [class.is-error]="$index + 1 === step && attemptedSubmit && step === 3"
             >
               <span class="progress-circle">{{ step > $index + 1 ? '✓' : $index + 1 }}</span>
               <span class="progress-label">{{ label }}</span>
@@ -120,6 +121,7 @@
                 autocomplete="name"
                 required
                 [class.is-invalid]="nameCtrl.invalid && (nameCtrl.touched || attemptedSubmit)"
+                [class.is-valid]="nameCtrl.valid && nameCtrl.touched"
               />
               @if (nameCtrl.invalid && (nameCtrl.touched || attemptedSubmit)) {
                 <span class="form-error">Decinos tu nombre para poder contactarte</span>
@@ -140,6 +142,7 @@
                 minlength="8"
                 required
                 [class.is-invalid]="phoneCtrl.invalid && (phoneCtrl.touched || attemptedSubmit)"
+                [class.is-valid]="phoneCtrl.valid && phoneCtrl.touched"
               />
               @if (phoneCtrl.invalid && (phoneCtrl.touched || attemptedSubmit)) {
                 @if (phoneCtrl.errors?.['required']) {
