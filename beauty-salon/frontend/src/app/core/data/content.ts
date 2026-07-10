@@ -13,7 +13,7 @@ export const SERVICES: Service[] = [
     duration: '45 min',
     category: 'cabello',
     /* Imagen recomendada: 800×600px, primer plano de corte o styling */
-    image: 'images/corte-de-cabello.webp',
+    image: 'images/services/corte-de-cabello-1200x900.webp',
   },
   {
     id: 'color',
@@ -23,7 +23,7 @@ export const SERVICES: Service[] = [
     duration: '2 hs',
     category: 'cabello',
     /* Imagen recomendada: 800×600px, aplicación de color o resultado final */
-    image: 'images/coloracion.webp',
+    image: 'images/services/coloracion-1200x900.webp',
   },
   {
     id: 'manicuria',
@@ -33,7 +33,7 @@ export const SERVICES: Service[] = [
     duration: '40 min',
     category: 'uñas',
     /* Imagen recomendada: 800×600px, manos con esmaltado */
-    image: 'images/manicuria.webp',
+    image: 'images/services/manicuria-1200x900.webp',
   },
   {
     id: 'pedicuria',
@@ -43,7 +43,7 @@ export const SERVICES: Service[] = [
     duration: '45 min',
     category: 'uñas',
     /* Imagen recomendada: 800×600px, pedicuría en tratamiento */
-    image: 'images/pedicuria.webp',
+    image: 'images/services/pedicuria-1200x900.webp',
   },
   {
     id: 'maquillaje',
@@ -53,7 +53,7 @@ export const SERVICES: Service[] = [
     duration: '1 hs',
     category: 'maquillaje',
     /* Imagen recomendada: 800×600px, aplicación de maquillaje o look final */
-    image: 'images/maquillaje-profesional.webp',
+    image: 'images/services/maquillaje-profesional-1200x900.webp',
   },
   {
     id: 'tratamiento-facial',
@@ -63,7 +63,7 @@ export const SERVICES: Service[] = [
     duration: '1 hs',
     category: 'tratamientos',
     /* Imagen recomendada: 800×600px, sesión de tratamiento facial */
-    image: 'images/tratamiento-facial.webp',
+    image: 'images/services/tratamiento-facial-1200x900.webp',
   },
 ];
 
@@ -71,7 +71,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: '1',
     name: 'María García',
-    photo: 'images/clienta-satisfecha-saliendo.webp',
+    photo: 'images/clienta-satisfecha-saliendo-800x600.webp',
     text: 'Excelente atención, salí hermosísima. Recomiendo 100%. Volví por más tratamientos y siempre superan mis expectativas.',
     rating: 5,
     service: 'Corte + Coloración',
@@ -80,7 +80,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: '2',
     name: 'Lucía Fernández',
-    photo: 'images/tu-momento-de-brillar.webp',
+    photo: 'images/tu-momento-de-brillar-800x600.webp',
     text: 'El mejor corte que me han hecho. Muy profesionales y el ambiente es increíble. Se nota que aman lo que hacen.',
     rating: 5,
     service: 'Corte de cabello',
@@ -89,7 +89,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: '3',
     name: 'Carla Martínez',
-    photo: 'images/reserva-tu-turno.webp',
+    photo: 'images/reserva-tu-turno-800x600.webp',
     text: 'La pedicuría es espectacular. Vuelvo cada mes porque el cuidado y la calidad son incomparables. ¡100% recomendado!',
     rating: 4,
     service: 'Pedicuría',
@@ -102,7 +102,7 @@ export const TEAM: TeamMember[] = [
     id: '1',
     name: 'Sofía Romero',
     role: 'Directora & Estilista Senior',
-    photo: 'images/team/sofia-romero-directora.webp',
+    photo: 'images/team/sofia-romero-directora-800x800.webp',
     bio: 'Más de 10 años de experiencia en el rubro. Especialista en coloración y cortes de tendencia.',
     experience: '12+ años',
     social: {
@@ -114,7 +114,7 @@ export const TEAM: TeamMember[] = [
     id: '2',
     name: 'Valentina López',
     role: 'Maquilladora Profesional',
-    photo: 'images/team/valentina-lopez-maquilladora.webp',
+    photo: 'images/team/valentina-lopez-maquilladora-800x800.webp',
     bio: 'Apasionada por el maquillaje artístico y social. Formada en Buenos Aires.',
     experience: '8+ años',
     social: {
@@ -126,7 +126,7 @@ export const TEAM: TeamMember[] = [
     id: '3',
     name: 'Camila Torres',
     role: 'Manicurista',
-    photo: 'images/team/camila-torres-manicurista.webp',
+    photo: 'images/team/camila-torres-manicurista-800x800.webp',
     bio: 'Especialista en nail art y cuidado de uñas. Siempre al tanto de las últimas tendencias.',
     experience: '6+ años',
     social: {
