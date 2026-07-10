@@ -8,6 +8,8 @@ import { TeamComponent } from '../../features/team/team';
 import { TestimonialsComponent } from '../../features/testimonials/testimonials';
 import { ContactComponent } from '../../features/contact/contact';
 import { BookingCtaComponent } from '../../features/booking-cta/booking-cta';
+import { ProcessComponent } from '../../features/process/process';
+import { PromoComponent } from '../../features/promo/promo';
 
 @Component({
   selector: 'app-home',
@@ -22,6 +24,8 @@ import { BookingCtaComponent } from '../../features/booking-cta/booking-cta';
     TestimonialsComponent,
     ContactComponent,
     BookingCtaComponent,
+    ProcessComponent,
+    PromoComponent,
   ],
   templateUrl: './home.html',
 })

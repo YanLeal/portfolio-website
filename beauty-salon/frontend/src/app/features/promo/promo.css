@@ -1,0 +1,120 @@
+/* ─── Micro-animaciones: promoción ──────────────────────
+   Aparición escalonada + hover + ambientales sutiles.
+   Todos los timing tokens se heredan de animation.css.
+   ──────────────────────────────────────────────────────── */
+
+/* ─── Aparición (fade + slide-up) ─────────────────────────── */
+
+@keyframes promoSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes promoFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes promoLineGrow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ─── Ambientales sutiles (siempre activas) ──────────────── */
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.25; }
+  50%      { opacity: 0.75; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+/* ─── Clases de entrada ──────────────────────────────────── */
+
+.promo-entrance {
+  animation: promoSlideUp var(--anim-duration-base) var(--anim-easing-out) both;
+}
+
+.promo-entrance--slow {
+  animation: promoSlideUp var(--anim-duration-zoom) var(--anim-easing-out) both;
+}
+
+.promo-entrance--fade {
+  animation: promoFadeIn var(--anim-duration-subtle) var(--anim-easing-out) both;
+}
+
+.promo-entrance--line {
+  transform-origin: left;
+  animation: promoLineGrow var(--anim-duration-base) var(--anim-easing-out) both;
+}
+
+/* ─── Multimedia (imagen) ─────────────────────────────────── */
+
+.promo-media {
+  animation: promoFadeIn 0.8s var(--anim-easing-out) both;
+  animation-delay: 50ms;
+  overflow: hidden;
+}
+
+.promo-media img {
+  transition: transform var(--anim-duration-zoom) var(--anim-easing-out);
+  will-change: transform;
+}
+
+.promo-media:hover img {
+  transform: scale(1.05);
+}
+
+/* ─── Ambientales ─────────────────────────────────────────── */
+
+.promo-shimmer {
+  animation: shimmer 3.5s ease-in-out infinite;
+}
+
+.promo-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ─── Stagger delays ─────────────────────────────────────── */
+
+.promo-delay-1  { animation-delay: 0.15s; }
+.promo-delay-2  { animation-delay: 0.3s; }
+.promo-delay-3  { animation-delay: 0.45s; }
+.promo-delay-4  { animation-delay: 0.6s; }
+.promo-delay-5  { animation-delay: 0.75s; }
+.promo-delay-6  { animation-delay: 0.9s; }
+.promo-delay-7  { animation-delay: 1.05s; }
+
+/* ═════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-entrance,
+  .promo-entrance--slow,
+  .promo-entrance--fade,
+  .promo-entrance--line,
+  .promo-media {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .promo-shimmer,
+  .promo-float {
+    animation: none;
+  }
+
+  .promo-media img {
+    transition: none;
+  }
+}
