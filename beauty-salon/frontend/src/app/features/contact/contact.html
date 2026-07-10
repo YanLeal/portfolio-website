@@ -5,7 +5,7 @@
     <!-- ════════════════════════════════════════════════
          WIZARD
          ════════════════════════════════════════════════ -->
-    <div class="wizard" (keydown.enter)="onStepEnter($event)">
+    <div class="wizard" (keydown.enter)="onStepEnter($event)" (keydown.escape)="prevStep()">
 
       @if (!submitted) {
         <!-- ─── Progress indicator ──────────────────── -->
