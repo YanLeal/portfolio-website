@@ -25,7 +25,7 @@
         <!-- ─── Step 1: Servicio ───────────────────── -->
         @if (step === 1) {
           <div class="wizard-body">
-            <h3 class="wizard-title">¿Qué te gustaría hacerte?</h3>
+            <h3 class="wizard-title" tabindex="-1">¿Qué te gustaría hacerte?</h3>
             <div class="service-grid">
               @for (s of services; track s.id) {
                 <button
@@ -48,7 +48,7 @@
         <!-- ─── Step 2: Fecha y horario ────────────── -->
         @if (step === 2) {
           <div class="wizard-body">
-            <h3 class="wizard-title">¿Cuándo te gustaría venir?</h3>
+            <h3 class="wizard-title" tabindex="-1">¿Cuándo te gustaría venir?</h3>
 
             <div class="form-group">
               <label for="booking-date">Fecha <span class="optional">(opcional)</span></label>
@@ -106,7 +106,7 @@
         <!-- ─── Step 3: Tus datos ──────────────────── -->
         @if (step === 3) {
           <div class="wizard-body">
-            <h3 class="wizard-title">Casi listo — dejanos tus datos</h3>
+            <h3 class="wizard-title" tabindex="-1">Casi listo — dejanos tus datos</h3>
 
             <div class="form-group">
               <label for="booking-name">Nombre <span class="required">*</span></label>
@@ -167,7 +167,7 @@
         <!-- ─── Step 4: Revisar y confirmar ────────── -->
         @if (step === 4 && selectedService) {
           <div class="wizard-body">
-            <h3 class="wizard-title">Revisá tu turno</h3>
+            <h3 class="wizard-title" tabindex="-1">Revisá tu turno</h3>
 
             <div class="review-card">
               <div class="review-row">
@@ -246,7 +246,7 @@
       @if (submitted && selectedService) {
         <div class="booking-success">
           <svg-icon name="check" size="48" />
-          <h3>¡Turno listo!</h3>
+          <h3 tabindex="-1">¡Turno listo!</h3>
           <div class="success-details">
             <p><strong>{{ selectedService.name }}</strong></p>
             @if (selectedDate && selectedTime) {

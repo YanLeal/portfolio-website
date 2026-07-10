@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { SvgIcon } from '../../shared/components/svg-icon/svg-icon';
@@ -71,6 +71,7 @@ export class ContactComponent {
     if (this.canGoNext && this.step < 4) {
       this.attemptedSubmit = false;
       this.step = (this.step + 1) as WizardStep;
+      this.focusStepHeading();
     }
   }
 
@@ -78,6 +79,7 @@ export class ContactComponent {
     if (this.step > 1) {
       this.attemptedSubmit = false;
       this.step = (this.step - 1) as WizardStep;
+      this.focusStepHeading();
     }
   }
 
@@ -100,15 +102,29 @@ export class ContactComponent {
   // ─── WhatsApp service ────────────────────────────────
 
   private readonly wa = inject(WhatsappMessageService);
+  private readonly el = inject(ElementRef);
 
   // ─── Confirm (UI only — no backend) ─────────────
 
   onSubmit(): void {
-    // Guard: on step 4, canGoNext is false (default case).
-    // Validamos manualmente los datos requeridos.
     const service = this.selectedService;
     if (!service || !this.name.trim() || this.clientPhone.trim().length < 8) return;
     this.submitted = true;
+    // Esperar a que Angular renderice el success state
+    setTimeout(() => this.focusElement('.booking-success h3'));
+  }
+
+  /** Mueve el foco al título del paso activo después de navegar */
+  private focusStepHeading(): void {
+    setTimeout(() => this.focusElement('.wizard-title'));
+  }
+
+  private focusElement(selector: string): void {
+    const el = this.el.nativeElement.querySelector(selector);
+    if (el) {
+      el.setAttribute('tabindex', '-1');
+      el.focus({ preventScroll: true });
+    }
   }
 
   openWhatsApp(): void {
@@ -148,5 +164,6 @@ export class ContactComponent {
     this.name = '';
     this.clientPhone = '';
     this.notes = '';
+    setTimeout(() => this.focusElement('.wizard-title'));
   }
 }
