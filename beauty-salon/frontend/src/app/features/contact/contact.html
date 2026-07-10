@@ -5,7 +5,7 @@
     <!-- ════════════════════════════════════════════════
          WIZARD
          ════════════════════════════════════════════════ -->
-    <div class="wizard">
+    <div class="wizard" (keydown.enter)="onStepEnter($event)">
 
       @if (!submitted) {
         <!-- ─── Progress indicator ──────────────────── -->
@@ -43,6 +43,21 @@
                 </button>
               }
             </div>
+
+            <div class="service-other">
+              <button
+                type="button"
+                class="service-option service-option--other"
+                [class.is-selected]="selectedServiceId === 'other'"
+                (click)="selectService('other')"
+              >
+                <span class="option-name">Otro / No estoy segura</span>
+                <span class="option-meta">
+                  <span class="option-duration">Consulta general</span>
+                </span>
+              </button>
+            </div>
+
             @if (attemptedSubmit && !selectedServiceId) {
               <p class="step-error">Elegí un servicio para continuar</p>
             }
@@ -221,8 +236,6 @@
               <svg-icon name="arrow-right" size="16" />
               Atrás
             </button>
-          } @else {
-            <span></span>
           }
 
           @if (!isLastStep) {

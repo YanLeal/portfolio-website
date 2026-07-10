@@ -65,6 +65,13 @@ export class ContactComponent {
     this.selectedTime = slot;
   }
 
+  /** Enter desde cualquier input/button del wizard avanza al siguiente paso */
+  onStepEnter(event: Event): void {
+    // En textarea Enter es nueva línea, no navegar
+    if ((event.target as HTMLElement)?.tagName === 'TEXTAREA') return;
+    this.nextStep();
+  }
+
   nextStep(): void {
     if (!this.canGoNext || this.step >= 4) {
       this.attemptedSubmit = true;
@@ -86,7 +93,17 @@ export class ContactComponent {
   // ─── Helpers ────────────────────────────────────
 
   get selectedService() {
-    return this.services.find((s) => s.id === this.selectedServiceId);
+    const svc = this.services.find((s) => s.id === this.selectedServiceId);
+    if (svc) return svc;
+    if (this.selectedServiceId === 'other') {
+      return {
+        id: 'other' as const,
+        name: 'Consulta general / Otro',
+        duration: '—',
+        price: 0,
+      };
+    }
+    return undefined;
   }
 
   get minDate(): string {

@@ -218,6 +218,29 @@ section {
   color: var(--color-primary);
 }
 
+/* ─── "Otro / No estoy segura" — destacado visual ──────────── */
+
+.service-other {
+  margin-top: var(--space-4);
+  border-top: 1px dashed var(--color-neutral-200);
+  padding-top: var(--space-3);
+}
+
+.service-option--other {
+  background: color-mix(in srgb, var(--color-primary) 3%, var(--color-surface));
+  border-style: dashed;
+  border-color: var(--color-neutral-300);
+}
+
+.service-option--other:hover:not(.is-selected) {
+  border-color: var(--color-primary-light);
+  border-style: dashed;
+}
+
+.service-option--other.is-selected {
+  border-style: solid;
+}
+
 /* ─── Step 2: Date + time grid ───────────────────────────── */
 
 .time-grid {
