@@ -62,7 +62,7 @@
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-semibold);
   color: var(--color-surface);
-  margin: 0 0 0.75rem;
+  margin: 0 0 var(--space-3);
 
   @media (width >= 768px) {
     font-size: var(--font-size-4xl);
@@ -73,5 +73,5 @@
   font-size: var(--font-size-body);
   line-height: 1.65;
   color: color-mix(in srgb, var(--color-surface) 75%, transparent);
-  margin: 0 0 2rem;
+  margin: 0 0 var(--space-8);
 }

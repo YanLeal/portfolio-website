@@ -12,5 +12,5 @@ app-service-card:nth-child(6) { --card-delay: 480ms; }
 .services-wa-wrap {
   display: flex;
   justify-content: center;
-  margin-top: 2.5rem;
+  margin-top: var(--space-10);
 }

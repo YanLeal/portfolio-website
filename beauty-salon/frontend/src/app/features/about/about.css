@@ -47,7 +47,7 @@
 .about-content {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--space-3);
 }
 
 /* ─── Título ────────────────────────────────────────────── */
@@ -70,7 +70,7 @@
   display: block;
   width: 2rem;
   height: 2px;
-  margin-top: 0.5rem;
+  margin-top: var(--space-2);
   background: linear-gradient(
     to right,
     var(--color-accent-light),
@@ -106,8 +106,8 @@
 .about-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  padding-block: 0.5rem;
+  gap: var(--space-4);
+  padding-block: var(--space-2);
 
   @media (width < 480px) {
     grid-template-columns: 1fr;
@@ -118,8 +118,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  padding: 1rem 0.75rem;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-3);
   background-color: var(--color-neutral-50);
   border-radius: var(--radius-card);
   transition:
@@ -162,10 +162,10 @@
 .about-cta {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--space-2);
   align-self: flex-start;
   padding: 0.875rem 2rem;
-  margin-top: 0.5rem;
+  margin-top: var(--space-2);
   font-family: var(--font-sans);
   font-size: 0.9375rem;
   font-weight: var(--font-weight-semibold);
@@ -185,7 +185,7 @@
 .about-cta:hover {
   background-color: var(--color-primary);
   transform: scale(1.03);
-  gap: 0.75rem;
+  gap: var(--space-3);
 }
 
 .about-cta:active {

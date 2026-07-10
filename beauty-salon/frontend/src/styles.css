@@ -88,6 +88,21 @@
   --spacing-20: 5rem;
   --spacing-24: 6rem;
 
+  /* ── Spacing / vertical rhythm ──────────────────────────── */
+  --space-1:   0.25rem;  /* 4px  — micro: icons, badges */
+  --space-1\.5:  0.375rem;  /* 6px  — tight inner gap */
+  --space-2:   0.5rem;   /* 8px  — tight: nav links, form gap */
+  --space-3:   0.75rem;  /* 12px — default stack: card content, sections */
+  --space-4:   1rem;     /* 16px — paragraph, default margin */
+  --space-5:   1.25rem;  /* 20px — card padding, sidebar spacing */
+  --space-6:   1.5rem;   /* 24px — component internal: grid gaps */
+  --space-8:   2rem;     /* 32px — distinct separation: sections */
+  --space-10:  2.5rem;   /* 40px — generous separation */
+  --space-12:  3rem;     /* 48px — component groups */
+  --space-16:  4rem;     /* 64px — section padding mobile */
+  --space-20:  5rem;     /* 80px — section padding desktop */
+  --space-24:  6rem;     /* 96px — large hero/feature padding */
+
   /* ── Container widths ──────────────────────────────── */
   --container-content: 1200px;
 }
@@ -206,11 +221,11 @@
 @layer utilities {
   /* Padding vertical estándar de sección */
   .section-padding {
-    padding-block: 4rem;
+    padding-block: var(--space-16);
   }
   @media (width >= 768px) {
     .section-padding {
-      padding-block: 5rem;
+      padding-block: var(--space-20);
     }
   }
 
@@ -235,23 +250,23 @@
   .section-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: var(--space-6);
     max-width: var(--container-content);
     margin-inline: auto;
-    padding-inline: 1rem;
+    padding-inline: var(--space-4);
   }
   @media (width >= 640px) {
     .section-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 1.75rem;
-      padding-inline: 1.5rem;
+      padding-inline: var(--space-6);
     }
   }
   @media (width >= 1024px) {
     .section-grid {
       grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      padding-inline: 2rem;
+      gap: var(--space-8);
+      padding-inline: var(--space-8);
     }
   }
 
@@ -259,23 +274,23 @@
   .section-grid--cols-2 {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: var(--space-10);
     max-width: var(--container-content);
     margin-inline: auto;
-    padding-inline: 1rem;
+    padding-inline: var(--space-4);
     align-items: center;
   }
   @media (width >= 768px) {
     .section-grid--cols-2 {
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      padding-inline: 1.5rem;
+      gap: var(--space-12);
+      padding-inline: var(--space-6);
     }
   }
   @media (width >= 1024px) {
     .section-grid--cols-2 {
-      gap: 4rem;
-      padding-inline: 2rem;
+      gap: var(--space-16);
+      padding-inline: var(--space-8);
     }
   }
 
