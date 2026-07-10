@@ -623,6 +623,12 @@ section {
   background: var(--color-primary);
   color: var(--color-surface);
   margin-left: auto;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.btn-nav--submit svg {
+  color: #25d366;
 }
 
 .btn-nav--submit:hover {
