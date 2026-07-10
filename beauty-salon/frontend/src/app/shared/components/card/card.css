@@ -19,26 +19,29 @@
 
 /* ─── Tilt wrapper ─────────────────────────────────────────
    Provee el contexto de perspectiva 3D para la directiva
-   appCardTilt. La card interna (app-card-inner) mantiene
-   su propio hover lift sin conflicto.
+   appCardTilt. El wrapper se renderiza siempre, pero el
+   efecto tilt solo se activa cuando card-tilt--enabled está
+   presente (controlado por tiltEnabled input del host).
    ──────────────────────────────────────────────────────── */
 
 .card-tilt-wrapper {
   height: 100%;
   perspective: 1000px;
-  transform-style: preserve-3d;
 }
 
-/* Forzar aceleración GPU en el wrapper */
-.card-tilt-wrapper {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-/* El inner article necesita preserve-3d para que el tilt
-   se aplique correctamente sobre los hijos */
+/* El article interno necesita preserve-3d para que el tilt
+   se propague correctamente a los hijos */
 .card-tilt-wrapper .app-card-inner {
   transform-style: preserve-3d;
+}
+
+/* ─── Non-tilt state ───────────────────────────────────────
+   Cuando tilt está desactivado, la directiva no escucha
+   eventos. El wrapper es un div neutro sin side effects.
+   ──────────────────────────────────────────────────────── */
+
+.card-tilt-wrapper:not(.card-tilt--enabled) {
+  perspective: none;
 }
 
 /* El inner article siempre es flex column para que el body

@@ -1,16 +1,9 @@
-import { Directive, HostBinding, HostListener } from '@angular/core';
+import { Directive, HostBinding, HostListener, input } from '@angular/core';
 
 /**
  * appCardTilt — 3D tilt que sigue el mouse.
  *
  * Aplica `perspective(1000px) rotateX(…) rotateY(…)` sobre el host.
- * El host DEBE tener este CSS (lo agrega automáticamente):
- *   - will-change: transform
- *
- * La transición de reset usa el spring easing del sistema.
- *
- * Uso: envolvé un elemento con hover propio (por ej. card-lift)
- *      y el tilt no compite porque opera sobre el wrapper.
  *
  * @example
  * ```html
@@ -18,12 +11,20 @@ import { Directive, HostBinding, HostListener } from '@angular/core';
  *   <article class="card-lift">…</article>
  * </div>
  * ```
+ *
+ * Para desactivar condicionalmente:
+ * ```html
+ * <div [appCardTilt]="isEnabled">
+ * ```
  */
 @Directive({
   selector: '[appCardTilt]',
   standalone: true,
 })
 export class CardTiltDirective {
+  /** Activa/desactiva el tilt. Siempre true cuando se usa sin binding. */
+  readonly appCardTilt = input(true, { transform: booleanTransform });
+
   private readonly maxTilt = 6;         // grados máximos de rotación
   private readonly perspective = 1000;  // px
 
@@ -34,7 +35,7 @@ export class CardTiltDirective {
 
   @HostBinding('style.transform')
   get transform(): string {
-    return this.tiltTransform;
+    return this.appCardTilt() ? this.tiltTransform : '';
   }
 
   @HostBinding('style.transition')
@@ -44,13 +45,15 @@ export class CardTiltDirective {
 
   @HostBinding('style.will-change')
   get willChange(): string {
-    return 'transform';
+    return this.appCardTilt() ? 'transform' : 'auto';
   }
 
   // ── Mouse events ─────────────────────────────────────────
 
   @HostListener('mousemove', ['$event'])
   onMouseMove(event: MouseEvent): void {
+    if (!this.appCardTilt()) return;
+
     const el = event.currentTarget as HTMLElement;
     const rect = el.getBoundingClientRect();
 
@@ -69,7 +72,14 @@ export class CardTiltDirective {
 
   @HostListener('mouseleave')
   onMouseLeave(): void {
+    if (!this.appCardTilt()) return;
+
     this.tiltTransform = `perspective(${this.perspective}px) rotateX(0deg) rotateY(0deg)`;
     this.tiltTransition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
   }
+}
+
+/** Coerce any truthy/falsy value to a strict boolean. */
+function booleanTransform(v: unknown): boolean {
+  return v !== false && v !== null && v !== undefined && v !== 0 && v !== '';
 }

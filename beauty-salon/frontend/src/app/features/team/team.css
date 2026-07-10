@@ -18,9 +18,6 @@
 .card-tilt-wrapper {
   height: 100%;
   perspective: 1000px;
-  transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
 }
 
 .card-tilt-wrapper .team-card {

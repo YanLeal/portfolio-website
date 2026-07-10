@@ -1,28 +1,8 @@
-@if (tiltEnabled()) {
-  <div class="card-tilt-wrapper" appCardTilt>
-    <article
-      class="app-card-inner"
-      [class.card-lift]="variant() === 'lift'"
-      [class.card-base]="variant() === 'base'"
-      [class.card-entrance]="entranceDelay() > 0"
-      [style.--card-delay]="entranceDelay() > 0 ? entranceDelay() + 'ms' : null">
+<div
+  class="card-tilt-wrapper"
+  [class.card-tilt--enabled]="tiltEnabled()"
+  [appCardTilt]="tiltEnabled()">
 
-      <!-- ─── Media: imagen, overlay, badges ────────────────── -->
-      <ng-content select="[cardMedia]" />
-
-      <!-- ─── Body: texto, metadatos ────────────────────────── -->
-      <div class="app-card-body">
-        <ng-content select="[cardBody]" />
-      </div>
-
-      <!-- ─── Actions: botones, links ───────────────────────── -->
-      <ng-content select="[cardActions]" />
-
-      <!-- ─── Catch-all: cualquier contenido sin selector ──── -->
-      <ng-content />
-    </article>
-  </div>
-} @else {
   <article
     class="app-card-inner"
     [class.card-lift]="variant() === 'lift'"
@@ -44,4 +24,4 @@
     <!-- ─── Catch-all: cualquier contenido sin selector ──── -->
     <ng-content />
   </article>
-}
+</div>
