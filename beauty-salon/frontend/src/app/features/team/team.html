@@ -1,7 +1,7 @@
-<section id="equipo" class="section-padding" style="scroll-margin-top: 5rem">
+<section id="equipo" class="section-padding section-gradient" style="scroll-margin-top: 5rem">
   <app-section-header title="Equipo" subtitle="Los profesionales que te van a atender" />
   <div class="section-grid">
-    @for (member of team; track member.id) {
+    @for (member of team(); track member.id) {
       <div class="card-tilt-wrapper" appCardTilt>
         <article class="card-lift team-card card-entrance">
           <div class="card-photo card-media-zoom">

@@ -257,7 +257,7 @@ section {
   color: var(--color-neutral-700);
   background: var(--color-surface);
   border: 1.5px solid var(--color-neutral-200);
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   cursor: pointer;
   transition:
     border-color 0.2s ease,
@@ -838,20 +838,11 @@ section {
 }
 
 .whatsapp-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
   padding: 0.625rem 1.25rem;
   font-size: var(--font-size-base);
-  font-weight: var(--font-weight-semibold);
   color: var(--color-surface);
   background: #25d366;
-  border: none;
-  border-radius: 999px;
-  text-decoration: none;
-  transition:
-    background 0.25s ease,
-    transform 0.25s ease;
+  border-radius: var(--radius-full);
 }
 
 .whatsapp-cta svg {

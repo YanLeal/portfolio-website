@@ -183,7 +183,7 @@
   color: var(--color-neutral-900);
   background-color: color-mix(in srgb, var(--color-accent-light) 85%, white);
   border: none;
-  border-radius: 2px;
+  border-radius: var(--radius-sharp);
   width: 100%;
 
   @media (width >= 480px) {
@@ -207,7 +207,7 @@
   color: var(--color-surface);
   background-color: transparent;
   border: 1.5px solid color-mix(in srgb, var(--color-surface) 40%, transparent);
-  border-radius: 2px;
+  border-radius: var(--radius-sharp);
   font-weight: var(--font-weight-medium);
   width: 100%;
 

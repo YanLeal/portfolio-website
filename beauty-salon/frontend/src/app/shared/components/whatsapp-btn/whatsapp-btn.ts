@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { WHATSAPP_NUMBER } from '../../../core/data/content';
 
 export type WaVariant = 'hero' | 'footer' | 'services' | 'floating';
 
@@ -75,7 +76,7 @@ export type WaVariant = 'hero' | 'footer' | 'services' | 'floating';
       color: #fff;
       background: #25d366;
       border: none;
-      border-radius: 2px;
+      border-radius: var(--radius-sharp);
       letter-spacing: 0.02em;
     }
 
@@ -133,7 +134,7 @@ export type WaVariant = 'hero' | 'footer' | 'services' | 'floating';
       color: #fff;
       background: #25d366;
       border: none;
-      border-radius: 2px;
+      border-radius: var(--radius-sharp);
       justify-content: center;
     }
 
@@ -156,7 +157,7 @@ export type WaVariant = 'hero' | 'footer' | 'services' | 'floating';
       color: #fff;
       background: #25d366;
       border: none;
-      border-radius: 999px;
+      border-radius: var(--radius-full);
       box-shadow:
         0 4px 12px rgba(37, 211, 102, 0.35),
         0 2px 4px rgba(0, 0, 0, 0.08);
@@ -191,7 +192,7 @@ export type WaVariant = 'hero' | 'footer' | 'services' | 'floating';
   `],
 })
 export class WhatsappButtonComponent {
-  readonly waLink = 'https://wa.me/5214423018772';
+  readonly waLink = `https://wa.me/${WHATSAPP_NUMBER}`;
 
   /** Hero, footer, or services styling variant */
   @Input() variant: WaVariant = 'services';

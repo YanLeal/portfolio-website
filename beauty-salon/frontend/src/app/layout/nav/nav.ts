@@ -1,5 +1,6 @@
 import { Component, ElementRef, inject, input, output } from '@angular/core';
 import { Router } from '@angular/router';
+import { CTA_RESERVAR } from '../../core/data/content';
 
 export interface NavItem {
   label: string;
@@ -20,6 +21,7 @@ export class NavComponent {
   readonly isOpen = input(false);
   readonly isScrolled = input(false);
   readonly navigated = output<void>();
+  readonly ctaReservar = CTA_RESERVAR;
 
   readonly items: NavItem[] = [
     { label: 'Servicios', fragment: 'servicios' },

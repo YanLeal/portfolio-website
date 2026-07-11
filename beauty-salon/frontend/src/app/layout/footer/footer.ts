@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { WhatsappButtonComponent } from '../../shared/components/whatsapp-btn/whatsapp-btn';
+import { SITE_NAME, PHONE_DISPLAY, EMAIL, ADDRESS } from '../../core/data/content';
 
 @Component({
   selector: 'app-footer',
@@ -24,6 +25,7 @@ export class FooterComponent {
   }
 
   readonly year = new Date().getFullYear();
+  readonly siteName = SITE_NAME;
 
   readonly schedule = [
     { label: 'Lun – Vie', hours: '9:00 – 20:00' },
@@ -32,9 +34,9 @@ export class FooterComponent {
   ];
 
   readonly contact = [
-    { label: 'Dirección', value: 'Av. Siempre Viva 123, Córdoba' },
-    { label: 'Teléfono', value: '+52 442 301 8772' },
-    { label: 'Email', value: 'info@bellezaestilo.com' },
+    { label: 'Dirección', value: ADDRESS },
+    { label: 'Teléfono', value: PHONE_DISPLAY },
+    { label: 'Email', value: EMAIL },
   ];
 
   readonly quickLinks = [

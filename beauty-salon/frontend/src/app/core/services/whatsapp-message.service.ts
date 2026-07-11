@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { WHATSAPP_NUMBER, SITE_NAME } from '../data/content';
 
 export interface WaMessageParams {
   name: string;
@@ -8,14 +9,12 @@ export interface WaMessageParams {
   notes?: string;
 }
 
-const PHONE = '5214423018772';
-
 @Injectable({ providedIn: 'root' })
 export class WhatsappMessageService {
   /** Construye el texto del mensaje a partir de los datos del turno */
   buildText(params: WaMessageParams): string {
     const lines: string[] = [
-      '¡Hola! Quiero reservar un turno en Belleza & Estilo.',
+      '¡Hola! Quiero reservar un turno en ' + SITE_NAME + '.',
       '',
       `Nombre: ${params.name}`,
       `Servicio: ${params.service}`,
@@ -44,6 +43,6 @@ export class WhatsappMessageService {
   buildUrl(params: WaMessageParams): string {
     const text = this.buildText(params);
     const encoded = encodeURIComponent(text);
-    return `https://wa.me/${PHONE}?text=${encoded}`;
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
   }
 }

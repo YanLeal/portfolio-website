@@ -46,28 +46,3 @@
   animation-delay: calc(var(--step-index, 0) * var(--anim-stagger-base) + 500ms);
 }
 
-/* ═════════════════════════════════════════════════════════
-   REDUCED MOTION
-   ═════════════════════════════════════════════════════════ */
-
-@media (prefers-reduced-motion: reduce) {
-  .process-row,
-  .process-line,
-  .process-dot {
-    animation: none;
-  }
-
-  /* Restauramos estados finales */
-  .process-row {
-    opacity: 1;
-    transform: none;
-  }
-
-  .process-line {
-    transform: scaleY(1);
-  }
-
-  .process-dot {
-    transform: scale(1);
-  }
-}

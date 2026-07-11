@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { TestimonialCard } from '../../shared/components/testimonial-card/testimonial-card';
-import { TESTIMONIALS } from '../../core/data/content';
+import { TestimonialService } from '../../core/services/testimonial.service';
 
 @Component({
   selector: 'app-testimonials',
@@ -11,5 +12,6 @@ import { TESTIMONIALS } from '../../core/data/content';
   styleUrl: './testimonials.css',
 })
 export class TestimonialsComponent {
-  readonly testimonials = TESTIMONIALS;
+  private readonly testimonialService = inject(TestimonialService);
+  readonly testimonials = toSignal(this.testimonialService.getAll(), { initialValue: [] });
 }

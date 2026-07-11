@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { ServiceCard } from '../../shared/components/service-card/service-card';
 import { WhatsappButtonComponent } from '../../shared/components/whatsapp-btn/whatsapp-btn';
-import { SERVICES } from '../../core/data/content';
+import { ServiceService } from '../../core/services/service.service';
 
 @Component({
   selector: 'app-services',
@@ -12,7 +13,8 @@ import { SERVICES } from '../../core/data/content';
   styleUrl: './services.css',
 })
 export class ServicesComponent {
-  readonly services = SERVICES;
+  private readonly serviceService = inject(ServiceService);
+  readonly services = toSignal(this.serviceService.getAll(), { initialValue: [] });
 
   onBook(serviceId: string): void {
     document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });

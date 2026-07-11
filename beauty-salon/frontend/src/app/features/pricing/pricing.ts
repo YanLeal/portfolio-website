@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
-import { SERVICES } from '../../core/data/content';
+import { ServiceService } from '../../core/services/service.service';
 
 @Component({
   selector: 'app-pricing',
@@ -11,5 +12,6 @@ import { SERVICES } from '../../core/data/content';
   styleUrl: './pricing.css',
 })
 export class PricingComponent {
-  readonly services = SERVICES;
+  private readonly serviceService = inject(ServiceService);
+  readonly services = toSignal(this.serviceService.getAll(), { initialValue: [] });
 }

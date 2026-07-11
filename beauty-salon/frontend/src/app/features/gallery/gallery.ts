@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
-import { GalleryGrid, GalleryImage } from '../../shared/components/gallery-grid/gallery-grid';
+import { GalleryGrid } from '../../shared/components/gallery-grid/gallery-grid';
+import { GalleryService } from '../../core/services/gallery.service';
 
 @Component({
   selector: 'app-gallery',
@@ -11,38 +13,6 @@ import { GalleryGrid, GalleryImage } from '../../shared/components/gallery-grid/
   styleUrl: './gallery.css',
 })
 export class GalleryComponent {
-  readonly images: GalleryImage[] = [
-    {
-      src: 'images/gallery/resultado-corte-de-cabello.webp',
-      alt: 'Resultado de corte de cabello',
-    },
-    {
-      src: 'images/gallery/resultado-coloracion.webp',
-      alt: 'Resultado de coloración',
-    },
-    {
-      src: 'images/gallery/detalle-de-nail-art-creativo.webp',
-      alt: 'Detalle de nail art creativo',
-    },
-    {
-      src: 'images/gallery/maquillaje-finalizado.webp',
-      alt: 'Maquillaje finalizado',
-    },
-    {
-      src: 'images/gallery/resultado-manicuria.webp',
-      alt: 'Resultado de manicuría',
-    },
-    {
-      src: 'images/gallery/momento-de-cuidado.webp',
-      alt: 'Momento de cuidado y relax',
-    },
-    {
-      src: 'images/gallery/equipo-trabajando.webp',
-      alt: 'Nuestro equipo trabajando',
-    },
-    {
-      src: 'images/gallery/transformacion-antes-despues.webp',
-      alt: 'Transformación antes y después',
-    },
-  ];
+  private readonly galleryService = inject(GalleryService);
+  readonly images = toSignal(this.galleryService.getAll(), { initialValue: [] });
 }

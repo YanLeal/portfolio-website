@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { SvgIcon } from '../../shared/components/svg-icon/svg-icon';
 import { CardTiltDirective } from '../../shared/directives/card-tilt.directive';
-import { TEAM } from '../../core/data/content';
+import { TeamService } from '../../core/services/team.service';
 
 @Component({
   selector: 'app-team',
@@ -12,5 +13,6 @@ import { TEAM } from '../../core/data/content';
   styleUrl: './team.css',
 })
 export class TeamComponent {
-  readonly team = TEAM;
+  private readonly teamService = inject(TeamService);
+  readonly team = toSignal(this.teamService.getAll(), { initialValue: [] });
 }

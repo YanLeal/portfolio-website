@@ -1,8 +1,10 @@
 import { Component, ElementRef, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { SvgIcon } from '../../shared/components/svg-icon/svg-icon';
-import { SERVICES } from '../../core/data/content';
+import { PHONE_DISPLAY, EMAIL, ADDRESS } from '../../core/data/content';
+import { ServiceService } from '../../core/services/service.service';
 import { WhatsappMessageService } from '../../core/services/whatsapp-message.service';
 
 type WizardStep = 1 | 2 | 3 | 4;
@@ -16,13 +18,15 @@ type WizardStep = 1 | 2 | 3 | 4;
   styleUrl: './contact.css',
 })
 export class ContactComponent {
+  private readonly serviceService = inject(ServiceService);
+
   // ─── Datos ───────────────────────────────────────
 
-  readonly services = SERVICES;
+  readonly services = toSignal(this.serviceService.getAll(), { initialValue: [] });
   readonly pasoLabels = ['Servicio', 'Fecha', 'Datos', 'Confirmar'];
-  readonly address = 'Av. Siempre Viva 123, Córdoba';
-  readonly phone = '+52 442 301 6543';
-  readonly email = 'info@bellezaestilo.com';
+  readonly address = ADDRESS;
+  readonly phone = PHONE_DISPLAY;
+  readonly email = EMAIL;
   readonly schedule = 'Lun a Sáb: 9:00 – 20:00';
 
   readonly morningSlots = ['09:00', '10:00', '11:00'];
@@ -93,7 +97,7 @@ export class ContactComponent {
   // ─── Helpers ────────────────────────────────────
 
   get selectedService() {
-    const svc = this.services.find((s) => s.id === this.selectedServiceId);
+    const svc = this.services().find((s) => s.id === this.selectedServiceId);
     if (svc) return svc;
     if (this.selectedServiceId === 'other') {
       return {

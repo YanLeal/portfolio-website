@@ -1,0 +1,38 @@
+[
+  {
+    "id": "sofia-romero",
+    "name": "Sofía Romero",
+    "role": "Directora & Estilista Senior",
+    "photo": "images/team/sofia-romero-directora-800x800.webp",
+    "bio": "Más de 10 años de experiencia en el rubro. Especialista en coloración y cortes de tendencia.",
+    "experience": "12+ años",
+    "social": {
+      "instagram": "#",
+      "facebook": "#"
+    }
+  },
+  {
+    "id": "valentina-lopez",
+    "name": "Valentina López",
+    "role": "Maquilladora Profesional",
+    "photo": "images/team/valentina-lopez-maquilladora-800x800.webp",
+    "bio": "Apasionada por el maquillaje artístico y social. Formada en Buenos Aires.",
+    "experience": "8+ años",
+    "social": {
+      "instagram": "#",
+      "whatsapp": "#"
+    }
+  },
+  {
+    "id": "camila-torres",
+    "name": "Camila Torres",
+    "role": "Manicurista",
+    "photo": "images/team/camila-torres-manicurista-800x800.webp",
+    "bio": "Especialista en nail art y cuidado de uñas. Siempre al tanto de las últimas tendencias.",
+    "experience": "6+ años",
+    "social": {
+      "instagram": "#",
+      "facebook": "#"
+    }
+  }
+]

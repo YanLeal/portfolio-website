@@ -1,4 +1,4 @@
-<section>
+<section class="section-padding section-gradient">
   <div class="section-grid--cols-2">
     <!-- ─── Imagen ─────────────────────────────────────── -->
     <div class="about-media">
@@ -19,7 +19,7 @@
       <p class="about-subtitle">Conocé nuestra historia</p>
 
       <p class="about-text">
-        En <strong>Belleza &amp; Estilo</strong> nos apasiona realzar tu belleza natural.
+        En <strong>{{ siteName }}</strong> nos apasiona realzar tu belleza natural.
         Con más de 10 años en el rubro, nuestro equipo de profesionales está dedicado
         a brindarte la mejor experiencia en cuidado personal.
       </p>
@@ -39,8 +39,8 @@
       </div>
 
       <!-- ─── CTA ──────────────────────────────────────── -->
-      <a class="about-cta" href="#contacto" (click)="scrollTo($event, 'contacto')">
-        Reservá tu turno
+      <a class="btn about-cta" href="#contacto" (click)="scrollTo($event, 'contacto')">
+        {{ ctaReservar }}
         <svg-icon name="arrow-right" size="16" />
       </a>
     </div>

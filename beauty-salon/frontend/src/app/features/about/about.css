@@ -157,39 +157,23 @@
   letter-spacing: 0.05em;
 }
 
-/* ─── CTA ───────────────────────────────────────────────── */
+/* ─── CTA ──────────────────────────────────────────────────
+   Hereda .btn base de styles.css (inline-flex, padding, font,
+   border-radius, transition). Solo overriteamos colores y
+   el hover con slide del icono.
+   ──────────────────────────────────────────────────────── */
 
 .about-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
   align-self: flex-start;
   padding: 0.875rem 2rem;
   margin-top: var(--space-2);
-  font-family: var(--font-sans);
-  font-size: 0.9375rem;
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.02em;
   color: var(--color-surface);
   background-color: var(--color-neutral-900);
-  border: none;
-  border-radius: var(--radius-sm);
-  text-decoration: none;
-  cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
-    gap 0.25s ease;
 }
 
 .about-cta:hover {
   background-color: var(--color-primary);
-  transform: scale(1.03);
   gap: var(--space-3);
-}
-
-.about-cta:active {
-  transform: scale(0.97);
 }
 
 .about-cta svg-icon {

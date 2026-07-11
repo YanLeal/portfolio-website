@@ -1,6 +1,7 @@
 import { Component, DestroyRef, HostBinding, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavComponent } from '../nav/nav';
+import { SITE_NAME } from '../../core/data/content';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,7 @@ import { NavComponent } from '../nav/nav';
   styleUrl: './header.css',
 })
 export class HeaderComponent {
+  readonly siteName = SITE_NAME;
   readonly isMenuOpen = signal(false);
   readonly isScrolled = signal(false);
 

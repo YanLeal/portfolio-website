@@ -70,11 +70,14 @@
   --font-size-4xl:  2.5rem;    /* section headers desktop */
 
   /* ── Border radius ────────────────────────────────── */
-  --radius-sm: 4px;
-  --radius-card: 8px;
-  --radius-input: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --radius-sharp: 2px;      /* editorial buttons, hero CTA */
+  --radius-sm: 4px;         /* buttons, inputs, form fields */
+  --radius-card: 8px;        /* cards, panels, containers, stat cards */
+  --radius-input: 8px;       /* form inputs (alias de radius-card) */
+  --radius-lg: 12px;         /* featured images, card hover, hero media */
+  --radius-xl: 16px;         /* large containers, modals */
+  --radius-2xl: 24px;        /* enveloping surfaces, dialogs */
+  --radius-full: 9999px;     /* pills, tags, avatars, circular elements */
 
   /* ── Shadows (espresso base, nunca negro puro) ────── */
   --shadow-sm: 0 1px 3px rgba(36, 31, 26, 0.06);
@@ -105,6 +108,39 @@
 
   /* ── Container widths ──────────────────────────────── */
   --container-content: 1200px;
+
+  /* ═════════════════════════════════════════════════════
+     ELEVATION SYSTEM
+     ═════════════════════════════════════════════════════ */
+
+  /* ── Scale (raw) ─────────────────────────────────── */
+  --elevation-0: none;
+  --elevation-1: var(--shadow-sm);   /* 0 1px 3px  rgba(36,31,26,0.06) */
+  --elevation-2: var(--shadow-card); /* 0 4px 12px rgba(36,31,26,0.08) */
+  --elevation-3: var(--shadow-lg);   /* 0 8px 24px rgba(36,31,26,0.10) */
+  --elevation-4: var(--shadow-xl);   /* 0 16px 40px rgba(36,31,26,0.12) */
+  --elevation-5: var(--shadow-2xl);  /* 0 24px 56px rgba(36,31,26,0.14) */
+
+  /* ── Semantic: rest (static) ─────────────────────── */
+  --elevation-rest-flat:    var(--elevation-0);  /* surface: stat cards, fields */
+  --elevation-rest-subtle:  var(--elevation-1);  /* base: card-base, header */
+  --elevation-rest-default: var(--elevation-2);  /* lift: card-lift, about-media */
+
+  /* ── Semantic: hover (interactive lift) ──────────── */
+  --elevation-hover-subtle:  var(--elevation-2);  /* stat-card */
+  --elevation-hover-default: var(--elevation-3);  /* card-base */
+  --elevation-hover-strong:  var(--elevation-4);  /* card-lift */
+
+  /* ── Semantic: floating (always raised) ──────────── */
+  --elevation-element:   var(--elevation-2);       /* icon badge, pill */
+  --elevation-dropdown:  var(--elevation-4);       /* mobile nav, menus */
+  --elevation-modal:     var(--elevation-5);       /* modals, toasts */
+
+  /* ── Context-specific: dark/colored backgrounds ──── */
+  --elevation-hero-btn:     0 8px 24px rgba(36,31,26,0.2);
+  --elevation-hero-btn-hov: 0 8px 24px rgba(36,31,26,0.25);
+  --elevation-wa-btn:    0 4px 12px rgba(37,211,102,0.35), 0 2px 4px rgba(0,0,0,0.08);
+  --elevation-wa-btn-hov: 0 6px 20px rgba(37,211,102,0.4),  0 3px 6px rgba(0,0,0,0.1);
 }
 
 /* ─── Global defaults ────────────────────────────────── */
@@ -211,6 +247,40 @@
 
 .skip-link:focus {
   top: 0;
+}
+
+/* ═════════════════════════════════════════════════════════
+   SECTION DIVIDER — separador sutil entre secciones
+   Línea de 3rem centrada, 1px, gold a 20% de opacidad.
+   ═════════════════════════════════════════════════════════ */
+
+.section-divider {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.section-divider::before {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 1px;
+  background: var(--color-accent-light);
+  opacity: 0.2;
+}
+
+/* ═════════════════════════════════════════════════════════
+   SECTION GRADIENT — fondo con degradé sutil
+   Degradé lineal de surface (blanco) a warm off-white,
+   imperceptible como color pero presente como ritmo.
+   ═════════════════════════════════════════════════════════ */
+
+.section-gradient {
+  background: linear-gradient(
+    180deg,
+    var(--color-surface) 0%,
+    var(--color-neutral-50) 100%
+  );
 }
 
 /* ═════════════════════════════════════════════════════════

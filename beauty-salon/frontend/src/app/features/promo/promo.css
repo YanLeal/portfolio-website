@@ -94,27 +94,3 @@
 .promo-delay-6  { animation-delay: 0.9s; }
 .promo-delay-7  { animation-delay: 1.05s; }
 
-/* ═════════════════════════════════════════════════════════
-   REDUCED MOTION
-   ═════════════════════════════════════════════════════════ */
-
-@media (prefers-reduced-motion: reduce) {
-  .promo-entrance,
-  .promo-entrance--slow,
-  .promo-entrance--fade,
-  .promo-entrance--line,
-  .promo-media {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-
-  .promo-shimmer,
-  .promo-float {
-    animation: none;
-  }
-
-  .promo-media img {
-    transition: none;
-  }
-}
