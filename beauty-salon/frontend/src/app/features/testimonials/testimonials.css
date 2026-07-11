@@ -1,5 +1,1 @@
-/* Stagger delays for testimonial cards */
-
-app-testimonial-card:nth-child(1) { --card-delay: 80ms; }
-app-testimonial-card:nth-child(2) { --card-delay: 160ms; }
-app-testimonial-card:nth-child(3) { --card-delay: 240ms; }
+/* Stagger delays via .stagger utility in styles.css */

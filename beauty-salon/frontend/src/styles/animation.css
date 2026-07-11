@@ -142,6 +142,43 @@
   to { transform: scale(1.03); }
 }
 
+/*
+ * ── FADE + SLIDE (distancia corta) ──────────────────────────
+ * Variante de slideUp con distancia más sutil (1rem).
+ * Para entradas donde 1.5rem se siente excesivo.
+ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(1rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/*
+ * ── POP (spring scale) ────────────────────────────────────
+ * Para badges, dots, íconos que necesitan entrada elástica.
+ * Escala 0 → 1 con overshoot opcional (consumidor decide easing).
+ */
+@keyframes popIn {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+/*
+ * ── LINE GROW ─────────────────────────────────────────────
+ * Línea decorativa que crece desde su origen.
+ * lineGrowY: vertical (timeline, separadores)
+ * lineGrowX: horizontal (underlines, highlight bars)
+ * Ambas se combinan con transform-origin.
+ */
+@keyframes lineGrowY {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes lineGrowX {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
 /* ═════════════════════════════════════════════════════════
    UTILITY CLASSES
    Aplicar como className en el template HTML.
@@ -172,6 +209,17 @@
 /* ── SCALE (énfasis) ───────────────────────────────────── */
 .anim-scale-in       { animation: scaleIn var(--anim-duration-base) var(--anim-easing-spring) both; }
 .anim-scale-up       { animation: scaleUp var(--anim-duration-subtle) var(--anim-easing-out) both; }
+
+/* ── FADE + SLIDE (distancia corta) ────────────────────── */
+.anim-fade-in-up     { animation: fadeInUp var(--anim-duration-slow) var(--anim-easing-out) both; }
+.anim-fade-in-up-fast { animation: fadeInUp var(--anim-duration-subtle) var(--anim-easing-out) both; }
+
+/* ── POP (spring scale) ────────────────────────────────── */
+.anim-pop-in         { animation: popIn var(--anim-duration-base) var(--anim-easing-spring) both; }
+
+/* ── LINE GROW ─────────────────────────────────────────── */
+.anim-line-grow-y    { animation: lineGrowY var(--anim-duration-slow) var(--anim-easing-out) both; transform-origin: top; }
+.anim-line-grow-x    { animation: lineGrowX var(--anim-duration-slow) var(--anim-easing-out) both; transform-origin: left; }
 
 /* ── HIDDEN ───────────────────────────────────────────────
    Estado inicial invisible para elementos con appReveal.

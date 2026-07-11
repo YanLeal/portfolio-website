@@ -38,14 +38,11 @@
       </p>
 
       <div class="promo-entrance promo-delay-6 mt-8">
-        <a
+        <app-cta-button
+          [label]="promo().ctaLabel"
           [href]="whatsAppUrl"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-primary"
-        >
-          {{ promo().ctaLabel }}
-        </a>
+          [external]="true"
+        />
       </div>
 
       @if (promo().spotsLeft > 0) {

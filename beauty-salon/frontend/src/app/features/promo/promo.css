@@ -1,30 +1,11 @@
 /* ─── Micro-animaciones: promoción ──────────────────────
-   Aparición escalonada + hover + ambientales sutiles.
+   Keyframes compartidos desde animation.css:
+   - promo-entrance       → fadeInUp
+   - promo-entrance--fade → fadeIn
+   - promo-entrance--line → lineGrowX
+   shimmer y float son ambientales únicas (se mantienen).
    Todos los timing tokens se heredan de animation.css.
    ──────────────────────────────────────────────────────── */
-
-/* ─── Aparición (fade + slide-up) ─────────────────────────── */
-
-@keyframes promoSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes promoFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes promoLineGrow {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
 
 /* ─── Ambientales sutiles (siempre activas) ──────────────── */
 
@@ -41,26 +22,26 @@
 /* ─── Clases de entrada ──────────────────────────────────── */
 
 .promo-entrance {
-  animation: promoSlideUp var(--anim-duration-base) var(--anim-easing-out) both;
+  animation: fadeInUp var(--anim-duration-base) var(--anim-easing-out) both;
 }
 
 .promo-entrance--slow {
-  animation: promoSlideUp var(--anim-duration-zoom) var(--anim-easing-out) both;
+  animation: fadeInUp var(--anim-duration-zoom) var(--anim-easing-out) both;
 }
 
 .promo-entrance--fade {
-  animation: promoFadeIn var(--anim-duration-subtle) var(--anim-easing-out) both;
+  animation: fadeIn var(--anim-duration-subtle) var(--anim-easing-out) both;
 }
 
 .promo-entrance--line {
   transform-origin: left;
-  animation: promoLineGrow var(--anim-duration-base) var(--anim-easing-out) both;
+  animation: lineGrowX var(--anim-duration-base) var(--anim-easing-out) both;
 }
 
 /* ─── Multimedia (imagen) ─────────────────────────────────── */
 
 .promo-media {
-  animation: promoFadeIn 0.8s var(--anim-easing-out) both;
+  animation: fadeIn 0.8s var(--anim-easing-out) both;
   animation-delay: 50ms;
   overflow: hidden;
 }

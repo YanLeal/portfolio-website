@@ -9,7 +9,7 @@
         <th scope="col">Precio</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="stagger-anim">
       @for (service of services(); track service.id) {
         <tr>
           <td>{{ service.name }}</td>

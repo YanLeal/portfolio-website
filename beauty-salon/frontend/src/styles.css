@@ -1,147 +1,6 @@
 @import 'tailwindcss';
+@import './styles/tokens.css';
 @import './styles/animation.css';
-
-/* ─── Design Tokens ──────────────────────────────────────
-   Cada variable genera utilidades Tailwind (bg-primary,
-   text-neutral-800, font-heading, shadow-card, etc.)
-   y también está disponible como var(--color-primary),
-   var(--font-heading), etc. en cualquier CSS.
-*/
-
-@theme {
-  /* ── Palette ──────────────────────────────────────── */
-  --color-primary: #b76e79;
-  --color-primary-light: #d4a0a8;
-  --color-primary-dark: #8b4d56;
-
-  --color-secondary: #6b2d3e;
-  --color-secondary-light: #8e4d5e;
-
-  --color-accent: #d4af37;
-  --color-accent-light: #e8d48b;
-
-  --color-success: #7fb069;
-  --color-warning: #e8b84b;
-  --color-error: #c44a5c;
-
-  /* ── Neutral scale (warm) ─────────────────────────── */
-  --color-neutral-50: #faf8f6;
-  --color-neutral-100: #f5f0ec;
-  --color-neutral-200: #ede6df;
-  --color-neutral-300: #d5cbc2;
-  --color-neutral-400: #b8a99c;
-  --color-neutral-500: #9c8b7c;
-  --color-neutral-600: #7a6b5e;
-  --color-neutral-700: #5c4f44;
-  --color-neutral-800: #3d342c;
-  --color-neutral-900: #241f1a;
-
-  /* ── Surfaces ─────────────────────────────────────── */
-  --color-surface: #ffffff;
-  --color-surface-subtle: #faf8f6;
-  --color-surface-contrast: #241f1a;
-
-  /* ── Typography ───────────────────────────────────── */
-  --font-sans: 'Inter', sans-serif;
-  --font-heading: 'Playfair Display', serif;
-
-  /* ── Font-weight scale ────────────────────────────── */
-  --font-weight-light:     300;
-  --font-weight-normal:    400;
-  --font-weight-medium:    500;
-  --font-weight-semibold:  600;
-  --font-weight-bold:      700;
-
-  /* ── Line-height scale (leading) ──────────────────── */
-  --leading-tight:   1.15;  /* headings */
-  --leading-snug:    1.3;   /* card titles */
-  --leading-normal:  1.6;   /* body text compact */
-  --leading-relaxed: 1.7;   /* body text readable */
-
-  /* ── Font-size scale ──────────────────────────────── */
-  --font-size-xs:   0.75rem;   /* labels, captions, footer-bottom */
-  --font-size-sm:   0.8125rem; /* nav, metadata, small print */
-  --font-size-base: 0.875rem;  /* card desc, footer body, form text */
-  --font-size-body: 1rem;      /* paragraphs, body text (global default) */
-  --font-size-lg:   1.125rem;  /* card titles, h3 */
-  --font-size-xl:   1.25rem;   /* wizard titles, stat values */
-  --font-size-2xl:  1.5rem;    /* intermediate heading */
-  --font-size-3xl:  2rem;      /* section headers mobile */
-  --font-size-4xl:  2.5rem;    /* section headers desktop */
-
-  /* ── Border radius ────────────────────────────────── */
-  --radius-sharp: 2px;      /* editorial buttons, hero CTA */
-  --radius-sm: 4px;         /* buttons, inputs, form fields */
-  --radius-card: 8px;        /* cards, panels, containers, stat cards */
-  --radius-input: 8px;       /* form inputs (alias de radius-card) */
-  --radius-lg: 12px;         /* featured images, card hover, hero media */
-  --radius-xl: 16px;         /* large containers, modals */
-  --radius-2xl: 24px;        /* enveloping surfaces, dialogs */
-  --radius-full: 9999px;     /* pills, tags, avatars, circular elements */
-
-  /* ── Shadows (espresso base, nunca negro puro) ────── */
-  --shadow-sm: 0 1px 3px rgba(36, 31, 26, 0.06);
-  --shadow-card: 0 4px 12px rgba(36, 31, 26, 0.08);
-  --shadow-lg: 0 8px 24px rgba(36, 31, 26, 0.1);
-  --shadow-xl: 0 16px 40px rgba(36, 31, 26, 0.12);
-  --shadow-2xl: 0 24px 56px rgba(36, 31, 26, 0.14);
-
-  /* ── Spacing extras ───────────────────────────────── */
-  --spacing-18: 4.5rem;
-  --spacing-20: 5rem;
-  --spacing-24: 6rem;
-
-  /* ── Spacing / vertical rhythm ──────────────────────────── */
-  --space-1:   0.25rem;  /* 4px  — micro: icons, badges */
-  --space-1\.5:  0.375rem;  /* 6px  — tight inner gap */
-  --space-2:   0.5rem;   /* 8px  — tight: nav links, form gap */
-  --space-3:   0.75rem;  /* 12px — default stack: card content, sections */
-  --space-4:   1rem;     /* 16px — paragraph, default margin */
-  --space-5:   1.25rem;  /* 20px — card padding, sidebar spacing */
-  --space-6:   1.5rem;   /* 24px — component internal: grid gaps */
-  --space-8:   2rem;     /* 32px — distinct separation: sections */
-  --space-10:  2.5rem;   /* 40px — generous separation */
-  --space-12:  3rem;     /* 48px — component groups */
-  --space-16:  4rem;     /* 64px — section padding mobile */
-  --space-20:  5rem;     /* 80px — section padding desktop */
-  --space-24:  6rem;     /* 96px — large hero/feature padding */
-
-  /* ── Container widths ──────────────────────────────── */
-  --container-content: 1200px;
-
-  /* ═════════════════════════════════════════════════════
-     ELEVATION SYSTEM
-     ═════════════════════════════════════════════════════ */
-
-  /* ── Scale (raw) ─────────────────────────────────── */
-  --elevation-0: none;
-  --elevation-1: var(--shadow-sm);   /* 0 1px 3px  rgba(36,31,26,0.06) */
-  --elevation-2: var(--shadow-card); /* 0 4px 12px rgba(36,31,26,0.08) */
-  --elevation-3: var(--shadow-lg);   /* 0 8px 24px rgba(36,31,26,0.10) */
-  --elevation-4: var(--shadow-xl);   /* 0 16px 40px rgba(36,31,26,0.12) */
-  --elevation-5: var(--shadow-2xl);  /* 0 24px 56px rgba(36,31,26,0.14) */
-
-  /* ── Semantic: rest (static) ─────────────────────── */
-  --elevation-rest-flat:    var(--elevation-0);  /* surface: stat cards, fields */
-  --elevation-rest-subtle:  var(--elevation-1);  /* base: card-base, header */
-  --elevation-rest-default: var(--elevation-2);  /* lift: card-lift, about-media */
-
-  /* ── Semantic: hover (interactive lift) ──────────── */
-  --elevation-hover-subtle:  var(--elevation-2);  /* stat-card */
-  --elevation-hover-default: var(--elevation-3);  /* card-base */
-  --elevation-hover-strong:  var(--elevation-4);  /* card-lift */
-
-  /* ── Semantic: floating (always raised) ──────────── */
-  --elevation-element:   var(--elevation-2);       /* icon badge, pill */
-  --elevation-dropdown:  var(--elevation-4);       /* mobile nav, menus */
-  --elevation-modal:     var(--elevation-5);       /* modals, toasts */
-
-  /* ── Context-specific: dark/colored backgrounds ──── */
-  --elevation-hero-btn:     0 8px 24px rgba(36,31,26,0.2);
-  --elevation-hero-btn-hov: 0 8px 24px rgba(36,31,26,0.25);
-  --elevation-wa-btn:    0 4px 12px rgba(37,211,102,0.35), 0 2px 4px rgba(0,0,0,0.08);
-  --elevation-wa-btn-hov: 0 6px 20px rgba(37,211,102,0.4),  0 3px 6px rgba(0,0,0,0.1);
-}
 
 /* ─── Global defaults ────────────────────────────────── */
 
@@ -293,7 +152,7 @@
   .section-padding {
     padding-block: var(--space-16);
   }
-  @media (width >= 768px) {
+  @media (width >= 48rem) {
     .section-padding {
       padding-block: var(--space-20);
     }
@@ -306,12 +165,12 @@
     padding-inline: 1rem;
     scroll-margin-top: 5rem;
   }
-  @media (width >= 640px) {
+  @media (width >= 40rem) {
     .section-container {
       padding-inline: 1.5rem;
     }
   }
-  @media (width >= 1024px) {
+  @media (width >= 64rem) {
     .section-container {
       padding-inline: 2rem;
     }
@@ -326,14 +185,14 @@
     margin-inline: auto;
     padding-inline: var(--space-4);
   }
-  @media (width >= 640px) {
+  @media (width >= 40rem) {
     .section-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: 1.75rem;
       padding-inline: var(--space-6);
     }
   }
-  @media (width >= 1024px) {
+  @media (width >= 64rem) {
     .section-grid {
       grid-template-columns: repeat(3, 1fr);
       gap: var(--space-8);
@@ -351,14 +210,14 @@
     padding-inline: var(--space-4);
     align-items: center;
   }
-  @media (width >= 768px) {
+  @media (width >= 48rem) {
     .section-grid--cols-2 {
       grid-template-columns: 1fr 1fr;
       gap: var(--space-12);
       padding-inline: var(--space-6);
     }
   }
-  @media (width >= 1024px) {
+  @media (width >= 64rem) {
     .section-grid--cols-2 {
       gap: var(--space-16);
       padding-inline: var(--space-8);
@@ -408,6 +267,33 @@
     animation: slideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
     animation-delay: var(--card-delay, 0ms);
   }
+
+  /* ── Stagger utilities (reemplazan nth-child en features) ───
+     Agregá .stagger al padre para que los hijos reciban
+     --card-delay incremental. .stagger-anim hace lo mismo
+     pero setea --anim-delay para animation-delay directo.
+     ═══════════════════════════════════════════════════════════ */
+  .stagger > :nth-child(1)  { --card-delay: 80ms; }
+  .stagger > :nth-child(2)  { --card-delay: 160ms; }
+  .stagger > :nth-child(3)  { --card-delay: 240ms; }
+  .stagger > :nth-child(4)  { --card-delay: 320ms; }
+  .stagger > :nth-child(5)  { --card-delay: 400ms; }
+  .stagger > :nth-child(6)  { --card-delay: 480ms; }
+  .stagger > :nth-child(7)  { --card-delay: 560ms; }
+  .stagger > :nth-child(8)  { --card-delay: 640ms; }
+  .stagger > :nth-child(9)  { --card-delay: 720ms; }
+  .stagger > :nth-child(10) { --card-delay: 800ms; }
+
+  .stagger-anim > :nth-child(1)  { --anim-delay: 100ms; }
+  .stagger-anim > :nth-child(2)  { --anim-delay: 200ms; }
+  .stagger-anim > :nth-child(3)  { --anim-delay: 300ms; }
+  .stagger-anim > :nth-child(4)  { --anim-delay: 400ms; }
+  .stagger-anim > :nth-child(5)  { --anim-delay: 500ms; }
+  .stagger-anim > :nth-child(6)  { --anim-delay: 600ms; }
+  .stagger-anim > :nth-child(7)  { --anim-delay: 700ms; }
+  .stagger-anim > :nth-child(8)  { --anim-delay: 800ms; }
+  .stagger-anim > :nth-child(9)  { --anim-delay: 900ms; }
+  .stagger-anim > :nth-child(10) { --anim-delay: 1000ms; }
 
   /* ── Shared buttons ──────────────────────────────────────── */
 

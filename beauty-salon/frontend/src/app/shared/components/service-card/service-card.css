@@ -74,7 +74,7 @@
   margin: 0;
   line-height: var(--leading-snug);
 
-  @media (width >= 768px) {
+  @media (width >= 48rem) {
     font-size: var(--font-size-xl);
   }
 }

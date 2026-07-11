@@ -1,11 +1,11 @@
-/* ─── Horizontal nav — visible desde 1024px ────────────── */
+/* ─── Horizontal nav — visible desde 64rem ────────────── */
 
 .desktop-nav {
   display: none;
   align-items: center;
   gap: var(--space-8);
 
-  @media (width >= 1024px) {
+  @media (width >= 64rem) {
     display: flex;
   }
 }
@@ -117,7 +117,7 @@
     visibility 0.4s ease,
     opacity 0.4s ease;
 
-  @media (width >= 1024px) {
+  @media (width >= 64rem) {
     display: none;
   }
 }

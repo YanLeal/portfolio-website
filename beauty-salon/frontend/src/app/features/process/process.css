@@ -1,48 +1,30 @@
 /* ─── Micro-animaciones: proceso ─────────────────────────
-   Aparición escalonada de filas + línea conectora + dot.
+   Keyframes compartidos desde animation.css:
+   - process-row → slideUp
+   - process-line → lineGrowY
+   - process-dot  → popIn
    Todos los timing tokens se heredan de animation.css.
    ──────────────────────────────────────────────────────── */
 
 /* ─── Aparición de cada fila (fade + slide-up) ──────────── */
 
-@keyframes processReveal {
-  from {
-    opacity: 0;
-    transform: translateY(1.5rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .process-row {
-  animation: processReveal var(--anim-duration-entrance) var(--anim-easing-out) both;
+  animation: slideUp var(--anim-duration-entrance) var(--anim-easing-out) both;
   animation-delay: calc(var(--step-index, 0) * var(--anim-stagger-base));
 }
 
 /* ─── Línea de conexión (crece de arriba hacia abajo) ──── */
 
-@keyframes lineDraw {
-  from { transform: scaleY(0); }
-  to { transform: scaleY(1); }
-}
-
 .process-line {
   transform-origin: top;
-  animation: lineDraw var(--anim-duration-slow) var(--anim-easing-out) both;
+  animation: lineGrowY var(--anim-duration-slow) var(--anim-easing-out) both;
   animation-delay: calc(var(--step-index, 0) * var(--anim-stagger-base) + 300ms);
 }
 
 /* ─── Dot del timeline (pop-in con spring) ──────────────── */
 
-@keyframes dotPop {
-  from { transform: scale(0); }
-  to { transform: scale(1); }
-}
-
 .process-dot {
-  animation: dotPop 400ms var(--anim-easing-spring) both;
+  animation: popIn 400ms var(--anim-easing-spring) both;
   animation-delay: calc(var(--step-index, 0) * var(--anim-stagger-base) + 500ms);
 }
 

@@ -37,7 +37,7 @@
   opacity: 0.4;
   pointer-events: none;
 
-  @media (width < 768px) {
+  @media (width < 48rem) {
     display: none;
   }
 }
@@ -60,7 +60,7 @@
   margin: 0;
   letter-spacing: -0.01em;
 
-  @media (width >= 768px) {
+  @media (width >= 48rem) {
     font-size: var(--font-size-4xl);
   }
 }
@@ -109,7 +109,7 @@
   gap: var(--space-4);
   padding-block: var(--space-2);
 
-  @media (width < 480px) {
+  @media (width < 30rem) {
     grid-template-columns: 1fr;
   }
 }
@@ -131,7 +131,7 @@
   transform: translateY(-4px);
   box-shadow: var(--elevation-hover-subtle);
 
-  @media (width < 768px) {
+  @media (width < 48rem) {
     transform: none;
   }
 }
@@ -143,7 +143,7 @@
   color: var(--color-primary);
   line-height: 1.1; /* más apretado que leading-tight — intencional para display grande */
 
-  @media (width >= 768px) {
+  @media (width >= 48rem) {
     font-size: var(--font-size-4xl);
   }
 }
@@ -157,29 +157,4 @@
   letter-spacing: 0.05em;
 }
 
-/* ─── CTA ──────────────────────────────────────────────────
-   Hereda .btn base de styles.css (inline-flex, padding, font,
-   border-radius, transition). Solo overriteamos colores y
-   el hover con slide del icono.
-   ──────────────────────────────────────────────────────── */
 
-.about-cta {
-  align-self: flex-start;
-  padding: 0.875rem 2rem;
-  margin-top: var(--space-2);
-  color: var(--color-surface);
-  background-color: var(--color-neutral-900);
-}
-
-.about-cta:hover {
-  background-color: var(--color-primary);
-  gap: var(--space-3);
-}
-
-.about-cta svg-icon {
-  transition: transform 0.25s ease;
-}
-
-.about-cta:hover svg-icon {
-  transform: translateX(2px);
-}

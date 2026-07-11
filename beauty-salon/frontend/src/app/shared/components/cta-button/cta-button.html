@@ -1,3 +1,26 @@
-<button type="button" (click)="clicked.emit()">
-  {{ label() }}
-</button>
+@if (href(); as link) {
+  <a
+    [href]="link"
+    [attr.target]="external() ? '_blank' : null"
+    [attr.rel]="external() ? 'noopener noreferrer' : null"
+    [class.btn-primary]="variant() === 'primary'"
+    [class.btn-secondary]="variant() === 'secondary'"
+  >
+    {{ label() }}
+    @if (iconAfter(); as icon) {
+      <svg-icon [name]="icon" size="16" />
+    }
+  </a>
+} @else {
+  <button
+    type="button"
+    (click)="clicked.emit()"
+    [class.btn-primary]="variant() === 'primary'"
+    [class.btn-secondary]="variant() === 'secondary'"
+  >
+    {{ label() }}
+    @if (iconAfter(); as icon) {
+      <svg-icon [name]="icon" size="16" />
+    }
+  </button>
+}

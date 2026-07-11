@@ -1,6 +1,6 @@
 <section id="servicios" class="section-padding section-gradient" style="scroll-margin-top: 5rem">
   <app-section-header title="Servicios" subtitle="Todo lo que necesitás para mimarte" />
-  <div class="section-grid">
+  <div class="section-grid stagger">
     @for (service of services(); track service.id) {
       <app-service-card [service]="service" (book)="onBook($event)" />
     }

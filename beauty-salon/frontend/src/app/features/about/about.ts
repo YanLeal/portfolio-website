@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { SvgIcon } from '../../shared/components/svg-icon/svg-icon';
+import { CtaButton } from '../../shared/components/cta-button/cta-button';
 import { CTA_RESERVAR, SITE_NAME } from '../../core/data/content';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [SvgIcon],
+  imports: [CtaButton],
   host: { class: 'section-padding' },
   templateUrl: './about.html',
   styleUrl: './about.css',
@@ -14,10 +14,8 @@ export class AboutComponent {
   readonly siteName = SITE_NAME;
   readonly ctaReservar = CTA_RESERVAR;
 
-  scrollTo(event: Event, fragment: string): void {
-    event.preventDefault();
-    const el = document.getElementById(fragment);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  onCtaClick(): void {
+    document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   }
 
   readonly stats = [

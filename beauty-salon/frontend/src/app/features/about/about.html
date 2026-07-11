@@ -39,10 +39,11 @@
       </div>
 
       <!-- ─── CTA ──────────────────────────────────────── -->
-      <a class="btn about-cta" href="#contacto" (click)="scrollTo($event, 'contacto')">
-        {{ ctaReservar }}
-        <svg-icon name="arrow-right" size="16" />
-      </a>
+      <app-cta-button
+        [label]="ctaReservar"
+        iconAfter="arrow-right"
+        (clicked)="onCtaClick()"
+      />
     </div>
   </div>
 </section>

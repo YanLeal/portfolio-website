@@ -1,14 +1,7 @@
-/* ─── Stagger delays for team cards ───────────────────────
-   Los delay se setean en el wrapper para que el inner article
-   (card-entrance) los herede via CSS custom properties.
-*/
-
-.card-tilt-wrapper:nth-child(1) { --card-delay: 80ms; }
-.card-tilt-wrapper:nth-child(2) { --card-delay: 160ms; }
-.card-tilt-wrapper:nth-child(3) { --card-delay: 240ms; }
-.card-tilt-wrapper:nth-child(4) { --card-delay: 320ms; }
-.card-tilt-wrapper:nth-child(5) { --card-delay: 400ms; }
-.card-tilt-wrapper:nth-child(6) { --card-delay: 480ms; }
+/* ─── Stagger delays via .stagger utility in styles.css ──
+   El wrapper recibe --card-delay del padre .stagger; el inner
+   article usa .card-entrance que lee var(--card-delay).
+   ═══════════════════════════════════════════════════════════ */
 
 /* ─── Tilt wrapper ─────────────────────────────────────────
    Rellena la celda del grid y provee contexto de perspectiva.
@@ -112,7 +105,7 @@
   color: var(--color-neutral-900);
   margin: 0 0 var(--space-1);
 
-  @media (width >= 768px) {
+  @media (width >= 48rem) {
     font-size: var(--font-size-xl);
   }
 }

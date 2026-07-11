@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs/operators';
+import { CtaButton } from '../../shared/components/cta-button/cta-button';
 import { WHATSAPP_NUMBER } from '../../core/data/content';
 import { PromoService } from '../../core/services/promo.service';
 import type { Promotion } from '../../core/models/promotion.model';
@@ -19,7 +20,7 @@ const PLACEHOLDER_PROMO: Promotion = {
 @Component({
   selector: 'app-promo',
   standalone: true,
-  imports: [],
+  imports: [CtaButton],
   templateUrl: './promo.html',
   styleUrl: './promo.css',
 })

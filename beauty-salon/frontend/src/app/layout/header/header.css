@@ -44,15 +44,15 @@
   margin-inline: auto;
   padding: var(--space-3);
 
-  @media (width >= 375px) {
+  @media (width >= 23.4375rem) {
     padding-inline: var(--space-4);
   }
 
-  @media (width >= 768px) {
+  @media (width >= 48rem) {
     padding-inline: var(--space-6);
   }
 
-  @media (width >= 1024px) {
+  @media (width >= 64rem) {
     padding: var(--space-4) var(--space-8);
   }
 }

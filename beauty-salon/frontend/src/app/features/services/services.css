@@ -1,11 +1,4 @@
-/* Stagger delays for service cards */
-
-app-service-card:nth-child(1) { --card-delay: 80ms; }
-app-service-card:nth-child(2) { --card-delay: 160ms; }
-app-service-card:nth-child(3) { --card-delay: 240ms; }
-app-service-card:nth-child(4) { --card-delay: 320ms; }
-app-service-card:nth-child(5) { --card-delay: 400ms; }
-app-service-card:nth-child(6) { --card-delay: 480ms; }
+/* Stagger delays via .stagger utility in styles.css */
 
 /* ─── WhatsApp CTA ─────────────────────────────── */
 
