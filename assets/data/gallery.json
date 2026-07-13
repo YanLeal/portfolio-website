@@ -1,0 +1,58 @@
+[
+  {
+    "src": "images/gallery/resultado-corte-de-cabello.webp",
+    "alt": "Resultado de corte de cabello",
+    "width": 800,
+    "height": 800,
+    "category": "cabello"
+  },
+  {
+    "src": "images/gallery/resultado-coloracion.webp",
+    "alt": "Resultado de coloración",
+    "width": 800,
+    "height": 800,
+    "category": "cabello"
+  },
+  {
+    "src": "images/gallery/detalle-de-nail-art-creativo.webp",
+    "alt": "Detalle de nail art creativo",
+    "width": 800,
+    "height": 800,
+    "category": "uñas"
+  },
+  {
+    "src": "images/gallery/maquillaje-finalizado.webp",
+    "alt": "Maquillaje finalizado",
+    "width": 800,
+    "height": 800,
+    "category": "maquillaje"
+  },
+  {
+    "src": "images/gallery/resultado-manicuria.webp",
+    "alt": "Resultado de manicuría",
+    "width": 800,
+    "height": 800,
+    "category": "uñas"
+  },
+  {
+    "src": "images/gallery/momento-de-cuidado.webp",
+    "alt": "Momento de cuidado y relax",
+    "width": 800,
+    "height": 800,
+    "category": "ambiente"
+  },
+  {
+    "src": "images/gallery/equipo-trabajando.webp",
+    "alt": "Nuestro equipo trabajando",
+    "width": 800,
+    "height": 800,
+    "category": "equipo"
+  },
+  {
+    "src": "images/gallery/transformacion-antes-despues.webp",
+    "alt": "Transformación antes y después",
+    "width": 800,
+    "height": 800,
+    "category": "cabello"
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "maria-garcia",
+    "name": "María García",
+    "photo": "images/clienta-satisfecha-saliendo-800x600.webp",
+    "text": "Excelente atención, salí hermosísima. Recomiendo 100%. Volví por más tratamientos y siempre superan mis expectativas.",
+    "rating": 5,
+    "service": "Corte + Coloración",
+    "date": "2025-12-15"
+  },
+  {
+    "id": "lucia-fernandez",
+    "name": "Lucía Fernández",
+    "photo": "images/tu-momento-de-brillar-800x600.webp",
+    "text": "El mejor corte que me han hecho. Muy profesionales y el ambiente es increíble. Se nota que aman lo que hacen.",
+    "rating": 5,
+    "service": "Corte de cabello",
+    "date": "2026-01-20"
+  },
+  {
+    "id": "carla-martinez",
+    "name": "Carla Martínez",
+    "photo": "images/reserva-tu-turno-800x600.webp",
+    "text": "La pedicuría es espectacular. Vuelvo cada mes porque el cuidado y la calidad son incomparables. ¡100% recomendado!",
+    "rating": 4,
+    "service": "Pedicuría",
+    "date": "2026-02-10"
+  }
+]

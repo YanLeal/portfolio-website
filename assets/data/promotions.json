@@ -1,0 +1,12 @@
+{
+  "month": "Julio",
+  "discount": "20% OFF",
+  "service": "Corte + Color completo",
+  "description": "Lavado con productos premium, corte personalizado y coloración completa en nuestro salón.",
+  "image": "images/promo/promo-julio-800x1067.webp",
+  "ctaLabel": "Reservar promoción",
+  "spotsLeft": 5,
+  "validUntil": "31/7/26",
+  "validUntilDate": "2026-07-31",
+  "isActive": true
+}
