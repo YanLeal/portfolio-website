@@ -2,7 +2,8 @@ import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
-import { Service, ServiceCategory } from '../models/service.model';
+import { Service } from '../models/service.model';
+import type { ServiceCategory } from '../types';
 
 @Injectable({ providedIn: 'root' })
 export class ServiceService {

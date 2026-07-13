@@ -1,23 +1,5 @@
 import { Component, input } from '@angular/core';
-
-export type SvgIconName =
-  | 'clock'
-  | 'arrow-right'
-  | 'map-pin'
-  | 'phone'
-  | 'mail'
-  | 'tag'
-  | 'check'
-  | 'star'
-  | 'search'
-  | 'message-circle'
-  /* Service-specific icons (from services.json → service.icon) */
-  | 'scissors'
-  | 'sparkles'
-  | 'hand'
-  | 'foot'
-  | 'brush'
-  | 'face';
+import type { SvgIconName } from '../../../core/types';
 
 @Component({
   selector: 'svg-icon',

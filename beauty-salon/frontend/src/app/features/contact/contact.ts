@@ -6,8 +6,7 @@ import { SvgIcon } from '../../shared/components/svg-icon/svg-icon';
 import { ServiceService } from '../../core/services/service.service';
 import { ConfigService } from '../../core/services/config.service';
 import { WhatsappMessageService } from '../../core/services/whatsapp-message.service';
-
-type WizardStep = 1 | 2 | 3 | 4;
+import type { WizardStep } from '../../core/types';
 
 @Component({
   selector: 'app-contact',

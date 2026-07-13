@@ -1,7 +1,6 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { ConfigService } from '../../../core/services/config.service';
-
-export type WaVariant = 'hero' | 'footer' | 'services' | 'floating';
+import type { WaVariant } from '../../../core/types';
 
 @Component({
   selector: 'app-whatsapp-btn',

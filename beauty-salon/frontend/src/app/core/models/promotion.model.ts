@@ -1,12 +1,12 @@
 export interface Promotion {
-  month: string;
-  discount: string;
-  service: string;
-  description: string;
-  image: string;
-  ctaLabel: string;
-  spotsLeft: number;
-  validUntil: string;
-  validUntilDate?: string;
-  isActive?: boolean;
+  readonly month: string;
+  readonly discount: string;
+  readonly service: string;
+  readonly description: string;
+  readonly image: string;
+  readonly ctaLabel: string;
+  readonly spotsLeft: number;
+  readonly validUntil: string;
+  readonly validUntilDate?: string;
+  readonly isActive?: boolean;
 }

@@ -1,9 +1,9 @@
 export interface Testimonial {
-  id: string;
-  name: string;
-  photo: string;
-  text: string;
-  rating: number;
-  service: string;
-  date: Date;
+  readonly id: string;
+  readonly name: string;
+  readonly photo: string;
+  readonly text: string;
+  readonly rating: number;
+  readonly service: string;
+  readonly date: string;
 }

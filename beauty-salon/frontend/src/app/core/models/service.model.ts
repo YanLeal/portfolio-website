@@ -1,21 +1,17 @@
-export type ServiceCategory =
-  | 'cabello'
-  | 'uñas'
-  | 'maquillaje'
-  | 'tratamientos';
+import type { ServiceIcon, ServiceCategory } from '../types';
 
 export interface Service {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  durationMinutes: number;
-  duration: string;
-  icon: string;
-  category: ServiceCategory;
-  sortOrder: number;
-  image?: string;
-  isPopular?: boolean;
-  isNew?: boolean;
-  priceNote?: string;
+  readonly id: string;
+  readonly name: string;
+  readonly description: string;
+  readonly price: number;
+  readonly durationMinutes: number;
+  readonly duration: string;
+  readonly icon: ServiceIcon;
+  readonly category: ServiceCategory;
+  readonly sortOrder: number;
+  readonly image?: string;
+  readonly isPopular?: boolean;
+  readonly isNew?: boolean;
+  readonly priceNote?: string;
 }

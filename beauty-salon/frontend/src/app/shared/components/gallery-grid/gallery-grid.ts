@@ -1,8 +1,8 @@
 import { Component, input } from '@angular/core';
 
 export interface GalleryImage {
-  src: string;
-  alt: string;
+  readonly src: string;
+  readonly alt: string;
 }
 
 @Component({

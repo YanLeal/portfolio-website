@@ -2,11 +2,11 @@ import { Injectable, inject } from '@angular/core';
 import { ConfigService } from './config.service';
 
 export interface WaMessageParams {
-  name: string;
-  service: string;
-  date: string;
-  time: string;
-  notes?: string;
+  readonly name: string;
+  readonly service: string;
+  readonly date: string;
+  readonly time: string;
+  readonly notes?: string;
 }
 
 @Injectable({ providedIn: 'root' })

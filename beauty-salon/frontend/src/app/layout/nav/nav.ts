@@ -1,11 +1,7 @@
 import { Component, computed, ElementRef, inject, input, output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfigService } from '../../core/services/config.service';
-
-export interface NavItem {
-  label: string;
-  fragment: string;
-}
+import type { NavItem } from '../../core/interfaces/navigation.interface';
 
 @Component({
   selector: 'app-nav',

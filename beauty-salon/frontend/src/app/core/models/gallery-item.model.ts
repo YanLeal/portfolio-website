@@ -1,7 +1,9 @@
+import type { GalleryCategory } from '../types';
+
 export interface GalleryItem {
-  src: string;
-  alt: string;
-  width?: number;
-  height?: number;
-  category?: string;
+  readonly src: string;
+  readonly alt: string;
+  readonly width?: number;
+  readonly height?: number;
+  readonly category?: GalleryCategory;
 }

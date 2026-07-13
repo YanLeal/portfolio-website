@@ -1,13 +1,9 @@
-export type ProcessStepIcon =
-  | 'search'
-  | 'message-circle'
-  | 'map-pin'
-  | 'star';
+import type { ProcessStepIcon } from '../types';
 
 export interface ProcessStep {
-  number: string;
-  icon: ProcessStepIcon;
-  title: string;
-  description: string;
-  image: string;
+  readonly number: string;
+  readonly icon: ProcessStepIcon;
+  readonly title: string;
+  readonly description: string;
+  readonly image: string;
 }

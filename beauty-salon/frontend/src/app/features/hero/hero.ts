@@ -5,11 +5,11 @@ import { WhatsappButtonComponent } from '../../shared/components/whatsapp-btn/wh
 import { ConfigService } from '../../core/services/config.service';
 
 export interface HeroContent {
-  businessName: string;
-  tagline: string;
-  description: string;
-  ctaLabel: string;
-  ctaSecondaryLabel: string;
+  readonly businessName: string;
+  readonly tagline: string;
+  readonly description: string;
+  readonly ctaLabel: string;
+  readonly ctaSecondaryLabel: string;
 }
 
 @Component({
