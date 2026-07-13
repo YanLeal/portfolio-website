@@ -19,7 +19,7 @@
       <p class="about-subtitle">Conocé nuestra historia</p>
 
       <p class="about-text">
-        En <strong>{{ siteName }}</strong> nos apasiona realzar tu belleza natural.
+        En <strong>{{ siteName() }}</strong> nos apasiona realzar tu belleza natural.
         Con más de 10 años en el rubro, nuestro equipo de profesionales está dedicado
         a brindarte la mejor experiencia en cuidado personal.
       </p>
@@ -30,7 +30,7 @@
 
       <!-- ─── Stats ────────────────────────────────────── -->
       <div class="about-stats">
-        @for (stat of stats; track stat.label) {
+        @for (stat of stats(); track stat.label) {
           <div class="stat-card">
             <span class="stat-value">{{ stat.value }}</span>
             <span class="stat-label">{{ stat.label }}</span>
@@ -40,7 +40,7 @@
 
       <!-- ─── CTA ──────────────────────────────────────── -->
       <app-cta-button
-        [label]="ctaReservar"
+        [label]="ctaReservar()"
         iconAfter="arrow-right"
         (clicked)="onCtaClick()"
       />

@@ -1,4 +1,7 @@
 <section class="section-padding">
+  @if (hasError()) {
+    <p class="section-error">No pudimos cargar la promoción del mes. Actualizá la página o consultanos por WhatsApp.</p>
+  } @else {
   <div class="grid grid-cols-1 md:grid-cols-2 md:min-h-[500px] lg:min-h-[560px] max-w-[1200px] mx-auto">
     <!-- Imagen -->
     <div class="promo-media aspect-[3/4] md:aspect-auto">
@@ -56,4 +59,5 @@
       }
     </div>
   </div>
+  }
 </section>

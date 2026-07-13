@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CtaButton } from '../../shared/components/cta-button/cta-button';
-import { CTA_RESERVAR, SITE_NAME } from '../../core/data/content';
+import { ConfigService } from '../../core/services/config.service';
 
 @Component({
   selector: 'app-about',
@@ -11,16 +11,14 @@ import { CTA_RESERVAR, SITE_NAME } from '../../core/data/content';
   styleUrl: './about.css',
 })
 export class AboutComponent {
-  readonly siteName = SITE_NAME;
-  readonly ctaReservar = CTA_RESERVAR;
+  private readonly configService = inject(ConfigService);
+
+  readonly siteName = computed(() => this.configService.config()?.site.name ?? '');
+  readonly ctaReservar = computed(() => this.configService.config()?.shared.ctaReservar ?? '');
+
+  readonly stats = computed(() => this.configService.config()?.sections.about.stats ?? []);
 
   onCtaClick(): void {
     document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   }
-
-  readonly stats = [
-    { value: '10+', label: 'Años de experiencia' },
-    { value: '5K+', label: 'Clientas satisfechas' },
-    { value: '15+', label: 'Premios recibidos' },
-  ];
 }

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { WHATSAPP_NUMBER } from '../../../core/data/content';
+import { Component, computed, inject, input } from '@angular/core';
+import { ConfigService } from '../../../core/services/config.service';
 
 export type WaVariant = 'hero' | 'footer' | 'services' | 'floating';
 
@@ -8,21 +8,21 @@ export type WaVariant = 'hero' | 'footer' | 'services' | 'floating';
   standalone: true,
   template: `
     <a
-      [href]="waLink"
+      [href]="waLink()"
       target="_blank"
       rel="noopener noreferrer"
       class="wa-link"
-      [class.wa-hero]="variant === 'hero'"
-      [class.wa-footer]="variant === 'footer'"
-      [class.wa-services]="variant === 'services'"
-      [class.wa-floating]="variant === 'floating'"
-      [attr.aria-label]="ariaLabel || label || 'Contactanos por WhatsApp'"
+      [class.wa-hero]="variant() === 'hero'"
+      [class.wa-footer]="variant() === 'footer'"
+      [class.wa-services]="variant() === 'services'"
+      [class.wa-floating]="variant() === 'floating'"
+      [attr.aria-label]="ariaLabel() || label() || 'Contactanos por WhatsApp'"
     >
       <svg class="wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
         <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
       </svg>
-      @if (showLabel) {
-        <span class="wa-label">{{ label }}</span>
+      @if (showLabel()) {
+        <span class="wa-label">{{ label() }}</span>
       }
     </a>
   `,
@@ -76,7 +76,7 @@ export type WaVariant = 'hero' | 'footer' | 'services' | 'floating';
       color: #fff;
       background: #25d366;
       border: none;
-      border-radius: var(--radius-sharp);
+      border-radius: var(--radius-xs);
       letter-spacing: 0.02em;
     }
 
@@ -134,7 +134,7 @@ export type WaVariant = 'hero' | 'footer' | 'services' | 'floating';
       color: #fff;
       background: #25d366;
       border: none;
-      border-radius: var(--radius-sharp);
+      border-radius: var(--radius-xs);
       justify-content: center;
     }
 
@@ -192,17 +192,18 @@ export type WaVariant = 'hero' | 'footer' | 'services' | 'floating';
   `],
 })
 export class WhatsappButtonComponent {
-  readonly waLink = `https://wa.me/${WHATSAPP_NUMBER}`;
+  private readonly configService = inject(ConfigService);
+  readonly waLink = computed(() => `https://wa.me/${this.configService.config()?.contact.whatsapp ?? '5214423016543'}`);
 
   /** Hero, footer, or services styling variant */
-  @Input() variant: WaVariant = 'services';
+  readonly variant = input<WaVariant>('services');
 
   /** Whether to show the text label next to the icon */
-  @Input() showLabel = true;
+  readonly showLabel = input(true);
 
   /** Custom label text; defaults to 'WhatsApp' */
-  @Input() label = 'WhatsApp';
+  readonly label = input('WhatsApp');
 
   /** Override the auto-generated aria-label */
-  @Input() ariaLabel?: string;
+  readonly ariaLabel = input<string>();
 }

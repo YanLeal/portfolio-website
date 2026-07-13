@@ -79,7 +79,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: var(--container-content);
+  max-width: var(--layout-content-max);
   margin-inline: auto;
   padding: 4rem 0.75rem 5rem;
   text-align: center;
@@ -183,7 +183,7 @@
   color: var(--color-neutral-900);
   background-color: color-mix(in srgb, var(--color-accent-light) 85%, white);
   border: none;
-  border-radius: var(--radius-sharp);
+  border-radius: var(--radius-xs);
   width: 100%;
 
   @media (width >= 30rem) {
@@ -207,7 +207,7 @@
   color: var(--color-surface);
   background-color: transparent;
   border: 1.5px solid color-mix(in srgb, var(--color-surface) 40%, transparent);
-  border-radius: var(--radius-sharp);
+  border-radius: var(--radius-xs);
   font-weight: var(--font-weight-medium);
   width: 100%;
 

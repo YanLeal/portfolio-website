@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { WHATSAPP_NUMBER, SITE_NAME } from '../data/content';
+import { Injectable, inject } from '@angular/core';
+import { ConfigService } from './config.service';
 
 export interface WaMessageParams {
   name: string;
@@ -11,10 +11,20 @@ export interface WaMessageParams {
 
 @Injectable({ providedIn: 'root' })
 export class WhatsappMessageService {
+  private readonly configService = inject(ConfigService);
+
+  private get siteName(): string {
+    return this.configService.config()?.site.name ?? 'Belleza & Estilo';
+  }
+
+  private get whatsapp(): string {
+    return this.configService.config()?.contact.whatsapp ?? '5214423016543';
+  }
+
   /** Construye el texto del mensaje a partir de los datos del turno */
   buildText(params: WaMessageParams): string {
     const lines: string[] = [
-      '¡Hola! Quiero reservar un turno en ' + SITE_NAME + '.',
+      '¡Hola! Quiero reservar un turno en ' + this.siteName + '.',
       '',
       `Nombre: ${params.name}`,
       `Servicio: ${params.service}`,
@@ -43,6 +53,6 @@ export class WhatsappMessageService {
   buildUrl(params: WaMessageParams): string {
     const text = this.buildText(params);
     const encoded = encodeURIComponent(text);
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`;
+    return `https://wa.me/${this.whatsapp}?text=${encoded}`;
   }
 }

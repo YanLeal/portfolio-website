@@ -75,7 +75,7 @@ section {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-2xs);
   font-weight: var(--font-weight-semibold);
   background: var(--color-neutral-200);
   color: var(--color-neutral-500);
@@ -95,7 +95,7 @@ section {
 }
 
 .progress-label {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-2xs);
   font-weight: var(--font-weight-medium);
   color: var(--color-neutral-400);
   text-transform: uppercase;
@@ -181,8 +181,8 @@ section {
 }
 
 .service-option:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  outline: var(--focus-ring-outline);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .service-option:active:not(.is-selected) {
@@ -205,7 +205,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
 }
 
 .option-duration {
@@ -252,7 +252,7 @@ section {
 .time-slot {
   padding: 0.5rem 1rem;
   font-family: var(--font-sans);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--color-neutral-700);
   background: var(--color-surface);
@@ -273,8 +273,8 @@ section {
 }
 
 .time-slot:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  outline: var(--focus-ring-outline);
+  outline-offset: var(--focus-ring-offset);
 }
 
 .time-slot:active:not(.is-selected) {
@@ -295,7 +295,7 @@ section {
 
 .time-band-label {
   display: block;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-2xs);
   font-weight: var(--font-weight-semibold);
   color: var(--color-neutral-400);
   text-transform: uppercase;
@@ -306,7 +306,7 @@ section {
 /* ─── Closed day message ───────────────────────────────── */
 
 .closed-day {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   color: var(--color-neutral-500);
   padding: var(--space-4);
   background: color-mix(in srgb, var(--color-neutral-100) 60%, transparent);
@@ -326,7 +326,7 @@ section {
 /* ─── Step-level error message ─────────────────────────── */
 
 .step-error {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   color: #dc3545;
   text-align: center;
@@ -348,7 +348,7 @@ section {
 /* ─── Popup blocked fallback ───────────────────────────── */
 
 .popup-blocked {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-2xs);
   color: var(--color-neutral-500);
   background: color-mix(in srgb, var(--color-neutral-100) 60%, transparent);
   padding: var(--space-3) var(--space-4);
@@ -373,7 +373,7 @@ section {
 }
 
 .form-group label {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   color: var(--color-neutral-700);
 }
@@ -385,7 +385,7 @@ section {
 .optional {
   font-weight: 400;
   color: var(--color-neutral-400);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
 }
 
 .form-group :where(input, textarea) {
@@ -395,7 +395,7 @@ section {
   color: var(--color-neutral-900);
   background: var(--color-surface);
   border: 1px solid var(--color-neutral-300);
-  border-radius: var(--radius-input);
+  border-radius: var(--radius-card);
   outline: none;
   min-height: 2.75rem;
   transition:
@@ -432,7 +432,7 @@ section {
 }
 
 .form-hint {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-2xs);
   color: var(--color-neutral-400);
   line-height: 1.4;
   margin-top: 0.125rem;
@@ -473,7 +473,7 @@ section {
   display: flex;
   align-items: center;
   gap: var(--space-1\.5);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-2xs);
   font-weight: var(--font-weight-medium);
   color: #dc3545;
   line-height: 1.3;
@@ -520,7 +520,7 @@ section {
   color: var(--color-neutral-400);
   font-weight: var(--font-weight-medium);
   flex-shrink: 0;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
 
   @media (width >= 23.4375rem) {
     font-size: var(--font-size-body);
@@ -694,7 +694,7 @@ section {
 }
 
 .success-contact {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   color: var(--color-neutral-500);
   max-width: 18rem;
 }
@@ -715,7 +715,7 @@ section {
 }
 
 .success-phone {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-2xs);
   color: var(--color-neutral-400);
   margin: 0;
   animation: fadeInUp 0.4s ease both;
@@ -759,7 +759,7 @@ section {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   color: var(--color-neutral-700);
 }
 
@@ -832,14 +832,14 @@ section {
 }
 
 .sidebar-card--cta p {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   color: var(--color-neutral-600);
   margin: 0 0 0.75rem;
 }
 
 .whatsapp-cta {
   padding: 0.625rem 1.25rem;
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   color: var(--color-surface);
   background: #25d366;
   border-radius: var(--radius-full);

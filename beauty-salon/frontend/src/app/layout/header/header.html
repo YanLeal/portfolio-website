@@ -1,6 +1,6 @@
 <header>
   <div class="header-inner">
-    <a routerLink="/" class="logo" aria-label="Ir al inicio">{{ siteName }}</a>
+    <a routerLink="/" class="logo" aria-label="Ir al inicio">{{ siteName() }}</a>
 
     <app-nav
       [isOpen]="isMenuOpen()"

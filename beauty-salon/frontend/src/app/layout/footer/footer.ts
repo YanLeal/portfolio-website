@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { WhatsappButtonComponent } from '../../shared/components/whatsapp-btn/whatsapp-btn';
-import { SITE_NAME, PHONE_DISPLAY, EMAIL, ADDRESS } from '../../core/data/content';
+import { ConfigService } from '../../core/services/config.service';
 
 @Component({
   selector: 'app-footer',
@@ -24,26 +24,22 @@ export class FooterComponent {
     }
   }
 
+  private readonly configService = inject(ConfigService);
+
   readonly year = new Date().getFullYear();
-  readonly siteName = SITE_NAME;
+  readonly siteName = computed(() => this.configService.config()?.site.name ?? '');
 
-  readonly schedule = [
-    { label: 'Lun – Vie', hours: '9:00 – 20:00' },
-    { label: 'Sábado', hours: '9:00 – 18:00' },
-    { label: 'Domingo', hours: 'Cerrado' },
-  ];
+  readonly schedule = computed(() => this.configService.config()?.contact.schedule ?? []);
 
-  readonly contact = [
-    { label: 'Dirección', value: ADDRESS },
-    { label: 'Teléfono', value: PHONE_DISPLAY },
-    { label: 'Email', value: EMAIL },
-  ];
+  readonly contact = computed(() => {
+    const c = this.configService.config()?.contact;
+    if (!c) return [];
+    return [
+      { label: 'Dirección', value: c.address },
+      { label: 'Teléfono', value: c.phone.display },
+      { label: 'Email', value: c.email },
+    ];
+  });
 
-  readonly quickLinks = [
-    { label: 'Servicios', fragment: 'servicios' },
-    { label: 'Precios', fragment: 'precios' },
-    { label: 'Galería', fragment: 'galeria' },
-    { label: 'Equipo', fragment: 'equipo' },
-    { label: 'Contacto', fragment: 'contacto' },
-  ];
+  readonly quickLinks = computed(() => this.configService.config()?.navigation.footerLinks ?? []);
 }

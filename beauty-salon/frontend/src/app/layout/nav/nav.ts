@@ -1,6 +1,6 @@
-import { Component, ElementRef, inject, input, output } from '@angular/core';
+import { Component, computed, ElementRef, inject, input, output } from '@angular/core';
 import { Router } from '@angular/router';
-import { CTA_RESERVAR } from '../../core/data/content';
+import { ConfigService } from '../../core/services/config.service';
 
 export interface NavItem {
   label: string;
@@ -18,17 +18,14 @@ export class NavComponent {
   private readonly router = inject(Router);
   private readonly el = inject(ElementRef);
 
+  private readonly configService = inject(ConfigService);
+
   readonly isOpen = input(false);
   readonly isScrolled = input(false);
   readonly navigated = output<void>();
-  readonly ctaReservar = CTA_RESERVAR;
+  readonly ctaReservar = computed(() => this.configService.config()?.shared.ctaReservar ?? '');
 
-  readonly items: NavItem[] = [
-    { label: 'Servicios', fragment: 'servicios' },
-    { label: 'Precios', fragment: 'precios' },
-    { label: 'Galería', fragment: 'galeria' },
-    { label: 'Contacto', fragment: 'contacto' },
-  ];
+  readonly items = computed(() => this.configService.config()?.navigation.nav ?? []);
 
   scrollTo(event: Event, fragment: string): void {
     event.preventDefault();

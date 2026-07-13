@@ -1,7 +1,7 @@
-import { Component, DestroyRef, HostBinding, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, HostBinding, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavComponent } from '../nav/nav';
-import { SITE_NAME } from '../../core/data/content';
+import { ConfigService } from '../../core/services/config.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +11,8 @@ import { SITE_NAME } from '../../core/data/content';
   styleUrl: './header.css',
 })
 export class HeaderComponent {
-  readonly siteName = SITE_NAME;
+  private readonly configService = inject(ConfigService);
+  readonly siteName = computed(() => this.configService.config()?.site.name ?? '');
   readonly isMenuOpen = signal(false);
   readonly isScrolled = signal(false);
 

@@ -6,7 +6,7 @@
 }
 
 header {
-  max-width: var(--container-content);
+  max-width: var(--layout-content-max);
   margin-inline: auto;
 }
 

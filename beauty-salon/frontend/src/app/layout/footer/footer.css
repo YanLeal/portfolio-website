@@ -7,7 +7,7 @@
 footer {
   background-color: var(--color-neutral-900);
   color: color-mix(in srgb, var(--color-surface) 70%, transparent);
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   line-height: var(--leading-normal);
 }
 
@@ -17,7 +17,7 @@ footer {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-6);
-  max-width: var(--container-content);
+  max-width: var(--layout-content-max);
   margin-inline: auto;
   padding: var(--space-12) var(--space-4) var(--space-8);
 
@@ -58,7 +58,7 @@ footer {
 .footer-desc {
   margin: 0;
   max-width: 22rem;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: color-mix(in srgb, var(--color-surface) 50%, transparent);
 }
 
@@ -137,7 +137,7 @@ footer {
 .footer-link {
   color: color-mix(in srgb, var(--color-surface) 55%, transparent);
   text-decoration: none;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   transition:
     color 250ms ease,
     padding-left 250ms ease;
@@ -164,7 +164,7 @@ footer {
   display: flex;
   justify-content: space-between;
   gap: var(--space-4);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
 }
 
 .sched-label {
@@ -191,12 +191,12 @@ footer {
   display: flex;
   flex-direction: column;
   gap: var(--space-0\.5, 0.125rem);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
 }
 
 .contact-label {
   color: color-mix(in srgb, var(--color-surface) 40%, transparent);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-2xs);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -227,8 +227,8 @@ footer {
 }
 
 .footer-bottom p {
-  max-width: var(--container-content);
+  max-width: var(--layout-content-max);
   margin: 0 auto;
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-2xs);
   color: color-mix(in srgb, var(--color-surface) 30%, transparent);
 }

@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
@@ -17,6 +17,8 @@ export class TestimonialService {
   private readonly http = inject(HttpClient);
   private readonly jsonUrl = 'assets/data/testimonial.json';
 
+  readonly error = signal(false);
+
   private readonly allTestimonials$ = this.http
     .get<RawTestimonial[]>(this.jsonUrl)
     .pipe(
@@ -26,6 +28,7 @@ export class TestimonialService {
       shareReplay(1),
       catchError((err) => {
         console.error('[TestimonialService] Error al cargar testimonios:', err);
+        this.error.set(true);
         return of([]);
       }),
     );

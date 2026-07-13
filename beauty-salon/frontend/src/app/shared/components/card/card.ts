@@ -15,7 +15,7 @@ export class Card {
   /**
    * Entrance animation delay in ms.
    * 0 = no animation. >0 = card-entrance with stagger.
-   * Tip: pasá 80, 160, 240, … desde el padre para stagger en grid.
+   * Tip: pasá 100, 200, 300, … desde el padre, o usá .stagger en el grid.
    */
   readonly entranceDelay = input(0);
 

@@ -8,7 +8,7 @@
     [class.card-lift]="variant() === 'lift'"
     [class.card-base]="variant() === 'base'"
     [class.card-entrance]="entranceDelay() > 0"
-    [style.--card-delay]="entranceDelay() > 0 ? entranceDelay() + 'ms' : null">
+    [style.--anim-delay]="entranceDelay() > 0 ? entranceDelay() + 'ms' : null">
 
     <!-- ─── Media: imagen, overlay, badges ────────────────── -->
     <ng-content select="[cardMedia]" />

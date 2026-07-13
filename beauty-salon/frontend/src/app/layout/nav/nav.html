@@ -4,7 +4,7 @@
   aria-label="Navegación principal"
 >
   <ul>
-    @for (item of items; track item.fragment) {
+    @for (item of items(); track item.fragment) {
       <li>
         <a
           class="nav-link"
@@ -23,7 +23,7 @@
     [href]="'#' + 'contacto'"
     (click)="scrollTo($event, 'contacto')"
   >
-    {{ ctaReservar }}
+    {{ ctaReservar() }}
   </a>
 </nav>
 
@@ -39,7 +39,7 @@
 
   <div class="panel" (click)="$event.stopPropagation()" (keydown)="onPanelKeydown($event)" role="dialog" aria-label="Menú de navegación">
     <ul>
-      @for (item of items; track item.fragment) {
+      @for (item of items(); track item.fragment) {
         <li>
           <a
             class="mobile-link"
@@ -57,7 +57,7 @@
       [href]="'#' + 'contacto'"
       (click)="scrollTo($event, 'contacto')"
     >
-    {{ ctaReservar }}
+    {{ ctaReservar() }}
   </a>
   </div>
 </div>

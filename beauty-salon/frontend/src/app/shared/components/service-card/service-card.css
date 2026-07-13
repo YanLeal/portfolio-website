@@ -80,7 +80,7 @@
 }
 
 .card-desc {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   line-height: var(--leading-normal);
   color: var(--color-neutral-500);
   margin: 0;
@@ -103,7 +103,7 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-1\.5);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   color: var(--color-neutral-600);
 }

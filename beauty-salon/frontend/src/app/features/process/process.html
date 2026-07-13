@@ -1,10 +1,13 @@
 <section class="section-padding scroll-mt-20">
   <app-section-header
-    title="Nuestro proceso"
-    subtitle="Tu experiencia en 4 pasos"
+    [title]="processTitle()"
+    [subtitle]="processSubtitle()"
   />
 
-  <div class="space-y-12 md:space-y-20">
+  @if (hasError()) {
+    <p class="section-error">No pudimos cargar el proceso. Actualizá la página o escribinos por WhatsApp.</p>
+  } @else {
+    <div class="space-y-12 md:space-y-20">
     @for (step of steps(); track step.number) {
       <div
         class="process-row grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center max-w-[1200px] mx-auto px-4 md:px-6 lg:px-8 group"
@@ -78,4 +81,5 @@
       </div>
     }
   </div>
+  }
 </section>

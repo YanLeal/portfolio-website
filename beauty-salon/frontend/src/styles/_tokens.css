@@ -1,0 +1,286 @@
+/* ═════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — valores atómicos del sistema de diseño
+   ═════════════════════════════════════════════════════════════════
+    Cada variable en @theme genera utilidades Tailwind (bg-primary,
+    text-neutral-800, font-heading, shadow-md, etc.) y también
+   está disponible como var(--color-primary), var(--font-heading),
+   etc. en cualquier CSS.
+
+   Responsabilidad de este archivo:
+   SOLO valores atómicos: color, tipografía, spacing, radios, sombras.
+   NO incluye:
+     - Elevación semántica (rest/hover/floating) → _elevation.css
+     - Animaciones, keyframes, easings           → _animation.css
+     - Botones, formularios                      → _buttons.css
+     - Utilities de layout                       → _utilities.css
+
+   Tailwind v4 no soporta @custom-media (procesa @import antes que
+   PostCSS plugins). En su lugar, usar @media estándar con los
+   valores de breakpoint que están abajo.
+   ═════════════════════════════════════════════════════════════════ */
+
+/* ── Breakpoints (referencia) ─────────────────────────────
+   Copiar/pegar — usar siempre el valor en rem, no el px:
+     phone        23.4375rem  =  375px   — small phones (iPhone SE)
+     phone-wide   30rem       =  480px   — large phones
+     tablet       40rem       =  640px   — small tablets portrait
+     tablet-wide  48rem       =  768px   — tablets landscape / small desktop
+     desktop      64rem       =  1024px  — desktop
+     desktop-wide 80rem       =  1280px  — wide desktop
+   ══════════════════════════════════════════════════════════ */
+
+/* ═════════════════════════════════════════════════════════════════
+   @theme
+   ═════════════════════════════════════════════════════════════════ */
+
+@theme {
+
+  /* ═════════════════════════════════════════════════════════════
+     COLORS
+     ═════════════════════════════════════════════════════════════ */
+
+  /* ── Palette ────────────────────────────────────────────── */
+  --color-primary: #b76e79;        /* rosa elegante — botones, links, acentos */
+  --color-primary-light: #d4a0a8;  /* hover suave, bordes de selección */
+  --color-primary-dark: #8b4d56;   /* hover de botón primary, active states */
+
+  --color-secondary: #6b2d3e;      /* borgoña profundo — títulos destacados */
+  --color-secondary-light: #8e4d5e;/* hover de secondary */
+
+  --color-accent: #d4af37;         /* dorado — precios, badges, estrellas */
+  --color-accent-light: #e8d48b;   /* hover de acento, divisores decorativos */
+
+  /* ── Semantic ───────────────────────────────────────────── */
+  --color-success: #7fb069;        /* verde salvia — estados de éxito */
+  --color-warning: #e8b84b;        /* amarillo — advertencias */
+  --color-error: #c44a5c;          /* rojo — errores, validación */
+
+  /* ── Neutral scale (warm) ───────────────────────────────── */
+  --color-neutral-50: #faf8f6;     /* fondo de surface-subtle */
+  --color-neutral-100: #f5f0ec;    /* fondo de secciones alternas */
+  --color-neutral-200: #ede6df;    /* bordes de cards, inputs */
+  --color-neutral-300: #d5cbc2;    /* bordes hover, separadores */
+  --color-neutral-400: #b8a99c;    /* texto secundario, placeholders */
+  --color-neutral-500: #9c8b7c;    /* meta, etiquetas */
+  --color-neutral-600: #7a6b5e;    /* texto terciario */
+  --color-neutral-700: #5c4f44;    /* texto de cuerpo secundario */
+  --color-neutral-800: #3d342c;    /* texto de cuerpo (default) */
+  --color-neutral-900: #241f1a;    /* texto de títulos, fondo dark */
+
+  /* ── Surfaces ───────────────────────────────────────────── */
+  --color-surface: #ffffff;                   /* fondo principal, cards */
+  --color-surface-subtle: #faf8f6;            /* fondo de secciones alternas */
+  --color-surface-contrast: #241f1a;          /* fondo dark (footer, overlay) */
+
+
+  /* ═════════════════════════════════════════════════════════════
+     TYPOGRAPHY
+     ═════════════════════════════════════════════════════════════ */
+
+  /* ── Families ──────────────────────────────────────────── */
+  --font-sans: 'Inter', sans-serif;             /* cuerpo, botones, navegación */
+  --font-heading: 'Playfair Display', serif;    /* títulos, headings decorativos */
+
+  /* ── Font-weight scale ─────────────────────────────────── */
+  --font-weight-light:     300;  /* hero subtitle */
+  --font-weight-normal:    400;  /* body text, mini-labels */
+  --font-weight-medium:    500;  /* nav links, form labels */
+  --font-weight-semibold:  600;  /* buttons, card titles, headings */
+  --font-weight-bold:      700;  /* hero title, logo */
+
+  /* ── Line-height scale (leading) ────────────────────────────
+        NOTA: usamos --leading-* en vez de --font-leading-* porque
+        Tailwind v4 requiere --leading-* como first-class key para
+        generar utilities leading-tight, leading-snug, etc.
+        Es la ÚNICA excepción al prefijo --font-* en tipografía.
+
+        Tip: leading-tight y leading-snug son para títulos.
+        leading-normal y leading-relaxed son para texto de cuerpo.  */
+  --leading-tight:   1.15;  /* headings */
+  --leading-snug:    1.3;   /* card titles */
+  --leading-normal:  1.6;   /* body text compact */
+  --leading-relaxed: 1.7;   /* body text readable (default) */
+
+  /* ── Font-size scale ────────────────────────────────────────
+       Escala tipográfica baseada en rem para accesibilidad.
+       body: 1rem es el default del navegador (16px).
+       Usar las variables, no hardcodear.  */
+  --font-size-2xs:  0.75rem;   /* 12px — labels, captions, footer-bottom */
+  --font-size-xs:  0.8125rem; /* 13px — nav, metadata, small print */
+  --font-size-sm:  0.875rem;  /* 14px — card desc, footer body, form text */
+  --font-size-body: 1rem;      /* 16px — paragraphs, body text (global default) */
+  --font-size-lg:   1.125rem;  /* 18px — card titles, h3 */
+  --font-size-xl:   1.25rem;   /* 20px — wizard titles, stat values */
+  --font-size-2xl:  1.5rem;    /* 24px — intermediate heading */
+  --font-size-3xl:  2rem;      /* 32px — section headers mobile */
+  --font-size-4xl:  2.5rem;    /* 40px — section headers desktop */
+
+
+  /* ═════════════════════════════════════════════════════════════
+     SPACING
+     ═════════════════════════════════════════════════════════════
+     --space-* es la escala semántica para márgenes, paddings, gaps.
+     --spacing-* (Tailwind nativo) permite p-18, m-20, gap-24, etc.
+     --layout-content-max es el ancho máximo de contenido.  */
+
+  /* ── Spacing / vertical rhythm ──────────────────────────── */
+  --space-1:     0.25rem;   /* 4px  — micro: icons, badges */
+  --space-1\.5:  0.375rem;  /* 6px  — tight inner gap, icon offsets */
+  --space-2:     0.5rem;    /* 8px  — tight: nav links, form gap */
+  --space-3:     0.75rem;   /* 12px — default stack: card content, sections */
+  --space-4:     1rem;      /* 16px — paragraph, default margin */
+  --space-5:     1.25rem;   /* 20px — card padding, sidebar spacing */
+  --space-6:     1.5rem;    /* 24px — component internal: grid gaps */
+  --space-8:     2rem;      /* 32px — distinct separation: sections */
+  --space-10:    2.5rem;    /* 40px — generous separation */
+  --space-12:    3rem;      /* 48px — component groups */
+  --space-16:    4rem;      /* 64px — section padding mobile */
+  --space-18:    4.5rem;    /* 72px — entre mobile y desktop padding */
+  --space-20:    5rem;      /* 80px — section padding desktop */
+  --space-24:    6rem;      /* 96px — large hero/feature padding */
+
+  /* ── Spacing extras (Tailwind utilities: p-18, gap-24, etc.) ─
+       Mantenemos --spacing-* para generar utilities Tailwind.
+       Los valores son idénticos a --space-*; la duplicación es
+       intencional para compatibilidad con clases HTML.  */
+  --spacing-18:  4.5rem;    /* 72px — utility p-18, m-18 */
+  --spacing-20:  5rem;      /* utility p-20, coincide con --space-20 */
+  --spacing-24:  6rem;      /* utility p-24, coincide con --space-24 */
+
+  /* ── Layout widths ─────────────────────────────────────── */
+  --layout-content-max: 1200px;  /* ancho máximo de secciones centradas */
+
+
+  /* ═════════════════════════════════════════════════════════════
+     BORDER RADIUS
+     ═════════════════════════════════════════════════════════════ */
+  --radius-xs: 2px;             /* editorial: hero CTA, botones secundarios */
+  --radius-sm: 4px;             /* botones, inputs, form fields */
+  --radius-card: 8px;           /* cards, panels, containers, stat cards, form inputs */
+  --radius-lg: 12px;            /* featured images, card hover, hero media */
+  --radius-xl: 16px;            /* large containers, modals */
+  --radius-2xl: 24px;           /* enveloping surfaces, dialogs */
+  --radius-full: 9999px;        /* pills, tags, avatars, elementos circulares */
+
+
+  /* ═════════════════════════════════════════════════════════════
+     SHADOWS
+     ═════════════════════════════════════════════════════════════
+     Base espresso (#241f1a) en lugar de negro puro (#000).
+     Matching visual más cálido y consistente con la paleta.  */
+  --shadow-sm:   0 1px   3px    rgba(36, 31, 26, 0.06);  /* elev-1: cards, header */
+  --shadow-md:  0 4px   12px   rgba(36, 31, 26, 0.08);  /* elev-2: cards default */
+  --shadow-lg:   0 8px   24px   rgba(36, 31, 26, 0.10);  /* elev-3: hover, dropdowns */
+  --shadow-xl:   0 16px  40px   rgba(36, 31, 26, 0.12);  /* elev-4: modals, panel */
+  --shadow-2xl:  0 24px  56px   rgba(36, 31, 26, 0.14);  /* elev-5: toasts, overlays */
+
+
+  /* ═════════════════════════════════════════════════════════════
+     Z-INDEX
+     ═════════════════════════════════════════════════════════════
+     Cada --z-index-* genera una utility class Tailwind z-*.
+     Usar las variables semánticas, NO valores hardcodeados.
+     Separación amplia entre niveles para permitir stacking
+     intermedio sin colisiones (ej: backdrop en --z-index-modal - 1).  */
+  --z-index-decorative:  -1;    /* fondos decorativos (about decorative bg) */
+  --z-index-base:         0;    /* contenido normal, default */
+  --z-index-content:      1;    /* capas de contenido superpuestas */
+  --z-index-nav-overlay:  55;   /* mobile nav overlay (debajo del header) */
+  --z-index-header:       60;   /* header bar, hamburger button */
+  --z-index-dropdown:     100;  /* dropdowns, popovers */
+  --z-index-sticky:       200;  /* sticky elements */
+  --z-index-modal:        300;  /* modals, dialogs */
+  --z-index-toast:        500;  /* toasts, notifications */
+  --z-index-skip-link:    1000; /* skip-to-content (accesibilidad) */
+
+
+  /* ═════════════════════════════════════════════════════════════
+     EASING CURVES
+     ═════════════════════════════════════════════════════════════
+     Curvas de aceleración para transiciones y animaciones.
+     Los valores coinciden con --anim-easing-* en animation.css.
+     --ease-* genera utilities Tailwind: ease-in, ease-out, etc.
+     
+     Uso semántico:
+       ease-in     → entradas: fadeOut, slideOut (rápido al final)
+       ease-out    → salidas: fadeIn, slideIn (default, suave al final)
+       ease-spring → elástico: pop, scale, botones (overshoot sutil)  */
+  --ease-in:     cubic-bezier(0.4, 0, 0.68, 0.06);   /* aceleración al final */
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);      /* desaceleración al final */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);  /* overshoot elástico */
+
+  /* ═════════════════════════════════════════════════════════════
+     DURATION SCALE
+     ═════════════════════════════════════════════════════════════
+     --duration-* genera utilities Tailwind: duration-instant, duration-fast, etc.
+     Los valores coinciden con --anim-duration-* en animation.css.
+     Usar estas variables en lugar de valores hardcodeados (200ms, 400ms, etc.).  */
+  --duration-instant:  100ms;  /* feedback táctil: active, toggle, micro-interacción */
+  --duration-fast:     200ms;  /* hover, focus, color transitions, opacidad */
+  --duration-subtle:   300ms;  /* underlines, hover effects con presencia */
+  --duration-base:     400ms;  /* default — card lift, state changes */
+  --duration-zoom:     600ms;  /* image zoom, transiciones expansivas */
+  --duration-slow:     700ms;  /* section entrances, list staggers */
+  --duration-entrance: 900ms;  /* hero, primeras impresiones */
+
+  /* ── Default (Tailwind key) ────────────────────────── */
+  --default-transition-duration: 250ms;  /* duración por defecto para transiciones */
+}
+
+/* ═════════════════════════════════════════════════════════════════
+   :root — CSS variables puras (NO generan utilidades Tailwind)
+   ═════════════════════════════════════════════════════════════════
+   Estos valores se usan exclusivamente como var(--focus-ring-color),
+   var(--opacity-50), etc. en CSS de componentes.
+   No tienen utilidades Tailwind asociadas.  */
+
+:root {
+
+  /* ═════════════════════════════════════════════════════════════
+     FOCUS RING
+     ═════════════════════════════════════════════════════════════
+     Tokens compartidos para el ring de foco accesible.
+     La mayoría de los componentes usan outline con estos valores.
+     NO hardcodear outline-width/color/offset — usar estas vars.
+     
+     Uso típico:
+       outline: var(--focus-ring-outline);
+       outline-offset: var(--focus-ring-offset);
+       border-radius: var(--focus-ring-radius);  */
+  --focus-ring-width:  2px;                        /* ancho del outline estándar */
+  --focus-ring-offset: 2px;                        /* separación del elemento */
+  --focus-ring-color:  var(--color-primary);       /* color del ring (rosa) */
+  --focus-ring-radius: var(--radius-card);        /* border-radius del ring */
+  --focus-ring-outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    /* shorthand: outline: var(--focus-ring-outline); */
+
+  /* ── Modifiers ───────────────────────────────────── */
+  --focus-ring-width-thick: 3px;                   /* outline más notorio (botones) */
+  --focus-ring-offset-thick: 3px;                  /* offset mayor */
+  --focus-ring-color-inverse: var(--color-surface);/* ring blanco sobre fondos dark */
+  --focus-ring-outline-thick: var(--focus-ring-width-thick) solid var(--focus-ring-color);
+  --focus-ring-outline-inverse: var(--focus-ring-width) solid var(--focus-ring-color-inverse);
+
+
+  /* ═════════════════════════════════════════════════════════════
+     OPACITY SCALE
+     ═════════════════════════════════════════════════════════════
+     Escala semántica de opacidad para backgrounds, overlays,
+     disabled states, decorative elements, dividers.
+     NO usar valores hardcodeados (opacity: 0.35, etc.).  */
+  --opacity-0:    0;      /* hidden, invisible state */
+  --opacity-10:   0.1;    /* sutileza extrema */
+  --opacity-20:   0.2;    /* divisores, separadores */
+  --opacity-25:   0.25;   /* decorative elements subtle */
+  --opacity-30:   0.3;    /* backgrounds overlays suaves */
+  --opacity-35:   0.35;   /* testimonials, decorative icons */
+  --opacity-40:   0.4;    /* backgrounds hover overlay */
+  --opacity-50:   0.5;    /* disabled states, image overlays */
+  --opacity-55:   0.55;   /* overlay gradient punto medio */
+  --opacity-60:   0.6;    /* secondary text, service-card overlay */
+  --opacity-75:   0.75;   /* hover estados, elementos decorativos */
+  --opacity-80:   0.8;    /* footer links, meta información */
+  --opacity-85:   0.85;   /* pulse animation peak */
+  --opacity-90:   0.9;    /* casi opaco */
+  --opacity-100:  1;      /* fully visible */
+}

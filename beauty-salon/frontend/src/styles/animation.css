@@ -51,7 +51,7 @@
    */
   --elevation-hover-strong:  var(--shadow-xl);
   --elevation-hover-base:    var(--shadow-lg);
-  --elevation-hover-subtle:  var(--shadow-card);
+  --elevation-hover-subtle:  var(--shadow-md);
 
   /*
    * ── Interaction (buttons, clickables) ──────────────────────

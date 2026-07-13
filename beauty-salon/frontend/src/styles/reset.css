@@ -1,0 +1,130 @@
+/* ═════════════════════════════════════════════════════════════════
+   RESET — estilos base que normalizan inconsistencias del browser
+   ═════════════════════════════════════════════════════════════════
+
+   Responsabilidad de este archivo:
+   SOLO reset de elementos HTML. Sin diseño visual, sin componentes,
+   sin utilities, sin animaciones.
+
+   ¿QUÉ es un reset?
+   - Elimina diferencias entre navegadores (margin, padding, list-style)
+   - Establece valores PREDECIBLES, no valores BONITOS
+   - Selectores de elemento únicamente (html, body, h1, a, ul, etc.)
+   - NO usa clases, IDs, atributos, ni selectores compuestos
+
+   ¿QUÉ NO es un reset?
+   - Transiciones en elementos interactivos  → es interacción, no reset
+   - Underlines animados                    → es diseño, no reset
+   - Estados disabled/active                → es interacción, no reset
+   - Colores, fuentes, backgrounds          → son decisiones de diseño
+   - ::selection con color de marca         → es diseño, no reset técnico
+   ═════════════════════════════════════════════════════════════════ */
+
+@layer base {
+
+  /* ═════════════════════════════════════════════════════════════
+     HTML
+     ═════════════════════════════════════════════════════════════
+     Resetea el scroll behavior a smooth para toda la página.
+     En reset porque afecta el comportamiento base del documento,
+     no el diseño visual.  */
+  html {
+    scroll-behavior: smooth;
+  }
+
+
+  /* ═════════════════════════════════════════════════════════════
+     BODY
+     ═════════════════════════════════════════════════════════════
+     Elimina el margin por defecto del browser (8px).
+     La tipografía base (font-family, font-size, line-height, color)
+     y el background-color son en realidad decisiones de diseño,
+     pero se ponen acá porque body es el entry point del branding
+     visual y no tiene sentido aplicarlas en otro lado.  */
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    font-size: var(--font-size-body);
+    line-height: var(--leading-relaxed);
+    color: var(--color-neutral-800);
+    background-color: var(--color-surface);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+
+  /* ═════════════════════════════════════════════════════════════
+     HEADINGS (h1–h6)
+     ═════════════════════════════════════════════════════════════
+     Resetea margin (browsers ponen ~0.67em–2em según el nivel).
+     Agrega font-family, color, line-height, font-weight porque
+     son valores base compartidos por TODOS los headings.
+     Variantes (font-size específico de h1, h2, etc.) se definen
+     en cada componente o utility que los necesita.  */
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-family: var(--font-heading);
+    color: var(--color-neutral-900);
+    line-height: var(--leading-tight);
+    font-weight: var(--font-weight-semibold);
+  }
+
+
+  /* ═════════════════════════════════════════════════════════════
+     LISTS (ul, ol)
+     ═════════════════════════════════════════════════════════════
+     Elimina margin, padding, y list-style por defecto.
+     Los componentes que necesiten listas con bullets (como el
+     footer) agregan explícitamente su propio list-style.  */
+  ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+
+  /* ═════════════════════════════════════════════════════════════
+     LINKS (a)
+     ═════════════════════════════════════════════════════════════
+     Elimina el subrayado por defecto y el color azul/visitado.
+     El color, hover, y subrayado decorativo se definen por
+     componente o utility.  */
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+
+  /* ═════════════════════════════════════════════════════════════
+     SELECTION
+     ═════════════════════════════════════════════════════════════
+     Color de selección con el primary de la marca a 20%.
+     Nota: esto es una decisión de diseño, no un reset técnico.
+     Se incluye acá porque ::selection es un pseudo-elemento
+     global que no pertenece a ningún componente en particular.
+     Si en el futuro se necesita un color distinto por contexto,
+     migrar a tokens.  */
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    color: var(--color-neutral-900);
+  }
+
+
+  /* ═════════════════════════════════════════════════════════════
+     FOCUS-VISIBLE
+     ═════════════════════════════════════════════════════════════
+     Outline de foco accesible para navegación por teclado.
+     :focus:not(:focus-visible) elimina el outline del browser
+     cuando el foco llega por click (no por teclado).
+     Esto es un reset de accesibilidad, no de diseño.  */
+  :focus-visible {
+    outline: var(--focus-ring-outline);
+    outline-offset: var(--focus-ring-offset);
+    border-radius: var(--focus-ring-radius);
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+}

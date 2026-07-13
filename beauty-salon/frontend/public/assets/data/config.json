@@ -1,0 +1,81 @@
+{
+  "site": {
+    "name": "Belleza & Estilo",
+    "url": "https://bellezaestilo.com/",
+    "description": "Tu salón de belleza de confianza. Profesionales dedicados a realzar tu belleza natural."
+  },
+  "navigation": {
+    "nav": [
+      { "label": "Servicios", "fragment": "servicios" },
+      { "label": "Precios", "fragment": "precios" },
+      { "label": "Galería", "fragment": "galeria" },
+      { "label": "Contacto", "fragment": "contacto" }
+    ],
+    "footerLinks": [
+      { "label": "Servicios", "fragment": "servicios" },
+      { "label": "Precios", "fragment": "precios" },
+      { "label": "Galería", "fragment": "galeria" },
+      { "label": "Equipo", "fragment": "equipo" },
+      { "label": "Contacto", "fragment": "contacto" }
+    ]
+  },
+  "contact": {
+    "phone": {
+      "display": "+521 442 301 6543",
+      "tel": "+5214423016543"
+    },
+    "whatsapp": "5214423016543",
+    "email": "info@bellezaestilo.com",
+    "address": "Av. Siempre Viva 123, Córdoba",
+    "social": {
+      "instagram": "https://instagram.com/bellezaestilo",
+      "facebook": "https://facebook.com/bellezaestilo"
+    },
+    "schedule": [
+      { "label": "Lun – Vie", "hours": "9:00 – 20:00" },
+      { "label": "Sábado", "hours": "9:00 – 18:00" },
+      { "label": "Domingo", "hours": "Cerrado" }
+    ]
+  },
+  "sections": {
+    "hero": {
+      "tagline": "Tu momento de brillar empieza acá",
+      "description": "Cuidado personal profesional en un ambiente pensado para vos. Cortes, color, manicuría, maquillaje y más.",
+      "ctaLabel": "Reservá tu turno",
+      "ctaSecondaryLabel": "Ver servicios"
+    },
+    "about": {
+      "title": "Sobre nosotros",
+      "subtitle": "Conocé nuestra historia",
+      "paragraphs": [
+        "En Belleza & Estilo nos apasiona realzar tu belleza natural. Con más de 10 años en el rubro, nuestro equipo de profesionales está dedicado a brindarte la mejor experiencia en cuidado personal.",
+        "Cada visita es única: desde la atención personalizada hasta el ambiente cálido y exclusivo. Creemos que la belleza no es solo apariencia, es bienestar."
+      ],
+      "stats": [
+        { "value": "10+", "label": "Años de experiencia" },
+        { "value": "5K+", "label": "Clientas satisfechas" },
+        { "value": "15+", "label": "Premios recibidos" }
+      ]
+    },
+    "services": { "title": "Servicios", "subtitle": "Todo lo que necesitás para mimarte" },
+    "pricing": { "title": "Precios", "subtitle": "Transparencia desde el inicio" },
+    "gallery": { "title": "Galería", "subtitle": "Mirá nuestro trabajo" },
+    "team": { "title": "Equipo", "subtitle": "Los profesionales que te van a atender" },
+    "testimonials": { "title": "Testimonios", "subtitle": "Lo que dicen nuestras clientas" },
+    "process": { "title": "Nuestro proceso", "subtitle": "Tu experiencia en 4 pasos" },
+    "contact": {
+      "title": "Reservá tu cita",
+      "subtitle": "Elegí el servicio, el día y el horario",
+      "wizardSteps": ["Servicio", "Fecha", "Datos", "Confirmar"],
+      "timeSlots": {
+        "morning": ["09:00", "10:00", "11:00"],
+        "afternoon": ["14:00", "15:00", "16:00", "17:00"]
+      }
+    }
+  },
+  "shared": {
+    "ctaReservar": "Reservá tu turno",
+    "ctaWhatsapp": "Escribinos por WhatsApp",
+    "ctaConsultaWhatsapp": "Consultá por WhatsApp"
+  }
+}

@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
@@ -9,12 +9,15 @@ export class ServiceService {
   private readonly http = inject(HttpClient);
   private readonly jsonUrl = 'assets/data/services.json';
 
+  readonly error = signal(false);
+
   /** Un único request HTTP cacheado con shareReplay.
    *  Todos los métodos públicos derivan de este observable base. */
   private readonly allServices$ = this.http.get<Service[]>(this.jsonUrl).pipe(
     shareReplay(1),
     catchError((err) => {
       console.error('[ServiceService] Error al cargar servicios:', err);
+      this.error.set(true);
       return of([]);
     }),
   );

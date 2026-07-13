@@ -1,7 +1,8 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { RevealDirective } from '../../shared/directives/reveal.directive';
 import { WhatsappButtonComponent } from '../../shared/components/whatsapp-btn/whatsapp-btn';
+import { ConfigService } from '../../core/services/config.service';
 
 export interface HeroContent {
   businessName: string;
@@ -19,13 +20,19 @@ export interface HeroContent {
   styleUrl: './hero.css',
 })
 export class HeroComponent {
-  readonly content = input<HeroContent>({
-    businessName: 'Belleza & Estilo',
-    tagline: 'Tu momento de brillar empieza acá',
-    description:
-      'Cuidado personal profesional en un ambiente pensado para vos. Cortes, color, manicuría, maquillaje y más.',
-    ctaLabel: 'Reservá tu turno',
-    ctaSecondaryLabel: 'Ver servicios',
+  private readonly configService = inject(ConfigService);
+
+  readonly content = computed(() => {
+    const cfg = this.configService.config();
+    return cfg
+      ? {
+          businessName: cfg.site.name,
+          tagline: cfg.sections.hero.tagline,
+          description: cfg.sections.hero.description,
+          ctaLabel: cfg.sections.hero.ctaLabel,
+          ctaSecondaryLabel: cfg.sections.hero.ctaSecondaryLabel,
+        }
+      : { businessName: '', tagline: '', description: '', ctaLabel: '', ctaSecondaryLabel: '' };
   });
 
   scrollTo(event: Event, fragment: string): void {

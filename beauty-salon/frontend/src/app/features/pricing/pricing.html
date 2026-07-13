@@ -1,23 +1,27 @@
 <section id="precios" class="section-container section-padding">
-  <app-section-header title="Precios" subtitle="Transparencia desde el inicio" />
-  <div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de precios">
-      <table role="table">
-    <thead>
-      <tr>
-        <th scope="col">Servicio</th>
-        <th scope="col">Duración</th>
-        <th scope="col">Precio</th>
-      </tr>
-    </thead>
-    <tbody class="stagger-anim">
-      @for (service of services(); track service.id) {
+  <app-section-header [title]="pricingTitle()" [subtitle]="pricingSubtitle()" />
+  @if (hasError()) {
+    <p class="section-error">No pudimos cargar los precios. Actualizá la página o consultanos por WhatsApp.</p>
+  } @else {
+    <div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de precios">
+        <table role="table">
+      <thead>
         <tr>
-          <td>{{ service.name }}</td>
-          <td>{{ service.duration }}</td>
-          <td>${{ service.price }}</td>
+          <th scope="col">Servicio</th>
+          <th scope="col">Duración</th>
+          <th scope="col">Precio</th>
         </tr>
-      }
-    </tbody>
-  </table>
-  </div>
+      </thead>
+      <tbody class="stagger">
+        @for (service of services(); track service.id) {
+          <tr>
+            <td>{{ service.name }}</td>
+            <td>{{ service.duration }}</td>
+            <td>${{ service.price }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    </div>
+  }
 </section>

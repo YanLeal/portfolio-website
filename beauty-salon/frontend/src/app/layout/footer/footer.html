@@ -2,7 +2,7 @@
   <div class="footer-grid">
     <!-- ─── Brand ──────────────────────────────────────── -->
     <div class="footer-brand">
-      <a routerLink="/" class="footer-logo">{{ siteName }}</a>
+      <a routerLink="/" class="footer-logo">{{ siteName() }}</a>
       <p class="footer-desc">
         Tu salón de belleza de confianza. Profesionales dedicados a realzar tu belleza natural.
       </p>
@@ -35,7 +35,7 @@
     <div class="footer-col">
       <h4 class="footer-heading">Links</h4>
       <ul class="footer-list">
-        @for (link of quickLinks; track link.fragment) {
+        @for (link of quickLinks(); track link.fragment) {
           <li>
             <a [href]="'#' + link.fragment" (click)="scrollTo($event, link.fragment)" class="footer-link">
               {{ link.label }}
@@ -49,7 +49,7 @@
     <div class="footer-col">
       <h4 class="footer-heading">Horarios</h4>
       <ul class="footer-schedule">
-        @for (item of schedule; track item.label) {
+        @for (item of schedule(); track item.label) {
           <li>
             <span class="sched-label">{{ item.label }}</span>
             <span class="sched-hours">{{ item.hours }}</span>
@@ -62,7 +62,7 @@
     <div class="footer-col">
       <h4 class="footer-heading">Contacto</h4>
       <ul class="footer-contact">
-        @for (item of contact; track item.label) {
+        @for (item of contact(); track item.label) {
           <li>
             <span class="contact-label">{{ item.label }}</span>
             <span class="contact-value">{{ item.value }}</span>
@@ -74,6 +74,6 @@
 
   <!-- ─── Copyright ─────────────────────────────────────── -->
   <div class="footer-bottom">
-    <p>&copy; {{ year }} {{ siteName }}. Todos los derechos reservados.</p>
+    <p>&copy; {{ year }} {{ siteName() }}. Todos los derechos reservados.</p>
   </div>
 </footer>

@@ -22,7 +22,7 @@
 /* ─── Nav link ─────────────────────────────────────────── */
 
 .nav-link {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -60,7 +60,7 @@
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) var(--space-5);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
   border-radius: var(--radius-sm);

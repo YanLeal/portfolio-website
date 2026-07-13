@@ -1,8 +1,12 @@
 <section class="section-padding section-gradient" style="scroll-margin-top: 5rem">
-  <app-section-header title="Testimonios" subtitle="Lo que dicen nuestras clientas" />
-  <div class="section-grid stagger">
-    @for (item of testimonials(); track item.id) {
-      <app-testimonial-card [testimonial]="item" />
-    }
-  </div>
+  <app-section-header [title]="testimonialsTitle()" [subtitle]="testimonialsSubtitle()" />
+  @if (hasError()) {
+    <p class="section-error">No pudimos cargar los testimonios. Actualizá la página o escribinos por WhatsApp.</p>
+  } @else {
+    <div class="section-grid stagger">
+      @for (item of testimonials(); track item.id) {
+        <app-testimonial-card [testimonial]="item" />
+      }
+    </div>
+  }
 </section>

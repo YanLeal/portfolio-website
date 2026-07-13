@@ -1,4 +1,8 @@
 <section id="galeria" class="section-padding" style="scroll-margin-top: 5rem">
-  <app-section-header title="Galería" subtitle="Mirá nuestro trabajo" />
-  <app-gallery-grid [images]="images()" />
+  <app-section-header [title]="galleryTitle()" [subtitle]="gallerySubtitle()" />
+  @if (hasError()) {
+    <p class="section-error">No pudimos cargar la galería. Actualizá la página o visitanos en Instagram.</p>
+  } @else {
+    <app-gallery-grid [images]="images()" />
+  }
 </section>

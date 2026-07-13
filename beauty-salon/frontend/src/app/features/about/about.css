@@ -79,7 +79,7 @@
 }
 
 .about-subtitle {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--color-neutral-400);
   letter-spacing: 0.05em;
@@ -149,7 +149,7 @@
 }
 
 .stat-label {
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-2xs);
   font-weight: var(--font-weight-medium);
   color: var(--color-neutral-500);
   text-align: center;

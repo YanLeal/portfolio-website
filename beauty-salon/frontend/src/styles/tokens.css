@@ -2,7 +2,7 @@
    DESIGN TOKENS
    ═════════════════════════════════════════════════════════════════
    Cada variable en @theme genera utilidades Tailwind (bg-primary,
-   text-neutral-800, font-heading, shadow-card, etc.) y también
+    text-neutral-800, font-heading, shadow-md, etc.) y también
    está disponible como var(--color-primary), var(--font-heading),
    etc. en cualquier CSS.
 
@@ -77,9 +77,9 @@
   --leading-relaxed: 1.7;   /* body text readable */
 
   /* ── Font-size scale ──────────────────────────────── */
-  --font-size-xs:   0.75rem;   /* labels, captions, footer-bottom */
-  --font-size-sm:   0.8125rem; /* nav, metadata, small print */
-  --font-size-base: 0.875rem;  /* card desc, footer body, form text */
+  --font-size-2xs:  0.75rem;   /* labels, captions, footer-bottom */
+  --font-size-xs:   0.8125rem; /* nav, metadata, small print */
+  --font-size-sm:   0.875rem;  /* card desc, footer body, form text */
   --font-size-body: 1rem;      /* paragraphs, body text (global default) */
   --font-size-lg:   1.125rem;  /* card titles, h3 */
   --font-size-xl:   1.25rem;   /* wizard titles, stat values */
@@ -88,10 +88,9 @@
   --font-size-4xl:  2.5rem;    /* section headers desktop */
 
   /* ── Border radius ────────────────────────────────── */
-  --radius-sharp: 2px;      /* editorial buttons, hero CTA */
-  --radius-sm: 4px;         /* buttons, inputs, form fields */
-  --radius-card: 8px;        /* cards, panels, containers, stat cards */
-  --radius-input: 8px;       /* form inputs (alias de radius-card) */
+  --radius-xs: 2px;          /* editorial buttons, hero CTA */
+  --radius-sm: 4px;          /* buttons, inputs, form fields */
+  --radius-card: 8px;        /* cards, panels, containers, stat cards, form inputs */
   --radius-lg: 12px;         /* featured images, card hover, hero media */
   --radius-xl: 16px;         /* large containers, modals */
   --radius-2xl: 24px;        /* enveloping surfaces, dialogs */
@@ -99,7 +98,7 @@
 
   /* ── Shadows (espresso base, nunca negro puro) ────── */
   --shadow-sm: 0 1px 3px rgba(36, 31, 26, 0.06);
-  --shadow-card: 0 4px 12px rgba(36, 31, 26, 0.08);
+  --shadow-md: 0 4px 12px rgba(36, 31, 26, 0.08);
   --shadow-lg: 0 8px 24px rgba(36, 31, 26, 0.1);
   --shadow-xl: 0 16px 40px rgba(36, 31, 26, 0.12);
   --shadow-2xl: 0 24px 56px rgba(36, 31, 26, 0.14);
@@ -121,11 +120,12 @@
   --space-10:  2.5rem;   /* 40px — generous separation */
   --space-12:  3rem;     /* 48px — component groups */
   --space-16:  4rem;     /* 64px — section padding mobile */
+  --space-18:  4.5rem;   /* 72px — entre mobile y desktop padding */
   --space-20:  5rem;     /* 80px — section padding desktop */
   --space-24:  6rem;     /* 96px — large hero/feature padding */
 
-  /* ── Container widths ──────────────────────────────── */
-  --container-content: 1200px;
+  /* ── Layout widths ─────────────────────────────────── */
+  --layout-content-max: 1200px;
 
   /* ═════════════════════════════════════════════════════
      ELEVATION SYSTEM
@@ -134,7 +134,7 @@
   /* ── Scale (raw) ─────────────────────────────────── */
   --elevation-0: none;
   --elevation-1: var(--shadow-sm);   /* 0 1px 3px  rgba(36,31,26,0.06) */
-  --elevation-2: var(--shadow-card); /* 0 4px 12px rgba(36,31,26,0.08) */
+  --elevation-2: var(--shadow-md); /* 0 4px 12px rgba(36,31,26,0.08) */
   --elevation-3: var(--shadow-lg);   /* 0 8px 24px rgba(36,31,26,0.10) */
   --elevation-4: var(--shadow-xl);   /* 0 16px 40px rgba(36,31,26,0.12) */
   --elevation-5: var(--shadow-2xl);  /* 0 24px 56px rgba(36,31,26,0.14) */
@@ -159,4 +159,25 @@
   --elevation-hero-btn-hov: 0 8px 24px rgba(36,31,26,0.25);
   --elevation-wa-btn:    0 4px 12px rgba(37,211,102,0.35), 0 2px 4px rgba(0,0,0,0.08);
   --elevation-wa-btn-hov: 0 6px 20px rgba(37,211,102,0.4),  0 3px 6px rgba(0,0,0,0.1);
+
+  /* ═════════════════════════════════════════════════════════════
+     FOCUS RING — tokens compartidos para foco accesible.
+     NO hardcodear outline/offset/radius — usar estas vars.
+     ═════════════════════════════════════════════════════════════ */
+
+  /* ── Standard ─────────────────────────────────────── */
+  --focus-ring-width:     2px;
+  --focus-ring-offset:    2px;
+  --focus-ring-color:     var(--color-primary);
+  --focus-ring-radius:    var(--radius-card);
+  --focus-ring-outline:   var(--focus-ring-width) solid var(--focus-ring-color);
+
+  /* ── Thick (botones, énfasis) ─────────────────────── */
+  --focus-ring-width-thick:   3px;
+  --focus-ring-offset-thick:  3px;
+  --focus-ring-outline-thick: var(--focus-ring-width-thick) solid var(--focus-ring-color);
+
+  /* ── Inverse (fondos oscuros) ─────────────────────── */
+  --focus-ring-color-inverse:   var(--color-surface);
+  --focus-ring-outline-inverse: var(--focus-ring-width) solid var(--focus-ring-color-inverse);
 }

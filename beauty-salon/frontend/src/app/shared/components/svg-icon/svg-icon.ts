@@ -10,7 +10,14 @@ export type SvgIconName =
   | 'check'
   | 'star'
   | 'search'
-  | 'message-circle';
+  | 'message-circle'
+  /* Service-specific icons (from services.json → service.icon) */
+  | 'scissors'
+  | 'sparkles'
+  | 'hand'
+  | 'foot'
+  | 'brush'
+  | 'face';
 
 @Component({
   selector: 'svg-icon',
@@ -65,6 +72,42 @@ export type SvgIconName =
         }
         @case ('message-circle') {
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+        }
+        @case ('scissors') {
+          <path d="M8 6a3 3 0 1 0-6 0 3 3 0 0 0 6 0z" />
+          <path d="M8 18a3 3 0 1 0-6 0 3 3 0 0 0 6 0z" />
+          <line x1="9" y1="7" x2="22" y2="17" />
+          <line x1="9" y1="17" x2="22" y2="7" />
+        }
+        @case ('sparkles') {
+          <circle cx="12" cy="12" r="10" />
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v4M22 12h-4M12 22v-4M2 12h4" />
+        }
+        @case ('hand') {
+          <path d="M14 2a2 2 0 0 0-4 0v6a2 2 0 0 0 4 0V2z" />
+          <path d="M8 8v2.5a4 4 0 0 0 8 0V8" />
+          <path d="M12 12v8" />
+          <path d="M8 20h8" />
+        }
+        @case ('foot') {
+          <path d="M4 14c0 3 2 6 5 6h6c3 0 5-3 5-6" />
+          <path d="M7 8c0-1.5 1-2 2-2s2 .5 2 2" />
+          <path d="M11 8c0-1.5 1-2 2-2s2 .5 2 2" />
+          <path d="M15 8c0-1.5 1-2 2-2s2 .5 2 2" />
+          <path d="M7 14c3 0 5 1 5 2s2-2 5-2" />
+        }
+        @case ('brush') {
+          <path d="M18 2 9 11l2 2 9-9-2-2z" />
+          <path d="M7 13a3 3 0 0 0 0 6h2a3 3 0 0 0 0-6H7z" />
+          <path d="M4 19c1.5-1 3-1.5 5-1.5" />
+        }
+        @case ('face') {
+          <circle cx="12" cy="10" r="8" />
+          <path d="M6 15c1.5 1 3.5 1.5 6 1.5s4.5-.5 6-1.5" />
+          <path d="M9 10h.01" />
+          <path d="M15 10h.01" />
+          <path d="M12 14c-1 0-2-.5-2-1.5" />
         }
       }
     </svg>
