@@ -1,0 +1,16 @@
+{
+  "nav": [
+    { "label": "Servicios", "fragment": "servicios" },
+    { "label": "Precios", "fragment": "precios" },
+    { "label": "Galería", "fragment": "galeria" },
+    { "label": "Contacto", "fragment": "contacto" }
+  ],
+  "footerLinks": [
+    { "label": "Servicios", "fragment": "servicios" },
+    { "label": "Precios", "fragment": "precios" },
+    { "label": "Galería", "fragment": "galeria" },
+    { "label": "Equipo", "fragment": "equipo" },
+    { "label": "Contacto", "fragment": "contacto" }
+  ],
+  "ctaReservar": "Reservá tu turno"
+}

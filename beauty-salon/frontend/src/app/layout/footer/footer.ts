@@ -1,7 +1,7 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { WhatsappButtonComponent } from '../../shared/components/whatsapp-btn/whatsapp-btn';
-import { ConfigService } from '../../core/services/config.service';
+import { FooterService } from '../../services/features/footer/footer.service';
 
 @Component({
   selector: 'app-footer',
@@ -13,6 +13,13 @@ import { ConfigService } from '../../core/services/config.service';
 })
 export class FooterComponent {
   private readonly router = inject(Router);
+  private readonly footerService = inject(FooterService);
+
+  /** Signal directa desde FooterService */
+  readonly data = this.footerService.data;
+
+  /** Año actual — se calcula una vez, no cambia durante la sesión */
+  readonly year = this.footerService.year;
 
   scrollTo(event: Event, fragment: string): void {
     event.preventDefault();
@@ -23,23 +30,4 @@ export class FooterComponent {
       this.router.navigate(['/'], { fragment });
     }
   }
-
-  private readonly configService = inject(ConfigService);
-
-  readonly year = new Date().getFullYear();
-  readonly siteName = computed(() => this.configService.config()?.site.name ?? '');
-
-  readonly schedule = computed(() => this.configService.config()?.contact.schedule ?? []);
-
-  readonly contact = computed(() => {
-    const c = this.configService.config()?.contact;
-    if (!c) return [];
-    return [
-      { label: 'Dirección', value: c.address },
-      { label: 'Teléfono', value: c.phone.display },
-      { label: 'Email', value: c.email },
-    ];
-  });
-
-  readonly quickLinks = computed(() => this.configService.config()?.navigation.footerLinks ?? []);
 }

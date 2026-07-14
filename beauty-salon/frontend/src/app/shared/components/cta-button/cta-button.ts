@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { SvgIcon } from '../svg-icon/svg-icon';
-import type { SvgIconName, CtaButtonVariant } from '../../../core/types';
+import type { SvgIconName } from '../../types/icon.types';
+import type { CtaButtonVariant } from '../../types/button.types';
 
 @Component({
   selector: 'app-cta-button',

@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { SvgIcon } from '../svg-icon/svg-icon';
-import { Testimonial } from '../../../core/models/testimonial.model';
+import { Testimonial } from '../../../domains/testimonials/testimonial.model';
 
 @Component({
   selector: 'app-testimonial-card',

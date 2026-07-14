@@ -2,40 +2,41 @@
   <div class="footer-grid">
     <!-- ─── Brand ──────────────────────────────────────── -->
     <div class="footer-brand">
-      <a routerLink="/" class="footer-logo">{{ siteName() }}</a>
-      <p class="footer-desc">
-        Tu salón de belleza de confianza. Profesionales dedicados a realzar tu belleza natural.
-      </p>
+      <a routerLink="/" class="footer-logo">{{ data().siteName }}</a>
+      <p class="footer-desc">{{ data().brandDescription }}</p>
       <div class="footer-social">
-        <!-- TODO: add real Instagram link -->
-        <a href="#" class="social-link" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <circle cx="12" cy="12" r="5"/>
-            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-          </svg>
-        </a>
-        <!-- TODO: add real Facebook link -->
-        <a href="#" class="social-link" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z"/>
-          </svg>
-        </a>
+        @for (link of data().socialLinks; track link.platform) {
+          <a [href]="link.url" class="social-link" [attr.aria-label]="link.ariaLabel" target="_blank" rel="noopener noreferrer">
+            @switch (link.platform) {
+              @case ('instagram') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="5"/>
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+                </svg>
+              }
+              @case ('facebook') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3V2z"/>
+                </svg>
+              }
+              @case ('tiktok') {
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                </svg>
+              }
+            }
+          </a>
+        }
         <app-whatsapp-btn variant="footer" />
-        <!-- TODO: add real TikTok link -->
-        <a href="#" class="social-link" aria-label="TikTok">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
-          </svg>
-        </a>
       </div>
     </div>
 
     <!-- ─── Links rápidos ─────────────────────────────── -->
     <div class="footer-col">
-      <h4 class="footer-heading">Links</h4>
+      <h4 class="footer-heading">{{ data().headings.links }}</h4>
       <ul class="footer-list">
-        @for (link of quickLinks(); track link.fragment) {
+        @for (link of data().quickLinks; track link.fragment) {
           <li>
             <a [href]="'#' + link.fragment" (click)="scrollTo($event, link.fragment)" class="footer-link">
               {{ link.label }}
@@ -47,9 +48,9 @@
 
     <!-- ─── Horarios ──────────────────────────────────── -->
     <div class="footer-col">
-      <h4 class="footer-heading">Horarios</h4>
+      <h4 class="footer-heading">{{ data().headings.schedule }}</h4>
       <ul class="footer-schedule">
-        @for (item of schedule(); track item.label) {
+        @for (item of data().schedule; track item.label) {
           <li>
             <span class="sched-label">{{ item.label }}</span>
             <span class="sched-hours">{{ item.hours }}</span>
@@ -60,20 +61,26 @@
 
     <!-- ─── Contacto ──────────────────────────────────── -->
     <div class="footer-col">
-      <h4 class="footer-heading">Contacto</h4>
+      <h4 class="footer-heading">{{ data().headings.contact }}</h4>
       <ul class="footer-contact">
-        @for (item of contact(); track item.label) {
-          <li>
-            <span class="contact-label">{{ item.label }}</span>
-            <span class="contact-value">{{ item.value }}</span>
-          </li>
-        }
+        <li>
+          <span class="contact-label">Dirección</span>
+          <span class="contact-value">{{ data().contactInfo.address }}</span>
+        </li>
+        <li>
+          <span class="contact-label">Teléfono</span>
+          <span class="contact-value">{{ data().contactInfo.phone }}</span>
+        </li>
+        <li>
+          <span class="contact-label">Email</span>
+          <span class="contact-value">{{ data().contactInfo.email }}</span>
+        </li>
       </ul>
     </div>
   </div>
 
   <!-- ─── Copyright ─────────────────────────────────────── -->
   <div class="footer-bottom">
-    <p>&copy; {{ year }} {{ siteName() }}. Todos los derechos reservados.</p>
+    <p>&copy; {{ year }} {{ data().siteName }}. {{ data().copyrightText }}</p>
   </div>
 </footer>

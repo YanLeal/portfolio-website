@@ -1,0 +1,26 @@
+{
+  "services": {
+    "title": "Servicios",
+    "subtitle": "Todo lo que necesitás para mimarte"
+  },
+  "pricing": {
+    "title": "Precios",
+    "subtitle": "Transparencia desde el inicio"
+  },
+  "gallery": {
+    "title": "Galería",
+    "subtitle": "Mirá nuestro trabajo"
+  },
+  "team": {
+    "title": "Equipo",
+    "subtitle": "Los profesionales que te van a atender"
+  },
+  "testimonials": {
+    "title": "Testimonios",
+    "subtitle": "Lo que dicen nuestras clientas"
+  },
+  "process": {
+    "title": "Nuestro proceso",
+    "subtitle": "Tu experiencia en 4 pasos"
+  }
+}

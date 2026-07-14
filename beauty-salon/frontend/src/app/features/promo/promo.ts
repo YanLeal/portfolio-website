@@ -2,9 +2,9 @@ import { Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs/operators';
 import { CtaButton } from '../../shared/components/cta-button/cta-button';
-import { PromoService } from '../../core/services/promo.service';
-import { ConfigService } from '../../core/services/config.service';
-import type { Promotion } from '../../core/models/promotion.model';
+import { PromoService } from '../../domains/promotions/promotion.service';
+import { BusinessService } from '../../domains/business/business.service';
+import type { Promotion } from '../../domains/promotions/promotion.model';
 
 const PLACEHOLDER_PROMO: Promotion = {
   month: '',
@@ -26,7 +26,7 @@ const PLACEHOLDER_PROMO: Promotion = {
 })
 export class PromoComponent {
   private readonly promoService = inject(PromoService);
-  private readonly configService = inject(ConfigService);
+  private readonly businessService = inject(BusinessService);
   readonly hasError = this.promoService.error;
 
   readonly promo = toSignal(
@@ -36,7 +36,7 @@ export class PromoComponent {
 
   get whatsAppUrl(): string {
     const p = this.promo();
-    const wa = this.configService.config()?.contact.whatsapp ?? '5214423016543';
+    const wa = this.businessService.data().contact.whatsapp;
     const message = encodeURIComponent(
       `Hola, quiero reservar la Promoción de ${p.month}: ${p.service}. ¿Tienen turno disponible?`,
     );

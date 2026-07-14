@@ -3,10 +3,11 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { SvgIcon } from '../../shared/components/svg-icon/svg-icon';
-import { ServiceService } from '../../core/services/service.service';
-import { ConfigService } from '../../core/services/config.service';
-import { WhatsappMessageService } from '../../core/services/whatsapp-message.service';
-import type { WizardStep } from '../../core/types';
+import { ServiceService } from '../../domains/services/service.service';
+import { BusinessService } from '../../domains/business/business.service';
+import { ContactService } from '../../domains/contact/contact.service';
+import { WhatsappMessageService } from '../../domains/booking/services/whatsapp-message.service';
+import type { WizardStep } from '../../domains/booking/models/booking.model';
 
 @Component({
   selector: 'app-contact',
@@ -19,23 +20,24 @@ import type { WizardStep } from '../../core/types';
 export class ContactComponent {
   private readonly serviceService = inject(ServiceService);
 
-  private readonly configService = inject(ConfigService);
+  private readonly contactService = inject(ContactService);
+  private readonly businessService = inject(BusinessService);
 
-  readonly contactTitle = computed(() => this.configService.config()?.sections.contact.title ?? 'Reservá tu cita');
-  readonly contactSubtitle = computed(() => this.configService.config()?.sections.contact.subtitle ?? 'Elegí el servicio, el día y el horario');
+  readonly contactTitle = computed(() => this.contactService.config().title);
+  readonly contactSubtitle = computed(() => this.contactService.config().subtitle);
 
   // ─── Datos ───────────────────────────────────────
 
   readonly services = toSignal(this.serviceService.getAll(), { initialValue: [] });
   readonly hasError = this.serviceService.error;
-  readonly pasoLabels = computed(() => this.configService.config()?.sections.contact.wizardSteps ?? ['Servicio', 'Fecha', 'Datos', 'Confirmar']);
-  readonly address = computed(() => this.configService.config()?.contact.address ?? '');
-  readonly phone = computed(() => this.configService.config()?.contact.phone.display ?? '');
-  readonly email = computed(() => this.configService.config()?.contact.email ?? '');
+  readonly pasoLabels = computed(() => this.contactService.config().wizardSteps);
+  readonly address = computed(() => this.businessService.data().contact.address);
+  readonly phone = computed(() => this.businessService.data().contact.phone.display);
+  readonly email = computed(() => this.businessService.data().contact.email);
   readonly schedule = computed(() => 'Lun a Sáb: 9:00 – 20:00');
 
-  readonly morningSlots = computed(() => this.configService.config()?.sections.contact.timeSlots.morning ?? ['09:00', '10:00', '11:00']);
-  readonly afternoonSlots = computed(() => this.configService.config()?.sections.contact.timeSlots.afternoon ?? ['14:00', '15:00', '16:00', '17:00']);
+  readonly morningSlots = computed(() => this.contactService.config().timeSlots.morning);
+  readonly afternoonSlots = computed(() => this.contactService.config().timeSlots.afternoon);
 
   // ─── Wizard state ───────────────────────────────
 

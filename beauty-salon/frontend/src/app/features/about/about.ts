@@ -1,6 +1,6 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CtaButton } from '../../shared/components/cta-button/cta-button';
-import { ConfigService } from '../../core/services/config.service';
+import { BusinessInfoService } from '../../services/features/business-info/business-info.service';
 
 @Component({
   selector: 'app-about',
@@ -11,12 +11,10 @@ import { ConfigService } from '../../core/services/config.service';
   styleUrl: './about.css',
 })
 export class AboutComponent {
-  private readonly configService = inject(ConfigService);
+  private readonly businessInfoService = inject(BusinessInfoService);
 
-  readonly siteName = computed(() => this.configService.config()?.site.name ?? '');
-  readonly ctaReservar = computed(() => this.configService.config()?.shared.ctaReservar ?? '');
-
-  readonly stats = computed(() => this.configService.config()?.sections.about.stats ?? []);
+  /** Signal directa desde BusinessInfoService */
+  readonly data = this.businessInfoService.data;
 
   onCtaClick(): void {
     document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });

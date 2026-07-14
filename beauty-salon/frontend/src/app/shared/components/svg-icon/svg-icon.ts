@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import type { SvgIconName } from '../../../core/types';
+import type { SvgIconName } from '../../types/icon.types';
 
 @Component({
   selector: 'svg-icon',

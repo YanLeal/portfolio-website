@@ -3,8 +3,8 @@
     <!-- ─── Imagen ─────────────────────────────────────── -->
     <div class="about-media">
       <img
-        src="images/about-1200x1350.webp"
-        alt="Interior del salón Belleza & Estilo"
+        [src]="data().image"
+        [alt]="data().imageAlt"
         loading="lazy"
         width="800"
         height="900"
@@ -15,22 +15,17 @@
 
     <!-- ─── Contenido ──────────────────────────────────── -->
     <div class="about-content">
-      <h2 class="about-title">Sobre nosotros</h2>
-      <p class="about-subtitle">Conocé nuestra historia</p>
+      <h2 class="about-title">{{ data().title }}</h2>
+      <p class="about-subtitle">{{ data().subtitle }}</p>
 
       <p class="about-text">
-        En <strong>{{ siteName() }}</strong> nos apasiona realzar tu belleza natural.
-        Con más de 10 años en el rubro, nuestro equipo de profesionales está dedicado
-        a brindarte la mejor experiencia en cuidado personal.
+        En <strong>{{ data().siteName }}</strong> {{ data().paragraphLead }}
       </p>
-      <p class="about-text">
-        Cada visita es única: desde la atención personalizada hasta el ambiente cálido
-        y exclusivo. Creemos que la belleza no es solo apariencia, es bienestar.
-      </p>
+      <p class="about-text">{{ data().paragraphSecond }}</p>
 
       <!-- ─── Stats ────────────────────────────────────── -->
       <div class="about-stats">
-        @for (stat of stats(); track stat.label) {
+        @for (stat of data().stats; track stat.label) {
           <div class="stat-card">
             <span class="stat-value">{{ stat.value }}</span>
             <span class="stat-label">{{ stat.label }}</span>
@@ -40,7 +35,7 @@
 
       <!-- ─── CTA ──────────────────────────────────────── -->
       <app-cta-button
-        [label]="ctaReservar()"
+        [label]="data().ctaLabel"
         iconAfter="arrow-right"
         (clicked)="onCtaClick()"
       />

@@ -1,7 +1,7 @@
-import { Component, computed, DestroyRef, HostBinding, inject, signal } from '@angular/core';
+import { Component, DestroyRef, HostBinding, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { NavComponent } from '../nav/nav';
-import { ConfigService } from '../../core/services/config.service';
+import { NavComponent } from '../../domains/navigation/nav';
+import { HeaderService } from '../../services/features/header/header.service';
 
 @Component({
   selector: 'app-header',
@@ -11,9 +11,15 @@ import { ConfigService } from '../../core/services/config.service';
   styleUrl: './header.css',
 })
 export class HeaderComponent {
-  private readonly configService = inject(ConfigService);
-  readonly siteName = computed(() => this.configService.config()?.site.name ?? '');
+  private readonly headerService = inject(HeaderService);
+
+  /** Signal directa desde HeaderService — siteName, labels, etc */
+  readonly data = this.headerService.data;
+
+  /** Estado local del menú mobile */
   readonly isMenuOpen = signal(false);
+
+  /** Estado local de scroll */
   readonly isScrolled = signal(false);
 
   @HostBinding('class.transparent') get isTransparent(): boolean {

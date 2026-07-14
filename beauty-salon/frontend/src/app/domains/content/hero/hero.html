@@ -1,0 +1,59 @@
+<section appReveal animationClass="anim-fade-in" class="hero" [attr.aria-label]="content().ariaLabel">
+  <!-- Imagen de fondo -->
+  <div class="hero-bg" aria-hidden="true">
+    <img
+      [ngSrc]="content().heroImage"
+      alt=""
+      width="1920"
+      height="1080"
+      priority
+    />
+  </div>
+
+  <!-- Overlay degradé -->
+  <div class="hero-overlay" aria-hidden="true"></div>
+
+  <!-- Elemento decorativo -->
+  <div class="hero-decoration" aria-hidden="true">
+    <div class="deco-line"></div>
+    <div class="deco-circle"></div>
+    <div class="deco-line"></div>
+  </div>
+
+  <!-- Contenido -->
+  <div class="hero-content">
+    <h1 class="hero-title">{{ content().businessName }}</h1>
+
+    <p class="hero-subtitle">{{ content().tagline }}</p>
+
+    <p class="hero-description">{{ content().description }}</p>
+
+    <div class="hero-actions">
+      <a
+        class="btn btn-primary"
+        href="#contacto"
+        (click)="scrollTo($event, 'contacto')"
+      >
+        {{ content().ctaLabel }}
+      </a>
+
+      <a
+        class="btn btn-secondary"
+        href="#servicios"
+        (click)="scrollTo($event, 'servicios')"
+      >
+        {{ content().ctaSecondaryLabel }}
+      </a>
+
+      <app-whatsapp-btn [variant]="'hero'" [label]="content().whatsappLabel" />
+    </div>
+  </div>
+
+  <!-- Indicador de scroll -->
+  <div class="scroll-indicator" aria-hidden="true">
+    <span class="scroll-text">{{ content().scrollText }}</span>
+    <div class="scroll-track">
+      <div class="scroll-dot"></div>
+    </div>
+  </div>
+</section>

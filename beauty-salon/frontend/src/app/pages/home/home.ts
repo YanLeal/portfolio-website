@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HeroComponent } from '../../features/hero/hero';
+import { HeroComponent } from '../../domains/content/hero/hero';
 import { AboutComponent } from '../../features/about/about';
 import { ServicesComponent } from '../../features/services/services';
 import { PricingComponent } from '../../features/pricing/pricing';

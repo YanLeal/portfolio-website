@@ -3,8 +3,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { SvgIcon } from '../../shared/components/svg-icon/svg-icon';
 import { CardTiltDirective } from '../../shared/directives/card-tilt.directive';
-import { TeamService } from '../../core/services/team.service';
-import { ConfigService } from '../../core/services/config.service';
+import { TeamService } from '../../domains/team/team.service';
+import { ContentService } from '../../domains/content/content.service';
 
 @Component({
   selector: 'app-team',
@@ -15,9 +15,9 @@ import { ConfigService } from '../../core/services/config.service';
 })
 export class TeamComponent {
   private readonly teamService = inject(TeamService);
-  private readonly configService = inject(ConfigService);
+  private readonly contentService = inject(ContentService);
   readonly team = toSignal(this.teamService.getAll(), { initialValue: [] });
   readonly hasError = this.teamService.error;
-  readonly teamTitle = computed(() => this.configService.config()?.sections.team.title ?? 'Equipo');
-  readonly teamSubtitle = computed(() => this.configService.config()?.sections.team.subtitle ?? 'Los profesionales que te van a atender');
+  readonly teamTitle = computed(() => this.contentService.data().team.title);
+  readonly teamSubtitle = computed(() => this.contentService.data().team.subtitle);
 }

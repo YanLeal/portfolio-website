@@ -1,0 +1,17 @@
+export type SvgIconName =
+  | 'clock'
+  | 'arrow-right'
+  | 'map-pin'
+  | 'phone'
+  | 'mail'
+  | 'tag'
+  | 'check'
+  | 'star'
+  | 'search'
+  | 'message-circle'
+  | 'scissors'
+  | 'sparkles'
+  | 'hand'
+  | 'foot'
+  | 'brush'
+  | 'face';

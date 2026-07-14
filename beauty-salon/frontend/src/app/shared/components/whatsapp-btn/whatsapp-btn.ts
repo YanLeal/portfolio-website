@@ -1,6 +1,6 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { ConfigService } from '../../../core/services/config.service';
-import type { WaVariant } from '../../../core/types';
+import { BusinessService } from '../../../domains/business/business.service';
+import type { WaVariant } from '../../types/button.types';
 
 @Component({
   selector: 'app-whatsapp-btn',
@@ -191,8 +191,8 @@ import type { WaVariant } from '../../../core/types';
   `],
 })
 export class WhatsappButtonComponent {
-  private readonly configService = inject(ConfigService);
-  readonly waLink = computed(() => `https://wa.me/${this.configService.config()?.contact.whatsapp ?? '5214423016543'}`);
+  private readonly businessService = inject(BusinessService);
+  readonly waLink = computed(() => `https://wa.me/${this.businessService.data().contact.whatsapp}`);
 
   /** Hero, footer, or services styling variant */
   readonly variant = input<WaVariant>('services');
