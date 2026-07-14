@@ -1,0 +1,9 @@
+{
+  "title": "Reservá tu cita",
+  "subtitle": "Elegí el servicio, el día y el horario",
+  "wizardSteps": ["Servicio", "Fecha", "Datos", "Confirmar"],
+  "timeSlots": {
+    "morning": ["09:00", "10:00", "11:00"],
+    "afternoon": ["14:00", "15:00", "16:00", "17:00"]
+  }
+}
