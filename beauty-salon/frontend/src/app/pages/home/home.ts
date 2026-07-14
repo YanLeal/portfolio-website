@@ -6,6 +6,7 @@ import { PricingComponent } from '../../features/pricing/pricing';
 import { GalleryComponent } from '../../features/gallery/gallery';
 import { TeamComponent } from '../../features/team/team';
 import { TestimonialsComponent } from '../../features/testimonials/testimonials';
+import { FaqComponent } from '../../features/faq/faq';
 import { ContactComponent } from '../../features/contact/contact';
 import { BookingCtaComponent } from '../../features/booking-cta/booking-cta';
 import { ProcessComponent } from '../../features/process/process';
@@ -22,6 +23,7 @@ import { PromoComponent } from '../../features/promo/promo';
     GalleryComponent,
     TeamComponent,
     TestimonialsComponent,
+    FaqComponent,
     ContactComponent,
     BookingCtaComponent,
     ProcessComponent,

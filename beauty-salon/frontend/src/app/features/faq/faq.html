@@ -1,0 +1,35 @@
+<section id="faq">
+  <app-section-header title="Preguntas frecuentes" subtitle="Todo lo que necesitás saber antes de tu visita" />
+
+  <div class="buscador">
+    <input
+      type="search"
+      placeholder="Buscá tu pregunta…"
+      [value]="searchText()"
+      (input)="searchText.set($any($event.target).value)"
+    />
+  </div>
+
+  <div class="filtros">
+    <button type="button" (click)="seleccionar(null)" [class.active]="categoriaSeleccionada() === null">Todas</button>
+    @for (cat of categorias(); track cat) {
+      <button type="button" (click)="seleccionar(cat)" [class.active]="categoriaSeleccionada() === cat">{{ cat }}</button>
+    }
+  </div>
+
+  @if (!hayResultados() && searchText()) {
+    <p class="sin-resultados">No encontramos preguntas que coincidan con tu búsqueda. Probá con otros términos o escribinos por WhatsApp.</p>
+  }
+
+  <div class="acordeon">
+  @for (item of faqs(); track item.id) {
+    <div
+      appReveal
+      class="faq-wrapper anim-hidden"
+      [class.faq-hidden]="!coincideConFiltro(item)"
+    >
+      <app-faq-item [faq]="item" [open]="faqAbierta() === item.id" (toggle)="toggleFaq(item.id)" />
+    </div>
+    }
+  </div>
+</section>

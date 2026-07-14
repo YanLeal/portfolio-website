@@ -1,0 +1,114 @@
+[
+  {
+    "id": "como-reservo",
+    "question": "¿Cómo reservo un turno?",
+    "answer": "Podés reservar por WhatsApp, llamando al salón, online o viniendo en persona. Te confirmamos el turno en el momento.",
+    "category": "General",
+    "order": 1,
+    "featured": true
+  },
+  {
+    "id": "metodos-pago",
+    "question": "¿Qué métodos de pago aceptan?",
+    "answer": "Aceptamos efectivo, transferencia, Mercado Pago y tarjetas de crédito/débito. Consultá por promociones vigentes.",
+    "category": "General",
+    "order": 2,
+    "featured": true
+  },
+  {
+    "id": "cancelar-turno",
+    "question": "¿Puedo cancelar o reprogramar mi turno?",
+    "answer": "Sí, con hasta 24 horas de anticipación sin costo. Pasado ese plazo puede aplicarse una penalidad.",
+    "category": "General",
+    "order": 3,
+    "featured": false
+  },
+  {
+    "id": "politica-llegada-tarde",
+    "question": "¿Qué pasa si llego tarde a mi turno?",
+    "answer": "Tenemos una tolerancia de 10 minutos. Pasado ese tiempo, puede que necesitemos reprogramar para no afectar a otros turnos.",
+    "category": "General",
+    "order": 4,
+    "featured": false
+  },
+  {
+    "id": "corte-recomendado",
+    "question": "¿Qué corte me recomiendan según mi tipo de cabello?",
+    "answer": "En tu visita evaluamos tu tipo de cabello, forma de rostro y rutina diaria para recomendarte el corte que mejor se adapte a tus necesidades.",
+    "category": "Cabello",
+    "order": 5,
+    "featured": false
+  },
+  {
+    "id": "tratamientos-capilares",
+    "question": "¿Qué tratamientos capilares ofrecen?",
+    "answer": "Ofrecemos hidratación profunda, keratina, botox capilar, baños de crema y tratamientos reparadores. Cada uno está diseñado para distintas necesidades.",
+    "category": "Cabello",
+    "order": 6,
+    "featured": true
+  },
+  {
+    "id": "lavado-incluido",
+    "question": "¿El lavado está incluido en todos los servicios?",
+    "answer": "Sí, todos los servicios de cabello incluyen lavado con productos profesionales según tu tipo de pelo.",
+    "category": "Cabello",
+    "order": 7,
+    "featured": false
+  },
+  {
+    "id": "tinte-vs-mechas",
+    "question": "¿Cuál es la diferencia entre tinte y mechas?",
+    "answer": "El tinte cubre todo el cabello de forma pareja, ideal para cambiar de color o cubrir canas. Las mechas aclaran secciones específicas para un look más natural con profundidad.",
+    "category": "Coloración",
+    "order": 8,
+    "featured": true
+  },
+  {
+    "id": "mantenimiento-color",
+    "question": "¿Cada cuánto tengo que retocar el color?",
+    "answer": "Recomendamos retocar cada 4 a 6 semanas para mantener el color vibrante y sin raíces visibles. El tiempo exacto depende del crecimiento de tu cabello.",
+    "category": "Coloración",
+    "order": 9,
+    "featured": false
+  },
+  {
+    "id": "test-alergia",
+    "question": "¿Hacen test de alergia antes de la coloración?",
+    "answer": "Sí, por seguridad realizamos una prueba de sensibilidad 48 horas antes si es tu primera vez con nosotros o con un producto nuevo.",
+    "category": "Coloración",
+    "order": 10,
+    "featured": false
+  },
+  {
+    "id": "servicios-unas",
+    "question": "¿Qué servicios de uñas ofrecen?",
+    "answer": "Trabajamos con esmaltado tradicional, semipermanente, kapping, esculpidas en gel y nail art. También ofrecemos cuidado de cutículas y Spa de manos.",
+    "category": "Uñas",
+    "order": 11,
+    "featured": true
+  },
+  {
+    "id": "duracion-semipermanente",
+    "question": "¿Cuánto dura el esmaltado semipermanente?",
+    "answer": "El semipermanente dura entre 2 y 3 semanas con cuidados básicos. Recomendamos no morderlo ni usarlo como herramienta para evitar que se desprenda antes.",
+    "category": "Uñas",
+    "order": 12,
+    "featured": false
+  },
+  {
+    "id": "limpieza-facial",
+    "question": "¿En qué consiste una limpieza facial profesional?",
+    "answer": "Incluye desmaquillado, exfoliación, extracción de impurezas, mascarilla según tu tipo de piel e hidratación final. Dejás la piel limpia, renovada y luminosa.",
+    "category": "Faciales",
+    "order": 13,
+    "featured": true
+  },
+  {
+    "id": "frecuencia-facial",
+    "question": "¿Cada cuánto recomiendan hacerse una limpieza facial?",
+    "answer": "Recomendamos una limpieza facial profunda cada 30 a 45 días. Es el tiempo que tarda la piel en completar su ciclo de renovación celular.",
+    "category": "Faciales",
+    "order": 14,
+    "featured": false
+  }
+]

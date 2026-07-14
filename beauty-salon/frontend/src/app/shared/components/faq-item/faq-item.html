@@ -1,0 +1,12 @@
+<details [open]="open()" [attr.aria-expanded]="open()">
+  <summary
+    (click)="toggle.emit()"
+    (keydown.enter)="$event.preventDefault(); toggle.emit()"
+    (keydown.space)="$event.preventDefault(); toggle.emit()"
+    role="button"
+    [attr.aria-controls]="'faq-respuesta-' + faq().id">
+    <span class="faq-icon">↓</span>
+    {{ faq().question }}
+  </summary>
+  <p [id]="'faq-respuesta-' + faq().id">{{ faq().answer }}</p>
+</details>
