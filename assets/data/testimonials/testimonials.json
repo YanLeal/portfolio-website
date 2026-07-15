@@ -25,5 +25,32 @@
     "rating": 4,
     "service": "Pedicuría",
     "date": "2026-02-10"
+  },
+  {
+    "id": "sofia-perez",
+    "name": "Sofía Pérez",
+    "photo": "images/clienta-satisfecha-saliendo-800x600.webp",
+    "text": "Me hicieron un tratamiento capilar increíble. Mi cabello quedó más suave y brillante que nunca. Repito seguro.",
+    "rating": 5,
+    "service": "Tratamiento capilar",
+    "date": "2026-03-05"
+  },
+  {
+    "id": "valentina-lopez",
+    "name": "Valentina López",
+    "photo": "images/tu-momento-de-brillar-800x600.webp",
+    "text": "Las uñas me quedaron perfectas. La atención es personalizada y se toman el tiempo necesario para cada detalle.",
+    "rating": 5,
+    "service": "Esmaltado semipermanente",
+    "date": "2026-04-12"
+  },
+  {
+    "id": "camila-rodriguez",
+    "name": "Camila Rodríguez",
+    "photo": "images/reserva-tu-turno-800x600.webp",
+    "text": "Siempre salgo contenta de este lugar. Hoy me corté el pelo y me hicieron unas mechas espectaculares. Muy recomendado.",
+    "rating": 4,
+    "service": "Corte + Mechas",
+    "date": "2026-05-28"
   }
 ]
