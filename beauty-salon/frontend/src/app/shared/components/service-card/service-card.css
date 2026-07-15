@@ -24,6 +24,21 @@
   pointer-events: none;
 }
 
+/* ─── Contenedor de badges — posiciona los <app-badge>
+ *  sobre la imagen de la card. El diseño del badge en sí
+ *  vive en shared/components/badge/badge.css. */
+
+.card-badges {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
 /* ─── Icono decorativo (servicio-específico) ────────────── */
 
 .card-icon {

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import type { Service } from './service.model';
-import type { ServiceCategory } from './service.types';
+import type { ServiceBadgeId, ServiceCategory } from './service.types';
 
 @Injectable({ providedIn: 'root' })
 export class ServiceService {
@@ -23,11 +23,23 @@ export class ServiceService {
     }),
   );
 
-  /** Retorna todos los servicios ordenados por sortOrder ascendente. */
+  /** Ordena los badges de cada servicio por priority ascendente.
+   *  Se aplica antes de exponer cualquier servicio al exterior. */
+  #normalize(services: Service[]): Service[] {
+    return services
+      .map((s) => ({
+        ...s,
+        badges: s.badges
+          ? ([...s.badges].sort((a, b) => a.priority - b.priority) as typeof s.badges)
+          : s.badges,
+      }))
+      .sort((a, b) => a.sortOrder - b.sortOrder);
+  }
+
+  /** Retorna todos los servicios ordenados por sortOrder ascendente
+   *  y con badges ordenados por priority. */
   getAll(): Observable<Service[]> {
-    return this.allServices$.pipe(
-      map((services) => [...services].sort((a, b) => a.sortOrder - b.sortOrder)),
-    );
+    return this.allServices$.pipe(map((services) => this.#normalize(services)));
   }
 
   /** Retorna un servicio por su ID, o undefined si no existe. */
@@ -44,10 +56,15 @@ export class ServiceService {
     );
   }
 
-  /** Retorna solo los servicios marcados como populares. */
-  getPopular(): Observable<Service[]> {
+  /** Retorna solo los servicios que tengan un badge del tipo indicado. */
+  getByBadge(badgeId: ServiceBadgeId): Observable<Service[]> {
     return this.getAll().pipe(
-      map((services) => services.filter((s) => s.isPopular)),
+      map((services) => services.filter((s) => s.badges?.some((b) => b.id === badgeId))),
     );
+  }
+
+  /** Retorna solo los servicios con badge 'popular'. */
+  getPopular(): Observable<Service[]> {
+    return this.getByBadge('popular');
   }
 }

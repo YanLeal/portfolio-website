@@ -1,4 +1,4 @@
-import type { ServiceIcon, ServiceCategory } from './service.types';
+import type { ServiceBadge, ServiceIcon, ServiceCategory } from './service.types';
 
 export interface Service {
   readonly id: string;
@@ -11,7 +11,6 @@ export interface Service {
   readonly category: ServiceCategory;
   readonly sortOrder: number;
   readonly image?: string;
-  readonly isPopular?: boolean;
-  readonly isNew?: boolean;
+  readonly badges?: readonly ServiceBadge[];
   readonly priceNote?: string;
 }

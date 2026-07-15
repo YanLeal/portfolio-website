@@ -1,13 +1,15 @@
 <section appReveal animationClass="anim-fade-in" class="hero" [attr.aria-label]="content().ariaLabel">
   <!-- Imagen de fondo -->
   <div class="hero-bg" aria-hidden="true">
-    <img
-      [ngSrc]="content().heroImage"
-      alt=""
-      width="1920"
-      height="1080"
-      priority
-    />
+    @if (content().heroImage) {
+      <img
+        [ngSrc]="content().heroImage"
+        alt=""
+        width="1920"
+        height="1080"
+        priority
+      />
+    }
   </div>
 
   <!-- Overlay degradé -->
@@ -45,7 +47,6 @@
         {{ content().ctaSecondaryLabel }}
       </a>
 
-      <app-whatsapp-btn [variant]="'hero'" [label]="content().whatsappLabel" />
     </div>
   </div>
 

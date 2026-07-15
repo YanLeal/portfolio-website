@@ -1,0 +1,6 @@
+<span class="badge" [class]="'badge--' + badge().color">
+  @if (badge().icon) {
+    <svg-icon [name]="$any(badge().icon)" size="10" />
+  }
+  {{ badge().label }}
+</span>

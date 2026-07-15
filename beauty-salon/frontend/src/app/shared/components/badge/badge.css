@@ -1,0 +1,79 @@
+/* ─── Badge ───────────────────────────────────────────────────
+ *
+ * Componente compartido para mostrar etiquetas visuales sobre
+ * servicios, promociones, paquetes o cualquier entidad que
+ * tenga metadata promocional.
+ *
+ * Uso:
+ *   <app-badge [badge]="{ id: 'new', label: 'Nuevo', priority: 10,
+ *                          color: 'success', icon: 'sparkles' }" />
+ *
+ * El color se mapea del campo `color` del badge a una variable
+ * del design system. Cada variante usa fondo tintado, borde
+ * sutil y texto en tono medio del color — sin saturación plena. */
+
+:host {
+  display: inline-flex;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  padding: 0.1875rem 0.5625rem;
+  border-radius: 999px;
+  border: 1px solid;
+  font-size: var(--font-size-2xs, 0.6875rem);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  letter-spacing: 0.015em;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  /* Aparición suave — solo opacidad, sin movimiento */
+  animation: badgeFadeIn 0.3s ease-out both;
+  animation-delay: calc(var(--badge-delay, 0ms));
+}
+
+@keyframes badgeFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.badge svg-icon {
+  opacity: 0.75;
+}
+
+/* Cada variante usa el color del design system con:
+ *   - fondo tintado al 10%
+ *   - borde al 25%
+ *   - texto al 80% mezclado con neutral-900 */
+.badge--brand {
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+  color: color-mix(in srgb, var(--color-primary) 80%, var(--color-neutral-900));
+}
+
+.badge--success {
+  background: color-mix(in srgb, var(--color-success) 10%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-success) 25%, transparent);
+  color: color-mix(in srgb, var(--color-success) 80%, var(--color-neutral-900));
+}
+
+.badge--accent {
+  background: color-mix(in srgb, var(--color-accent) 10%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-accent) 25%, transparent);
+  color: color-mix(in srgb, var(--color-accent) 80%, var(--color-neutral-900));
+}
+
+.badge--neutral {
+  background: color-mix(in srgb, var(--color-neutral-500) 10%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-neutral-500) 25%, transparent);
+  color: color-mix(in srgb, var(--color-neutral-500) 80%, var(--color-neutral-900));
+}
+
+.badge--warning {
+  background: color-mix(in srgb, var(--color-warning) 10%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-warning) 25%, transparent);
+  color: color-mix(in srgb, var(--color-warning) 80%, var(--color-neutral-900));
+}

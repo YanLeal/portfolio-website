@@ -1,0 +1,125 @@
+<section
+  class="section-padding section-gradient"
+  style="scroll-margin-top: 5rem"
+  (mouseenter)="carousel.pause()"
+  (mouseleave)="carousel.resume()"
+  (keydown)="carousel.onKeydown($event)">
+  <app-section-header title="Antes y Después" subtitle="Resultados reales de nuestros tratamientos" />
+  @if (hasError()) {
+    <p class="section-error">No pudimos cargar los resultados. Actualiza la página o escríbenos por WhatsApp.</p>
+  } @else {
+    <div
+      class="ba-carousel"
+      role="region"
+      aria-roledescription="carrusel"
+      aria-label="Resultados antes y después"
+      aria-live="polite">
+      <div class="ba-viewport">
+        <div class="ba-track" [style.transform]="carousel.translateX()">
+          @for (item of results(); track item.id; let i = $index) {
+            <div
+              class="ba-slide"
+              role="group"
+              [attr.aria-roledescription]="'resultado'"
+              [attr.aria-label]="'Resultado ' + (i + 1) + ' de ' + results().length"
+              [attr.aria-hidden]="i !== carousel.currentIndex()">
+
+              <!-- Slider before / after -->
+              <div
+                class="ba-comparison"
+                [class.is-dragging]="isDragging()"
+                role="slider"
+                tabindex="0"
+                [attr.aria-valuemin]="0"
+                [attr.aria-valuemax]="100"
+                [attr.aria-valuenow]="sliderPosition()"
+                [attr.aria-valuetext]="sliderValueText()"
+                [attr.aria-label]="'Comparación antes y después: ' + item.title"
+                (keydown)="onSliderKeydown($event)"
+                (pointerdown)="onPointerDown($event)"
+                (pointermove)="onPointerMove($event)"
+                (pointerup)="onPointerUp($event)"
+                (pointercancel)="onPointerUp($event)">
+
+                <!-- After: capa base -->
+                <img
+                  class="ba-img ba-img--after"
+                  [src]="item.afterImage"
+                  [alt]="'Después: ' + item.title"
+                  width="800"
+                  height="800"
+                  decoding="async" />
+
+                <!-- Before: capa superior recortada por sliderPosition -->
+                <div
+                  class="ba-img--before-wrapper"
+                  [style.clip-path]="'inset(0 ' + (100 - sliderPosition()) + '% 0 0)'">
+                  <img
+                    class="ba-img ba-img--before"
+                    [src]="item.beforeImage"
+                    [alt]="'Antes: ' + item.title"
+                    width="800"
+                    height="800"
+                    decoding="async" />
+                </div>
+
+                <!-- Labels: decorativas, el slider comunica el estado vía aria-valuetext -->
+                <span class="ba-label ba-label--before" aria-hidden="true">Antes</span>
+                <span class="ba-label ba-label--after" aria-hidden="true">Después</span>
+
+                <!-- Divisor + handle -->
+                <div class="ba-divider" [style.left]="sliderPosition() + '%'">
+                  <div class="ba-handle" aria-hidden="true">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8 4L14 10L8 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Texto -->
+              <div class="ba-info">
+                <h3 class="ba-title">{{ item.title }}</h3>
+                <p class="ba-description">{{ item.description }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Navegación -->
+      @if (!carousel.isFirst()) {
+        <button class="ba-btn ba-btn--prev" type="button" (click)="carousel.previous()" aria-label="Resultado anterior">
+          ←
+        </button>
+      }
+      @if (!carousel.isLast()) {
+        <button class="ba-btn ba-btn--next" type="button" (click)="carousel.next()" aria-label="Resultado siguiente">
+          →
+        </button>
+      }
+
+      <!-- Dots -->
+      <div class="ba-dots" role="tablist" aria-label="Seleccionar resultado">
+        @for (item of results(); track item.id; let i = $index) {
+          <button
+            class="ba-dot"
+            [class.ba-dot--active]="i === carousel.currentIndex()"
+            type="button"
+            role="tab"
+            [attr.aria-selected]="i === carousel.currentIndex()"
+            [attr.aria-label]="'Ir al resultado ' + (i + 1)"
+            (click)="carousel.goTo(i)">
+            @if (i === carousel.currentIndex()) { ● } @else { ○ }
+          </button>
+        }
+      </div>
+      <!-- Anuncio accesible: se actualiza al soltar el slider o cambiar slide -->
+      <span
+        class="sr-only"
+        aria-live="polite"
+        aria-atomic="true">{{ sliderAnnouncement() }}</span>
+    </div>
+  }
+</section>

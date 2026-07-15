@@ -1,13 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { RevealDirective } from '../../../shared/directives/reveal.directive';
-import { WhatsappButtonComponent } from '../../../shared/components/whatsapp-btn/whatsapp-btn';
 import { HeroService } from '../../../services/features/hero/hero.service';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [NgOptimizedImage, RevealDirective, WhatsappButtonComponent],
+  imports: [NgOptimizedImage, RevealDirective],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
 })

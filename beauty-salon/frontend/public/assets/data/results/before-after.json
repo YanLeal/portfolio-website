@@ -1,0 +1,82 @@
+[
+  {
+    "id": "corto-elegante",
+    "title": "Corte Corto Elegante",
+    "description": "Transformación completa de cabello largo a un corte pixie moderno. Se trabajó con texturaizador para dar volumen y movimiento. Ideal para quienes buscan un cambio radical sin perder feminidad.",
+    "beforeImage": "images/results/corto-elegante-before.webp",
+    "afterImage": "images/results/corto-elegante-after.webp",
+    "category": "cabello",
+    "featured": true,
+    "order": 10
+  },
+  {
+    "id": "balayage-dorado",
+    "title": "Balayage Dorado",
+    "description": "Técnica de mechas balayage con reflejos dorados y caramelo. Se aplicó sobre base castaña natural para un efecto iluminado sin mantenimiento estricto. El resultado es un color multidimensional que favorece todo el año.",
+    "beforeImage": "images/results/balayage-dorado-before.webp",
+    "afterImage": "images/results/balayage-dorado-after.webp",
+    "category": "coloracion",
+    "featured": true,
+    "order": 20
+  },
+  {
+    "id": "esmaltado-rojo",
+    "title": "Esmaltado Semipermanente Rojo Clásico",
+    "description": "Esmaltado semipermanente en tono rojo intenso con terminación brillo espejo. Se realizó manicura completa con cuticle care, limado personalizado y base fortalecedora. Duración promedio de 3 semanas sin descascare.",
+    "beforeImage": "images/results/esmaltado-rojo-before.webp",
+    "afterImage": "images/results/esmaltado-rojo-after.webp",
+    "category": "uñas",
+    "featured": false,
+    "order": 30
+  },
+  {
+    "id": "tratamiento-queratina",
+    "title": "Tratamiento de Queratina",
+    "description": "Aplicación de queratina líquida para eliminar el frizz y recuperar la hidratación natural del cabello. El tratamiento incluyó baño de crema profundo y sellado con calor. Cabello visiblemente más suave y manejable desde la primera sesión.",
+    "beforeImage": "images/results/tratamiento-queratina-before.webp",
+    "afterImage": "images/results/tratamiento-queratina-after.webp",
+    "category": "tratamientos",
+    "featured": true,
+    "order": 40
+  },
+  {
+    "id": "maquillaje-social",
+    "title": "Maquillaje Social Elegante",
+    "description": "Maquillaje completo para evento de noche. Base de alta cobertura con terminación natural, sombras en tonos tierra con destellos sutiles, delineado preciso y labios en tono berry. Se utilizaron productos hipoalergénicos de larga duración.",
+    "beforeImage": "images/results/maquillaje-social-before.webp",
+    "afterImage": "images/results/maquillaje-social-after.webp",
+    "category": "maquillaje",
+    "featured": false,
+    "order": 50
+  },
+  {
+    "id": "diseno-cejas",
+    "title": "Diseño de Cejas con Henná",
+    "description": "Perfilado de cejas con pinza y henna semipermanente. Se respetó la forma natural del arco y se rellenaron las zonas con menor densidad. El color se eligió según el tono de cabello y piel de la clienta. Resultado natural sin efecto tatuado.",
+    "beforeImage": "images/results/diseno-cejas-before.webp",
+    "afterImage": "images/results/diseno-cejas-after.webp",
+    "category": "cejas",
+    "featured": false,
+    "order": 60
+  },
+  {
+    "id": "extensiones-pestanas",
+    "title": "Extensiones de Pestañas Volumen Ruso",
+    "description": "Aplicación de extensiones de pestañas en técnica volumen ruso 3D. Se colocaron entre 80 y 100 extensiones por ojo, respetando la curvatura natural. Efecto de mirada abierta y despejada sin necesidad de máscara de pestañas.",
+    "beforeImage": "images/results/extensiones-pestanas-before.webp",
+    "afterImage": "images/results/extensiones-pestanas-after.webp",
+    "category": "pestañas",
+    "featured": false,
+    "order": 70
+  },
+  {
+    "id": "coloracion-cobre",
+    "title": "Coloración Cobre Intenso",
+    "description": "Coloración completa en tono cobre cobrizo con reflejos dorados. Se decoloró ligeramente la base para lograr la intensidad deseada y se aplicó tratamiento post-color para sellar la cutícula. El color se mantiene vibrante por 6 a 8 semanas con los cuidados adecuados.",
+    "beforeImage": "images/results/coloracion-cobre-before.webp",
+    "afterImage": "images/results/coloracion-cobre-after.webp",
+    "category": "coloracion",
+    "featured": false,
+    "order": 80
+  }
+]

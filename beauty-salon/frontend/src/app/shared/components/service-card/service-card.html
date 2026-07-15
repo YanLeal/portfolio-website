@@ -9,6 +9,16 @@
       height="597"
       decoding="async"
     />
+    <!-- Badges sobre la imagen — solo si existen y no están vacíos -->
+    @let badges = service().badges;
+    @if (badges?.length) {
+      <div class="card-badges" aria-label="Etiquetas del servicio">
+        @for (badge of badges; track badge.id; let idx = $index) {
+          <app-badge [badge]="badge" [style.--badge-delay]="idx * 0.08 + 's'" />
+        }
+      </div>
+    }
+
     <div class="card-overlay"></div>
 
     <!-- Icono decorativo sobre la imagen (desde service.icon) -->

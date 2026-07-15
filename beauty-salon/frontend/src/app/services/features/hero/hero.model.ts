@@ -6,6 +6,5 @@ export interface HeroContent {
   readonly ctaSecondaryLabel: string;
   readonly heroImage: string;
   readonly scrollText: string;
-  readonly whatsappLabel: string;
   readonly ariaLabel: string;
 }

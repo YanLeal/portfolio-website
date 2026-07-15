@@ -10,8 +10,9 @@
     "category": "cabello",
     "sortOrder": 10,
     "image": "images/services/corte-de-cabello-1200x900.webp",
-    "isPopular": true,
-    "isNew": false
+    "badges": [
+      { "id": "popular", "label": "Popular", "priority": 10, "color": "brand", "icon": "star" }
+    ]
   },
   {
     "id": "color",
@@ -24,8 +25,9 @@
     "category": "cabello",
     "sortOrder": 20,
     "image": "images/services/coloracion-1200x900.webp",
-    "isPopular": false,
-    "isNew": false
+    "badges": [
+      { "id": "new", "label": "Nuevo", "priority": 10, "color": "success", "icon": "sparkles" }
+    ]
   },
   {
     "id": "manicuria",
@@ -38,8 +40,9 @@
     "category": "uñas",
     "sortOrder": 30,
     "image": "images/services/manicuria-1200x900.webp",
-    "isPopular": true,
-    "isNew": false
+    "badges": [
+      { "id": "best-seller", "label": "Más vendido", "priority": 10, "color": "accent", "icon": "star" }
+    ]
   },
   {
     "id": "pedicuria",
@@ -51,9 +54,7 @@
     "icon": "foot",
     "category": "uñas",
     "sortOrder": 40,
-    "image": "images/services/pedicuria-1200x900.webp",
-    "isPopular": false,
-    "isNew": false
+    "image": "images/services/pedicuria-1200x900.webp"
   },
   {
     "id": "maquillaje",
@@ -65,9 +66,7 @@
     "icon": "brush",
     "category": "maquillaje",
     "sortOrder": 50,
-    "image": "images/services/maquillaje-profesional-1200x900.webp",
-    "isPopular": false,
-    "isNew": false
+    "image": "images/services/maquillaje-profesional-1200x900.webp"
   },
   {
     "id": "tratamiento-facial",
@@ -79,8 +78,6 @@
     "icon": "face",
     "category": "tratamientos",
     "sortOrder": 60,
-    "image": "images/services/tratamiento-facial-1200x900.webp",
-    "isPopular": false,
-    "isNew": false
+    "image": "images/services/tratamiento-facial-1200x900.webp"
   }
 ]

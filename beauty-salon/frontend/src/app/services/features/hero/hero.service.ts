@@ -9,7 +9,6 @@ const FALLBACK: HeroContent = {
   ctaSecondaryLabel: '',
   heroImage: '',
   scrollText: '',
-  whatsappLabel: '',
   ariaLabel: '',
 };
 
