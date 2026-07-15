@@ -1,7 +1,7 @@
 <section class="section-padding section-gradient" style="scroll-margin-top: 5rem">
   <app-section-header [title]="testimonialsTitle()" [subtitle]="testimonialsSubtitle()" />
   @if (hasError()) {
-    <p class="section-error">No pudimos cargar los testimonios. Actualizá la página o escribinos por WhatsApp.</p>
+    <p class="section-error">No pudimos cargar los testimonios. Actualiza la página o escríbenos por WhatsApp.</p>
   } @else {
     <div class="section-grid stagger">
       @for (item of testimonials(); track item.id) {

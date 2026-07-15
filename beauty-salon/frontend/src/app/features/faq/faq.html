@@ -1,10 +1,10 @@
 <section id="faq">
-  <app-section-header title="Preguntas frecuentes" subtitle="Todo lo que necesitás saber antes de tu visita" />
+  <app-section-header title="Preguntas frecuentes" subtitle="Todo lo que necesitas saber antes de tu visita" />
 
   <div class="buscador">
     <input
       type="search"
-      placeholder="Buscá tu pregunta…"
+      placeholder="Busca tu pregunta…"
       [value]="searchText()"
       (input)="searchText.set($any($event.target).value)"
     />
@@ -18,7 +18,7 @@
   </div>
 
   @if (!hayResultados() && searchText()) {
-    <p class="sin-resultados">No encontramos preguntas que coincidan con tu búsqueda. Probá con otros términos o escribinos por WhatsApp.</p>
+    <p class="sin-resultados">No encontramos preguntas que coincidan con tu búsqueda. Prueba con otros términos o escríbenos por WhatsApp.</p>
   }
 
   <div class="acordeon">

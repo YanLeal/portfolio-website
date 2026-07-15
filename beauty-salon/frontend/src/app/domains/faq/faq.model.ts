@@ -1,9 +1,4 @@
-export type FaqCategory =
-  | 'Cabello'
-  | 'Coloración'
-  | 'Uñas'
-  | 'Faciales'
-  | 'General';
+export type FaqCategory = string;
 
 export interface FaqItem {
   readonly id: string;

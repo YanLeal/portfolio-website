@@ -5,7 +5,62 @@
    - promo-entrance--line → lineGrowX
    shimmer y float son ambientales únicas (se mantienen).
    Todos los timing tokens se heredan de animation.css.
+
+   La clase .promo-section fuerza re-creación del DOM
+   cuando cambia promo.id (@for + track), reproduciendo
+   todas las animaciones CSS de entrada (stagger + fade).
    ──────────────────────────────────────────────────────── */
+
+/* ─── Entrada del contenedor al cambiar de promo ──────────── */
+
+.promo-section {
+  animation: promoCarga 0.45s ease-out both;
+}
+
+@keyframes promoCarga {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-section {
+    animation: none;
+  }
+}
+
+/* ─── Badge: entrada pop + float permanente ────────────────── */
+
+.promo-badge {
+  animation: badgeEntrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+             float 4s ease-in-out 0.6s infinite;
+}
+
+@keyframes badgeEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-badge {
+    animation: none;
+  }
+}
 
 /* ─── Ambientales sutiles (siempre activas) ──────────────── */
 
@@ -38,21 +93,76 @@
   animation: lineGrowX var(--anim-duration-base) var(--anim-easing-out) both;
 }
 
+/* ─── Hover elegante: la tarjeta se eleva ──────────────────── */
+
+.promo-grid {
+  transition:
+    transform 0.45s ease,
+    box-shadow 0.45s ease;
+  will-change: transform, box-shadow;
+}
+
+.promo-section:hover .promo-grid {
+  transform: translateY(-4px);
+  box-shadow: var(--elevation-hover-strong);
+}
+
 /* ─── Multimedia (imagen) ─────────────────────────────────── */
 
 .promo-media {
-  animation: fadeIn 0.8s var(--anim-easing-out) both;
-  animation-delay: 50ms;
   overflow: hidden;
+  position: relative;
+}
+
+.promo-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(36, 31, 26, 0) 0%,
+    rgba(36, 31, 26, 0) 100%
+  );
+  transition: background 0.45s ease;
+  pointer-events: none;
+}
+
+.promo-section:hover .promo-media::after {
+  background: linear-gradient(
+    to top,
+    rgba(36, 31, 26, 0.04) 0%,
+    transparent 40%
+  );
 }
 
 .promo-media img {
-  transition: transform var(--anim-duration-zoom) var(--anim-easing-out);
+  animation: promoImgEntrance 0.8s var(--anim-easing-out) both;
+  animation-delay: 50ms;
   will-change: transform;
+  transition: transform var(--anim-duration-zoom) var(--anim-easing-out);
 }
 
-.promo-media:hover img {
-  transform: scale(1.05);
+.promo-section:hover .promo-media img {
+  transform: scale(1.06);
+}
+
+@keyframes promoImgEntrance {
+  from {
+    opacity: 0;
+    transform: scale(1.08);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-media img {
+    animation: none;
+  }
 }
 
 /* ─── Ambientales ─────────────────────────────────────────── */
@@ -63,6 +173,52 @@
 
 .promo-float {
   animation: float 4s ease-in-out infinite;
+}
+
+/* ─── Responsive: móvil ────────────────────────────────────── */
+
+@media (width < 48rem) {
+  .promo-grid {
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .promo-grid > .bg-neutral-50 {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .promo-badge {
+    font-size: 2.5rem;
+  }
+
+  .promo-grid .leading-relaxed {
+    font-size: 0.9375rem;
+  }
+}
+
+/* ─── Reduced motion: desactiva animaciones de entrada e infinitas ── */
+
+@media (prefers-reduced-motion: reduce) {
+  .promo-entrance,
+  .promo-entrance--slow,
+  .promo-entrance--fade,
+  .promo-entrance--line,
+  .promo-shimmer,
+  .promo-float {
+    animation: none;
+  }
+
+  .promo-grid {
+    transition: none;
+  }
+
+  .promo-section:hover .promo-grid {
+    transform: none;
+  }
+
+  .promo-section:hover .promo-media img {
+    transform: none;
+  }
 }
 
 /* ─── Stagger delays ─────────────────────────────────────── */

@@ -1,7 +1,7 @@
 {
   "siteName": "Belleza & Estilo",
   "title": "Sobre nosotros",
-  "subtitle": "Conocé nuestra historia",
+  "subtitle": "Conoce nuestra historia",
   "image": "images/about-1200x1350.webp",
   "imageAlt": "Interior del salón Belleza & Estilo",
   "paragraphLead": "nos apasiona realzar tu belleza natural. Con más de 10 años en el rubro, nuestro equipo de profesionales está dedicado a brindarte la mejor experiencia en cuidado personal.",
@@ -11,5 +11,5 @@
     { "value": "5K+", "label": "Clientas satisfechas" },
     { "value": "15+", "label": "Premios recibidos" }
   ],
-  "ctaLabel": "Reservá tu turno"
+  "ctaLabel": "Reserva tu turno"
 }

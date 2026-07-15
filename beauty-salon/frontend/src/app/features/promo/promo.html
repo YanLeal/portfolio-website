@@ -1,14 +1,24 @@
-<section class="section-padding">
-  @if (hasError()) {
-    <p class="section-error">No pudimos cargar la promoción del mes. Actualizá la página o consultanos por WhatsApp.</p>
-  } @else {
-  <div class="grid grid-cols-1 md:grid-cols-2 md:min-h-[500px] lg:min-h-[560px] max-w-[1200px] mx-auto">
+@if (hasError()) {
+  <section class="section-padding">
+    <p class="section-error">No pudimos cargar la promoción del mes. Actualiza la página o consúltanos por WhatsApp.</p>
+  </section>
+}
+
+@for (promo of promoList(); track promo.id) {
+  <section
+    class="section-padding promo-section"
+    [class.theme-primary]="promo.theme === 'primary'"
+    [class.theme-secondary]="promo.theme === 'secondary'"
+    [class.theme-accent]="promo.theme === 'accent'"
+    [class.theme-dark]="promo.theme === 'dark'"
+  >
+  <div class="grid grid-cols-1 md:grid-cols-2 md:min-h-[500px] lg:min-h-[560px] max-w-[1200px] mx-auto promo-grid">
     <!-- Imagen -->
-    <div class="promo-media aspect-[3/4] md:aspect-auto">
+    <div class="promo-media aspect-[4/5] md:aspect-auto">
       <img
         class="w-full h-full object-cover object-center"
-        [src]="promo().image"
-        [alt]="'Promoción ' + promo().month + ': ' + promo().service"
+        [src]="promo.image"
+        [alt]="'Promoción: ' + promo.title"
         width="800"
         height="1067"
         loading="lazy"
@@ -18,46 +28,49 @@
 
     <!-- Contenido -->
     <div class="flex flex-col justify-center p-8 md:p-12 lg:p-16 bg-neutral-50">
-      <h2 class="sr-only">Promoción del {{ promo().month }}</h2>
+      <h2 class="sr-only">Promoción: {{ promo.title }}</h2>
       <div class="promo-entrance--slow promo-delay-1 flex flex-wrap items-center gap-x-2 gap-y-1 font-sans text-xs tracking-[0.15em] uppercase text-accent">
-        <span>Promo • {{ promo().month }}</span>
-        <span class="w-px h-3 bg-accent/30" aria-hidden="true"></span>
-        <span>Válido hasta {{ promo().validUntil }}</span>
+        @if (promo.badge) {
+          <span>Promo • {{ promo.badge }}</span>
+          <span class="w-px h-3 bg-accent/30" aria-hidden="true"></span>
+        } @else {
+          <span>Promo</span>
+          <span class="w-px h-3 bg-accent/30" aria-hidden="true"></span>
+        }
+        <span>Válido hasta {{ promo.endDate }}</span>
         <span class="inline-block w-2 h-2 rounded-full border border-accent/40 promo-shimmer" aria-hidden="true"></span>
       </div>
 
-      <span class="promo-entrance--slow promo-delay-2 promo-float block font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-primary leading-none mt-2">
-        {{ promo().discount }}
-      </span>
+      @if (promo.badge) {
+        <span class="promo-badge promo-delay-2 block font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-primary leading-none mt-2">
+          {{ promo.badge }}
+        </span>
+      }
 
       <div class="promo-entrance--line promo-delay-3 w-10 h-px bg-accent-light mt-6 mb-6"></div>
 
       <h3 class="promo-entrance promo-delay-4 font-heading text-2xl md:text-3xl text-neutral-900">
-        {{ promo().service }}
+        {{ promo.title }}
       </h3>
 
+      @if (promo.subtitle) {
+        <p class="promo-entrance--fade promo-delay-4 text-body text-neutral-500 leading-relaxed mt-1">
+          {{ promo.subtitle }}
+        </p>
+      }
+
       <p class="promo-entrance--fade promo-delay-5 text-body text-neutral-600 leading-relaxed mt-2 max-w-prose">
-        {{ promo().description }}
+        {{ promo.description }}
       </p>
 
       <div class="promo-entrance promo-delay-6 mt-8">
         <app-cta-button
-          [label]="promo().ctaLabel"
-          [href]="whatsAppUrl"
+          [label]="promo.buttonLabel"
+          [href]="promo.buttonUrl"
           [external]="true"
         />
       </div>
-
-      @if (promo().spotsLeft > 0) {
-        <p class="promo-entrance--fade promo-delay-7 text-sm text-neutral-500 mt-4">
-          Quedan {{ promo().spotsLeft }} cupos
-        </p>
-      } @else {
-        <p class="promo-entrance--fade promo-delay-7 text-sm text-neutral-500 mt-4">
-          Promoción completa
-        </p>
-      }
     </div>
   </div>
-  }
-</section>
+  </section>
+}

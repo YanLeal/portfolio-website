@@ -3,11 +3,6 @@ export interface FooterQuickLink {
   readonly fragment: string;
 }
 
-export interface FooterScheduleEntry {
-  readonly label: string;
-  readonly hours: string;
-}
-
 export interface FooterSocialLink {
   readonly platform: string;
   readonly url: string;
@@ -32,7 +27,6 @@ export interface FooterData {
   readonly headings: FooterHeadings;
   readonly socialLinks: readonly FooterSocialLink[];
   readonly quickLinks: readonly FooterQuickLink[];
-  readonly schedule: readonly FooterScheduleEntry[];
   readonly contactInfo: FooterContactInfo;
   readonly copyrightText: string;
 }

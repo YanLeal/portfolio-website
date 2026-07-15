@@ -1,7 +1,7 @@
 <section id="servicios" class="section-padding section-gradient" style="scroll-margin-top: 5rem">
   <app-section-header [title]="servicesTitle()" [subtitle]="servicesSubtitle()" />
   @if (hasError()) {
-    <p class="section-error">No pudimos cargar los servicios. Actualizá la página o escribinos por WhatsApp.</p>
+    <p class="section-error">No pudimos cargar los servicios. Actualiza la página o escríbenos por WhatsApp.</p>
   } @else {
     <div class="section-grid stagger">
       @for (service of services(); track service.id) {
@@ -10,7 +10,7 @@
     </div>
 
     <div class="services-wa-wrap">
-      <app-whatsapp-btn variant="services" label="Consultá por WhatsApp" />
+      <app-whatsapp-btn variant="services" label="Consulta por WhatsApp" />
     </div>
   }
 </section>

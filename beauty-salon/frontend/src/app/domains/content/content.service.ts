@@ -8,7 +8,7 @@ import type { ContentData } from './content.model';
 const FALLBACK: ContentData = {
   hero: { businessName: '', tagline: '', description: '', ctaLabel: '', ctaSecondaryLabel: '' },
   about: { title: '', subtitle: '', paragraphs: [], stats: [] },
-  services: { title: 'Servicios', subtitle: 'Todo lo que necesitás para mimarte' },
+  services: { title: 'Servicios', subtitle: 'Todo lo que necesitas para mimarte' },
   pricing: { title: 'Precios', subtitle: 'Transparencia desde el inicio' },
   gallery: { title: 'Galería', subtitle: 'Mirá nuestro trabajo' },
   team: { title: 'Equipo', subtitle: 'Los profesionales que te van a atender' },

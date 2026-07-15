@@ -7,7 +7,6 @@ const FALLBACK: FooterData = {
   headings: { links: '', schedule: '', contact: '' },
   socialLinks: [],
   quickLinks: [],
-  schedule: [],
   contactInfo: { address: '', phone: '', email: '' },
   copyrightText: '',
 };

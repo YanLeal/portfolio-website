@@ -6,8 +6,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import type { ContactConfig } from './contact.model';
 
 const FALLBACK: ContactConfig = {
-  title: 'Reservá tu cita',
-  subtitle: 'Elegí el servicio, el día y el horario',
+  title: 'Reserva tu cita',
+  subtitle: 'Elige el servicio, el día y el horario',
   wizardSteps: ['Servicio', 'Fecha', 'Datos', 'Confirmar'],
   timeSlots: {
     morning: ['09:00', '10:00', '11:00'],

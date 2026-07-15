@@ -1,11 +1,11 @@
 {
   "businessName": "Belleza & Estilo",
   "tagline": "Tu momento de brillar empieza acá",
-  "description": "Cuidado personal profesional en un ambiente pensado para vos. Cortes, color, manicuría, maquillaje y más.",
-  "ctaLabel": "Reservá tu turno",
+  "description": "Cuidado personal profesional en un ambiente pensado para ti. Cortes, color, manicuría, maquillaje y más.",
+  "ctaLabel": "Reserva tu turno",
   "ctaSecondaryLabel": "Ver servicios",
   "heroImage": "images/hero.webp",
-  "scrollText": "Descubrí más",
-  "whatsappLabel": "Escribinos por WhatsApp",
+  "scrollText": "Descubre más",
+  "whatsappLabel": "Escríbenos por WhatsApp",
   "ariaLabel": "Presentación"
 }

@@ -12,5 +12,5 @@
     { "label": "Equipo", "fragment": "equipo" },
     { "label": "Contacto", "fragment": "contacto" }
   ],
-  "ctaReservar": "Reservá tu turno"
+  "ctaReservar": "Reserva tu turno"
 }

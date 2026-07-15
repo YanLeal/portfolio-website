@@ -16,7 +16,7 @@ export class FaqComponent {
   private readonly service = inject(FaqService);
 
   readonly categorias = this.service.categorias;
-  readonly categoriaSeleccionada = signal<FaqCategory | null>(null);
+  readonly categoriaSeleccionada = signal<string | null>(null);
   readonly searchText = signal('');
 readonly faqAbierta = signal<string | null>(null);
 
@@ -40,7 +40,7 @@ readonly faqAbierta = signal<string | null>(null);
     return true;
   }
 
-  seleccionar(cat: FaqCategory | null): void {
+  seleccionar(cat: string | null): void {
     this.categoriaSeleccionada.set(cat);
   }
 

@@ -855,6 +855,77 @@ section {
   transform: scale(1.03);
 }
 
+/* ─── Horarios en sidebar ─────────────────────────── */
+
+.sidebar-item--schedule {
+  align-items: flex-start;
+}
+
+.schedule-list {
+  flex: 1;
+  min-width: 0;
+}
+
+.schedule-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem 1rem; /* row-gap column-gap — wrap friendly */
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  flex-wrap: wrap;
+}
+
+.schedule-day {
+  color: var(--color-neutral-700);
+}
+
+.schedule-hours {
+  color: var(--color-neutral-600);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.schedule-hours.is-closed {
+  color: var(--color-neutral-400);
+  font-style: italic;
+}
+
+.schedule-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.625rem;
+  padding-top: 0.625rem;
+  border-top: 1px solid var(--color-neutral-200);
+  font-size: var(--font-size-xs);
+  line-height: 1;
+  transition: color 0.45s ease;
+}
+
+.schedule-status.is-open {
+  color: var(--color-success);
+}
+
+.schedule-status.is-closed {
+  color: var(--color-neutral-500);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color 0.45s ease;
+}
+
+.schedule-status.is-open .status-dot {
+  background-color: var(--color-success);
+}
+
+.schedule-status.is-closed .status-dot {
+  background-color: var(--color-neutral-400);
+}
+
 /* ═══════════════════════════════════════════════════════════
    KEYFRAMES
    popIn y fadeInUp compartidos desde animation.css

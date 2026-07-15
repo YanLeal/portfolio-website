@@ -5,6 +5,7 @@ import { SectionHeader } from '../../shared/components/section-header/section-he
 import { SvgIcon } from '../../shared/components/svg-icon/svg-icon';
 import { ServiceService } from '../../domains/services/service.service';
 import { BusinessService } from '../../domains/business/business.service';
+import type { DayOfWeek } from '../../domains/business/business.model';
 import { ContactService } from '../../domains/contact/contact.service';
 import { WhatsappMessageService } from '../../domains/booking/services/whatsapp-message.service';
 import type { WizardStep } from '../../domains/booking/models/booking.model';
@@ -34,7 +35,8 @@ export class ContactComponent {
   readonly address = computed(() => this.businessService.data().contact.address);
   readonly phone = computed(() => this.businessService.data().contact.phone.display);
   readonly email = computed(() => this.businessService.data().contact.email);
-  readonly schedule = computed(() => 'Lun a Sáb: 9:00 – 20:00');
+  readonly businessHours = this.businessService.businessHours;
+  readonly isOpenNow = this.businessService.isOpenNow;
 
   readonly morningSlots = computed(() => this.contactService.config().timeSlots.morning);
   readonly afternoonSlots = computed(() => this.contactService.config().timeSlots.afternoon);
@@ -117,14 +119,31 @@ export class ContactComponent {
     return undefined;
   }
 
+  /** Traducción de Date.getDay() (0=domingo) a DayOfWeek. */
+  private static readonly DAY_MAP: readonly string[] = [
+    'sunday', 'monday', 'tuesday', 'wednesday',
+    'thursday', 'friday', 'saturday',
+  ];
+
   get minDate(): string {
-    const today = new Date();
-    return today.toISOString().split('T')[0];
+    return new Date().toLocaleDateString('en-CA', {
+      timeZone: 'America/Mexico_City',
+    });
   }
 
   get isClosedDay(): boolean {
     if (!this.selectedDate) return false;
-    return new Date(this.selectedDate).getDay() === 0; // 0 = Sunday
+
+    // 1. Verificar excepciones para la fecha seleccionada
+    const exception = this.businessService
+      .exceptions()
+      ?.find((ex) => ex.date === this.selectedDate);
+    if (exception) return exception.type === 'closed';
+
+    // 2. Verificar horario regular del día
+    const day = ContactComponent.DAY_MAP[new Date(this.selectedDate + 'T12:00:00').getDay()] as DayOfWeek;
+    const schedule = this.businessService.getDaySchedule(day);
+    return !schedule || schedule.shifts.length === 0;
   }
 
   // ─── WhatsApp service ────────────────────────────────

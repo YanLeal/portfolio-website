@@ -163,8 +163,9 @@ footer {
 .footer-schedule li {
   display: flex;
   justify-content: space-between;
-  gap: var(--space-4);
+  gap: var(--space-3);
   font-size: var(--font-size-xs);
+  flex-wrap: wrap;
 }
 
 .sched-label {
@@ -174,6 +175,48 @@ footer {
 .sched-hours {
   color: var(--color-surface);
   font-weight: var(--font-weight-medium);
+}
+
+.sched-hours.is-closed {
+  color: color-mix(in srgb, var(--color-surface) 40%, transparent);
+  font-weight: var(--font-weight-regular);
+  font-style: italic;
+}
+
+.schedule-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  padding-top: 0.625rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-surface) 15%, transparent);
+  font-size: var(--font-size-xs);
+  line-height: 1;
+  transition: color 0.45s ease;
+}
+
+.schedule-status.is-open {
+  color: color-mix(in srgb, var(--color-success) 80%, var(--color-surface));
+}
+
+.schedule-status.is-closed {
+  color: color-mix(in srgb, var(--color-surface) 50%, transparent);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color 0.45s ease;
+}
+
+.schedule-status.is-open .status-dot {
+  background-color: var(--color-success);
+}
+
+.schedule-status.is-closed .status-dot {
+  background-color: color-mix(in srgb, var(--color-surface) 35%, transparent);
 }
 
 /* ─── Contact ───────────────────────────────────────────── */

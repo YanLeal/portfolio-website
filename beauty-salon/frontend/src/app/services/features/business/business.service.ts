@@ -13,7 +13,7 @@ export class BusinessService {
       email: '',
       address: '',
       social: { instagram: '', facebook: '' },
-      schedule: [],
+      schedule: { regular: [] },
     },
     seo: {
       title: '',

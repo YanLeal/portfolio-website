@@ -1,21 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { filter } from 'rxjs/operators';
+import { computed, Component, inject } from '@angular/core';
 import { CtaButton } from '../../shared/components/cta-button/cta-button';
 import { PromoService } from '../../domains/promotions/promotion.service';
-import { BusinessService } from '../../domains/business/business.service';
-import type { Promotion } from '../../domains/promotions/promotion.model';
-
-const PLACEHOLDER_PROMO: Promotion = {
-  month: '',
-  discount: '',
-  service: '',
-  description: '',
-  image: '',
-  ctaLabel: 'Reservar',
-  spotsLeft: 0,
-  validUntil: '',
-};
 
 @Component({
   selector: 'app-promo',
@@ -26,20 +11,13 @@ const PLACEHOLDER_PROMO: Promotion = {
 })
 export class PromoComponent {
   private readonly promoService = inject(PromoService);
-  private readonly businessService = inject(BusinessService);
   readonly hasError = this.promoService.error;
+  readonly currentPromotion = this.promoService.currentPromotion;
 
-  readonly promo = toSignal(
-    this.promoService.getCurrent().pipe(filter(Boolean)),
-    { initialValue: PLACEHOLDER_PROMO },
-  );
-
-  get whatsAppUrl(): string {
-    const p = this.promo();
-    const wa = this.businessService.data().contact.whatsapp;
-    const message = encodeURIComponent(
-      `Hola, quiero reservar la Promoción de ${p.month}: ${p.service}. ¿Tienen turno disponible?`,
-    );
-    return `https://wa.me/${wa}?text=${message}`;
-  }
+  /** Un item por vuelta: fuerza re-creación del DOM al cambiar de promo,
+   *  lo que reproduce las animaciones CSS de entrada (fadeInUp, stagger). */
+  readonly promoList = computed(() => {
+    const p = this.currentPromotion();
+    return p ? [p] : [];
+  });
 }

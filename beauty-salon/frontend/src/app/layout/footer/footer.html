@@ -50,13 +50,17 @@
     <div class="footer-col">
       <h4 class="footer-heading">{{ data().headings.schedule }}</h4>
       <ul class="footer-schedule">
-        @for (item of data().schedule; track item.label) {
+        @for (item of businessHours(); track item.day) {
           <li>
             <span class="sched-label">{{ item.label }}</span>
-            <span class="sched-hours">{{ item.hours }}</span>
+            <span class="sched-hours" [class.is-closed]="item.isClosed">{{ item.hours }}</span>
           </li>
         }
       </ul>
+      <div class="schedule-status" [class.is-open]="isOpenNow()" [class.is-closed]="!isOpenNow()" aria-live="polite" aria-atomic="true">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span>{{ isOpenNow() ? 'Abierto ahora' : 'Cerrado' }}</span>
+      </div>
     </div>
 
     <!-- ─── Contacto ──────────────────────────────────── -->
