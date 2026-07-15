@@ -101,14 +101,25 @@ export class CarouselController {
 
   // ─── Eventos de teclado ────────────────────────────────
 
-  /** Maneja flechas izquierda/derecha para navegar. */
+  /** Maneja teclas de navegación: ← → Home End. */
   readonly onKeydown = (event: KeyboardEvent): void => {
-    if (event.key === 'ArrowLeft') {
-      event.preventDefault();
-      this.previous();
-    } else if (event.key === 'ArrowRight') {
-      event.preventDefault();
-      this.next();
+    switch (event.key) {
+      case 'ArrowLeft':
+        event.preventDefault();
+        this.previous();
+        break;
+      case 'ArrowRight':
+        event.preventDefault();
+        this.next();
+        break;
+      case 'Home':
+        event.preventDefault();
+        this.goTo(0);
+        break;
+      case 'End':
+        event.preventDefault();
+        this.goTo(this.#config.totalItems() - 1);
+        break;
     }
   };
 
