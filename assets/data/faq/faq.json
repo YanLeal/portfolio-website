@@ -2,7 +2,7 @@
   {
     "id": "como-reservo",
     "question": "¿Cómo reservo un turno?",
-    "answer": "Podés reservar por WhatsApp, llamando al salón, online o viniendo en persona. Te confirmamos el turno en el momento.",
+    "answer": "Puedes reservar por WhatsApp, llamando al salón, online o viniendo en persona. Te confirmamos el turno en el momento.",
     "category": "General",
     "order": 1,
     "featured": true
@@ -10,7 +10,7 @@
   {
     "id": "metodos-pago",
     "question": "¿Qué métodos de pago aceptan?",
-    "answer": "Aceptamos efectivo, transferencia, Mercado Pago y tarjetas de crédito/débito. Consultá por promociones vigentes.",
+    "answer": "Aceptamos efectivo, transferencia, Mercado Pago y tarjetas de crédito/débito. Consulta por promociones vigentes.",
     "category": "General",
     "order": 2,
     "featured": true
@@ -98,7 +98,7 @@
   {
     "id": "limpieza-facial",
     "question": "¿En qué consiste una limpieza facial profesional?",
-    "answer": "Incluye desmaquillado, exfoliación, extracción de impurezas, mascarilla según tu tipo de piel e hidratación final. Dejás la piel limpia, renovada y luminosa.",
+    "answer": "Incluye desmaquillado, exfoliación, extracción de impurezas, mascarilla según tu tipo de piel e hidratación final. Dejas la piel limpia, renovada y luminosa.",
     "category": "Faciales",
     "order": 13,
     "featured": true

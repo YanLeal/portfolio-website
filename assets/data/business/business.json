@@ -7,28 +7,89 @@
   },
   "contact": {
     "phone": {
-      "display": "+521 442 301 6543",
-      "tel": "+5214423016543"
+      "display": "+52 55 1234 5678",
+      "tel": "+525512345678"
     },
-    "whatsapp": "5214423016543",
+    "whatsapp": "525512345678",
     "email": "info@bellezaestilo.com",
-    "address": "Av. Siempre Viva 123, Córdoba",
-    "mapUrl": "https://maps.google.com/?q=Belleza+y+Estilo+Cordoba",
+    "address": "Av. Insurgentes Sur 123, Colonia Roma, CDMX",
+    "mapUrl": "https://maps.google.com/?q=Belleza+y+Estilo+CDMX",
     "social": {
       "instagram": "https://instagram.com/bellezaestilo",
       "facebook": "https://facebook.com/bellezaestilo"
     },
-    "schedule": [
-      { "label": "Lun – Vie", "hours": "9:00 – 20:00" },
-      { "label": "Sábado", "hours": "9:00 – 18:00" },
-      { "label": "Domingo", "hours": "Cerrado" }
-    ]
+    "schedule": {
+      "regular": [
+        {
+          "day": "monday",
+          "shifts": [
+            { "start": "09:00", "end": "19:00" }
+          ]
+        },
+        {
+          "day": "tuesday",
+          "shifts": [
+            { "start": "09:00", "end": "20:00" }
+          ]
+        },
+        {
+          "day": "wednesday",
+          "shifts": [
+            { "start": "09:00", "end": "20:00" }
+          ]
+        },
+        {
+          "day": "thursday",
+          "shifts": [
+            { "start": "09:00", "end": "20:00" }
+          ],
+          "note": "Solo con cita previa"
+        },
+        {
+          "day": "friday",
+          "shifts": [
+            { "start": "09:00", "end": "14:00" },
+            { "start": "16:00", "end": "21:00" }
+          ]
+        },
+        {
+          "day": "saturday",
+          "shifts": [
+            { "start": "09:00", "end": "18:00" }
+          ]
+        },
+        {
+          "day": "sunday",
+          "shifts": []
+        }
+      ],
+      "exceptions": [
+        {
+          "date": "2026-09-16",
+          "type": "closed",
+          "reason": "Día de la Independencia"
+        },
+        {
+          "date": "2026-12-24",
+          "type": "special_hours",
+          "shifts": [
+            { "start": "09:00", "end": "14:00" }
+          ],
+          "reason": "Víspera de Navidad"
+        },
+        {
+          "date": "2026-12-25",
+          "type": "closed",
+          "reason": "Navidad"
+        }
+      ]
+    }
   },
   "seo": {
-    "title": "Belleza & Estilo — Salón de belleza y estética en Córdoba",
-    "description": "Cortes, color, manicuría, pedicuría, maquillaje profesional y tratamientos faciales en Córdoba. Más de 10 años de experiencia. Reservá tu turno online.",
+    "title": "Belleza & Estilo — Salón de belleza y estética en CDMX",
+    "description": "Cortes, color, manicuría, pedicuría, maquillaje profesional y tratamientos faciales en la Ciudad de México. Más de 10 años de experiencia. Reserva tu turno online.",
     "ogImage": "https://bellezaestilo.com/images/hero.webp",
-    "ogLocale": "es_AR",
+    "ogLocale": "es_MX",
     "canonical": "https://bellezaestilo.com/"
   }
 }
