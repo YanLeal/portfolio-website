@@ -1,5 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
-import { BusinessService } from '../../../domains/business/business.service';
+import { Component, computed, input } from '@angular/core';
 import type { WaVariant } from '../../types/button.types';
 
 @Component({
@@ -190,9 +189,25 @@ import type { WaVariant } from '../../types/button.types';
     }
   `],
 })
+/**
+ * Botón de WhatsApp con múltiples variantes visuales.
+ *
+ * Renderiza un enlace `<a>` directo a `https://wa.me/{phone}`.
+ * Variantes: hero, footer, services, floating — cada una con
+ * estilos específicos de color, padding, border-radius y hover.
+ * No inyecta servicios de dominio: recibe el número por input.
+ *
+ * @usage
+ * ```html
+ * <app-whatsapp-btn variant="hero" label="Contactanos" [phone]="waPhone()" />
+ * <app-whatsapp-btn variant="footer" [phone]="waPhone()" />
+ * <app-whatsapp-btn variant="floating" label="WhatsApp" [phone]="waPhone()" />
+ * ```
+ */
 export class WhatsappButtonComponent {
-  private readonly businessService = inject(BusinessService);
-  readonly waLink = computed(() => `https://wa.me/${this.businessService.data().contact.whatsapp}`);
+  /** Número de WhatsApp sin prefijo ni signos (ej: 525512345678) */
+  readonly phone = input.required<string>();
+  readonly waLink = computed(() => `https://wa.me/${this.phone()}`);
 
   /** Hero, footer, or services styling variant */
   readonly variant = input<WaVariant>('services');

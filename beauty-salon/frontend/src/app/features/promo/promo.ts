@@ -1,6 +1,5 @@
 import { computed, Component, inject } from '@angular/core';
-import { CtaButton } from '../../shared/components/cta-button/cta-button';
-import { ErrorBoundary } from '../../shared/components/error-boundary/error-boundary';
+import { CtaButton, ErrorBoundary } from '../../shared';
 import { PromoService } from '../../domains/promotions/promotion.service';
 
 @Component({

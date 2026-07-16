@@ -106,6 +106,21 @@ import type { SvgIconName } from '../../types/icon.types';
     </svg>
   `,
 })
+/**
+ * SVG icon reutilizable basado en Lucide/Feather icons.
+ *
+ * Renderiza inline SVG con stroke configurable. Soporta 19 iconos
+ * del sistema mediante un `@switch` en el template. Es el componente
+ * más usado del Design System — Badge, CtaButton, ServiceCard,
+ * TestimonialCard y otros lo consumen.
+ *
+ * @usage
+ * ```html
+ * <svg-icon name="clock" size="16" />
+ * <svg-icon name="arrow-right" size="20" strokeWidth="1.5" />
+ * <svg-icon name="instagram" size="24" ariaLabel="Instagram" />
+ * ```
+ */
 export class SvgIcon {
   readonly name = input.required<SvgIconName>();
   readonly size = input<string | number>('20');

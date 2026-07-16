@@ -13,6 +13,20 @@ import type { CtaButtonVariant } from '../../types/button.types';
     'class': 'app-cta-button',
   },
 })
+/**
+ * Botón de llamada a la acción con variantes primary/secondary.
+ *
+ * Renderiza `<a>` cuando se provee `href`, o `<button>` cuando no.
+ * Soporta icono opcional después del label y modo external para links
+ * que abren en nueva pestaña.
+ *
+ * @usage
+ * ```html
+ * <app-cta-button label="Reservar" (clicked)="onReservar()" />
+ * <app-cta-button label="Ver más" variant="secondary" iconAfter="arrow-right" href="/servicios" />
+ * <app-cta-button label="WhatsApp" iconAfter="message-circle" href="https://wa.me/..." [external]="true" />
+ * ```
+ */
 export class CtaButton {
   readonly label = input.required<string>();
   readonly variant = input<CtaButtonVariant>('primary');

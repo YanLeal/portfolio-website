@@ -1,9 +1,12 @@
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ErrorBoundary } from '../../shared/components/error-boundary/error-boundary';
-import { SectionHeader } from '../../shared/components/section-header/section-header';
-import { ServiceCard } from '../../shared/components/service-card/service-card';
-import { WhatsappButtonComponent } from '../../shared/components/whatsapp-btn/whatsapp-btn';
+import {
+  ErrorBoundary,
+  SectionHeader,
+  ServiceCard,
+  WhatsappButtonComponent,
+} from '../../shared';
+import { BusinessService } from '../../domains/business/business.service';
 import { ServiceService } from '../../domains/services/service.service';
 import { ContentService } from '../../domains/content/content.service';
 
@@ -15,6 +18,7 @@ import { ContentService } from '../../domains/content/content.service';
   styleUrl: './services.css',
 })
 export class ServicesComponent {
+  private readonly businessService = inject(BusinessService);
   private readonly serviceService = inject(ServiceService);
   private readonly contentService = inject(ContentService);
   readonly services = toSignal(this.serviceService.getAll(), { initialValue: [] });
@@ -37,6 +41,8 @@ export class ServicesComponent {
    *  Esto asegura que servicios promocionados (con badge "Nuevo",
    *  "Popular", "Más vendido") aparezcan antes que el resto, sin
    *  perder el orden base entre ellos. */
+  readonly waPhone = computed(() => this.businessService.data().contact.whatsapp);
+
   readonly servicesByPriority = computed(() =>
     [...this.services()].sort((a, b) => {
       const aMin = a.badges && a.badges.length > 0

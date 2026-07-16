@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { RevealDirective } from '../../../shared/directives/reveal.directive';
+import { RevealDirective } from '../../../shared';
 import { HeroService } from '../../../services/features/hero/hero.service';
 
 @Component({

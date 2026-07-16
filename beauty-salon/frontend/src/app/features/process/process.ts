@@ -1,8 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ErrorBoundary } from '../../shared/components/error-boundary/error-boundary';
-import { SectionHeader } from '../../shared/components/section-header/section-header';
-import { SvgIcon } from '../../shared/components/svg-icon/svg-icon';
+import { ErrorBoundary, SectionHeader, SvgIcon } from '../../shared';
 import { ProcessService } from '../../domains/process/process.service';
 import { ContentService } from '../../domains/content/content.service';
 

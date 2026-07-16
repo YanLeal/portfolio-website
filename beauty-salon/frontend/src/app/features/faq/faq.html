@@ -28,7 +28,7 @@
       class="faq-wrapper anim-hidden"
       [class.faq-hidden]="!coincideConFiltro(item)"
     >
-      <app-faq-item [faq]="item" [open]="faqAbierta() === item.id" (toggle)="toggleFaq(item.id)" />
+      <app-faq-item [id]="item.id" [question]="item.question" [answer]="item.answer" [open]="faqAbierta() === item.id" (toggle)="toggleFaq(item.id)" />
     </div>
     }
   </div>

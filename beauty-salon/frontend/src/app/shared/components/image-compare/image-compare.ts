@@ -6,6 +6,29 @@ import { Component, computed, DestroyRef, effect, ElementRef, inject, input, out
   templateUrl: './image-compare.html',
   styleUrl: './image-compare.css',
 })
+/**
+ * Comparador visual "antes / después" con slider interactivo.
+ *
+ * Soporta arrastre por pointer, teclado (flechas, Home, End),
+ * zoom con Fullscreen API (fallback CSS overlay), swipe detection
+ * para navegación de carrusel, y lectores de pantalla con ARIA.
+ *
+ * Integración con carrusel: usa `resetKey` para reiniciar slider
+ * al cambiar de slide, y emite `swipe` para navegar al siguiente/anterior.
+ *
+ * @usage
+ * ```html
+ * <app-image-compare
+ *   [beforeImage]="result.before"
+ *   [afterImage]="result.after"
+ *   [alt]="result.alt"
+ *   [initialPosition]="50"
+ *   [active]="isActive"
+ *   [resetKey]="carousel.currentIndex()"
+ *   (swipe)="carousel.next()"
+ * />
+ * ```
+ */
 export class ImageCompare {
   // ─── Inputs ──────────────────────────────────────────────
 

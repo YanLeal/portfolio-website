@@ -8,6 +8,21 @@ import { CardTiltDirective } from '../../directives/card-tilt.directive';
   styleUrl: './card.css',
   imports: [CardTiltDirective],
 })
+/**
+ * Card genérica con slots nombrados [cardMedia], [cardBody], [cardActions].
+ *
+ * Dos variantes visuales: `lift` (hover elevado con sombra) y `base` (sutil).
+ * Soporta efecto 3D tilt y animación de entrada escalonada.
+ *
+ * @usage
+ * ```html
+ * <app-card variant="lift" [tiltEnabled]="true" [entranceDelay]="100">
+ *   <div cardMedia><img src="..." alt="..." /></div>
+ *   <div cardBody><h3>Título</h3><p>Texto</p></div>
+ *   <div cardActions><button>Acción</button></div>
+ * </app-card>
+ * ```
+ */
 export class Card {
   /** 'lift' → card-lift (translateY(-6px)), 'base' → card-base (translateY(-4px)) */
   readonly variant = input<'base' | 'lift'>('lift');

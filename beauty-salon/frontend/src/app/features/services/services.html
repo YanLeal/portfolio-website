@@ -5,12 +5,22 @@
   } @else {
     <div class="section-grid stagger">
       @for (service of services(); track service.id) {
-        <app-service-card [service]="service" (book)="onBook($event)" />
+        <app-service-card
+          [id]="service.id"
+          [name]="service.name"
+          [description]="service.description"
+          [price]="service.price"
+          [duration]="service.duration"
+          [icon]="service.icon"
+          [image]="service.image"
+          [badges]="service.badges ?? []"
+          (book)="onBook($event)"
+        />
       }
     </div>
 
     <div class="services-wa-wrap">
-      <app-whatsapp-btn variant="services" label="Consulta por WhatsApp" />
+      <app-whatsapp-btn variant="services" label="Consulta por WhatsApp" [phone]="waPhone()" />
     </div>
   }
 </section>

@@ -12,6 +12,18 @@ import type { Badge } from '../../types/badge.types';
     'class': 'app-badge',
   },
 })
+/**
+ * Badge visual con color e icono opcional.
+ *
+ * Renderiza un `<span>` con un ícono SVG opcional y texto.
+ * El color se mapea desde la propiedad `Badge.color` a variables CSS
+ * definidas en el Design System.
+ *
+ * @usage
+ * ```html
+ * <app-badge [badge]="{ label: 'Nuevo', color: 'success', icon: 'sparkles', priority: 10, id: 'new' }" />
+ * ```
+ */
 export class AppBadge {
   /** Badge a renderizar. El color, icono y label vienen del JSON.
    *  Acepta cualquier objeto que cumpla la interfaz Badge, sin

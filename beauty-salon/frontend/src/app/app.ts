@@ -1,9 +1,10 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { HeaderComponent } from './layout/header/header';
 import { FooterComponent } from './layout/footer/footer';
-import { FloatingWhatsappComponent } from './shared/components/floating-whatsapp/floating-whatsapp';
+import { BusinessService } from './domains/business/business.service';
+import { FloatingWhatsappComponent } from './shared';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,8 @@ import { FloatingWhatsappComponent } from './shared/components/floating-whatsapp
 })
 export class App implements OnInit {
   private readonly router = inject(Router);
+  private readonly businessService = inject(BusinessService);
+  readonly waPhone = computed(() => this.businessService.data().contact.whatsapp);
 
   ngOnInit(): void {
     this.router.events

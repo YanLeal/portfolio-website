@@ -7,6 +7,30 @@ import { CarouselController } from '../../utils/carousel-controller';
   templateUrl: './carousel.html',
   styleUrl: './carousel.css',
 })
+/**
+ * Carrusel accesible con navegación por dots, botones prev/next,
+ * y delegación de control a CarouselController.
+ *
+ * Las slides se proyectan con `<ng-content>`. El controlador externo
+ * maneja el estado (índice actual, auto-play, dirección) y se pasa
+ * como input para que el padre retenga la lógica de navegación.
+ *
+ * Soporta handlers personalizados para dot/prev/next mediante inputs
+ * callback, permitiendo override del comportamiento default.
+ *
+ * @usage
+ * ```html
+ * <app-carousel
+ *   [controller]="myController"
+ *   [totalItems]="items().length"
+ *   ariaLabel="Testimonios"
+ *   itemLabelSingular="testimonio">
+ *   @for (item of items(); track item.id) {
+ *     <div class="slide">{{ item.content }}</div>
+ *   }
+ * </app-carousel>
+ * ```
+ */
 export class CarouselComponent {
   // ─── Required ────────────────────────────────────────────
 

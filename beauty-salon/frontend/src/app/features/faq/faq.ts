@@ -1,8 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import type { FaqCategory, FaqItem } from '../../domains/faq/faq.model';
-import { FaqItemComponent } from '../../shared/components/faq-item/faq-item';
-import { SectionHeader } from '../../shared/components/section-header/section-header';
-import { RevealDirective } from '../../shared/directives/reveal.directive';
+import { FaqItemComponent, RevealDirective, SectionHeader } from '../../shared';
 import { FaqService } from '../../domains/faq/faq.service';
 
 @Component({

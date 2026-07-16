@@ -7,6 +7,26 @@ import { Component, input, ViewEncapsulation } from '@angular/core';
   styleUrl: './form-field.css',
   encapsulation: ViewEncapsulation.None,
 })
+/**
+ * Campo de formulario con label, hint, y mensaje de error.
+ *
+ * Usa `ViewEncapsulation.None` para que los estilos del input
+ * proyectado sean consistentes con el tema global. El slot
+ * `<ng-content>` permite proyectar cualquier tipo de input,
+ * select, textarea, etc.
+ *
+ * @usage
+ * ```html
+ * <app-form-field label="Nombre" [required]="true" labelFor="name"
+ *   [errorMessage]="nameCtrl.invalid ? 'Campo requerido' : null">
+ *   <input id="name" type="text" [(ngModel)]="name" required />
+ * </app-form-field>
+ *
+ * <app-form-field label="Mensaje" [optional]="true" labelFor="notes">
+ *   <textarea id="notes" [(ngModel)]="notes"></textarea>
+ * </app-form-field>
+ * ```
+ */
 export class FormFieldComponent {
   /** Texto del label. Si se omite, no se renderiza. */
   readonly label = input<string>();

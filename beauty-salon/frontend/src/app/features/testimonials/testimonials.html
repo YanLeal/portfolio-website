@@ -23,7 +23,7 @@
           [attr.aria-roledescription]="'testimonio'"
           [attr.aria-label]="'Testimonio ' + (i + 1) + ' de ' + testimonials().length"
           [attr.aria-hidden]="i !== carousel.currentIndex()">
-          <app-testimonial-card [testimonial]="item" />
+          <app-testimonial-card [name]="item.name" [photo]="item.photo" [text]="item.text" [rating]="item.rating" [service]="item.service" />
         </div>
       }
     </app-carousel>

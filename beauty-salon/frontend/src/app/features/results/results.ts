@@ -1,10 +1,12 @@
 import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { CarouselController } from '../../shared/utils/carousel-controller';
-import { CarouselComponent } from '../../shared/components/carousel/carousel';
-import { ErrorBoundary } from '../../shared/components/error-boundary/error-boundary';
-import { SectionHeader } from '../../shared/components/section-header/section-header';
-import { ImageCompare } from '../../shared/components/image-compare/image-compare';
+import {
+  CarouselController,
+  CarouselComponent,
+  ErrorBoundary,
+  ImageCompare,
+  SectionHeader,
+} from '../../shared';
 import { ResultService } from '../../domains/results/result.service';
 
 @Component({

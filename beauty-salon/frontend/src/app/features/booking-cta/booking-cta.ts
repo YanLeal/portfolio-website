@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CtaButton } from '../../shared/components/cta-button/cta-button';
+import { CtaButton } from '../../shared';
 
 @Component({
   selector: 'app-booking-cta',

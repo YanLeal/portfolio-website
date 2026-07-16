@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CtaButton } from '../../shared/components/cta-button/cta-button';
+import { CtaButton } from '../../shared';
 import { BusinessInfoService } from '../../services/features/business-info/business-info.service';
 
 @Component({

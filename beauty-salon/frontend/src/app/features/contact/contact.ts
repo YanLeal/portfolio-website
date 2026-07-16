@@ -1,11 +1,13 @@
 import { Component, computed, ElementRef, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
-import { ErrorBoundary } from '../../shared/components/error-boundary/error-boundary';
-import { FormFieldComponent } from '../../shared/components/form-field/form-field';
-import { SectionHeader } from '../../shared/components/section-header/section-header';
-import { ServiceOptionCard } from '../../shared/components/service-option-card/service-option-card';
-import { SvgIcon } from '../../shared/components/svg-icon/svg-icon';
+import {
+  ErrorBoundary,
+  FormFieldComponent,
+  SectionHeader,
+  ServiceOptionCard,
+  SvgIcon,
+} from '../../shared';
 import { ServiceService } from '../../domains/services/service.service';
 import { BusinessService } from '../../domains/business/business.service';
 import type { DayOfWeek } from '../../domains/business/business.model';
