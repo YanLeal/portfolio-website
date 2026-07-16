@@ -78,6 +78,7 @@
   /* ── Padding vertical estándar de sección ──────────────── */
   .section-padding {
     padding-block: var(--space-16);
+    scroll-margin-top: 5rem;
   }
   @media (width >= 48rem) {
     .section-padding {

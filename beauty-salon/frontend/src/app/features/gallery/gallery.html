@@ -1,7 +1,7 @@
-<section id="galeria" class="section-padding" style="scroll-margin-top: 5rem">
+<section id="galeria" class="section-padding">
   <app-section-header [title]="galleryTitle()" [subtitle]="gallerySubtitle()" />
   @if (hasError()) {
-    <p class="section-error">No pudimos cargar la galería. Actualiza la página o visítanos en Instagram.</p>
+    <app-error-boundary message="No pudimos cargar la galería. Actualiza la página o visítanos en Instagram." />
   } @else {
     <app-gallery-grid [images]="images()" />
   }

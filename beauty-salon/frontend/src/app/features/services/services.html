@@ -1,7 +1,7 @@
-<section id="servicios" class="section-padding section-gradient" style="scroll-margin-top: 5rem">
+<section id="servicios" class="section-padding section-gradient">
   <app-section-header [title]="servicesTitle()" [subtitle]="servicesSubtitle()" />
   @if (hasError()) {
-    <p class="section-error">No pudimos cargar los servicios. Actualiza la página o escríbenos por WhatsApp.</p>
+    <app-error-boundary message="No pudimos cargar los servicios. Actualiza la página o escríbenos por WhatsApp." />
   } @else {
     <div class="section-grid stagger">
       @for (service of services(); track service.id) {

@@ -6,10 +6,6 @@
   display: block;
 }
 
-section {
-  scroll-margin-top: 5rem;
-}
-
 /* ─── Grid: wizard + sidebar ─────────────────────────────── */
 
 .booking-grid {
@@ -116,13 +112,13 @@ section {
 }
 
 .progress-step.is-error .progress-circle {
-  background: #dc3545;
+  background: var(--color-error);
   color: var(--color-surface);
   animation: shakeIn 0.3s ease both;
 }
 
 .progress-step.is-error .progress-label {
-  color: #dc3545;
+  color: var(--color-error);
 }
 
 /* ─── Wizard body (step content) ─────────────────────────── */
@@ -140,6 +136,8 @@ section {
 }
 
 /* ─── Step 1: Service selection ──────────────────────────── */
+/* service-option-card reemplaza los botones; acá queda solo
+   el layout del grid y el separador "Otro".                */
 
 .service-grid {
   display: grid;
@@ -151,90 +149,10 @@ section {
   }
 }
 
-.service-option {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1\.5);
-  padding: 0.875rem 1rem;
-
-  @media (width >= 23.4375rem) {
-    padding: 1rem 1.25rem;
-  }
-  background: var(--color-surface);
-  border: 1.5px solid var(--color-neutral-200);
-  border-radius: var(--radius-card);
-  cursor: pointer;
-  text-align: left;
-  font-family: var(--font-sans);
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.15s ease,
-    background 0.2s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.service-option:hover {
-  border-color: var(--color-primary-light);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
-}
-
-.service-option:focus-visible {
-  outline: var(--focus-ring-outline);
-  outline-offset: var(--focus-ring-offset);
-}
-
-.service-option:active:not(.is-selected) {
-  transform: translateY(0);
-}
-
-.service-option.is-selected {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 15%, transparent);
-  background: color-mix(in srgb, var(--color-primary) 4%, var(--color-surface));
-}
-
-.option-name {
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-neutral-900);
-}
-
-.option-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: var(--font-size-xs);
-}
-
-.option-duration {
-  color: var(--color-neutral-400);
-}
-
-.option-price {
-  font-family: var(--font-heading);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-primary);
-}
-
-/* ─── "Otro / No estoy segura" — destacado visual ──────────── */
-
 .service-other {
   margin-top: var(--space-4);
   border-top: 1px dashed var(--color-neutral-200);
   padding-top: var(--space-3);
-}
-
-.service-option--other {
-  background: color-mix(in srgb, var(--color-primary) 3%, var(--color-surface));
-  border-style: dashed;
-  border-color: var(--color-neutral-300);
-}
-
-.service-option--other:hover:not(.is-selected) {
-  border-color: var(--color-primary-light);
-  border-style: dashed;
 }
 
 .service-option--other.is-selected {
@@ -317,8 +235,8 @@ section {
 }
 
 .closed-day.is-error {
-  background: color-mix(in srgb, #dc3545 8%, transparent);
-  color: #dc3545;
+  background: color-mix(in srgb, var(--color-error) 8%, transparent);
+  color: var(--color-error);
   font-weight: var(--font-weight-semibold);
   animation: shakeIn 0.3s ease both;
 }
@@ -328,7 +246,7 @@ section {
 .step-error {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
-  color: #dc3545;
+  color: var(--color-error);
   text-align: center;
   margin: var(--space-3) 0 0;
   animation: shakeIn 0.3s ease both;
@@ -340,7 +258,7 @@ section {
   width: 0.375rem;
   height: 0.375rem;
   border-radius: 50%;
-  background: #dc3545;
+  background: var(--color-error);
   margin-right: var(--space-1\.5);
   vertical-align: middle;
 }
@@ -361,133 +279,6 @@ section {
   color: var(--color-primary);
   font-weight: var(--font-weight-semibold);
   text-decoration: underline;
-}
-
-/* ─── Form fields (steps 2 & 3) ──────────────────────────── */
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1\.5);
-  margin-bottom: var(--space-4);
-}
-
-.form-group label {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-neutral-700);
-}
-
-.required {
-  color: var(--color-primary);
-}
-
-.optional {
-  font-weight: 400;
-  color: var(--color-neutral-400);
-  font-size: var(--font-size-xs);
-}
-
-.form-group :where(input, textarea) {
-  padding: 0.6875rem 0.875rem;
-  font-family: var(--font-sans);
-  font-size: var(--font-size-body);
-  color: var(--color-neutral-900);
-  background: var(--color-surface);
-  border: 1px solid var(--color-neutral-300);
-  border-radius: var(--radius-card);
-  outline: none;
-  min-height: 2.75rem;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.form-group :where(input, textarea):hover {
-  border-color: var(--color-neutral-400);
-  background: color-mix(in srgb, var(--color-neutral-900) 1%, var(--color-surface));
-}
-
-.form-group :where(input, textarea)::placeholder {
-  color: var(--color-neutral-400);
-  transition: color 0.2s ease;
-}
-
-.form-group :where(input, textarea):focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
-  background: var(--color-surface);
-}
-
-.form-group :where(input, textarea):focus::placeholder {
-  color: var(--color-neutral-300);
-}
-
-.form-group textarea {
-  resize: vertical;
-  min-height: 4.5rem;
-  line-height: var(--leading-normal);
-}
-
-.form-hint {
-  font-size: var(--font-size-2xs);
-  color: var(--color-neutral-400);
-  line-height: 1.4;
-  margin-top: 0.125rem;
-}
-
-/* ─── Validation errors ──────────────────────────────────── */
-
-.form-group :where(input, textarea).is-invalid {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 3px color-mix(in srgb, #dc3545 12%, transparent);
-}
-
-.form-group :where(input, textarea).is-valid {
-  border-color: #28a745;
-  box-shadow: 0 0 0 3px color-mix(in srgb, #28a745 12%, transparent);
-}
-
-.form-group :where(input, textarea).is-valid:hover {
-  border-color: #28a745;
-}
-
-.form-group :where(input, textarea).is-valid:focus {
-  border-color: #28a745;
-  box-shadow: 0 0 0 3px color-mix(in srgb, #28a745 22%, transparent);
-}
-
-.form-group :where(input, textarea).is-invalid:hover {
-  border-color: #dc3545;
-  background: color-mix(in srgb, #dc3545 2%, var(--color-surface));
-}
-
-.form-group :where(input, textarea).is-invalid:focus {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 3px color-mix(in srgb, #dc3545 22%, transparent);
-}
-
-.form-error {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1\.5);
-  font-size: var(--font-size-2xs);
-  font-weight: var(--font-weight-medium);
-  color: #dc3545;
-  line-height: 1.3;
-  margin-top: 0.125rem;
-  animation: shakeIn 0.3s ease both;
-}
-
-.form-error::before {
-  content: '';
-  width: 0.375rem;
-  height: 0.375rem;
-  border-radius: 50%;
-  background: #dc3545;
-  flex-shrink: 0;
 }
 
 /* ─── Step 4: Review card ────────────────────────────────── */
@@ -628,7 +419,7 @@ section {
 }
 
 .btn-nav--submit svg {
-  color: #25d366;
+  color: var(--color-whatsapp);
 }
 
 .btn-nav--submit:hover {
@@ -841,7 +632,7 @@ section {
   padding: 0.625rem 1.25rem;
   font-size: var(--font-size-sm);
   color: var(--color-surface);
-  background: #25d366;
+  background: var(--color-whatsapp);
   border-radius: var(--radius-full);
 }
 
@@ -851,7 +642,7 @@ section {
 }
 
 .whatsapp-cta:hover {
-  background: #1da851;
+  background: var(--color-whatsapp-dark);
   transform: scale(1.03);
 }
 
@@ -941,9 +732,4 @@ section {
   50%      { transform: scale(1.08); opacity: 0.85; }
 }
 
-@keyframes shakeIn {
-  0% { opacity: 0; transform: translateX(-4px); }
-  40% { opacity: 1; transform: translateX(3px); }
-  70% { transform: translateX(-1px); }
-  100% { transform: translateX(0); }
-}
+/* shakeIn ahora vive en styles/animation.css */

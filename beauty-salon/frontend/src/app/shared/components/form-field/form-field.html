@@ -1,0 +1,23 @@
+<div class="app-form-field">
+  @if (label()) {
+    <label [for]="labelFor()">
+      {{ label() }}
+      @if (required()) {
+        <span class="required"> *</span>
+      }
+      @if (optional()) {
+        <span class="optional"> (opcional)</span>
+      }
+    </label>
+  }
+
+  <ng-content />
+
+  @if (errorMessage(); as msg) {
+    <span class="form-error">{{ msg }}</span>
+  }
+
+  @if (hint(); as msg) {
+    <span class="form-hint">{{ msg }}</span>
+  }
+</div>

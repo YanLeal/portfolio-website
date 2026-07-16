@@ -1,0 +1,144 @@
+/* ─── Carousel shell ──────────────────────────────────────────── */
+
+.carousel {
+  position: relative;
+  max-width: var(--layout-content-max);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.carousel-viewport {
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.carousel-track--instant {
+  transition: none;
+}
+
+/* ─── Navigation buttons ──────────────────────────────────── */
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--color-neutral-900) 10%, transparent);
+  backdrop-filter: blur(4px);
+  color: var(--color-neutral-900);
+  font-size: 1.125rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+}
+
+.carousel-btn:hover {
+  background: color-mix(in srgb, var(--color-neutral-900) 20%, transparent);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-btn--prev {
+  left: var(--space-2);
+}
+
+.carousel-btn--next {
+  right: var(--space-2);
+}
+
+@media (width >= 48rem) {
+  .carousel-btn {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
+  }
+
+  .carousel-btn--prev {
+    left: calc(-1 * var(--space-3));
+  }
+
+  .carousel-btn--next {
+    right: calc(-1 * var(--space-3));
+  }
+}
+
+@media (width >= 64rem) {
+  .carousel-btn--prev {
+    left: calc(-1 * var(--space-5));
+  }
+
+  .carousel-btn--next {
+    right: calc(-1 * var(--space-5));
+  }
+}
+
+/* ─── Dots / pagination ───────────────────────────────────── */
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-6);
+}
+
+.carousel-dot {
+  border: none;
+  background: none;
+  font-size: 0.875rem;
+  line-height: 1;
+  color: var(--color-neutral-600);
+  cursor: pointer;
+  padding: var(--space-1\.5);
+  transition: color 0.2s;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.carousel-dot:hover {
+  color: var(--color-neutral-800);
+}
+
+.carousel-dot--active {
+  color: var(--color-primary);
+}
+
+/* ─── Reduced motion ─────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track {
+    transition: none;
+  }
+
+  .carousel-btn,
+  .carousel-dot {
+    transition: none;
+  }
+
+  .carousel-btn:hover {
+    transform: translateY(-50%);
+  }
+
+  .carousel-dot:hover,
+  .carousel-dot--active {
+    color: var(--color-neutral-600);
+  }
+}

@@ -55,7 +55,7 @@ import type { WaVariant } from '../../types/button.types';
     }
 
     .wa-link:focus-visible {
-      outline: 2px solid #25d366;
+      outline: 2px solid var(--color-whatsapp);
       outline-offset: 2px;
     }
 
@@ -73,14 +73,14 @@ import type { WaVariant } from '../../types/button.types';
       padding: 0.875rem 2.5rem;
       font-size: 0.9375rem;
       color: #fff;
-      background: #25d366;
+      background: var(--color-whatsapp);
       border: none;
       border-radius: var(--radius-xs);
       letter-spacing: 0.02em;
     }
 
     .wa-hero:hover {
-      background: #1da851;
+      background: var(--color-whatsapp-dark);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     }
 
@@ -109,9 +109,9 @@ import type { WaVariant } from '../../types/button.types';
     }
 
     .wa-footer:hover {
-      color: #25d366;
-      border-color: color-mix(in srgb, #25d366 50%, transparent);
-      background: color-mix(in srgb, #25d366 8%, transparent);
+      color: var(--color-whatsapp);
+      border-color: color-mix(in srgb, var(--color-whatsapp) 50%, transparent);
+      background: color-mix(in srgb, var(--color-whatsapp) 8%, transparent);
       transform: translateY(-2px);
     }
 
@@ -131,14 +131,14 @@ import type { WaVariant } from '../../types/button.types';
       padding: 0.875rem 1.5rem;
       font-size: 0.9375rem;
       color: #fff;
-      background: #25d366;
+      background: var(--color-whatsapp);
       border: none;
       border-radius: var(--radius-xs);
       justify-content: center;
     }
 
     .wa-services:hover {
-      background: #1da851;
+      background: var(--color-whatsapp-dark);
       box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
     }
 
@@ -154,7 +154,7 @@ import type { WaVariant } from '../../types/button.types';
       padding: 0.75rem 1rem 0.75rem 0.875rem;
       font-size: 0.875rem;
       color: #fff;
-      background: #25d366;
+      background: var(--color-whatsapp);
       border: none;
       border-radius: var(--radius-full);
       box-shadow:
@@ -163,7 +163,7 @@ import type { WaVariant } from '../../types/button.types';
     }
 
     .wa-floating:hover {
-      background: #1da851;
+      background: var(--color-whatsapp-dark);
       box-shadow:
         0 6px 20px rgba(37, 211, 102, 0.4),
         0 3px 6px rgba(0, 0, 0, 0.1);

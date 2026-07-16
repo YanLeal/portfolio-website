@@ -1,88 +1,47 @@
 <section
   class="section-padding section-gradient"
-  style="scroll-margin-top: 5rem"
   (mouseenter)="carousel.pause()"
   (mouseleave)="carousel.resume()"
   (keydown)="onSectionKeydown($event)">
   <app-section-header title="Antes y Después" subtitle="Resultados reales de nuestros tratamientos" />
   @if (hasError()) {
-    <p class="section-error">No pudimos cargar los resultados. Actualiza la página o escríbenos por WhatsApp.</p>
+    <app-error-boundary message="No pudimos cargar los resultados. Actualiza la página o escríbenos por WhatsApp." />
   } @else {
-    <div
-      class="ba-carousel"
-      role="region"
-      aria-roledescription="carrusel"
-      aria-label="Resultados antes y después"
-      aria-live="polite">
-      <div class="ba-viewport">
+    <app-carousel
+      [controller]="carousel"
+      [totalItems]="results().length"
+      ariaLabel="Resultados antes y después"
+      itemLabelSingular="resultado"
+      [animateTrack]="animateTrack()"
+      [zoomActive]="isZoomActive()"
+      [onDotClick]="onDotClick"
+      [hideNavOnBounds]="true">
+      @for (item of results(); track item.id; let i = $index) {
         <div
-          class="ba-track"
-          [class.ba-track--instant]="!animateTrack()"
-          [style.transform]="carousel.translateX()">
-          @for (item of results(); track item.id; let i = $index) {
-            <div
-              class="ba-slide"
-              role="group"
-              [attr.aria-roledescription]="'resultado'"
-              [attr.aria-label]="'Resultado ' + (i + 1) + ' de ' + results().length"
-              [attr.aria-hidden]="i !== carousel.currentIndex()">
+          class="ba-slide"
+          role="group"
+          [attr.aria-roledescription]="'resultado'"
+          [attr.aria-label]="'Resultado ' + (i + 1) + ' de ' + results().length"
+          [attr.aria-hidden]="i !== carousel.currentIndex()">
 
-              <!-- Comparador before / after (genérico) -->
-              <app-image-compare
-                [beforeImage]="item.beforeImage"
-                [afterImage]="item.afterImage"
-                [alt]="item.title"
-                [active]="i === carousel.currentIndex()"
-                [resetKey]="carousel.currentIndex()"
-                [loadingStrategy]="eagerIndices().has(i) ? 'eager' : 'lazy'"
-                (swipe)="onSwipe($event)"
-                (zoomChange)="onZoomChange($event)" />
+          <!-- Comparador before / after (genérico) -->
+          <app-image-compare
+            [beforeImage]="item.beforeImage"
+            [afterImage]="item.afterImage"
+            [alt]="item.title"
+            [active]="i === carousel.currentIndex()"
+            [resetKey]="carousel.currentIndex()"
+            [loadingStrategy]="eagerIndices().has(i) ? 'eager' : 'lazy'"
+            (swipe)="onSwipe($event)"
+            (zoomChange)="onZoomChange($event)" />
 
-              <!-- Título, descripción, categoría — dominio before-after -->
-              <div class="ba-info">
-                <h3 class="ba-title">{{ item.title }}</h3>
-                <p class="ba-description">{{ item.description }}</p>
-              </div>
-            </div>
-          }
+          <!-- Título, descripción, categoría — dominio before-after -->
+          <div class="ba-info">
+            <h3 class="ba-title">{{ item.title }}</h3>
+            <p class="ba-description">{{ item.description }}</p>
+          </div>
         </div>
-      </div>
-
-      <!-- Navegación: oculta del Tab y ARIA cuando el zoom (fallback CSS) está activo -->
-      @if (!carousel.isFirst()) {
-        <button class="ba-btn ba-btn--prev" type="button"
-          [attr.tabindex]="isZoomActive() ? -1 : null"
-          [attr.aria-hidden]="isZoomActive() ? 'true' : null"
-          (click)="carousel.previous()" aria-label="Resultado anterior">
-          ←
-        </button>
       }
-      @if (!carousel.isLast()) {
-        <button class="ba-btn ba-btn--next" type="button"
-          [attr.tabindex]="isZoomActive() ? -1 : null"
-          [attr.aria-hidden]="isZoomActive() ? 'true' : null"
-          (click)="carousel.next()" aria-label="Resultado siguiente">
-          →
-        </button>
-      }
-
-      <!-- Dots -->
-      <div class="ba-dots" role="tablist" aria-label="Seleccionar resultado"
-        [attr.aria-hidden]="isZoomActive() ? 'true' : null">
-        @for (item of results(); track item.id; let i = $index) {
-          <button
-            class="ba-dot"
-            [class.ba-dot--active]="i === carousel.currentIndex()"
-            type="button"
-            role="tab"
-            [attr.tabindex]="isZoomActive() ? -1 : null"
-            [attr.aria-selected]="i === carousel.currentIndex()"
-            [attr.aria-label]="'Ir al resultado ' + (i + 1)"
-            (click)="onDotClick(i)">
-            @if (i === carousel.currentIndex()) { ● } @else { ○ }
-          </button>
-        }
-      </div>
-    </div>
+    </app-carousel>
   }
 </section>

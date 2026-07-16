@@ -1,11 +1,12 @@
 import { computed, Component, inject } from '@angular/core';
 import { CtaButton } from '../../shared/components/cta-button/cta-button';
+import { ErrorBoundary } from '../../shared/components/error-boundary/error-boundary';
 import { PromoService } from '../../domains/promotions/promotion.service';
 
 @Component({
   selector: 'app-promo',
   standalone: true,
-  imports: [CtaButton],
+  imports: [CtaButton, ErrorBoundary],
   templateUrl: './promo.html',
   styleUrl: './promo.css',
 })

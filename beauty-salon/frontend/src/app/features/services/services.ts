@@ -1,5 +1,6 @@
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { ErrorBoundary } from '../../shared/components/error-boundary/error-boundary';
 import { SectionHeader } from '../../shared/components/section-header/section-header';
 import { ServiceCard } from '../../shared/components/service-card/service-card';
 import { WhatsappButtonComponent } from '../../shared/components/whatsapp-btn/whatsapp-btn';
@@ -9,7 +10,7 @@ import { ContentService } from '../../domains/content/content.service';
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [SectionHeader, ServiceCard, WhatsappButtonComponent],
+  imports: [ErrorBoundary, SectionHeader, ServiceCard, WhatsappButtonComponent],
   templateUrl: './services.html',
   styleUrl: './services.css',
 })

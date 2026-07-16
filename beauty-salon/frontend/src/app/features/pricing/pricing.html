@@ -1,7 +1,7 @@
-<section id="precios" class="section-container section-padding" style="scroll-margin-top: 5rem">
+<section id="precios" class="section-container section-padding">
   <app-section-header [title]="pricingTitle()" [subtitle]="pricingSubtitle()" />
   @if (hasError()) {
-    <p class="section-error">No pudimos cargar los precios. Actualiza la página o consúltanos por WhatsApp.</p>
+    <app-error-boundary message="No pudimos cargar los precios. Actualiza la página o consúltanos por WhatsApp." />
   } @else {
     <div class="table-wrapper" tabindex="0" role="region" aria-label="Tabla de precios">
         <table role="table">

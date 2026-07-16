@@ -1,25 +1,4 @@
-/* ─── Carrusel ──────────────────────────────────────────── */
-
-.ba-carousel {
-  position: relative;
-  max-width: var(--layout-content-max);
-  margin-inline: auto;
-  padding-inline: var(--space-4);
-}
-
-.ba-viewport {
-  overflow: hidden;
-}
-
-.ba-track {
-  display: flex;
-  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Salto instantáneo (no adyacente): dots o Home/End */
-.ba-track--instant {
-  transition: none;
-}
+/* ─── Slide wrapper ───────────────────────────────────────── */
 
 .ba-slide {
   flex: 0 0 100%;
@@ -29,7 +8,7 @@
   gap: var(--space-6);
 }
 
-/* ─── Información del resultado ────────────────────────── */
+/* ─── Información del resultado ──────────────────────────── */
 
 .ba-info {
   text-align: center;
@@ -52,116 +31,10 @@
   margin: 0;
 }
 
-/* ─── Botones de navegación ──────────────────────────────── */
-
-.ba-btn {
-  position: absolute;
-  top: 50%;
-  z-index: 10;
-  width: 2.5rem;
-  height: 2.5rem;
-  border: none;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--color-neutral-900) 10%, transparent);
-  backdrop-filter: blur(4px);
-  color: var(--color-neutral-900);
-  font-size: 1.125rem;
-  line-height: 1;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  transform: translateY(-50%);
-}
-
-.ba-btn:hover {
-  background: color-mix(in srgb, var(--color-neutral-900) 20%, transparent);
-}
-
-.ba-btn:active {
-  transform: translateY(-50%) scale(0.95);
-}
-
-.ba-btn--prev {
-  left: var(--space-2);
-}
-
-.ba-btn--next {
-  right: var(--space-2);
-}
-
-/* ─── Dots ─────────────────────────────────────────────── */
-
-.ba-dots {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-2);
-  margin-top: var(--space-6);
-}
-
-.ba-dot {
-  border: none;
-  background: none;
-  font-size: 0.875rem;
-  line-height: 1;
-  color: var(--color-neutral-600);
-  cursor: pointer;
-  padding: var(--space-1\.5);
-  min-width: 2.75rem;
-  min-height: 2.75rem;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-}
-
-.ba-dot:hover {
-  color: var(--color-neutral-800);
-}
-
-.ba-dot--active {
-  color: var(--color-primary);
-}
-
-/* ─── Reduced motion ─────────────────────────────────── */
-
-@media (prefers-reduced-motion: reduce) {
-  .ba-track {
-    transition: none;
-  }
-
-  .ba-btn,
-  .ba-dot {
-    transition: none;
-  }
-}
-
-/* ─── Responsive ──────────────────────────────────────── */
+/* ─── Responsive ──────────────────────────────────────────── */
 
 @media (width < 40rem) {
   .ba-title {
     font-size: var(--font-size-xl);
-  }
-
-  .ba-btn--prev {
-    left: var(--space-2);
-  }
-
-  .ba-btn--next {
-    right: var(--space-2);
-  }
-}
-
-@media (width >= 48rem) {
-  .ba-btn {
-    width: 3rem;
-    height: 3rem;
-    font-size: 1.25rem;
-  }
-
-  .ba-btn--prev {
-    left: calc(-1 * var(--space-3));
-  }
-
-  .ba-btn--next {
-    right: calc(-1 * var(--space-3));
   }
 }

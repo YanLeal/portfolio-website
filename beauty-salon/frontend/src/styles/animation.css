@@ -179,6 +179,15 @@
   to { transform: scaleX(1); }
 }
 
+/* ── SHAKE (errors) ──────────────────────────────────────── */
+
+@keyframes shakeIn {
+  0% { opacity: 0; transform: translateX(-4px); }
+  40% { opacity: 1; transform: translateX(3px); }
+  70% { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
+
 /* ═════════════════════════════════════════════════════════
    UTILITY CLASSES
    Aplicar como className en el template HTML.

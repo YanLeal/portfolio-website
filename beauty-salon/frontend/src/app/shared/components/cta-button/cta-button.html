@@ -3,6 +3,7 @@
     [href]="link"
     [attr.target]="external() ? '_blank' : null"
     [attr.rel]="external() ? 'noopener noreferrer' : null"
+    class="btn"
     [class.btn-primary]="variant() === 'primary'"
     [class.btn-secondary]="variant() === 'secondary'"
   >
@@ -14,6 +15,7 @@
 } @else {
   <button
     type="button"
+    class="btn"
     (click)="clicked.emit()"
     [class.btn-primary]="variant() === 'primary'"
     [class.btn-secondary]="variant() === 'secondary'"

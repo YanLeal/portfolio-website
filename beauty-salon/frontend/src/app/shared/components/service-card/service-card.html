@@ -1,6 +1,6 @@
 <app-card variant="lift" [tiltEnabled]="true">
-  <!-- ─── Imagen ─────────────────────────────────────────── -->
-  <div class="card-media card-media-zoom">
+  <!-- ─── cardMedia: Imagen + badges + overlay ────────────── -->
+  <div class="card-media card-media-zoom" cardMedia>
     <img
       [src]="service().image"
       [alt]="service().name"
@@ -9,6 +9,7 @@
       height="597"
       decoding="async"
     />
+
     <!-- Badges sobre la imagen — solo si existen y no están vacíos -->
     @let badges = service().badges;
     @if (badges?.length) {
@@ -27,8 +28,8 @@
     </span>
   </div>
 
-  <!-- ─── Contenido ──────────────────────────────────────── -->
-  <div class="card-body">
+  <!-- ─── cardBody: Contenido de la card ──────────────────── -->
+  <div cardBody>
     <h3 class="card-title">{{ service().name }}</h3>
     <p class="card-desc">{{ service().description }}</p>
 

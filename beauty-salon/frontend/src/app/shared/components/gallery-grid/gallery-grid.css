@@ -36,7 +36,7 @@ figure {
   cursor: pointer;
   break-inside: avoid;
   /* Sutil fadeIn al entrar en vista */
-  animation: masonryIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: calc(var(--item-index, 0) * 60ms);
   transition:
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
@@ -122,15 +122,4 @@ figure:hover figcaption {
   transform: translateY(0);
 }
 
-/* ─── Entrance ──────────────────────────────────────────── */
-
-@keyframes masonryIn {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* masonryIn → fadeInUp (vive en styles/animation.css) */

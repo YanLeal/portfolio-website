@@ -1,11 +1,11 @@
-<section class="section-padding" style="scroll-margin-top: 5rem">
+<section class="section-padding">
   <app-section-header
     [title]="processTitle()"
     [subtitle]="processSubtitle()"
   />
 
   @if (hasError()) {
-    <p class="section-error">No pudimos cargar el proceso. Actualiza la página o escríbenos por WhatsApp.</p>
+    <app-error-boundary message="No pudimos cargar el proceso. Actualiza la página o escríbenos por WhatsApp." />
   } @else {
     <div class="space-y-12 md:space-y-20">
     @for (step of steps(); track step.number) {

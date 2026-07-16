@@ -1,0 +1,62 @@
+<div
+  class="carousel"
+  role="region"
+  aria-roledescription="carrusel"
+  [attr.aria-label]="ariaLabel()"
+  aria-live="polite">
+
+  <div class="carousel-viewport">
+    <div
+      class="carousel-track"
+      [class.carousel-track--instant]="!animateTrack()"
+      [style.transform]="controller().translateX()">
+      <ng-content />
+    </div>
+  </div>
+
+  @if (!controller().isFirst() || !hideNavOnBounds()) {
+    <button
+      class="carousel-btn carousel-btn--prev"
+      type="button"
+      (click)="handlePrev()"
+      [attr.aria-label]="ariaLabel() + ' anterior'"
+      [attr.tabindex]="zoomActive() ? -1 : null"
+      [attr.aria-hidden]="zoomActive() ? 'true' : null">
+      ←
+    </button>
+  }
+
+  @if (!controller().isLast() || !hideNavOnBounds()) {
+    <button
+      class="carousel-btn carousel-btn--next"
+      type="button"
+      (click)="handleNext()"
+      [attr.aria-label]="ariaLabel() + ' siguiente'"
+      [attr.tabindex]="zoomActive() ? -1 : null"
+      [attr.aria-hidden]="zoomActive() ? 'true' : null">
+      →
+    </button>
+  }
+
+  @if (totalItems() > 1) {
+    <div
+      class="carousel-dots"
+      role="tablist"
+      [attr.aria-label]="'Seleccionar ' + ariaLabel()"
+      [attr.aria-hidden]="zoomActive() ? 'true' : null">
+      @for (_ of makeIndexArray(totalItems()); track $index; let i = $index) {
+        <button
+          class="carousel-dot"
+          [class.carousel-dot--active]="i === controller().currentIndex()"
+          type="button"
+          role="tab"
+          [attr.aria-selected]="i === controller().currentIndex()"
+          [attr.aria-label]="'Ir al ' + itemLabelSingular() + ' ' + (i + 1)"
+          [attr.tabindex]="zoomActive() ? -1 : null"
+          (click)="handleDotClick(i)">
+          {{ i === controller().currentIndex() ? '●' : '○' }}
+        </button>
+      }
+    </div>
+  }
+</div>

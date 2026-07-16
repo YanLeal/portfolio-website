@@ -1,0 +1,9 @@
+<button type="button" class="service-option" (click)="select.emit()">
+  <span class="option-name">{{ name() }}</span>
+  <span class="option-meta">
+    <span class="option-duration">{{ duration() }}</span>
+    @if (!other() && price() > 0) {
+      <span class="option-price">${{ price().toLocaleString('es-AR') }}</span>
+    }
+  </span>
+</button>

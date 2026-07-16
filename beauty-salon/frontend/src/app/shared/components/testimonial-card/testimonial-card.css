@@ -70,8 +70,8 @@
 }
 
 .star--filled {
-  fill: #f4b740;
-  color: #f4b740;
+  fill: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .card-base:hover .star--filled {

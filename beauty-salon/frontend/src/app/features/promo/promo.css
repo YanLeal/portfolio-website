@@ -3,6 +3,7 @@
    - promo-entrance       → fadeInUp
    - promo-entrance--fade → fadeIn
    - promo-entrance--line → lineGrowX
+   - .promo-section       → fadeInUp
    shimmer y float son ambientales únicas (se mantienen).
    Todos los timing tokens se heredan de animation.css.
 
@@ -14,19 +15,10 @@
 /* ─── Entrada del contenedor al cambiar de promo ──────────── */
 
 .promo-section {
-  animation: promoCarga 0.45s ease-out both;
+  animation: fadeInUp 0.45s ease-out both;
 }
 
-@keyframes promoCarga {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* promoCarga → fadeInUp (vive en styles/animation.css) */
 
 @media (prefers-reduced-motion: reduce) {
   .promo-section {

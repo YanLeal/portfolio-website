@@ -1,0 +1,95 @@
+/* ═══════════════════════════════════════════════════════════════
+   SERVICE OPTION CARD — Botón selector de servicio compacto
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Card base ──────────────────────────────────────────── */
+
+.service-option {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1\.5);
+  padding: 0.875rem 1rem;
+
+  @media (width >= 23.4375rem) {
+    padding: 1rem 1.25rem;
+  }
+
+  width: 100%;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-neutral-200);
+  border-radius: var(--radius-card);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-sans);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease,
+    background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.service-option:hover {
+  border-color: var(--color-primary-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.service-option:focus-visible {
+  outline: var(--focus-ring-outline);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.service-option:active {
+  transform: translateY(0);
+}
+
+/* ─── Selected state ─────────────────────────────────────── */
+
+:host.is-selected .service-option {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 15%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 4%, var(--color-surface));
+}
+
+/* ─── "Other" variant ────────────────────────────────────── */
+
+:host.is-other .service-option {
+  background: color-mix(in srgb, var(--color-primary) 3%, var(--color-surface));
+  border-style: dashed;
+  border-color: var(--color-neutral-300);
+}
+
+:host.is-other .service-option:hover {
+  border-color: var(--color-primary-light);
+  border-style: dashed;
+}
+
+:host.is-other.is-selected .service-option {
+  border-style: solid;
+}
+
+/* ─── Content ────────────────────────────────────────────── */
+
+.option-name {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+}
+
+.option-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--font-size-xs);
+}
+
+.option-duration {
+  color: var(--color-neutral-400);
+}
+
+.option-price {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
