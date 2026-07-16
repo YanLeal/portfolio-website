@@ -118,14 +118,6 @@
 
 /* ─── Mensaje sin resultados ─────────────── */
 
-.sin-resultados {
-  text-align: center;
-  padding: var(--space-8, 2rem) var(--space-4, 1rem);
-  color: var(--color-neutral-500);
-  font-family: var(--font-sans, 'Inter', sans-serif);
-  font-size: var(--font-size-sm, 0.875rem);
-}
-
 /* ─── Responsive ─────────────────────────── */
 
 @media (width < 40rem) {

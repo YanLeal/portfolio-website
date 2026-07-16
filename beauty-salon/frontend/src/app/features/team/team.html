@@ -14,19 +14,19 @@
                 @if (member.social.instagram) {
                   <!-- TODO: add real Instagram link (currently uses # from content.ts) -->
                   <a [href]="member.social.instagram" class="social-link" aria-label="Instagram de {{ member.name }}">
-                    <svg-icon name="instagram" size="20" />
+                    <app-svg-icon name="instagram" size="20" />
                   </a>
                 }
                 @if (member.social.facebook) {
                   <!-- TODO: add real Facebook link (currently uses # from content.ts) -->
                   <a [href]="member.social.facebook" class="social-link" aria-label="Facebook de {{ member.name }}">
-                    <svg-icon name="facebook" size="20" />
+                    <app-svg-icon name="facebook" size="20" />
                   </a>
                 }
                 @if (member.social.whatsapp) {
                   <!-- TODO: add real WhatsApp link (currently uses # from content.ts) -->
                   <a [href]="member.social.whatsapp" class="social-link" aria-label="WhatsApp de {{ member.name }}">
-                    <svg-icon name="whatsapp" size="20" />
+                    <app-svg-icon name="whatsapp" size="20" />
                   </a>
                 }
               </div>
@@ -36,7 +36,7 @@
             <h3>{{ member.name }}</h3>
             <p class="card-role">{{ member.role }}</p>
             <p class="card-experience">
-              <svg-icon name="clock" size="14" />
+              <app-svg-icon name="clock" size="14" />
               {{ member.experience }} de experiencia
             </p>
             <p class="card-bio">{{ member.bio }}</p>

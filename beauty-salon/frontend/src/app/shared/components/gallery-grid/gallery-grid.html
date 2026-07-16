@@ -1,8 +1,18 @@
 <div>
   @for (image of images(); track image.src; let i = $index) {
-    <figure style="--item-index: {{ i }}">
+    <figure
+      [style.--item-index]="animate() ? i : null"
+      role="button"
+      tabindex="0"
+      [attr.aria-label]="(image.caption ?? image.alt) || null"
+      (click)="imageClicked.emit(image)"
+      (keydown.enter)="imageClicked.emit(image)"
+      (keydown.space)="imageClicked.emit(image); $event.preventDefault()"
+    >
       <img [src]="image.src" [alt]="image.alt" loading="lazy" width="800" height="800" decoding="async" />
-      <figcaption>{{ image.alt }}</figcaption>
+      @if (image.caption ?? image.alt; as caption) {
+        <figcaption>{{ caption }}</figcaption>
+      }
     </figure>
   }
 </div>

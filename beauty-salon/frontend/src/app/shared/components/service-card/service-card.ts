@@ -1,13 +1,13 @@
 import { Component, input, output } from '@angular/core';
 import { SvgIcon } from '../svg-icon/svg-icon';
 import { Card } from '../card/card';
-import { AppBadge } from '../badge/badge';
+import { Badge as BadgeComponent } from '../badge/badge';
 import type { Badge } from '../../types';
 
 @Component({
   selector: 'app-service-card',
   standalone: true,
-  imports: [SvgIcon, Card, AppBadge],
+  imports: [SvgIcon, Card, BadgeComponent],
   host: { class: 'card-entrance' },
   templateUrl: './service-card.html',
   styleUrl: './service-card.css',
@@ -23,10 +23,12 @@ import type { Badge } from '../../types';
  * ```html
  * <app-service-card
  *   [id]="service.id" [name]="service.name"
- *   [description]="service.description" [price]="service.price"
+ *   [description]="service.description"
+ *   [priceLabel]="'$ ' + service.price.toLocaleString('es-AR')"
  *   [duration]="service.duration" [icon]="service.icon"
  *   [image]="service.image" [badges]="service.badges ?? []"
- *   (book)="onBook($event)"
+ *   buttonLabel="Reservar"
+ *   (action)="onAction($event)"
  * />
  * ```
  */
@@ -34,10 +36,11 @@ export class ServiceCard {
   readonly id = input.required<string>();
   readonly name = input.required<string>();
   readonly description = input.required<string>();
-  readonly price = input.required<number>();
+  readonly priceLabel = input.required<string>();
   readonly duration = input.required<string>();
   readonly icon = input.required<string>();
   readonly image = input<string>();
   readonly badges = input<readonly Badge[]>();
-  readonly book = output<string>();
+  readonly buttonLabel = input.required<string>();
+  readonly action = output<string>();
 }

@@ -27,7 +27,7 @@ import { Component, input, ViewEncapsulation } from '@angular/core';
  * </app-form-field>
  * ```
  */
-export class FormFieldComponent {
+export class FormField {
   /** Texto del label. Si se omite, no se renderiza. */
   readonly label = input<string>();
 

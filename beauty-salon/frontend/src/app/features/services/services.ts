@@ -4,7 +4,7 @@ import {
   ErrorBoundary,
   SectionHeader,
   ServiceCard,
-  WhatsappButtonComponent,
+  WhatsappButton,
 } from '../../shared';
 import { BusinessService } from '../../domains/business/business.service';
 import { ServiceService } from '../../domains/services/service.service';
@@ -13,7 +13,7 @@ import { ContentService } from '../../domains/content/content.service';
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [ErrorBoundary, SectionHeader, ServiceCard, WhatsappButtonComponent],
+  imports: [ErrorBoundary, SectionHeader, ServiceCard, WhatsappButton],
   templateUrl: './services.html',
   styleUrl: './services.css',
 })
@@ -60,7 +60,7 @@ export class ServicesComponent {
   readonly servicesTitle = computed(() => this.contentService.data().services.title);
   readonly servicesSubtitle = computed(() => this.contentService.data().services.subtitle);
 
-  onBook(serviceId: string): void {
+  onAction(_serviceId: string): void {
     document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
   }
 }

@@ -33,23 +33,24 @@
             <div class="service-grid">
               @for (s of services(); track s.id) {
                 <app-service-option-card
+                  [value]="s.id"
                   [name]="s.name"
                   [duration]="s.duration"
-                  [price]="s.price"
+                  [priceLabel]="'$ ' + s.price.toLocaleString('es-AR')"
                   [isSelected]="selectedServiceId === s.id"
-                  (select)="selectService(s.id)"
+                  (selected)="selectService($event)"
                 />
               }
             </div>
 
             <div class="service-other">
               <app-service-option-card
+                value="other"
                 name="Otro / No estoy segura"
                 duration="Consulta general"
-                [price]="0"
                 [isSelected]="selectedServiceId === 'other'"
-                [other]="true"
-                (select)="selectService('other')"
+                variant="subtle"
+                (selected)="selectService($event)"
               />
             </div>
 
@@ -224,7 +225,7 @@
         <div class="wizard-nav">
           @if (step > 1) {
             <button type="button" class="btn-nav btn-nav--back" (click)="prevStep()">
-              <svg-icon name="arrow-right" size="16" />
+              <app-svg-icon name="arrow-right" size="16" />
               Atrás
             </button>
           }
@@ -238,7 +239,7 @@
               (click)="nextStep()"
             >
               Continuar
-              <svg-icon name="arrow-right" size="16" />
+              <app-svg-icon name="arrow-right" size="16" />
             </button>
           } @else {
             <button
@@ -255,7 +256,7 @@
       <!-- ─── Éxito ───────────────────────────────── -->
       @if (submitted && selectedService) {
         <div class="booking-success">
-          <svg-icon name="check" size="48" />
+          <app-svg-icon name="check" size="48" />
           <h3 tabindex="-1">Último paso: envianos el mensaje</h3>
           <div class="success-details">
             <p><strong>{{ selectedService.name }}</strong></p>
@@ -273,7 +274,7 @@
           </div>
           <div class="success-actions">
             <button type="button" class="btn-nav btn-nav--submit" (click)="openWhatsApp()">
-              <svg-icon name="whatsapp" size="18" />
+              <app-svg-icon name="whatsapp" size="18" />
               Enviar por WhatsApp
             </button>
             <button type="button" class="btn-nav btn-nav--back" (click)="resetForm()">
@@ -300,19 +301,19 @@
       <div class="sidebar-card">
         <h4 class="sidebar-heading">Visítanos</h4>
         <div class="sidebar-item">
-          <svg-icon name="map-pin" size="18" />
+          <app-svg-icon name="map-pin" size="18" />
           <span>{{ address() }}</span>
         </div>
         <div class="sidebar-item">
-          <svg-icon name="phone" size="18" />
+          <app-svg-icon name="phone" size="18" />
           <a href="tel:+525512345678" class="sidebar-link">{{ phone() }}</a>
         </div>
         <div class="sidebar-item">
-          <svg-icon name="mail" size="18" />
+          <app-svg-icon name="mail" size="18" />
           <a href="mailto:info@bellezaestilo.com" class="sidebar-link">{{ email() }}</a>
         </div>
         <div class="sidebar-item sidebar-item--schedule">
-          <svg-icon name="clock" size="18" />
+          <app-svg-icon name="clock" size="18" />
           <div class="schedule-list">
             @for (day of businessHours(); track day.day) {
               <div class="schedule-row">
@@ -333,14 +334,14 @@
         <div class="sidebar-social">
           <!-- TODO: add real Instagram link -->
           <a href="#" class="social-icon" aria-label="Instagram">
-            <svg-icon name="instagram" size="20" />
+            <app-svg-icon name="instagram" size="20" />
           </a>
           <!-- TODO: add real Facebook link -->
           <a href="#" class="social-icon" aria-label="Facebook">
-            <svg-icon name="facebook" size="20" />
+            <app-svg-icon name="facebook" size="20" />
           </a>
           <a href="#" class="social-icon" aria-label="WhatsApp">
-            <svg-icon name="whatsapp" size="20" />
+            <app-svg-icon name="whatsapp" size="20" />
           </a>
         </div>
       </div>
@@ -348,7 +349,7 @@
       <div class="sidebar-card sidebar-card--cta">
         <p>¿Prefieres hablar directo?</p>
         <a href="https://wa.me/525512345678" class="btn whatsapp-cta" target="_blank" rel="noopener noreferrer">  <!-- WHATSAPP_NUMBER from business.json -->
-          <svg-icon name="whatsapp" size="18" />
+          <app-svg-icon name="whatsapp" size="18" />
           Escríbenos por WhatsApp
         </a>
       </div>

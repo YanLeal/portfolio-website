@@ -26,6 +26,6 @@ import { Component, input } from '@angular/core';
  * <app-container [narrow]="true"><article>...</article></app-container>
  * ```
  */
-export class ContainerComponent {
+export class Container {
   readonly narrow = input(false);
 }

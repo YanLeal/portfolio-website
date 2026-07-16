@@ -117,7 +117,7 @@
   color: var(--color-neutral-600);
 }
 
-.meta-duration svg-icon {
+.meta-duration app-svg-icon {
   opacity: 0.6;
 }
 
@@ -138,10 +138,10 @@
   margin-top: var(--space-1);
 }
 
-.card-btn svg-icon {
+.card-btn app-svg-icon {
   transition: transform 0.25s ease;
 }
 
-.card-btn:hover svg-icon {
+.card-btn:hover app-svg-icon {
   transform: translateX(2px);
 }

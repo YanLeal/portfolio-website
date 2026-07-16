@@ -3,7 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import {
   ErrorBoundary,
-  FormFieldComponent,
+  FormField,
   SectionHeader,
   ServiceOptionCard,
   SvgIcon,
@@ -18,7 +18,7 @@ import type { WizardStep } from '../../domains/booking/models/booking.model';
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ErrorBoundary, FormFieldComponent, SectionHeader, ServiceOptionCard, SvgIcon, FormsModule],
+  imports: [ErrorBoundary, FormField, SectionHeader, ServiceOptionCard, SvgIcon, FormsModule],
   host: { class: 'section-padding' },
   templateUrl: './contact.html',
   styleUrl: './contact.css',

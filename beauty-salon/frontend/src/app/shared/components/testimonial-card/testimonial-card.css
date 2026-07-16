@@ -168,6 +168,6 @@ hr {
   letter-spacing: 0.04em;
 }
 
-.service-label svg-icon {
+.service-label app-svg-icon {
   flex-shrink: 0;
 }

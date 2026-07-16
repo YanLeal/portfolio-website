@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   selector: 'app-service-option-card',
@@ -7,39 +7,51 @@ import { Component, computed, input, output } from '@angular/core';
   styleUrl: './service-option-card.css',
   host: {
     '[class.is-selected]': 'isSelected()',
-    '[class.is-other]': 'other()',
-    '[attr.aria-label]': 'ariaLabel()',
+    '[class.is-subtle]': 'variant() === "subtle"',
   },
 })
 /**
- * Opción seleccionable de servicio en wizard de reserva.
+ * Opción seleccionable para listados con nombre, duración y precio opcional.
  *
- * Renderiza un `<button>` con nombre, duración y precio.
- * Aplica clase `.is-selected` cuando está activo y `.is-other`
- * para la opción "Otro / No estoy segura".
+ * Renderiza un `<button>` con información estructurada.
+ * La variante `subtle` usa borde punteado y fondo más claro,
+ * ideal para opciones secundarias o "default".
  *
  * @usage
  * ```html
  * <app-service-option-card
- *   name="Corte + Brushing" duration="45 min" [price]="5500"
- *   [isSelected]="selectedId === 's1'" (select)="onSelect('s1')"
+ *   value="s1" name="Corte + Brushing"
+ *   duration="45 min" priceLabel="$ 5.500"
+ *   [isSelected]="selectedId === 's1'"
+ *   (selected)="onSelected($event)"
  * />
+ *
  * <app-service-option-card
- *   name="Otro" duration="Consulta general" [price]="0"
- *   [other]="true" (select)="onSelect('other')"
+ *   value="other" name="Otro"
+ *   duration="—" variant="subtle"
+ *   (selected)="onSelected($event)"
  * />
  * ```
  */
 export class ServiceOptionCard {
+  /** Identificador único que se emite al seleccionar. */
+  readonly value = input.required<string>();
+
+  /** Nombre visible de la opción. */
   readonly name = input.required<string>();
+
+  /** Duración en formato texto (ej: "45 min", "—"). */
   readonly duration = input.required<string>();
-  readonly price = input.required<number>();
+
+  /** Precio opcional ya formateado (ej: "$ 5.500"). Si no se provee, no se muestra. */
+  readonly priceLabel = input<string>();
+
+  /** Marca visual de selección activa. */
   readonly isSelected = input(false);
-  readonly other = input(false);
 
-  readonly select = output<void>();
+  /** Variante visual: 'default' (sólido) | 'subtle' (punteado). */
+  readonly variant = input<'default' | 'subtle'>('default');
 
-  readonly ariaLabel = computed(() =>
-    this.other() ? 'Seleccionar consulta general' : `Seleccionar servicio: ${this.name()}`,
-  );
+  /** Emite `value` al hacer click. */
+  readonly selected = output<string>();
 }

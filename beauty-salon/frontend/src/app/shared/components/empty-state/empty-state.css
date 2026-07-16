@@ -1,0 +1,135 @@
+/* ─── Empty State — Design System tokens only ────────────────
+ *
+ * Zero hardcoded values. Every color, radius, font, spacing,
+ * duration and easing references a design system token.
+ * ──────────────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════
+   HOST
+   ═══════════════════════════════════════════════════════════════ */
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-12) var(--space-4);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INNER — limita ancho del contenido
+   ═══════════════════════════════════════════════════════════════ */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 22rem; /* ~352px — sin hardcodear (no hay token) */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   IMAGE (ilustración opcional)
+   ═══════════════════════════════════════════════════════════════ */
+
+.empty-state__image {
+  max-width: 18rem;
+  height: auto;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-2);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ICON (SVG decorativo, solo si no hay image)
+   ═══════════════════════════════════════════════════════════════ */
+
+.empty-state__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-12);
+  height: var(--space-12);
+  margin-bottom: var(--space-2);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+  color: var(--color-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TITLE
+   ═══════════════════════════════════════════════════════════════ */
+
+.empty-state__title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-neutral-800);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DESCRIPTION
+   ═══════════════════════════════════════════════════════════════ */
+
+.empty-state__description {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--leading-relaxed);
+  color: var(--color-neutral-500);
+  margin: 0;
+  max-width: 20rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BUTTON
+   ═══════════════════════════════════════════════════════════════ */
+
+.empty-state__button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-3);
+  padding: var(--space-2) var(--space-5);
+  border: none;
+  border-radius: var(--radius-card);
+  background: var(--color-primary);
+  color: var(--color-surface);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-snug);
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+
+  &:hover {
+    background: color-mix(in srgb, var(--color-primary) 80%, var(--color-surface));
+    box-shadow: var(--elevation-hover);
+  }
+
+  &:focus-visible {
+    outline: var(--focus-ring-outline);
+    outline-offset: var(--focus-ring-offset);
+  }
+
+  &:active {
+    background: color-mix(in srgb, var(--color-primary) 70%, var(--color-neutral-900));
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (width >= 48rem) {
+  :host {
+    padding: var(--space-16) var(--space-6);
+  }
+
+  .empty-state__title {
+    font-size: var(--font-size-3xl);
+  }
+}

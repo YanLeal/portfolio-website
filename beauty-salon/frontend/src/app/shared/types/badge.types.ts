@@ -12,7 +12,7 @@
  *
  * @example
  * // Team
- * { id: 'specialist', label: 'Especialista', priority: 10, color: 'brand' }
+ * { id: 'specialist', label: 'Especialista', priority: 10, color: 'primary' }
  *
  * @example
  * // Blog
@@ -30,11 +30,34 @@ export interface Badge {
   /** Prioridad de aparición (menor número = primera posición). */
   readonly priority: number;
 
-  /** Clave del design system para el color de fondo.
-   *  El CSS mapea estos valores a variables de color.
-   *  Ej: 'brand' | 'success' | 'accent' | 'neutral' | 'warning' */
+  /** Clave del design system para el color de fondo. */
   readonly color: string;
 
-  /** Icono opcional. Debe ser un nombre válido de svg-icon. */
+  /** Icono opcional. Debe ser un nombre válido de SvgIcon. */
   readonly icon?: string;
 }
+
+/** Colores del sistema para el componente Badge.
+ *  Mapean a variables CSS del design system (`--color-*`). */
+export type BadgeColor =
+  | 'primary'    /* → --color-primary    (rosa elegante) */
+  | 'secondary'  /* → --color-secondary  (borgoña) */
+  | 'success'    /* → --color-success    (verde salvia) */
+  | 'warning'    /* → --color-warning    (amarillo) */
+  | 'danger'     /* → --color-error      (rojo) */
+  | 'neutral'    /* → --color-neutral-500 */
+  | 'accent'     /* → --color-accent     (dorado) */
+  | 'brand';     /* → --color-primary    (alias de primary) */
+
+/** Variantes visuales del Badge. */
+export type BadgeVariant = 'filled' | 'outlined' | 'subtle';
+
+/** Tamaños predefinidos del Badge. */
+export type BadgeSize = 'xs' | 'sm' | 'md' | 'lg';
+
+/** Animaciones de entrada/sostenidas del Badge.
+ *  - `fadeIn`:   opacidad 0 → 1 (default, una vez al montar)
+ *  - `pulse`:    escala 1 → 1.06 → 1 (loop infinito, atención)
+ *  - `scaleIn`:  escala 0.85 + opacidad 0 → 1 (una vez al montar)
+ *  - `slideIn`:  translateX(-0.5rem) + opacidad 0 → 0 (una vez al montar) */
+export type BadgeAnim = 'fadeIn' | 'pulse' | 'scaleIn' | 'slideIn';

@@ -1,0 +1,23 @@
+@if (open()) {
+  <div
+    class="modal-backdrop"
+    (click)="onBackdropClick($event)"
+    (keydown)="onKeydown($event)"
+    role="dialog"
+    [attr.aria-modal]="true"
+    [attr.aria-label]="ariaLabel() ?? null"
+    tabindex="-1"
+  >
+    <div class="modal-panel" role="document">
+      <button
+        class="modal-close"
+        type="button"
+        (click)="close.emit()"
+        aria-label="Cerrar"
+      >
+        ✕
+      </button>
+      <ng-content />
+    </div>
+  </div>
+}

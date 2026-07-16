@@ -52,20 +52,20 @@
   background: color-mix(in srgb, var(--color-primary) 4%, var(--color-surface));
 }
 
-/* ─── "Other" variant ────────────────────────────────────── */
+/* ─── Subtle variant ────────────────────────────────────── */
 
-:host.is-other .service-option {
+:host.is-subtle .service-option {
   background: color-mix(in srgb, var(--color-primary) 3%, var(--color-surface));
   border-style: dashed;
   border-color: var(--color-neutral-300);
 }
 
-:host.is-other .service-option:hover {
+:host.is-subtle .service-option:hover {
   border-color: var(--color-primary-light);
   border-style: dashed;
 }
 
-:host.is-other.is-selected .service-option {
+:host.is-subtle.is-selected .service-option {
   border-style: solid;
 }
 

@@ -9,18 +9,19 @@
           [id]="service.id"
           [name]="service.name"
           [description]="service.description"
-          [price]="service.price"
+          [priceLabel]="'$ ' + service.price.toLocaleString('es-AR')"
           [duration]="service.duration"
           [icon]="service.icon"
           [image]="service.image"
           [badges]="service.badges ?? []"
-          (book)="onBook($event)"
+          buttonLabel="Reservar"
+          (action)="onAction($event)"
         />
       }
     </div>
 
     <div class="services-wa-wrap">
-      <app-whatsapp-btn variant="services" label="Consulta por WhatsApp" [phone]="waPhone()" />
+      <app-whatsapp-button variant="services" label="Consulta por WhatsApp" [phone]="waPhone()" />
     </div>
   }
 </section>

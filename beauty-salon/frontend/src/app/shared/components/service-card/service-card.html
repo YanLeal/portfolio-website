@@ -23,7 +23,7 @@
 
     <!-- Icono decorativo sobre la imagen (desde service.icon) -->
     <span class="card-icon" aria-hidden="true">
-      <svg-icon [name]="$any(icon())" size="20" stroke-width="1.5" />
+      <app-svg-icon [name]="$any(icon())" size="20" stroke-width="1.5" />
     </span>
   </div>
 
@@ -34,15 +34,15 @@
 
     <div class="card-meta">
       <span class="meta-duration">
-        <svg-icon name="clock" size="15" stroke-width="1.5" />
+        <app-svg-icon name="clock" size="15" stroke-width="1.5" />
         {{ duration() }}
       </span>
-      <span class="meta-price">${{ price().toLocaleString('es-AR') }}</span>
+      <span class="meta-price">{{ priceLabel() }}</span>
     </div>
 
-    <button type="button" class="btn btn-primary card-btn" (click)="book.emit(id())">
-      Reservar
-      <svg-icon name="arrow-right" size="16" />
+    <button type="button" class="btn btn-primary card-btn" (click)="action.emit(id())">
+      {{ buttonLabel() }}
+      <app-svg-icon name="arrow-right" size="16" />
     </button>
   </div>
 </app-card>

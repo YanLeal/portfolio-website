@@ -129,7 +129,7 @@
   margin: 0 0 var(--space-3);
 }
 
-.card-experience svg-icon {
+.card-experience app-svg-icon {
   flex-shrink: 0;
   color: var(--color-primary);
 }

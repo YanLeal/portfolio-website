@@ -25,7 +25,7 @@ import { Component, input, output } from '@angular/core';
  * />
  * ```
  */
-export class FaqItemComponent {
+export class FaqItem {
   readonly id = input.required<string>();
   readonly question = input.required<string>();
   readonly answer = input.required<string>();

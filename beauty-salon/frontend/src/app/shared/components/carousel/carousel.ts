@@ -31,7 +31,7 @@ import { CarouselController } from '../../utils/carousel-controller';
  * </app-carousel>
  * ```
  */
-export class CarouselComponent {
+export class Carousel {
   // ─── Required ────────────────────────────────────────────
 
   /** Controlador del carrusel (maneja estado, navegación, auto-play). */

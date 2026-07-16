@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import type { SvgIconName } from '../../types/icon.types';
 
 @Component({
-  selector: 'svg-icon',
+  selector: 'app-svg-icon',
   standalone: true,
   template: `
     <svg
@@ -116,9 +116,9 @@ import type { SvgIconName } from '../../types/icon.types';
  *
  * @usage
  * ```html
- * <svg-icon name="clock" size="16" />
- * <svg-icon name="arrow-right" size="20" strokeWidth="1.5" />
- * <svg-icon name="instagram" size="24" ariaLabel="Instagram" />
+ * <app-svg-icon name="clock" size="16" />
+ * <app-svg-icon name="arrow-right" size="20" strokeWidth="1.5" />
+ * <app-svg-icon name="instagram" size="24" ariaLabel="Instagram" />
  * ```
  */
 export class SvgIcon {

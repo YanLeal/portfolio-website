@@ -1,8 +1,8 @@
 /* ─── Botón CTA: hover slide del icono ─────────────────── */
-:where(a, button):hover svg-icon {
+:where(a, button):hover app-svg-icon {
   transform: translateX(2px);
 }
 
-:where(a, button) svg-icon {
+:where(a, button) app-svg-icon {
   transition: transform 0.25s ease;
 }

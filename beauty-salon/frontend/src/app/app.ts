@@ -4,12 +4,12 @@ import { filter } from 'rxjs/operators';
 import { HeaderComponent } from './layout/header/header';
 import { FooterComponent } from './layout/footer/footer';
 import { BusinessService } from './domains/business/business.service';
-import { FloatingWhatsappComponent } from './shared';
+import { FloatingWhatsapp } from './shared';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, FloatingWhatsappComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, FloatingWhatsapp],
   templateUrl: './app.html',
 })
 export class App implements OnInit {

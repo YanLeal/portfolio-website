@@ -3,7 +3,8 @@ import { afterNextRender } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   CarouselController,
-  CarouselComponent,
+  Carousel,
+  EmptyState,
   ErrorBoundary,
   SectionHeader,
   TestimonialCard,
@@ -14,7 +15,7 @@ import { ContentService } from '../../domains/content/content.service';
 @Component({
   selector: 'app-testimonials',
   standalone: true,
-  imports: [CarouselComponent, ErrorBoundary, SectionHeader, TestimonialCard],
+  imports: [Carousel, EmptyState, ErrorBoundary, SectionHeader, TestimonialCard],
   templateUrl: './testimonials.html',
   styleUrl: './testimonials.css',
 })
@@ -25,6 +26,7 @@ export class TestimonialsComponent {
   readonly hasError = this.testimonialService.error;
   readonly testimonialsTitle = computed(() => this.contentService.data().testimonials.title);
   readonly testimonialsSubtitle = computed(() => this.contentService.data().testimonials.subtitle);
+  readonly noTestimonialsContent = computed(() => this.contentService.data().emptyState.noTestimonials);
 
   /** Testimonio activo según el índice del carrusel. */
   readonly currentTestimonial = computed(() =>

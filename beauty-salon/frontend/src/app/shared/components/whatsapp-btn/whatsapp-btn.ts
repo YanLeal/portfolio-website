@@ -2,7 +2,7 @@ import { Component, computed, input } from '@angular/core';
 import type { WaVariant } from '../../types/button.types';
 
 @Component({
-  selector: 'app-whatsapp-btn',
+  selector: 'app-whatsapp-button',
   standalone: true,
   template: `
     <a
@@ -199,12 +199,12 @@ import type { WaVariant } from '../../types/button.types';
  *
  * @usage
  * ```html
- * <app-whatsapp-btn variant="hero" label="Contactanos" [phone]="waPhone()" />
- * <app-whatsapp-btn variant="footer" [phone]="waPhone()" />
- * <app-whatsapp-btn variant="floating" label="WhatsApp" [phone]="waPhone()" />
+ * <app-whatsapp-button variant="hero" label="Contactanos" [phone]="waPhone()" />
+ * <app-whatsapp-button variant="footer" [phone]="waPhone()" />
+ * <app-whatsapp-button variant="floating" label="WhatsApp" [phone]="waPhone()" />
  * ```
  */
-export class WhatsappButtonComponent {
+export class WhatsappButton {
   /** Número de WhatsApp sin prefijo ni signos (ej: 525512345678) */
   readonly phone = input.required<string>();
   readonly waLink = computed(() => `https://wa.me/${this.phone()}`);

@@ -1,6 +1,41 @@
-<span class="badge" [class]="'badge--' + badge().color">
-  @if (badge().icon) {
-    <svg-icon [name]="$any(badge().icon)" size="10" />
+<span class="badge"
+  [attr.data-color]="resolvedColor()"
+  [attr.data-variant]="resolvedVariant()"
+  [attr.data-size]="resolvedSize()"
+  [class.badge--interactive]="isInteractive()"
+  [class.badge--removable]="removable()"
+  [class.badge--selected]="selected()"
+  [attr.data-anim]="resolvedAnim()"
+  [class.badge--squared]="!rounded()"
+  [attr.role]="isInteractive() ? 'button' : null"
+  [attr.tabindex]="isInteractive() ? '0' : null"
+  (click)="isInteractive() && onClick()"
+  (keydown.enter)="isInteractive() && onClick()"
+  (keydown.space)="isInteractive() && onClick(); $event.preventDefault()"
+  [attr.aria-pressed]="selectable() ? selected() : null"
+>
+  @if (resolvedIcon(); as iconName) {
+    <app-svg-icon [name]="iconName" [size]="iconSize()" class="badge__icon" aria-hidden="true" />
   }
-  {{ badge().label }}
+
+  <span class="badge__label">{{ resolvedLabel() }}</span>
+
+  @if (resolvedIconAfter(); as iconName) {
+    <app-svg-icon [name]="iconName" [size]="iconSize()" class="badge__icon" aria-hidden="true" />
+  }
+
+  @if (removable()) {
+    <button type="button" class="badge__remove"
+      (click)="onRemove($event)"
+      aria-label="Remover {{ resolvedLabel() }}"
+    >
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+        aria-hidden="true"
+      >
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+  }
 </span>

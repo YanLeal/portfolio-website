@@ -22,5 +22,19 @@
   "process": {
     "title": "Nuestro proceso",
     "subtitle": "Tu experiencia en 4 pasos"
+  },
+  "emptyState": {
+    "noResults": {
+      "title": "Sin resultados",
+      "description": "No encontramos preguntas que coincidan con tu búsqueda. Prueba con otros términos o escríbenos por WhatsApp."
+    },
+    "noPromotions": {
+      "title": "Sin promociones por ahora",
+      "description": "No hay promociones activas en este momento. Seguinos en redes para enterarte de las próximas ofertas."
+    },
+    "noTestimonials": {
+      "title": "Sin testimonios aún",
+      "description": "Todavía no hay testimonios de clientas. ¡Sé la primera en dejarnos tu opinión!"
+    }
   }
 }

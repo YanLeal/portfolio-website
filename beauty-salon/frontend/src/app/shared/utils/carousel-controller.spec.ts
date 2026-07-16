@@ -3,17 +3,16 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { CarouselController, type CarouselConfig } from './carousel-controller';
 
 interface FakeDestroyRef extends DestroyRef {
-  onDestroy: (cb: () => void) => void;
+  onDestroy: (cb: () => void) => () => void;
   destroyCbs: Array<() => void>;
 }
 
 function fakeDestroyRef(): FakeDestroyRef {
   const destroyCbs: Array<() => void> = [];
   return {
-    onDestroy: (cb: () => void) => { destroyCbs.push(cb); },
+    onDestroy: (cb: () => void) => { destroyCbs.push(cb); return cb; },
     destroyCbs,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } as any;
+  } as unknown as FakeDestroyRef;
 }
 
 function createCarousel(overrides?: Partial<CarouselConfig>): CarouselController {

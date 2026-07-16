@@ -1,0 +1,25 @@
+<div class="empty-state">
+  @if (image(); as imgSrc) {
+    <img [src]="imgSrc" alt="" class="empty-state__image" />
+  } @else if (icon(); as iconName) {
+    <span class="empty-state__icon">
+      <app-svg-icon [name]="iconName" size="24" aria-hidden="true" />
+    </span>
+  }
+
+  <h2 class="empty-state__title">{{ title() }}</h2>
+
+  @if (description(); as desc) {
+    <p class="empty-state__description">{{ desc }}</p>
+  }
+
+  @if (button(); as label) {
+    <button
+      type="button"
+      class="empty-state__button"
+      (click)="onButtonClick()"
+    >
+      {{ label }}
+    </button>
+  }
+</div>

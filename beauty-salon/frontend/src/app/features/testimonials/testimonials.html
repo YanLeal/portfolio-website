@@ -8,6 +8,12 @@
   <app-section-header [title]="testimonialsTitle()" [subtitle]="testimonialsSubtitle()" />
   @if (hasError()) {
     <app-error-boundary message="No pudimos cargar los testimonios. Actualiza la página o escríbenos por WhatsApp." />
+  } @else if (!testimonials().length) {
+    <app-empty-state
+      [title]="noTestimonialsContent().title"
+      [description]="noTestimonialsContent().description"
+      icon="message-circle"
+    />
   } @else {
     <app-carousel
       [controller]="carousel"

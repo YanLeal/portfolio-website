@@ -1,4 +1,4 @@
-import type { Badge } from '../../shared';
+import type { Badge } from '../../shared/types';
 
 export type ServiceIcon =
   | 'scissors'

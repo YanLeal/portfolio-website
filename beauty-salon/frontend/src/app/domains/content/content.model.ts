@@ -3,6 +3,11 @@ export interface SectionHeader {
   readonly subtitle: string;
 }
 
+export interface EmptyStateContent {
+  readonly title: string;
+  readonly description: string;
+}
+
 export interface Stat {
   readonly value: string;
   readonly label: string;
@@ -32,4 +37,9 @@ export interface ContentData {
   readonly team: SectionHeader;
   readonly testimonials: SectionHeader;
   readonly process: SectionHeader;
+  readonly emptyState: {
+    readonly noResults: EmptyStateContent;
+    readonly noPromotions: EmptyStateContent;
+    readonly noTestimonials: EmptyStateContent;
+  };
 }

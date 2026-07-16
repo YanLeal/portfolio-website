@@ -2,6 +2,12 @@
   <section class="section-padding">
     <app-error-boundary message="No pudimos cargar la promoción del mes. Actualiza la página o consúltanos por WhatsApp." />
   </section>
+} @else if (!promoList().length) {
+  <app-empty-state
+    [title]="noPromotionsContent().title"
+    [description]="noPromotionsContent().description"
+    icon="sparkles"
+  />
 }
 
 @for (promo of promoList(); track promo.id) {
@@ -31,7 +37,8 @@
       <h2 class="sr-only">Promoción: {{ promo.title }}</h2>
       <div class="promo-entrance--slow promo-delay-1 flex flex-wrap items-center gap-x-2 gap-y-1 font-sans text-xs tracking-[0.15em] uppercase text-accent">
         @if (promo.badge) {
-          <span>Promo • {{ promo.badge }}</span>
+          <span>Promo</span>
+          <app-badge [label]="promo.badge" size="xs" color="secondary" />
           <span class="w-px h-3 bg-accent/30" aria-hidden="true"></span>
         } @else {
           <span>Promo</span>

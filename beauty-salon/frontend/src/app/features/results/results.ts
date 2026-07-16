@@ -2,7 +2,7 @@ import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   CarouselController,
-  CarouselComponent,
+  Carousel,
   ErrorBoundary,
   ImageCompare,
   SectionHeader,
@@ -12,7 +12,7 @@ import { ResultService } from '../../domains/results/result.service';
 @Component({
   selector: 'app-results',
   standalone: true,
-  imports: [CarouselComponent, ErrorBoundary, SectionHeader, ImageCompare],
+  imports: [Carousel, ErrorBoundary, SectionHeader, ImageCompare],
   templateUrl: './results.html',
   styleUrl: './results.css',
 })

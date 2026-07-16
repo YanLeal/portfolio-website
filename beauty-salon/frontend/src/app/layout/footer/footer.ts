@@ -1,13 +1,13 @@
 import { Component, computed, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { WhatsappButtonComponent } from '../../shared';
+import { WhatsappButton } from '../../shared';
 import { FooterService } from '../../services/features/footer/footer.service';
 import { BusinessService } from '../../domains/business/business.service';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [RouterLink, WhatsappButtonComponent],
+  imports: [RouterLink, WhatsappButton],
   host: { class: 'block' },
   templateUrl: './footer.html',
   styleUrl: './footer.css',

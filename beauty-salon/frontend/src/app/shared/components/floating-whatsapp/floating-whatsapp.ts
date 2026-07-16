@@ -1,12 +1,12 @@
 import { Component, input } from '@angular/core';
-import { WhatsappButtonComponent } from '../whatsapp-btn/whatsapp-btn';
+import { WhatsappButton } from '../whatsapp-btn/whatsapp-btn';
 
 @Component({
   selector: 'app-floating-whatsapp',
   standalone: true,
-  imports: [WhatsappButtonComponent],
+  imports: [WhatsappButton],
   template: `
-    <app-whatsapp-btn variant="floating" label="WhatsApp" [phone]="phone()" />
+    <app-whatsapp-button variant="floating" label="WhatsApp" [phone]="phone()" />
   `,
   styles: [`
     :host {
@@ -40,7 +40,7 @@ import { WhatsappButtonComponent } from '../whatsapp-btn/whatsapp-btn';
  * Botón flotante de WhatsApp fijo en la esquina inferior derecha.
  *
  * Esconde en tablets (640–1024px) y muestra con animación de entrada.
- * Delega el render al componente `WhatsappButtonComponent` con
+ * Delega el render al componente `WhatsappButton` con
  * variante `floating`. Recibe el número de phone como input.
  *
  * @usage
@@ -48,6 +48,6 @@ import { WhatsappButtonComponent } from '../whatsapp-btn/whatsapp-btn';
  * <app-floating-whatsapp [phone]="waPhone()" />
  * ```
  */
-export class FloatingWhatsappComponent {
+export class FloatingWhatsapp {
   readonly phone = input.required<string>();
 }

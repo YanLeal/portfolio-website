@@ -382,7 +382,7 @@
   color: var(--color-neutral-900);
 }
 
-.btn-nav--back svg-icon {
+.btn-nav--back app-svg-icon {
   transform: rotate(180deg);
 }
 
@@ -452,7 +452,7 @@
   }
 }
 
-.booking-success svg-icon {
+.booking-success app-svg-icon {
   color: var(--color-primary);
   animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both,
              successPulse 2.5s ease 0.8s infinite;
@@ -558,7 +558,7 @@
   margin-top: var(--space-3\.5, 0.875rem);
 }
 
-.sidebar-item svg-icon {
+.sidebar-item app-svg-icon {
   flex-shrink: 0;
   color: var(--color-primary);
 }

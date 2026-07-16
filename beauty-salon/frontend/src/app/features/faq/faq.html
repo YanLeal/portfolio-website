@@ -18,7 +18,11 @@
   </div>
 
   @if (!hayResultados() && searchText()) {
-    <p class="sin-resultados">No encontramos preguntas que coincidan con tu búsqueda. Prueba con otros términos o escríbenos por WhatsApp.</p>
+    <app-empty-state
+      [title]="noResultsContent().title"
+      [description]="noResultsContent().description"
+      icon="search"
+    />
   }
 
   <div class="acordeon">

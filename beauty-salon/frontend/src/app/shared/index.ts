@@ -1,13 +1,14 @@
 export {
-  AppBadge,
+  Badge,
   Card,
-  CarouselComponent,
-  ContainerComponent,
+  Carousel,
+  Container,
   CtaButton,
   ErrorBoundary,
-  FaqItemComponent,
-  FloatingWhatsappComponent,
-  FormFieldComponent,
+  EmptyState,
+  FaqItem,
+  FloatingWhatsapp,
+  FormField,
   GalleryGrid,
   ImageCompare,
   SectionHeader,
@@ -15,12 +16,17 @@ export {
   ServiceOptionCard,
   SvgIcon,
   TestimonialCard,
-  WhatsappButtonComponent,
+  WhatsappButton,
 } from './components';
 
 export { CardTiltDirective, RevealDirective } from './directives';
-
-export type { Badge, CtaButtonVariant, WaVariant, SvgIconName } from './types';
-
+export type { CtaButtonVariant, WaVariant, SvgIconName } from './types';
 export { CarouselController } from './utils';
 export type { CarouselConfig } from './utils';
+
+// ── Pipes ─────────────────────────────────────────────────
+export { DurationPipe, TruncatePipe, PhonePipe } from './pipes';
+
+// ── Tokens ────────────────────────────────────────────────
+export { WHATSAPP_NUMBER, SITE_CONFIG } from './tokens';
+export type { SiteConfig } from './tokens';
