@@ -1,0 +1,58 @@
+<app-modal
+  [open]="isOpen()"
+  [fullscreen]="true"
+  [closable]="true"
+  [ariaLabel]="'Galería de imágenes'"
+  (close)="onClose()"
+>
+  <div class="lightbox-content" (keydown)="onKeydown($event)">
+    @if (hasPrev()) {
+      <button class="lightbox-btn lightbox-btn--prev"
+        (click)="goPrev()" aria-label="Imagen anterior">‹</button>
+    }
+
+    <figure class="lightbox-figure">
+      <div class="lightbox-image-wrapper"
+        (wheel)="onWheel($event)"
+        (touchstart)="onTouchStart($event)"
+        (touchend)="onTouchEnd($event)"
+        (mousedown)="onMouseDown($event)"
+        (mousemove)="onMouseMove($event)"
+        (mouseup)="onMouseUp($event)"
+        (mouseleave)="onMouseUp($event)"
+        (click)="onImageClick($event)"
+        (dblclick)="onImageDblClick($event)"
+        [class.is-zoomed]="isZoomed()"
+        [class.is-dragging]="isDragging()"
+        [style.transform]="zoomStyle()"
+        [style.cursor]="isZoomed() ? 'grab' : 'zoom-in'"
+      >
+        <img
+          [src]="currentImage()?.src"
+          [alt]="currentImage()?.alt"
+          [attr.aria-describedby]="hasCaption() ? captionId : null"
+          draggable="false"
+        />
+      </div>
+      @if (hasCaption()) {
+        <figcaption [id]="captionId" class="lightbox-caption">
+          {{ currentImage()?.caption }}
+        </figcaption>
+      }
+    </figure>
+
+    @if (hasNext()) {
+      <button class="lightbox-btn lightbox-btn--next"
+        (click)="goNext()" aria-label="Imagen siguiente">›</button>
+    }
+  </div>
+
+  <footer class="lightbox-footer">
+    <span class="lightbox-counter">{{ counterText() }}</span>
+    @if (isZoomed()) {
+      <button class="lightbox-zoom-reset" (click)="resetZoom()" aria-label="Restablecer zoom">
+        🔍
+      </button>
+    }
+  </footer>
+</app-modal>

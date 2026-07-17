@@ -3,6 +3,13 @@
   @if (hasError()) {
     <app-error-boundary message="No pudimos cargar la galería. Actualiza la página o visítanos en Instagram." />
   } @else {
-    <app-gallery-grid [images]="images()" />
+    <app-gallery-grid [images]="images()" (imageClicked)="onImageClicked($event)" />
   }
 </section>
+
+<app-lightbox
+  [images]="images()"
+  [selectedIndex]="selectedIndex()"
+  (close)="selectedIndex.set(-1)"
+  (indexChange)="selectedIndex.set($event)"
+/>

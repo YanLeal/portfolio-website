@@ -1,0 +1,61 @@
+<div
+  class="loading"
+  role="status"
+  aria-live="polite"
+  [attr.data-variant]="variant()"
+  [attr.data-size]="size()"
+>
+  @switch (variant()) {
+    @case ('spinner') {
+      <span class="loading__spinner" aria-hidden="true"></span>
+    }
+    @case ('dots') {
+      <span class="loading__dots" aria-hidden="true">
+        <span class="loading__dot"></span>
+        <span class="loading__dot"></span>
+        <span class="loading__dot"></span>
+      </span>
+    }
+    @case ('pulse') {
+      <span class="loading__pulse" aria-hidden="true"></span>
+    }
+    @case ('skeleton') {
+      <div class="loading__skeleton" aria-hidden="true">
+        @switch (skeleton()) {
+          @case ('text') {
+            <div class="loading__skeleton-text">
+              @for (_ of skeletonLines(); track $index) {
+                <span class="loading__skeleton-line"></span>
+              }
+            </div>
+          }
+          @case ('card') {
+            <div class="loading__skeleton-card">
+              <div class="loading__skeleton-card-image"></div>
+              <div class="loading__skeleton-card-body">
+                <span class="loading__skeleton-line loading__skeleton-line--wide"></span>
+                <span class="loading__skeleton-line"></span>
+                <span class="loading__skeleton-line loading__skeleton-line--narrow"></span>
+              </div>
+            </div>
+          }
+          @case ('avatar-text') {
+            <div class="loading__skeleton-avatar-group">
+              <span class="loading__skeleton-avatar"></span>
+              <div class="loading__skeleton-avatar-lines">
+                <span class="loading__skeleton-line"></span>
+                <span class="loading__skeleton-line loading__skeleton-line--narrow"></span>
+              </div>
+            </div>
+          }
+        }
+      </div>
+    }
+  }
+
+  @if (label(); as text) {
+    <span class="loading__label">{{ text }}</span>
+  }
+
+  <span class="sr-only">{{ labelScreenReader() || label() || 'Cargando…' }}</span>
+</div>

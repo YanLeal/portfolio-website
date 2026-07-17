@@ -11,16 +11,21 @@ export {
   FormField,
   GalleryGrid,
   ImageCompare,
+  Lightbox,
+  Loading,
+  Modal,
   SectionHeader,
   ServiceCard,
   ServiceOptionCard,
   SvgIcon,
   TestimonialCard,
+  Tooltip,
   WhatsappButton,
 } from './components';
 
 export { CardTiltDirective, RevealDirective } from './directives';
-export type { CtaButtonVariant, WaVariant, SvgIconName } from './types';
+export type { CtaButtonVariant, WaVariant, SvgIconName, LoadingVariant, LoadingSize, SkeletonType } from './types';
+export type { GalleryImage, LightboxZoomState } from './components';
 export { CarouselController } from './utils';
 export type { CarouselConfig } from './utils';
 

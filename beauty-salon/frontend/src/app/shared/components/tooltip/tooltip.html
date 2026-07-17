@@ -1,0 +1,20 @@
+<span
+  class="tooltip-trigger"
+  (mouseenter)="show()"
+  (mouseleave)="hide()"
+  (focusin)="show()"
+  (focusout)="hide()"
+  (keydown)="onKeydown($event)"
+  [attr.aria-describedby]="tooltipId"
+>
+  <ng-content />
+  <span
+    class="tooltip"
+    role="tooltip"
+    [attr.id]="tooltipId"
+    [attr.data-position]="position()"
+    [class.tooltip--visible]="visible()"
+  >
+    <span class="tooltip-text">{{ text() }}</span>
+  </span>
+</span>

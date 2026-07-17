@@ -1,3 +1,18 @@
+/* ─── Modal — Design System tokens only ────────────────────────
+ *
+ * Zero hardcoded values. Every color, size, spacing, duration,
+ * and easing references a design system token.
+ *
+ * Comportamiento:
+ *   backdrop fijo con fade-in, panel centrado con slide-up,
+ *   foco atrapado dentro del panel mientras está abierto,
+ *   scroll del body desactivado.
+ * ──────────────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════
+   BACKDROP
+   ═══════════════════════════════════════════════════════════════ */
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -6,37 +21,118 @@
   align-items: center;
   justify-content: center;
   background: color-mix(in srgb, var(--color-neutral-900) 60%, transparent);
-  animation: modalFadeIn 0.2s ease;
+  animation: modal-fade-in var(--duration-fast) var(--ease-out);
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   PANEL
+   ═══════════════════════════════════════════════════════════════ */
 
 .modal-panel {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: min(90vw, 32rem);
   max-height: 85vh;
-  overflow-y: auto;
   background: var(--color-surface);
   border-radius: var(--radius-md);
-  padding: var(--space-8);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
-  animation: modalSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: modal-slide-up var(--duration-subtle) var(--ease-out);
+  outline: none;
 }
 
-.modal-close {
-  position: absolute;
+/* ── Sizes ── */
+.modal-backdrop[data-size="sm"] .modal-panel {
+  width: min(90vw, 24rem);
+}
+
+.modal-backdrop[data-size="md"] .modal-panel {
+  width: min(90vw, 32rem);
+}
+
+.modal-backdrop[data-size="lg"] .modal-panel {
+  width: min(90vw, 40rem);
+}
+
+/* ── Fullscreen ── */
+.modal-backdrop[data-fullscreen] .modal-panel {
+  width: 100vw;
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Fullscreen: close button sale del stacking del backdrop
+ * y se posiciona fixed con z-index superior a .lightbox-btn (110) */
+.modal-backdrop[data-fullscreen] .modal-close--standalone {
+  position: fixed;
   top: var(--space-4);
   right: var(--space-4);
+  z-index: 120;
+  color: var(--color-surface);
+  background: color-mix(in srgb, var(--color-neutral-900) 30%, transparent);
+  backdrop-filter: blur(4px);
+}
+
+.modal-backdrop[data-fullscreen] .modal-close:hover,
+.modal-backdrop[data-fullscreen] .modal-close--standalone:hover {
+  background: color-mix(in srgb, var(--color-neutral-900) 50%, transparent);
+  color: var(--color-surface);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════ */
+
+.modal-header {
   display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-6) 0 var(--space-6);
+}
+
+.modal-title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-semibold);
+  color: var(--color-neutral-900);
+  line-height: var(--leading-snug);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BODY
+   ═══════════════════════════════════════════════════════════════ */
+
+.modal-body {
+  padding: var(--space-6);
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CLOSE BUTTON
+   ═══════════════════════════════════════════════════════════════ */
+
+.modal-close {
+  display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: var(--space-8);
+  height: var(--space-8);
   border: none;
   border-radius: var(--radius-full);
   background: transparent;
   color: var(--color-neutral-500);
-  font-size: 1rem;
+  font-size: var(--font-size-body);
   cursor: pointer;
-  transition: background 0.15s ease, color 0.15s ease;
+  transition: background var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) var(--ease-out);
 }
 
 .modal-close:hover {
@@ -49,18 +145,44 @@
   outline-offset: 2px;
 }
 
-@keyframes modalFadeIn {
+/* Sin título → posicionado en la esquina superior derecha del panel */
+.modal-close--standalone {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   KEYFRAMES
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes modal-fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
 
-@keyframes modalSlideUp {
+@keyframes modal-slide-up {
   from {
     opacity: 0;
-    transform: translateY(1rem) scale(0.96);
+    transform: translateY(var(--space-4)) scale(0.96);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-backdrop {
+    animation: none;
+  }
+
+  .modal-panel {
+    animation: none;
+    transform: none;
   }
 }

@@ -1,0 +1,269 @@
+/* ─── Loading — Design System tokens only ────────────────────
+ *
+ * Zero hardcoded values. Every color, size, font, spacing,
+ * duration and easing references a design system token.
+ *
+ * Variantes:
+ *   spinner  → círculo rotando
+ *   dots     → 3 bolitas con stagger de opacidad
+ *   pulse    → bloque con shimmer
+ * ──────────────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════
+   HOST
+   ═══════════════════════════════════════════════════════════════ */
+
+:host {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SIZES — definen los tamaños de cada variante
+   ═══════════════════════════════════════════════════════════════ */
+
+.loading[data-size="sm"] {
+  --loading-size: var(--space-4);
+  --loading-dot: var(--space-1);
+  --loading-pulse-h: var(--font-size-body);
+  --skeleton-line-h: var(--font-size-2xs);
+  --skeleton-card-img-h: var(--space-20);
+  --skeleton-avatar: var(--space-8);
+}
+
+/* ── md (default) ── */
+.loading[data-size="md"] {
+  --loading-size: var(--space-6);
+  --loading-dot: 6px;
+  --loading-pulse-h: calc(var(--font-size-body) * 1.5);
+  --skeleton-line-h: var(--font-size-xs);
+  --skeleton-card-img-h: 10rem;
+  --skeleton-avatar: var(--space-10);
+}
+
+/* ── lg ── */
+.loading[data-size="lg"] {
+  --loading-size: var(--space-10);
+  --loading-dot: var(--space-2);
+  --loading-pulse-h: calc(var(--font-size-body) * 2);
+  --skeleton-line-h: var(--font-size-sm);
+  --skeleton-card-img-h: 12rem;
+  --skeleton-avatar: var(--space-12);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SPINNER
+   ═══════════════════════════════════════════════════════════════ */
+
+.loading__spinner {
+  display: block;
+  width: var(--loading-size);
+  height: var(--loading-size);
+  border: 2px solid var(--color-surface-subtle);
+  border-top-color: var(--color-primary);
+  border-radius: var(--radius-full);
+  animation: loading-spin var(--duration-subtle) linear infinite;
+}
+
+@keyframes loading-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DOTS
+   ═══════════════════════════════════════════════════════════════ */
+
+.loading__dots {
+  display: flex;
+  gap: calc(var(--loading-dot) * 0.5);
+}
+
+.loading__dot {
+  display: block;
+  width: var(--loading-dot);
+  height: var(--loading-dot);
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  animation: loading-dot var(--duration-subtle) ease-in-out infinite both;
+}
+
+.loading__dot:nth-child(2) { animation-delay: 0.16s; }
+.loading__dot:nth-child(3) { animation-delay: 0.32s; }
+
+@keyframes loading-dot {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+  40%           { opacity: 1; transform: scale(1); }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PULSE (shimmer)
+   ═══════════════════════════════════════════════════════════════ */
+
+.loading__pulse {
+  display: block;
+  width: 100%;
+  min-width: calc(var(--loading-size) * 3);
+  height: var(--loading-pulse-h);
+  border-radius: var(--radius-sm);
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-subtle) 25%,
+    var(--color-surface) 50%,
+    var(--color-surface-subtle) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes loading-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SKELETON — text, card, avatar-text
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Contenedor ocupa todo el ancho disponible */
+.loading__skeleton {
+  width: 100%;
+  min-width: calc(var(--loading-size) * 6);
+}
+
+/* ── Shimmer base (compartido) ── */
+.loading__skeleton-line,
+.loading__skeleton-card-image,
+.loading__skeleton-avatar {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-subtle) 25%,
+    var(--color-surface) 50%,
+    var(--color-surface-subtle) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s ease-in-out infinite;
+}
+
+/* ── Text ── */
+.loading__skeleton-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.loading__skeleton-line {
+  height: var(--skeleton-line-h, 0.75rem);
+  border-radius: var(--radius-xs);
+
+  &:last-child {
+    width: 60%;
+  }
+}
+
+.loading__skeleton-line--wide { width: 90%; }
+.loading__skeleton-line--narrow { width: 45%; }
+
+/* ── Card ── */
+.loading__skeleton-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  border: var(--focus-ring-width) solid var(--color-surface-subtle);
+}
+
+.loading__skeleton-card-image {
+  height: var(--skeleton-card-img-h, 10rem);
+}
+
+.loading__skeleton-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+}
+
+/* ── Avatar + text ── */
+.loading__skeleton-avatar-group {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.loading__skeleton-avatar {
+  width: var(--skeleton-avatar, var(--space-10));
+  height: var(--skeleton-avatar, var(--space-10));
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.loading__skeleton-avatar-lines {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LABEL
+   ═══════════════════════════════════════════════════════════════ */
+
+.loading__label {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-500);
+  line-height: var(--leading-snug);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  /* spinner → borde completo sólido */
+  .loading__spinner {
+    animation: none;
+    border-top-color: var(--color-surface-subtle);
+    border-left-color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+    border-right-color: var(--color-primary);
+  }
+
+  /* dots → todos visibles al 100% */
+  .loading__dot {
+    animation: none;
+    opacity: 1 !important;
+    transform: scale(1);
+  }
+
+  /* pulse → color sólido sin shimmer */
+  .loading__pulse {
+    animation: none;
+    background: var(--color-surface-subtle);
+  }
+
+  /* skeleton → color sólido sin shimmer */
+  .loading__skeleton-line,
+  .loading__skeleton-card-image,
+  .loading__skeleton-avatar {
+    animation: none;
+    background: var(--color-surface-subtle);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (width >= 48rem) {
+  .loading[data-size="sm"] { --loading-pulse-h: calc(var(--font-size-body) * 1.25); }
+  .loading[data-size="md"] { --loading-pulse-h: calc(var(--font-size-body) * 1.75); }
+  .loading[data-size="lg"] { --loading-pulse-h: calc(var(--font-size-body) * 2.5); }
+}

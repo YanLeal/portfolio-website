@@ -1,0 +1,186 @@
+/* ─── Tooltip — Design System tokens only ────────────────────
+ *
+ * Zero hardcoded values. Tooltip siempre presente en el DOM;
+ * la visibilidad se controla con opacity + pointer-events.
+ *
+ * Animaciones:
+ *   show → fadeIn + scale(0.95 → 1) con ease-out
+ *   hide → fadeOut instantáneo
+ * ──────────────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════
+   TRIGGER
+   ═══════════════════════════════════════════════════════════════ */
+
+.tooltip-trigger {
+  position: relative;
+  display: inline-flex;
+  cursor: pointer;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TOOLTIP — base (hidden)
+   ═══════════════════════════════════════════════════════════════ */
+
+.tooltip {
+  --tooltip-bg: var(--color-neutral-900);
+  --tooltip-text: var(--color-surface);
+  --tooltip-arrow: 6px;
+  --tooltip-gap: 6px;
+
+  position: absolute;
+  z-index: 50;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  will-change: transform, opacity;
+
+  /* hide: instant opacity + transform */
+  transition:
+    opacity var(--duration-instant) var(--ease-out),
+    transform var(--duration-instant) var(--ease-out);
+}
+
+/* ── Visible ── */
+.tooltip--visible {
+  opacity: 1;
+
+  /* show: smooth entrance */
+  transition:
+    opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTENT + ARROW
+   ═══════════════════════════════════════════════════════════════ */
+
+.tooltip-text {
+  display: block;
+  max-width: 16rem;
+  padding: var(--space-1) var(--space-2);
+  background: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  line-height: var(--leading-snug);
+  border-radius: var(--radius-xs);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tooltip::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: var(--tooltip-arrow) solid transparent;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   POSITION: top (default)
+   ═══════════════════════════════════════════════════════════════ */
+
+.tooltip[data-position="top"] {
+  bottom: calc(100% + var(--tooltip-gap));
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  transform-origin: bottom center;
+}
+
+.tooltip[data-position="top"].tooltip--visible {
+  transform: translateX(-50%) scale(1);
+}
+
+.tooltip[data-position="top"]::before {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top-color: var(--tooltip-bg);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   POSITION: bottom
+   ═══════════════════════════════════════════════════════════════ */
+
+.tooltip[data-position="bottom"] {
+  top: calc(100% + var(--tooltip-gap));
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  transform-origin: top center;
+}
+
+.tooltip[data-position="bottom"].tooltip--visible {
+  transform: translateX(-50%) scale(1);
+}
+
+.tooltip[data-position="bottom"]::before {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-color: var(--tooltip-bg);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   POSITION: left
+   ═══════════════════════════════════════════════════════════════ */
+
+.tooltip[data-position="left"] {
+  right: calc(100% + var(--tooltip-gap));
+  top: 50%;
+  transform: translateY(-50%) scale(0.95);
+  transform-origin: right center;
+}
+
+.tooltip[data-position="left"].tooltip--visible {
+  transform: translateY(-50%) scale(1);
+}
+
+.tooltip[data-position="left"]::before {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-left-color: var(--tooltip-bg);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   POSITION: right
+   ═══════════════════════════════════════════════════════════════ */
+
+.tooltip[data-position="right"] {
+  left: calc(100% + var(--tooltip-gap));
+  top: 50%;
+  transform: translateY(-50%) scale(0.95);
+  transform-origin: left center;
+}
+
+.tooltip[data-position="right"].tooltip--visible {
+  transform: translateY(-50%) scale(1);
+}
+
+.tooltip[data-position="right"]::before {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border-right-color: var(--tooltip-bg);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .tooltip {
+    transition: none;
+  }
+
+  .tooltip[data-position="top"],
+  .tooltip[data-position="bottom"] {
+    transform: translateX(-50%) scale(1);
+  }
+
+  .tooltip[data-position="left"],
+  .tooltip[data-position="right"] {
+    transform: translateY(-50%) scale(1);
+  }
+}

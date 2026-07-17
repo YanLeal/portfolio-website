@@ -5,19 +5,41 @@
     (keydown)="onKeydown($event)"
     role="dialog"
     [attr.aria-modal]="true"
-    [attr.aria-label]="ariaLabel() ?? null"
+    [attr.aria-label]="title() ? null : ariaLabel() ?? null"
+    [attr.aria-labelledby]="title() ? titleId : null"
+    [attr.data-size]="size()"
+    [attr.data-fullscreen]="fullscreen() ? '' : null"
     tabindex="-1"
   >
-    <div class="modal-panel" role="document">
-      <button
-        class="modal-close"
-        type="button"
-        (click)="close.emit()"
-        aria-label="Cerrar"
-      >
-        ✕
-      </button>
-      <ng-content />
+    <div class="modal-panel" role="document" tabindex="-1">
+      @if (title(); as t) {
+        <header class="modal-header">
+          <h2 class="modal-title" [id]="titleId">{{ t }}</h2>
+          @if (closable()) {
+            <button
+              class="modal-close"
+              type="button"
+              (click)="close.emit()"
+              [attr.aria-label]="closeLabel()"
+            >
+              ✕
+            </button>
+          }
+        </header>
+      } @else if (closable()) {
+        <button
+          class="modal-close modal-close--standalone"
+          type="button"
+          (click)="close.emit()"
+          [attr.aria-label]="closeLabel()"
+        >
+          ✕
+        </button>
+      }
+
+      <div class="modal-body">
+        <ng-content />
+      </div>
     </div>
   </div>
 }
