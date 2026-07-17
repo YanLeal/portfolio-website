@@ -1,7 +1,5 @@
 <section
   class="section-padding section-gradient"
-  (mouseenter)="carousel.pause()"
-  (mouseleave)="carousel.resume()"
   (keydown)="onSectionKeydown($event)">
   <app-section-header title="Antes y Después" subtitle="Resultados reales de nuestros tratamientos" />
   @if (hasError()) {
@@ -15,7 +13,8 @@
       [animateTrack]="animateTrack()"
       [zoomActive]="isZoomActive()"
       [onDotClick]="onDotClick"
-      [hideNavOnBounds]="true">
+      [hideNavOnBounds]="true"
+      [keyboardNav]="false">
       @for (item of results(); track item.id; let i = $index) {
         <div
           class="ba-slide"
@@ -26,8 +25,8 @@
 
           <!-- Comparador before / after (genérico) -->
           <app-image-compare
-            [beforeImage]="item.beforeImage"
-            [afterImage]="item.afterImage"
+            [before]="{ image: item.beforeImage, label: 'Antes' }"
+            [after]="{ image: item.afterImage, label: 'Después' }"
             [alt]="item.title"
             [active]="i === carousel.currentIndex()"
             [resetKey]="carousel.currentIndex()"

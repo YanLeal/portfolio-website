@@ -23,11 +23,19 @@ export {
   WhatsappButton,
 } from './components';
 
-export { CardTiltDirective, RevealDirective } from './directives';
+export { CardTiltDirective, RevealDirective, SwipeDirective } from './directives';
 export type { CtaButtonVariant, WaVariant, SvgIconName, LoadingVariant, LoadingSize, SkeletonType } from './types';
-export type { GalleryImage, LightboxZoomState } from './components';
-export { CarouselController } from './utils';
-export type { CarouselConfig } from './utils';
+export type {
+  GalleryImage,
+  LightboxZoomState,
+  ImageCompareBefore,
+  ImageCompareAfter,
+  ImageCompareOrientation,
+  ImageCompareLabels,
+  ImageCompareZoom,
+} from './components';
+export { CarouselController, SliderController } from './utils';
+export type { CarouselConfig, SliderConfig } from './utils';
 
 // ── Pipes ─────────────────────────────────────────────────
 export { DurationPipe, TruncatePipe, PhonePipe } from './pipes';

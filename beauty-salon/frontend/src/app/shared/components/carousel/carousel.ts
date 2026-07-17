@@ -1,9 +1,11 @@
-import { Component, input } from '@angular/core';
+import { Component, HostListener, input } from '@angular/core';
 import { CarouselController } from '../../utils/carousel-controller';
+import { SwipeDirective } from '../../directives/swipe.directive';
 
 @Component({
   selector: 'app-carousel',
   standalone: true,
+  imports: [SwipeDirective],
   templateUrl: './carousel.html',
   styleUrl: './carousel.css',
 })
@@ -60,6 +62,10 @@ export class Carousel {
   /** Oculta navegación cuando el zoom está activo. */
   readonly zoomActive = input(false);
 
+  /** Habilita navegación por teclado (← → Home End). Desactivar si el padre
+   *  maneja teclado a nivel de sección (ej. Results con Home/End custom). */
+  readonly keyboardNav = input(true);
+
   // ─── Custom handlers (override default behavior) ───────
 
   /** Handler personalizado para click en dot. Recibe el índice. */
@@ -70,6 +76,40 @@ export class Carousel {
 
   /** Handler personalizado para botón siguiente. */
   readonly onNavNext = input<((() => void) | undefined)>();
+
+  // ─── Host listeners (auto-play pause/resume) ────────────
+
+  /** Pausa auto-play al entrar el mouse. */
+  @HostListener('mouseenter')
+  onMouseEnter(): void {
+    this.controller().pause();
+  }
+
+  /** Reanuda auto-play al salir el mouse. */
+  @HostListener('mouseleave')
+  onMouseLeave(): void {
+    this.controller().resume();
+  }
+
+  /** Pausa auto-play al recibir foco (teclado, navegación). */
+  @HostListener('focusin')
+  onFocusIn(): void {
+    this.controller().pause();
+  }
+
+  /** Reanuda auto-play al perder foco. */
+  @HostListener('focusout')
+  onFocusOut(): void {
+    this.controller().resume();
+  }
+
+  /** Navegación por teclado (← → Home End). Se omite si keyboardNav=false. */
+  @HostListener('keydown', ['$event'])
+  onKeydown(event: KeyboardEvent): void {
+    if (this.keyboardNav()) {
+      this.controller().onKeydown(event);
+    }
+  }
 
   // ─── Helpers ────────────────────────────────────────────
 

@@ -320,4 +320,123 @@ describe('CarouselController', () => {
       expect(c.isLast()).toBe(false);
     });
   });
+
+  describe('loop=false', () => {
+    it('next no wrappea al inicio cuando está en el último', () => {
+      const c = createCarousel({ loop: false });
+      c.goTo(4);
+      c.next();
+      expect(c.currentIndex()).toBe(4);
+    });
+
+    it('previous no wrappea al final cuando está en el primero', () => {
+      const c = createCarousel({ loop: false });
+      c.previous();
+      expect(c.currentIndex()).toBe(0);
+    });
+
+    it('next avanza normalmente si no está en el último', () => {
+      const c = createCarousel({ loop: false });
+      c.next();
+      expect(c.currentIndex()).toBe(1);
+    });
+
+    it('previous retrocede normalmente si no está en el primero', () => {
+      const c = createCarousel({ loop: false });
+      c.goTo(2);
+      c.previous();
+      expect(c.currentIndex()).toBe(1);
+    });
+  });
+
+  describe('handleSwipe', () => {
+    it('handleSwipe(1) avanza al siguiente slide', () => {
+      const c = createCarousel();
+      c.handleSwipe(1);
+      expect(c.currentIndex()).toBe(1);
+    });
+
+    it('handleSwipe(-1) retrocede al slide anterior', () => {
+      const c = createCarousel();
+      c.goTo(2);
+      c.handleSwipe(-1);
+      expect(c.currentIndex()).toBe(1);
+    });
+
+    it('handleSwipe(1) con loop=false no wrappea', () => {
+      const c = createCarousel({ loop: false });
+      c.goTo(4);
+      c.handleSwipe(1);
+      expect(c.currentIndex()).toBe(4);
+    });
+
+    it('handleSwipe(-1) con loop=false no wrappea', () => {
+      const c = createCarousel({ loop: false });
+      c.handleSwipe(-1);
+      expect(c.currentIndex()).toBe(0);
+    });
+  });
+
+  describe('timer reset en navegación manual', () => {
+    beforeEach(() => { vi.useFakeTimers(); });
+    afterEach(() => { vi.useRealTimers(); });
+
+    it('next reinicia el timer — el tick no avanza justo después', () => {
+      const c = createCarousel({ autoPlayInterval: 100 });
+      vi.advanceTimersByTime(60); // parcial, no llega al tick
+      c.next();                    // manual + resetea timer
+      vi.advanceTimersByTime(60); // 60ms desde reset, no alcanza para tick
+      expect(c.currentIndex()).toBe(1);
+      vi.advanceTimersByTime(40); // completa 100ms desde el reset
+      expect(c.currentIndex()).toBe(2);
+    });
+
+    it('previous reinicia el timer', () => {
+      const c = createCarousel({ autoPlayInterval: 100 });
+      c.goTo(2);
+      vi.advanceTimersByTime(60);
+      c.previous();
+      vi.advanceTimersByTime(60); // no llega al tick
+      expect(c.currentIndex()).toBe(1);
+      vi.advanceTimersByTime(40); // completa 100ms
+      expect(c.currentIndex()).toBe(2);
+    });
+
+    it('goTo reinicia el timer', () => {
+      const c = createCarousel({ autoPlayInterval: 100 });
+      vi.advanceTimersByTime(60);
+      c.goTo(3);
+      vi.advanceTimersByTime(60); // no llega al tick
+      expect(c.currentIndex()).toBe(3);
+      vi.advanceTimersByTime(40); // completa 100ms
+      expect(c.currentIndex()).toBe(4);
+    });
+
+    it('no resetea el timer si no hay auto-play activo', () => {
+      const setSpy = vi.spyOn(globalThis, 'setInterval');
+      const c = createCarousel(); // sin auto-play
+      c.next();
+      // setInterval no debería haberse llamado después del next
+      expect(setSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('auto-play con loop=false', () => {
+    beforeEach(() => { vi.useFakeTimers(); });
+    afterEach(() => { vi.useRealTimers(); });
+
+    it('se detiene en el último slide y no wrappea', () => {
+      const c = createCarousel({ loop: false, autoPlayInterval: 100 });
+      c.goTo(4);
+      vi.advanceTimersByTime(100);
+      expect(c.currentIndex()).toBe(4); // no wrappea al inicio
+    });
+
+    it('next manual en el último no wrappea con loop=false y auto-play activo', () => {
+      const c = createCarousel({ loop: false, autoPlayInterval: 100 });
+      c.goTo(4);
+      c.next();
+      expect(c.currentIndex()).toBe(4); // no wrappea
+    });
+  });
 });

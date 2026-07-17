@@ -11,6 +11,13 @@ export { FormField } from './form-field/form-field';
 export { GalleryGrid } from './gallery-grid/gallery-grid';
 export type { GalleryImage } from './gallery-grid/gallery-grid';
 export { ImageCompare } from './image-compare/image-compare';
+export type {
+  ImageCompareBefore,
+  ImageCompareAfter,
+  ImageCompareOrientation,
+  ImageCompareLabels,
+  ImageCompareZoom,
+} from './image-compare/image-compare';
 export { Loading } from './loading/loading';
 export { Modal } from './modal/modal';
 export { SectionHeader } from './section-header/section-header';

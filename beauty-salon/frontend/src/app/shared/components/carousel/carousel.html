@@ -5,7 +5,10 @@
   [attr.aria-label]="ariaLabel()"
   aria-live="polite">
 
-  <div class="carousel-viewport">
+  <div
+    class="carousel-viewport"
+    appSwipe
+    (swipe)="controller().handleSwipe($event)">
     <div
       class="carousel-track"
       [class.carousel-track--instant]="!animateTrack()"

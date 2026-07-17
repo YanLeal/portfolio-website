@@ -1,19 +1,23 @@
 <div
   #container
+  appSwipe
   class="ic-container"
-  [class.is-dragging]="isDragging()"
+  [class.is-dragging]="slider.isDragging()"
   [class.ic-container--active]="active()"
   [class.ic-container--zoomed]="(isZoomed() || isLeaving()) && active()"
   [class.ic-container--entering]="isZoomed() && !isLeaving() && active()"
   [class.ic-container--exiting]="isLeaving() && active()"
+  [style.aspect-ratio]="resolvedAspectRatio()"
+  [style.max-width]="resolvedMaxWidth()"
   role="slider"
   tabindex="0"
   [attr.aria-valuemin]="0"
   [attr.aria-valuemax]="100"
-  [attr.aria-valuenow]="sliderPosition()"
-  [attr.aria-valuetext]="sliderValueText()"
+  [attr.aria-valuenow]="slider.position()"
+  [attr.aria-valuetext]="slider.valueText()"
   [attr.aria-label]="sliderLabel()"
   (keydown)="onKeydown($event)"
+  (swipe)="onContainerSwipe($event)"
   (pointerdown)="onPointerDown($event)"
   (pointermove)="onPointerMove($event)"
   (pointerup)="onPointerUp($event)"
@@ -22,8 +26,8 @@
   <!-- After: capa base -->
   <img
     class="ic-img ic-img--after"
-    [src]="afterImage()"
-    [alt]="alt() ? 'Después: ' + alt() : 'Después'"
+    [src]="after().image"
+    [alt]="afterFullAlt()"
     width="800"
     height="800"
     [loading]="loadingStrategy()"
@@ -32,11 +36,11 @@
   <!-- Before: capa superior recortada por sliderPosition -->
   <div
     class="ic-img--before-wrapper"
-    [style.clip-path]="'inset(0 ' + (100 - sliderPosition()) + '% 0 0)'">
+    [style.clip-path]="'inset(0 ' + (100 - slider.position()) + '% 0 0)'">
     <img
       class="ic-img ic-img--before"
-      [src]="beforeImage()"
-      [alt]="alt() ? 'Antes: ' + alt() : 'Antes'"
+      [src]="before().image"
+      [alt]="beforeFullAlt()"
       width="800"
       height="800"
       [loading]="loadingStrategy()"
@@ -44,23 +48,25 @@
   </div>
 
   <!-- Labels: decorativas, el slider comunica el estado vía aria-valuetext -->
-  <span class="ic-label ic-label--before" aria-hidden="true">Antes</span>
-  <span class="ic-label ic-label--after" aria-hidden="true">Después</span>
+  <span class="ic-label ic-label--before" aria-hidden="true">{{ beforeLabel() }}</span>
+  <span class="ic-label ic-label--after" aria-hidden="true">{{ afterLabel() }}</span>
 
   <!-- Fullscreen button -->
-  <button
-    class="ic-fullscreen-btn"
-    [class.ic-fullscreen-btn--visible]="!isZoomed() && active()"
-    type="button"
-    (click)="toggleZoom(); $event.stopPropagation()"
-    aria-label="Ver en pantalla completa">
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M3 8V3h5M17 12v5h-5M3 12v5h5M17 8V3h-5"/>
-    </svg>
-  </button>
+  @if (zoomEnabled()) {
+    <button
+      class="ic-fullscreen-btn"
+      [class.ic-fullscreen-btn--visible]="!isZoomed() && active()"
+      type="button"
+      (click)="toggleZoom(); $event.stopPropagation()"
+      [attr.aria-label]="fullscreenLabel()">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 8V3h5M17 12v5h-5M3 12v5h5M17 8V3h-5"/>
+      </svg>
+    </button>
+  }
 
   <!-- Divisor + handle -->
-  <div class="ic-divider" [style.left]="sliderPosition() + '%'">
+  <div class="ic-divider" [style.left]="slider.position() + '%'">
     <div class="ic-handle" aria-hidden="true">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
         <path d="M12 4L6 10L12 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -70,27 +76,31 @@
   </div>
 
   <!-- Close button -->
-  <button
-    class="ic-zoom-close"
-    [class.ic-zoom-close--visible]="isZoomed() && active()"
-    type="button"
-    (click)="closeZoom(); $event.stopPropagation()"
-    (keydown)="onCloseKeydown($event)"
-    aria-label="Cerrar vista ampliada">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-      <path d="M18 6L6 18M6 6l12 12"/>
-    </svg>
-  </button>
+  @if (zoomEnabled()) {
+    <button
+      class="ic-zoom-close"
+      [class.ic-zoom-close--visible]="isZoomed() && active()"
+      type="button"
+      (click)="closeZoom(); $event.stopPropagation()"
+      (keydown)="onCloseKeydown($event)"
+      [attr.aria-label]="closeLabel()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+  }
 </div>
 
-<!-- Backdrop: siempre en el DOM, transición de opacidad vía clase visible -->
-<div
-  class="ic-backdrop"
-  [class.ic-backdrop--visible]="isZoomed() && !usingFullscreen()"
-  (click)="closeZoom()"></div>
+<!-- Backdrop: transición de opacidad vía clase visible -->
+@if (zoomEnabled()) {
+  <div
+    class="ic-backdrop"
+    [class.ic-backdrop--visible]="isZoomed() && !usingFullscreen()"
+    (click)="closeZoom()"></div>
+}
 
 <!-- Anuncio accesible -->
 <span
   class="sr-only"
   aria-live="polite"
-  aria-atomic="true">{{ sliderAnnouncement() }}</span>
+  aria-atomic="true">{{ slider.announcement() }}</span>

@@ -9,12 +9,20 @@ export interface CarouselConfig {
 
   /** Referencia para cleanup del timer al destruir el componente. */
   readonly destroyRef: DestroyRef;
+
+  /**
+   * Si `false`, next/previous se frenan en los extremos en lugar de wrappear.
+   * @default true
+   */
+  readonly loop?: boolean;
 }
+
+const DEFAULT_LOOP = true;
 
 /**
  * Controlador de carrusel reutilizable.
  *
- * Maneja el estado de navegación, auto-play y eventos de teclado.
+ * Maneja el estado de navegación, auto-play, loop y swipe.
  * No tiene dependencias de DOM ni de Angular CDK — funciona con signals puras.
  *
  * @example
@@ -72,24 +80,32 @@ export class CarouselController {
 
   // ─── Navegación manual ─────────────────────────────────
 
-  /** Avanza al siguiente slide. Si está en el último, vuelve al primero. */
+  /** Avanza al siguiente slide. Con loop=true wrappea al primero si está al final. */
   readonly next = (): void => {
     this.direction.set(1);
     if (this.isLast()) {
-      this.currentIndex.set(0);
+      if (this.#config.loop ?? DEFAULT_LOOP) {
+        this.currentIndex.set(0);
+      }
+      // loop=false: no hace nada, ya estamos al final
     } else {
       this.currentIndex.update(i => i + 1);
     }
+    this.#resetAutoPlay();
   };
 
-  /** Retrocede al slide anterior. Si está en el primero, va al último. */
+  /** Retrocede al slide anterior. Con loop=true wrappea al último si está al inicio. */
   readonly previous = (): void => {
     this.direction.set(-1);
     if (this.isFirst()) {
-      this.currentIndex.set(this.#config.totalItems() - 1);
+      if (this.#config.loop ?? DEFAULT_LOOP) {
+        this.currentIndex.set(this.#config.totalItems() - 1);
+      }
+      // loop=false: no hace nada, ya estamos al inicio
     } else {
       this.currentIndex.update(i => i - 1);
     }
+    this.#resetAutoPlay();
   };
 
   /** Salta al slide en el índice dado. */
@@ -97,6 +113,15 @@ export class CarouselController {
     const clamped = Math.max(0, Math.min(index, this.#config.totalItems() - 1));
     this.direction.set(clamped > this.currentIndex() ? 1 : -1);
     this.currentIndex.set(clamped);
+    this.#resetAutoPlay();
+  };
+
+  // ─── Swipe ─────────────────────────────────────────────
+
+  /** Navega según la dirección del swipe: 1 = siguiente, -1 = anterior. */
+  readonly handleSwipe = (direction: 1 | -1): void => {
+    if (direction > 0) this.next();
+    else this.previous();
   };
 
   // ─── Eventos de teclado ────────────────────────────────
@@ -141,11 +166,22 @@ export class CarouselController {
 
   // ─── Privados ──────────────────────────────────────────
 
+  /** Reinicia el auto-play si está activo (post navegación manual). */
+  #resetAutoPlay(): void {
+    const interval = this.#config.autoPlayInterval;
+    if (interval && interval > 0 && !this.isPaused()) {
+      this.#startAutoPlay(interval);
+    }
+  }
+
   #startAutoPlay(intervalMs: number): void {
     this.#clearTimer();
     this.#autoPlayTimer = setInterval(() => {
       if (this.isLast()) {
-        this.currentIndex.set(0);
+        if (this.#config.loop ?? DEFAULT_LOOP) {
+          this.currentIndex.set(0);
+        }
+        // loop=false: el timer no avanza más, se queda en el último
       } else {
         this.currentIndex.update(i => i + 1);
       }
