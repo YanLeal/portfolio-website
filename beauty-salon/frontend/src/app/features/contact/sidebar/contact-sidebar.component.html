@@ -1,0 +1,57 @@
+<aside class="booking-sidebar">
+  <div class="sidebar-card">
+    <h4 class="sidebar-heading">Visítanos</h4>
+    <div class="sidebar-item">
+      <app-svg-icon name="map-pin" size="18" />
+      <span>{{ address() }}</span>
+    </div>
+    <div class="sidebar-item">
+      <app-svg-icon name="phone" size="18" />
+      <a href="tel:+525512345678" class="sidebar-link">{{ phone() }}</a>
+    </div>
+    <div class="sidebar-item">
+      <app-svg-icon name="mail" size="18" />
+      <a href="mailto:info@bellezaestilo.com" class="sidebar-link">{{ email() }}</a>
+    </div>
+    <div class="sidebar-item sidebar-item--schedule">
+      <app-svg-icon name="clock" size="18" />
+      <div class="schedule-list">
+        @for (day of businessHours(); track day.day) {
+          <div class="schedule-row">
+            <span class="schedule-day">{{ day.label }}</span>
+            <span class="schedule-hours" [class.is-closed]="day.isClosed">{{ day.hours }}</span>
+          </div>
+        }
+        <div class="schedule-status" [class.is-open]="isOpenNow()" [class.is-closed]="!isOpenNow()" aria-live="polite" aria-atomic="true">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span>{{ isOpenNow() ? 'Abierto ahora' : 'Cerrado' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sidebar-card sidebar-card--social">
+    <h4 class="sidebar-heading">Seguinos</h4>
+    <div class="sidebar-social">
+      <!-- TODO: add real Instagram link -->
+      <a href="#" class="social-icon" aria-label="Instagram">
+        <app-svg-icon name="instagram" size="20" />
+      </a>
+      <!-- TODO: add real Facebook link -->
+      <a href="#" class="social-icon" aria-label="Facebook">
+        <app-svg-icon name="facebook" size="20" />
+      </a>
+      <a href="#" class="social-icon" aria-label="WhatsApp">
+        <app-svg-icon name="whatsapp" size="20" />
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-card sidebar-card--cta">
+    <p>¿Prefieres hablar directo?</p>
+    <a href="https://wa.me/525512345678" class="btn whatsapp-cta" target="_blank" rel="noopener noreferrer">  <!-- WHATSAPP_NUMBER from business.json -->
+      <app-svg-icon name="whatsapp" size="18" />
+      Escríbenos por WhatsApp
+    </a>
+  </div>
+</aside>

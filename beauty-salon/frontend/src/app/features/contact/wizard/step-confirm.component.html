@@ -1,0 +1,42 @@
+<div class="wizard-body">
+  <h3 class="wizard-title" tabindex="-1">Revisá tu turno</h3>
+
+  @if (selectedService(); as service) {
+    <div class="review-card">
+      <div class="review-row">
+        <span class="review-label">Servicio</span>
+        <span class="review-value">{{ service.name }}</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Duración</span>
+        <span class="review-value">{{ service.duration }}</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Precio</span>
+        <span class="review-value review-price">${{ service.price.toLocaleString('es-AR') }}</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Fecha</span>
+        <span class="review-value">{{ selectedDate() || '—' }}</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Horario</span>
+        <span class="review-value">{{ selectedTime() ? selectedTime() + ' hs' : '—' }}</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Nombre</span>
+        <span class="review-value">{{ name() }}</span>
+      </div>
+      <div class="review-row">
+        <span class="review-label">Celular</span>
+        <span class="review-value">{{ clientPhone() }}</span>
+      </div>
+      @if (notes()) {
+        <div class="review-row">
+          <span class="review-label">Comentarios</span>
+          <span class="review-value">{{ notes() }}</span>
+        </div>
+      }
+    </div>
+  }
+</div>

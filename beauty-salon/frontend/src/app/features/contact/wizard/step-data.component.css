@@ -1,0 +1,20 @@
+/* ═══════════════════════════════════════════════════════════
+   STEP 3 — CUSTOMER DATA
+   Field and validation styling is provided by the shared
+   app-form-field component (form-field.css, ViewEncapsulation.None).
+   This step needs no component-local styles.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Shared wizard chrome ──────────────────────────────── */
+
+.wizard-body {
+  animation: fadeIn 0.35s ease both;
+}
+
+.wizard-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+  margin: 0 0 1.25rem;
+}

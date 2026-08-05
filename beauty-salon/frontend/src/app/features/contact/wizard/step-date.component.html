@@ -1,0 +1,55 @@
+<div class="wizard-body">
+  <h3 class="wizard-title" tabindex="-1">¿Cuándo te gustaría venir?</h3>
+
+  <app-form-field label="Fecha" [optional]="true" labelFor="booking-date">
+    <input
+      id="booking-date"
+      type="date"
+      [(ngModel)]="selectedDate"
+      name="booking-date"
+      [min]="minDate()"
+    />
+  </app-form-field>
+
+  <div class="form-group">
+    <label>Horario <span class="optional">(opcional)</span></label>
+
+    @if (isClosedDay()) {
+      <p class="closed-day" [class.is-error]="attemptedSubmit()">El salón está cerrado ese día 😔 — elegí otro</p>
+    } @else {
+      <div class="time-band">
+        <span class="time-band-label">Mañana</span>
+        <div class="time-grid">
+          @for (slot of morningSlots(); track slot) {
+            <button
+              type="button"
+              class="time-slot"
+              [class.is-selected]="selectedTime() === slot"
+              (click)="selectTime(slot)"
+              [attr.aria-label]="'Horario de las ' + slot"
+            >
+              {{ slot }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="time-band">
+        <span class="time-band-label">Tarde</span>
+        <div class="time-grid">
+          @for (slot of afternoonSlots(); track slot) {
+            <button
+              type="button"
+              class="time-slot"
+              [class.is-selected]="selectedTime() === slot"
+              (click)="selectTime(slot)"
+              [attr.aria-label]="'Horario de las ' + slot"
+            >
+              {{ slot }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,172 +1,103 @@
 import { Component, computed, ElementRef, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { FormsModule } from '@angular/forms';
-import {
-  ErrorBoundary,
-  FormField,
-  SectionHeader,
-  ServiceOptionCard,
-  SvgIcon,
-} from '../../shared';
+import { SectionHeader, SvgIcon } from '../../shared';
 import { ServiceService } from '../../domains/services/service.service';
 import { BusinessService } from '../../domains/business/business.service';
-import type { DayOfWeek } from '../../domains/business/business.model';
 import { ContactService } from '../../domains/contact/contact.service';
-import { WhatsappMessageService } from '../../domains/booking/services/whatsapp-message.service';
-import type { WizardStep } from '../../domains/booking/models/booking.model';
+import { WizardStateService } from './wizard/wizard-state.service';
+import { StepServiceComponent } from './wizard/step-service.component';
+import { StepDateComponent } from './wizard/step-date.component';
+import { StepDataComponent } from './wizard/step-data.component';
+import { StepConfirmComponent } from './wizard/step-confirm.component';
+import { ContactSidebarComponent } from './sidebar/contact-sidebar.component';
 
+/**
+ * Booking wizard container. Thin orchestration layer: owns the wizard
+ * chrome (progress, nav, success block) and the DOM focus side effects;
+ * every step renders through its own component driven by WizardStateService.
+ */
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ErrorBoundary, FormField, SectionHeader, ServiceOptionCard, SvgIcon, FormsModule],
+  imports: [
+    SectionHeader,
+    SvgIcon,
+    StepServiceComponent,
+    StepDateComponent,
+    StepDataComponent,
+    StepConfirmComponent,
+    ContactSidebarComponent,
+  ],
   host: { class: 'section-padding' },
   templateUrl: './contact.html',
   styleUrl: './contact.css',
 })
 export class ContactComponent {
   private readonly serviceService = inject(ServiceService);
-
-  private readonly contactService = inject(ContactService);
+  readonly contactService = inject(ContactService);
   private readonly businessService = inject(BusinessService);
+  private readonly wizard = inject(WizardStateService);
+  private readonly el = inject(ElementRef);
 
+  // ── Header, catalog & sidebar data ─────────────────────
   readonly contactTitle = computed(() => this.contactService.config().title);
   readonly contactSubtitle = computed(() => this.contactService.config().subtitle);
-
-  // ─── Datos ───────────────────────────────────────
-
+  readonly pasoLabels = computed(() => this.contactService.config().wizardSteps);
   readonly services = toSignal(this.serviceService.getAll(), { initialValue: [] });
   readonly hasError = this.serviceService.error;
-  readonly pasoLabels = computed(() => this.contactService.config().wizardSteps);
   readonly address = computed(() => this.businessService.data().contact.address);
   readonly phone = computed(() => this.businessService.data().contact.phone.display);
   readonly email = computed(() => this.businessService.data().contact.email);
   readonly businessHours = this.businessService.businessHours;
   readonly isOpenNow = this.businessService.isOpenNow;
 
-  readonly morningSlots = computed(() => this.contactService.config().timeSlots.morning);
-  readonly afternoonSlots = computed(() => this.contactService.config().timeSlots.afternoon);
+  // ── Wizard state (WizardStateService) ──────────────────
+  readonly step = this.wizard.step;
+  readonly submitted = this.wizard.submitted;
+  readonly attemptedSubmit = this.wizard.attemptedSubmit;
+  readonly popupBlocked = this.wizard.popupBlocked;
+  readonly selectedService = this.wizard.selectedService;
+  readonly selectedDate = this.wizard.selectedDate;
+  readonly selectedTime = this.wizard.selectedTime;
+  readonly clientPhone = this.wizard.clientPhone;
+  readonly waUrl = this.wizard.waUrl;
+  readonly canGoNext = computed(() => this.wizard.canGoNext());
+  readonly isLastStep = this.wizard.isLastStep;
 
-  // ─── Wizard state ───────────────────────────────
-
-  step: WizardStep = 1;
-  submitted = false;
-  attemptedSubmit = false;
-  popupBlocked = false;
-
-  selectedServiceId: string | null = null;
-  selectedDate = '';
-  selectedTime = '';
-  name = '';
-  clientPhone = '';
-  notes = '';
-
-  // ─── Navigation ─────────────────────────────────
-
-  get canGoNext(): boolean {
-    switch (this.step) {
-      case 1: return this.selectedServiceId !== null;
-      case 2: return !this.isClosedDay;
-      case 3: return this.name.trim() !== '' && this.clientPhone.trim().length >= 8;
-      default: return false;
-    }
-  }
-
-  get isLastStep(): boolean {
-    return this.step === 4;
-  }
-
-  selectService(id: string): void {
-    this.selectedServiceId = id;
-  }
-
-  selectTime(slot: string): void {
-    this.selectedTime = slot;
-  }
-
-  /** Enter desde cualquier input/button del wizard avanza al siguiente paso */
+  // ── Navigation & focus ────────────────────────────────
+  /** Enter on any input/button advances; a textarea keeps Enter for new lines. */
   onStepEnter(event: Event): void {
-    // En textarea Enter es nueva línea, no navegar
     if ((event.target as HTMLElement)?.tagName === 'TEXTAREA') return;
     this.nextStep();
   }
 
   nextStep(): void {
-    if (!this.canGoNext || this.step >= 4) {
-      this.attemptedSubmit = true;
-      return;
-    }
-    this.attemptedSubmit = false;
-    this.step = (this.step + 1) as WizardStep;
-    this.focusStepHeading();
+    const previous = this.wizard.step();
+    this.wizard.nextStep();
+    if (this.wizard.step() !== previous) this.focusStepHeading();
   }
 
   prevStep(): void {
-    if (this.step > 1) {
-      this.attemptedSubmit = false;
-      this.step = (this.step - 1) as WizardStep;
-      this.focusStepHeading();
-    }
+    const previous = this.wizard.step();
+    this.wizard.prevStep();
+    if (this.wizard.step() !== previous) this.focusStepHeading();
   }
-
-  // ─── Helpers ────────────────────────────────────
-
-  get selectedService() {
-    const svc = this.services().find((s) => s.id === this.selectedServiceId);
-    if (svc) return svc;
-    if (this.selectedServiceId === 'other') {
-      return {
-        id: 'other' as const,
-        name: 'Consulta general / Otro',
-        duration: '—',
-        price: 0,
-      };
-    }
-    return undefined;
-  }
-
-  /** Traducción de Date.getDay() (0=domingo) a DayOfWeek. */
-  private static readonly DAY_MAP: readonly string[] = [
-    'sunday', 'monday', 'tuesday', 'wednesday',
-    'thursday', 'friday', 'saturday',
-  ];
-
-  get minDate(): string {
-    return new Date().toLocaleDateString('en-CA', {
-      timeZone: 'America/Mexico_City',
-    });
-  }
-
-  get isClosedDay(): boolean {
-    if (!this.selectedDate) return false;
-
-    // 1. Verificar excepciones para la fecha seleccionada
-    const exception = this.businessService
-      .exceptions()
-      ?.find((ex) => ex.date === this.selectedDate);
-    if (exception) return exception.type === 'closed';
-
-    // 2. Verificar horario regular del día
-    const day = ContactComponent.DAY_MAP[new Date(this.selectedDate + 'T12:00:00').getDay()] as DayOfWeek;
-    const schedule = this.businessService.getDaySchedule(day);
-    return !schedule || schedule.shifts.length === 0;
-  }
-
-  // ─── WhatsApp service ────────────────────────────────
-
-  private readonly wa = inject(WhatsappMessageService);
-  private readonly el = inject(ElementRef);
-
-  // ─── Confirm (UI only — no backend) ─────────────
 
   onSubmit(): void {
-    const service = this.selectedService;
-    if (!service || !this.name.trim() || this.clientPhone.trim().length < 8) return;
-    this.submitted = true;
-    // Esperar a que Angular renderice el success state
+    if (!this.wizard.onSubmit()) return;
+    // Wait for the success block to render before moving focus.
     setTimeout(() => this.focusElement('.booking-success h3'));
   }
 
-  /** Mueve el foco al título del paso activo después de navegar */
+  openWhatsApp(): void {
+    this.wizard.openWhatsApp();
+  }
+
+  resetForm(): void {
+    this.wizard.resetForm();
+    setTimeout(() => this.focusElement('.wizard-title'));
+  }
+
   private focusStepHeading(): void {
     setTimeout(() => this.focusElement('.wizard-title'));
   }
@@ -177,62 +108,5 @@ export class ContactComponent {
       el.setAttribute('tabindex', '-1');
       el.focus({ preventScroll: true });
     }
-  }
-
-  /** Construye la URL de WhatsApp para usarla en el template (fallback popup bloqueado) */
-  get waUrl(): string {
-    const service = this.selectedService;
-    if (!service) return '';
-    return this.wa.buildUrl({
-      name: this.name.trim(),
-      service: service.name,
-      date: this.selectedDate,
-      time: this.selectedTime,
-      notes: this.notes.trim() || undefined,
-    });
-  }
-
-  openWhatsApp(): void {
-    const service = this.selectedService;
-    if (!service) return;
-
-    const url = this.wa.buildUrl({
-      name: this.name.trim(),
-      service: service.name,
-      date: this.selectedDate,
-      time: this.selectedTime,
-      notes: this.notes.trim() || undefined,
-    });
-
-    const win = window.open(url, '_blank');
-    if (!win || win.closed || typeof win.closed === 'undefined') {
-      this.popupBlocked = true;
-    }
-  }
-
-  get waMessageText(): string {
-    const service = this.selectedService;
-    if (!service) return '';
-    return this.wa.buildText({
-      name: this.name.trim(),
-      service: service.name,
-      date: this.selectedDate,
-      time: this.selectedTime,
-      notes: this.notes.trim() || undefined,
-    });
-  }
-
-  resetForm(): void {
-    this.step = 1;
-    this.submitted = false;
-    this.attemptedSubmit = false;
-    this.popupBlocked = false;
-    this.selectedServiceId = null;
-    this.selectedDate = '';
-    this.selectedTime = '';
-    this.name = '';
-    this.clientPhone = '';
-    this.notes = '';
-    setTimeout(() => this.focusElement('.wizard-title'));
   }
 }

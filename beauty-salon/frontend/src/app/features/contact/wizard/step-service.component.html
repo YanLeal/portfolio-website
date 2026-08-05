@@ -1,0 +1,33 @@
+<div class="wizard-body">
+  <h3 class="wizard-title" tabindex="-1">¿Qué te gustaría hacerte?</h3>
+  @if (hasError()) {
+    <app-error-boundary message="No pudimos cargar los servicios. Actualiza la página o escríbenos por WhatsApp." />
+  }
+  <div class="service-grid">
+    @for (s of services() ?? []; track s.id) {
+      <app-service-option-card
+        [value]="s.id"
+        [name]="s.name"
+        [duration]="s.duration"
+        [priceLabel]="'$ ' + s.price.toLocaleString('es-AR')"
+        [isSelected]="selectedServiceId() === s.id"
+        (selected)="selectService($event)"
+      />
+    }
+  </div>
+
+  <div class="service-other">
+    <app-service-option-card
+      value="other"
+      name="Otro / No estoy segura"
+      duration="Consulta general"
+      [isSelected]="selectedServiceId() === 'other'"
+      variant="subtle"
+      (selected)="selectService($event)"
+    />
+  </div>
+
+  @if (attemptedSubmit() && !selectedServiceId()) {
+    <p class="step-error">Elige un servicio para continuar</p>
+  }
+</div>

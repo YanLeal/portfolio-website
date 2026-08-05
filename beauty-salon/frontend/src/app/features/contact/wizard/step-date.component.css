@@ -1,0 +1,99 @@
+/* ═══════════════════════════════════════════════════════════
+   STEP 2 — DATE + TIME GRID
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Shared wizard chrome ──────────────────────────────── */
+
+.wizard-body {
+  animation: fadeIn 0.35s ease both;
+}
+
+.wizard-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+  margin: 0 0 1.25rem;
+}
+
+/* ─── Time grid ─────────────────────────────────────────── */
+
+.time-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.time-slot {
+  padding: 0.5rem 1rem;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-neutral-700);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-neutral-200);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.time-slot:hover {
+  border-color: var(--color-primary-light);
+  background: color-mix(in srgb, var(--color-primary) 4%, var(--color-surface));
+}
+
+.time-slot:focus-visible {
+  outline: var(--focus-ring-outline);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.time-slot:active:not(.is-selected) {
+  transform: scale(0.95);
+}
+
+.time-slot.is-selected {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-surface);
+}
+
+/* ─── Time bands (Mañana / Tarde) ───────────────────────── */
+
+.time-band + .time-band {
+  margin-top: var(--space-3);
+}
+
+.time-band-label {
+  display: block;
+  font-size: var(--font-size-2xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-400);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-1\.5);
+}
+
+/* ─── Closed day message ────────────────────────────────── */
+
+.closed-day {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-500);
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--color-neutral-100) 60%, transparent);
+  border-radius: var(--radius-card);
+  text-align: center;
+  margin: 0;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.closed-day.is-error {
+  background: color-mix(in srgb, var(--color-error) 8%, transparent);
+  color: var(--color-error);
+  font-weight: var(--font-weight-semibold);
+  animation: shakeIn 0.3s ease both;
+}

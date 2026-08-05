@@ -1,0 +1,57 @@
+/* ═══════════════════════════════════════════════════════════
+   STEP 1 — SERVICE SELECTION
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── Shared wizard chrome ──────────────────────────────── */
+
+.wizard-body {
+  animation: fadeIn 0.35s ease both;
+}
+
+.wizard-title {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+  margin: 0 0 1.25rem;
+}
+
+/* ─── Service grid ──────────────────────────────────────── */
+
+.service-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+
+  @media (width >= 30rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.service-other {
+  margin-top: var(--space-4);
+  border-top: 1px dashed var(--color-neutral-200);
+  padding-top: var(--space-3);
+}
+
+/* ─── Step-level error message ──────────────────────────── */
+
+.step-error {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-error);
+  text-align: center;
+  margin: var(--space-3) 0 0;
+  animation: shakeIn 0.3s ease both;
+}
+
+.step-error::before {
+  content: '';
+  display: inline-block;
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: 50%;
+  background: var(--color-error);
+  margin-right: var(--space-1\.5);
+  vertical-align: middle;
+}

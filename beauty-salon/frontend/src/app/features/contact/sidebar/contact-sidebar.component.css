@@ -1,0 +1,199 @@
+/* ═══════════════════════════════════════════════════════════
+   CONTACT SIDEBAR — Salon info + schedule + social + WhatsApp
+   ═══════════════════════════════════════════════════════════ */
+
+.booking-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.sidebar-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-neutral-200);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+}
+
+.sidebar-heading {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-neutral-900);
+  margin: 0 0 1rem;
+
+  @media (width >= 48rem) {
+    font-size: var(--font-size-lg);
+  }
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-700);
+}
+
+.sidebar-item + .sidebar-item {
+  margin-top: var(--space-3\.5, 0.875rem);
+}
+
+.sidebar-item app-svg-icon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.sidebar-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.sidebar-link:hover {
+  color: var(--color-primary-dark);
+}
+
+/* ─── Social icons ──────────────────────────────────────── */
+
+.sidebar-card--social {
+  padding: 1.25rem 1.5rem;
+}
+
+.sidebar-card--social .sidebar-heading {
+  margin-bottom: var(--space-3);
+}
+
+.sidebar-social {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  color: var(--color-neutral-400);
+  border: 1px solid var(--color-neutral-200);
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.social-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.social-icon:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary-light);
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  transform: translateY(-2px);
+}
+
+/* ─── WhatsApp CTA ──────────────────────────────────────── */
+
+.sidebar-card--cta {
+  padding: 1.25rem 1.5rem;
+}
+
+.sidebar-card--cta p {
+  font-size: var(--font-size-sm);
+  color: var(--color-neutral-600);
+  margin: 0 0 0.75rem;
+}
+
+.whatsapp-cta {
+  padding: 0.625rem 1.25rem;
+  font-size: var(--font-size-sm);
+  color: var(--color-surface);
+  background: var(--color-whatsapp);
+  border-radius: var(--radius-full);
+}
+
+.whatsapp-cta svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.whatsapp-cta:hover {
+  background: var(--color-whatsapp-dark);
+  transform: scale(1.03);
+}
+
+/* ─── Schedule in sidebar ───────────────────────────────── */
+
+.sidebar-item--schedule {
+  align-items: flex-start;
+}
+
+.schedule-list {
+  flex: 1;
+  min-width: 0;
+}
+
+.schedule-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem 1rem; /* row-gap column-gap — wrap friendly */
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  flex-wrap: wrap;
+}
+
+.schedule-day {
+  color: var(--color-neutral-700);
+}
+
+.schedule-hours {
+  color: var(--color-neutral-600);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.schedule-hours.is-closed {
+  color: var(--color-neutral-400);
+  font-style: italic;
+}
+
+.schedule-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.625rem;
+  padding-top: 0.625rem;
+  border-top: 1px solid var(--color-neutral-200);
+  font-size: var(--font-size-xs);
+  line-height: 1;
+  transition: color 0.45s ease;
+}
+
+.schedule-status.is-open {
+  color: var(--color-success);
+}
+
+.schedule-status.is-closed {
+  color: var(--color-neutral-500);
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color 0.45s ease;
+}
+
+.schedule-status.is-open .status-dot {
+  background-color: var(--color-success);
+}
+
+.schedule-status.is-closed .status-dot {
+  background-color: var(--color-neutral-400);
+}

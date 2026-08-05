@@ -1,0 +1,63 @@
+<div class="wizard-body">
+  <h3 class="wizard-title" tabindex="-1">Casi listo — dejanos tus datos</h3>
+
+  <app-form-field
+    label="Nombre"
+    [required]="true"
+    labelFor="booking-name"
+    [errorMessage]="nameCtrl.invalid && (nameCtrl.touched || attemptedSubmit()) ? 'Decinos tu nombre para poder contactarte' : null">
+    <input
+      id="booking-name"
+      type="text"
+      [title]="attemptedSubmit() ? '' : null"
+      [class.is-invalid]="nameCtrl.invalid && (nameCtrl.touched || attemptedSubmit())"
+      [class.is-valid]="nameCtrl.valid && nameCtrl.touched"
+      [(ngModel)]="name"
+      #nameCtrl="ngModel"
+      name="booking-name"
+      placeholder="Ej: María González"
+      autocomplete="name"
+      required
+    />
+    <!--
+      [title] above is a deliberate workaround: on a projected input (ng-content),
+      a [class.*] binding that reads control-status getters (invalid/valid/errors)
+      never updates in this Angular version. A property binding reading the same
+      signal on the element re-triggers the styling update. Do not remove.
+    -->
+  </app-form-field>
+
+  <app-form-field
+    label="WhatsApp"
+    [required]="true"
+    labelFor="booking-phone"
+    [errorMessage]="phoneCtrl.invalid && (phoneCtrl.touched || attemptedSubmit()) ? (phoneCtrl.errors?.['required'] ? 'Necesitamos tu WhatsApp para confirmar el turno' : 'Parece muy corto — ¿el número está completo?') : null"
+    hint="Te confirmamos por WhatsApp. Sin spam, prometemos 🙌">
+    <input
+      id="booking-phone"
+      type="tel"
+      [title]="attemptedSubmit() ? '' : null"
+      [(ngModel)]="clientPhone"
+      #phoneCtrl="ngModel"
+      name="booking-phone"
+      placeholder="Ej: 442 301 6543"
+      autocomplete="tel"
+      inputmode="tel"
+      minlength="8"
+      required
+      [class.is-invalid]="phoneCtrl.invalid && (phoneCtrl.touched || attemptedSubmit())"
+      [class.is-valid]="phoneCtrl.valid && phoneCtrl.touched"
+    />
+    <!-- Same [title] workaround as the name input above. -->
+  </app-form-field>
+
+  <app-form-field label="Mensaje" [optional]="true" labelFor="booking-notes">
+    <textarea
+      id="booking-notes"
+      [(ngModel)]="notes"
+      name="booking-notes"
+      rows="3"
+      placeholder="Contanos preferencias: color, largo, diseño… o cualquier duda"
+    ></textarea>
+  </app-form-field>
+</div>
