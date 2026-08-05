@@ -234,6 +234,9 @@ export class ImageCompare {
   /** true durante la animación de salida del zoom (fallback CSS). */
   readonly isLeaving = signal(false);
 
+  /** ID del requestAnimationFrame pendiente para requestFullscreen. */
+  #fsRequestId: number | null = null;
+
   // ══════════════════════════════════════════════════════════════════════════
   // Referencias al DOM
   // ══════════════════════════════════════════════════════════════════════════
@@ -247,22 +250,40 @@ export class ImageCompare {
   readonly #enterZoom = (): void => {
     if (!this.zoomEnabled()) return;
 
-    if (document.fullscreenEnabled) {
-      const el = this.containerEl().nativeElement;
-      if (el.requestFullscreen) {
-        this.isZoomed.set(true); // optimista — fullscreenchange lo confirma
+    const el = this.containerEl()?.nativeElement;
+    if (document.fullscreenEnabled && el?.requestFullscreen) {
+      // Optimistic: treat native fullscreen as in play so the CSS fallback
+      // classes/backdrop never touch the element while the browser is
+      // transitioning to fullscreen. Mutating the element (position: fixed,
+      // enter animation) or its ancestors (carousel track transform) during
+      // that transition makes Chrome abort the fullscreen and revert to the
+      // previous window size.
+      this.usingFullscreen.set(true);
+      this.isZoomed.set(true);
+      this.zoomChange.emit(true);
+
+      // Let Angular commit the zoom freeze on the carousel track and settle
+      // layout BEFORE requesting fullscreen, so no ancestor transform changes
+      // during the fullscreen transition.
+      this.#fsRequestId = requestAnimationFrame(() => {
+        this.#fsRequestId = null;
         el.requestFullscreen().catch(() => {
-          // Usuario denegó o error silencioso → fullscreenchange no dispara,
-          // isZoomed se queda en true (fallback CSS)
+          // Denied or silent error → fall back to the CSS overlay.
+          this.usingFullscreen.set(false);
         });
-        return;
-      }
+      });
+      return;
     }
     // Fallback: CSS overlay
     this.isZoomed.set(true);
+    this.zoomChange.emit(true);
   };
 
   readonly #exitZoom = (): void => {
+    if (this.#fsRequestId !== null) {
+      cancelAnimationFrame(this.#fsRequestId);
+      this.#fsRequestId = null;
+    }
     if (document.fullscreenElement) {
       document.exitFullscreen().catch(() => {});
     }
@@ -274,10 +295,10 @@ export class ImageCompare {
 
     if (this.isZoomed()) {
       this.#exitZoom();
+      this.zoomChange.emit(false);
     } else {
       this.#enterZoom();
     }
-    this.zoomChange.emit(this.isZoomed());
   };
 
   readonly closeZoom = (): void => {

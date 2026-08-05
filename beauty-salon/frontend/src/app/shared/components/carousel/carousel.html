@@ -12,6 +12,7 @@
     <div
       class="carousel-track"
       [class.carousel-track--instant]="!animateTrack()"
+      [class.carousel-track--zoom-freeze]="zoomActive()"
       [style.transform]="controller().translateX()">
       <ng-content />
     </div>

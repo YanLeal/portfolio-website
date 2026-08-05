@@ -13,6 +13,8 @@ function createMockController(overrides: Partial<CarouselController> = {}): Caro
     goTo: vi.fn(),
     previous: vi.fn(),
     next: vi.fn(),
+    pause: vi.fn(),
+    resume: vi.fn(),
     ...overrides,
   } as unknown as CarouselController;
   return mock;

@@ -14,6 +14,10 @@
   cursor: ew-resize;
   user-select: none;
   -webkit-user-select: none;
+  /* Custom properties (not inline styles) so :fullscreen and --zoomed
+     can override them via the cascade. */
+  aspect-ratio: var(--ic-aspect-ratio, 1 / 1);
+  max-width: var(--ic-max-width, 36rem);
 }
 
 .ic-container:focus-visible {

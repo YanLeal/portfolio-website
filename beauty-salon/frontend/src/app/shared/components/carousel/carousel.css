@@ -17,6 +17,18 @@
   will-change: transform;
 }
 
+/* While a slide's zoom/fullscreen is active, drop the transform and the
+   will-change hint: a transformed ancestor becomes the containing block
+   for fixed-position descendants (including the Fullscreen API element),
+   which breaks the fullscreen overlay. `!important` beats the inline
+   `translateX` binding. Also cut the transition so the track does not
+   animate toward translateX(0) behind the overlay. */
+.carousel-track--zoom-freeze {
+  transform: none !important;
+  will-change: auto;
+  transition: none;
+}
+
 .carousel-track--instant {
   transition: none;
 }

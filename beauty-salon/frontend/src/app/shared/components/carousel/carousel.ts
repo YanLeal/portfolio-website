@@ -1,4 +1,4 @@
-import { Component, HostListener, input } from '@angular/core';
+import { Component, effect, HostListener, input } from '@angular/core';
 import { CarouselController } from '../../utils/carousel-controller';
 import { SwipeDirective } from '../../directives/swipe.directive';
 
@@ -79,28 +79,51 @@ export class Carousel {
 
   // ─── Host listeners (auto-play pause/resume) ────────────
 
+  /** Rastrea si el puntero está dentro del carrusel. */
+  #pointerInside = false;
+
+  /** Rastrea si el foco está dentro del carrusel. */
+  #focusedInside = false;
+
+  constructor() {
+    // Pausa el auto-play mientras el zoom está activo. Sin esto, el fullscreen
+    // roba el foco al botón → focusout → resume() → el auto-play avanza de
+    // slide → el comparador pierde active() → el zoom se cierra solo.
+    effect(() => {
+      if (this.zoomActive()) {
+        this.controller().pause();
+      } else if (!this.#pointerInside && !this.#focusedInside) {
+        this.controller().resume();
+      }
+    });
+  }
+
   /** Pausa auto-play al entrar el mouse. */
   @HostListener('mouseenter')
   onMouseEnter(): void {
+    this.#pointerInside = true;
     this.controller().pause();
   }
 
   /** Reanuda auto-play al salir el mouse. */
   @HostListener('mouseleave')
   onMouseLeave(): void {
-    this.controller().resume();
+    this.#pointerInside = false;
+    if (!this.zoomActive()) this.controller().resume();
   }
 
   /** Pausa auto-play al recibir foco (teclado, navegación). */
   @HostListener('focusin')
   onFocusIn(): void {
+    this.#focusedInside = true;
     this.controller().pause();
   }
 
   /** Reanuda auto-play al perder foco. */
   @HostListener('focusout')
   onFocusOut(): void {
-    this.controller().resume();
+    this.#focusedInside = false;
+    if (!this.zoomActive()) this.controller().resume();
   }
 
   /** Navegación por teclado (← → Home End). Se omite si keyboardNav=false. */

@@ -109,5 +109,12 @@ export class ResultsComponent {
   /** Sincroniza el estado del zoom para ocultar/mostrar navegación. */
   readonly onZoomChange = (zoomed: boolean): void => {
     this.isZoomActive.set(zoomed);
+    if (!zoomed) {
+      // When zoom closes, the track returns from transform:none (zoom freeze)
+      // to translateX(-N%). Disable the transition for one frame so it snaps
+      // back to the current slide instead of animating from slide 1.
+      this.animateTrack.set(false);
+      requestAnimationFrame(() => this.animateTrack.set(true));
+    }
   };
 }
